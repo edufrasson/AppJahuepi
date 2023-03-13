@@ -2,15 +2,15 @@
 
 namespace App\Model;
 
-use App\DAO\categoria_produtoDAO;
+use App\DAO\CategoriaProdutoDAO;
 
-class categoria_produtoModel extends Model
+class CategoriaProdutoModel extends Model
 {
     public $id, $descricao;
 
     public function save()
     {
-        $dao = new categoria_produtoDAO();
+        $dao = new CategoriaProdutoDAO();
         
         if(empty($this->id))
         {
@@ -23,23 +23,23 @@ class categoria_produtoModel extends Model
 
     public function getAllRows()
     {
-        $dao = new categoria_produtoDAO();
+        $dao = new CategoriaProdutoDAO();
 
         $this->rows = $dao->select();
     }
 
     public function getById(int $id)
     {
-        $dao = new categoria_produtoDAO();
+        $dao = new CategoriaProdutoDAO();
 
         $obj = $dao->selectById($id);
 
-        return ($obj) ? $obj : new categoria_produtoModel();
+        return ($obj) ? $obj : new CategoriaProdutoModel();
     }
 
     public function delete(int $id)
     {
-        $dao = new categoria_produtoDAO();
+        $dao = new CategoriaProdutoDAO();
 
         $dao->delete($id);
     }

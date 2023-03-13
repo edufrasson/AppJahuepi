@@ -2,14 +2,14 @@
 
 namespace App\Controller;
 
-use App\Model\categoria_produtoModel;
+use App\Model\CategoriaProdutoModel;
 use App\Controller\Controller;
 
-class categoria_produtoControler extends Controller
+class CategoriaProdutoController extends Controller
 {
     public static function index()
     {
-        $model = new categoria_produtoModel();
+        $model = new CategoriaProdutoModel();
         $model->getAllRows();
 
         parent::setResponseAsJSON($model);
@@ -17,7 +17,7 @@ class categoria_produtoControler extends Controller
 
     public static function form()
     {
-        $model = new categoria_produtoModel();
+        $model = new CategoriaProdutoModel();
 
         if(isset($_GET['id']))
             $model = $model->getById( (int) $_GET['id']);
@@ -27,7 +27,7 @@ class categoria_produtoControler extends Controller
 
     public static function save()
     {
-        $categoria_produto = new categoria_produtoModel();
+        $categoria_produto = new CategoriaProdutoModel();
 
         $categoria_produto->id = $_POST['id'];
         $categoria_produto->descricao = $_POST['categoria_produto'];
@@ -39,7 +39,7 @@ class categoria_produtoControler extends Controller
 
     public static function delete()
     {
-        $model = new categoria_produtoModel();
+        $model = new CategoriaProdutoModel();
 
         $model->delete( (int) $_GET['id']);
 
