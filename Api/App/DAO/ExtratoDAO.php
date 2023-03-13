@@ -14,7 +14,7 @@ class ExtratoDAO extends DAO
 
     public function insert(ExtratoModel $model)
     {
-        $sql = "INSERT INTO extrato (valor, data_extrato) VALUE (?)";
+        $sql = "INSERT INTO extrato (valor, data_extrato) VALUE (?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -44,7 +44,7 @@ class ExtratoDAO extends DAO
 
         $stmt->execute();
 
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
     public function selectById(int $id)
@@ -56,7 +56,7 @@ class ExtratoDAO extends DAO
 
         $stmt->execute();
 
-        return $stmt->fetchObject("App\Model\ExtratroModel");
+        return $stmt->fetchObject("App\Model\ExtratoModel");
     }
 
     public function delete(int $id)

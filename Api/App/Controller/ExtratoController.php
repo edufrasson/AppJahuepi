@@ -12,7 +12,7 @@ class ExtratoController extends Controller
         $model = new ExtratoModel();
         $model->getAllRows();
 
-        //parent::render('Extrato/ListaExtrato', $model);
+        parent::setResponseAsJSON($model);
     }
 
     public static function form()
@@ -35,7 +35,7 @@ class ExtratoController extends Controller
 
         $extrato->save();
 
-        header("Location: /extrato");
+        parent::setResponseAsJSON($extrato);
     }
 
     public static function delete()
@@ -44,6 +44,6 @@ class ExtratoController extends Controller
 
         $model->delete( (int) $_GET['id']);
 
-        header("Location: /extrato");
+        parent::setResponseAsJSON($model);
     }
 }
