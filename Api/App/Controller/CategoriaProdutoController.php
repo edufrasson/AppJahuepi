@@ -30,7 +30,7 @@ class CategoriaProdutoController extends Controller
         $categoria_produto = new CategoriaProdutoModel();
 
         $categoria_produto->id = $_POST['id'];
-        $categoria_produto->descricao = $_POST['categoria_produto'];
+        $categoria_produto->descricao = $_POST['descricao'];
 
         $categoria_produto->save();
 
