@@ -31,7 +31,11 @@ class ProdutoController extends Controller
         $produto->id = $_POST['id'];                          
         $produto->descricao = $_POST['descricao'];     
         $produto->preco = $_POST['preco'];     
+<<<<<<< HEAD
         $produto->codigo_barra = $_POST['codigo_barra']; 
+=======
+        $produto->codigo_barra = $_POST['validade']; 
+>>>>>>> f2ccca217c8118eca35096ccac782b3bc6fe1d57
         $produto->id_categoria = $_POST['id_categoria'];         
 
         $produto->save();
