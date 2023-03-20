@@ -6,7 +6,7 @@ use App\DAO\ProdutoDAO;
 
 class ProdutoModel extends Model
 {
-    public $id, $descricao, $preco, $validade, $id_categoria;
+    public $id, $descricao, $preco, $codigo_barra, $id_categoria;
 
     public function save()
     {

@@ -14,36 +14,35 @@ class ProdutoDAO extends DAO
 
     public function insert(ProdutoModel $model)
     {
-        $sql = "INSERT INTO produto (descricao, preco, validade, id_categoria) VALUE (?, ?, ?, ?)";
+        $sql = "INSERT INTO produto (descricao, preco, codigo_barra) VALUE (?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->descricao);
-        $stmt->bindValue(2, $model->preco);
-        $stmt->bindValue(3, $model->validade);
-        $stmt->bindValue(4, $model->id_categoria);
+        $stmt->bindValue(2, $model->preco);      
+        $stmt->bindValue(3, $model->codigo_barra);
 
         $stmt->execute();
     }
 
     public function update(ProdutoModel $model)
     {
-        $sql = "UPDATE produto SET descricao=?, preco=?, validade=?, id_categoria=? WHERE id=?";
+        $sql = "UPDATE produto SET descricao=?, preco=?, codigo_barra=? WHERE id=?";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $model->descricao);
         $stmt->bindValue(2, $model->preco);
-        $stmt->bindValue(3, $model->validade);
-        $stmt->bindValue(4, $model->id_categoria);
+        $stmt->bindValue(3, $model->codigo_barra);
+        $stmt->bindValue(4, $model->id);
 
         $stmt->execute();
     }
 
     public function select()
     {
-        $sql = "SELECT p.id, p.descricao, p.preco, p.validade, c.descricao AS categoria
+        $sql = "SELECT p.*, c.descricao AS categoria
                 FROM produto p
-                JOIN categoria_produto c ON (c.id = p.id_categoria)";
+                JOIN categoria_produto c ON (c.id = p.codigo_barra)";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -54,9 +53,9 @@ class ProdutoDAO extends DAO
 
     public function selectById(int $id)
     {
-        $sql = "SELECT p.id, p.descricao, p.preco, p.validade, c.descricao AS categoria
+        $sql = "SELECT p.*, c.descricao AS categoria
         FROM produto p
-        JOIN categoria_produto c ON (c.id = p.id_categoria)
+        JOIN categoria_produto c ON (c.id = p.codigo_barra)
         WHERE p.id=?";
 
         $stmt = $this->conexao->prepare($sql);
