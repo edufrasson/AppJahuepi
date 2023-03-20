@@ -14,24 +14,28 @@ class ParcelaDAO extends DAO
 
     public function insert(ParcelaModel $model)
     {
-        $sql = "INSERT INTO Parcela (valor, data_parcela) VALUE (?, ?)";
+        $sql = "INSERT INTO Parcela (valor, data_parcela, status, id_pagamento) VALUE (?, ?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->valor);
         $stmt->bindValue(2, $model->data_parcela);
+        $stmt->bindValue(3, $model->status);
+        $stmt->bindValue(4, $model->id_pagamento);
 
         $stmt->execute();
     }
 
     public function update(ParcelaModel $model)
     {
-        $sql = "UPDATE Parcela SET valor=?, data_parcela=? WHERE id=?";
+        $sql = "UPDATE Parcela SET valor=?, data_parcela=?, status = ?, id_pagamento = ? WHERE id=?";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $model->valor);
         $stmt->bindValue(2, $model->data_parcela);
-        $stmt->bindValue(3, $model->id);
+        $stmt->bindValue(3, $model->status);
+        $stmt->bindValue(4, $model->id_pagamento);
+        $stmt->bindValue(5, $model->id);
 
         $stmt->execute();
     }

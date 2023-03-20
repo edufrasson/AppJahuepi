@@ -2,9 +2,15 @@
 
 namespace App\Controller;
 
-use Exception;
+use FFI\Exception;
 
 abstract class Controller{
+    
+    /* Verifica se o usuário está logado. */
+    protected static function isAuthenticated(){
+        if(!isset($_SESSION['user_logged']))
+            self::setResponseAsJSON('unset_user');
+    }
     /* Retorna um valor como um objeto JSON*/
     protected static function setResponseAsJSON($data, $request_status = true)
     {
@@ -32,16 +38,6 @@ abstract class Controller{
         header("Pragma: public");      
         
         return json_decode(file_get_contents('php://input'));
-    }
-
-    public static function getResponseAsJSON($data)
-    {
-        header("Acess-Control-Allow-Origin: *");
-        header("Content-type: application/json; charset=utf-8");
-        header("Cache-Control: no-cache, must-revalidate");
-        header("Expires: Mon, 26 Jul 1997 05:00:00 GHT");
-
-        exit(json_encode($data));
     }
 
     protected static function getExceptionAsJSON(Exception $e)
