@@ -15,15 +15,6 @@ class ProdutoController extends Controller
         parent::setResponseAsJSON($model);
     }
 
-    public static function form()
-    {
-        $model = new ProdutoModel();
-
-        if(isset($_GET['id']))
-            $model = $model->getById( (int) $_GET['id']);
-        
-    }
-
     public static function save()
     {
         $produto = new ProdutoModel();
@@ -31,11 +22,7 @@ class ProdutoController extends Controller
         $produto->id = $_POST['id'];                          
         $produto->descricao = $_POST['descricao'];     
         $produto->preco = $_POST['preco'];     
-<<<<<<< HEAD
         $produto->codigo_barra = $_POST['codigo_barra']; 
-=======
-        $produto->codigo_barra = $_POST['validade']; 
->>>>>>> f2ccca217c8118eca35096ccac782b3bc6fe1d57
         $produto->id_categoria = $_POST['id_categoria'];         
 
         $produto->save();
