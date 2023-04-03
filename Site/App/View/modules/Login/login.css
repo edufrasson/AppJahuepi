@@ -1,0 +1,73 @@
+.container{
+    width: 100%;
+ 
+   
+    display: flex;
+    justify-content: center;
+  
+    flex-direction: column;
+}
+
+.image-container{
+    width: 100%;
+    margin-top: 8%;
+    height: 33.3%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /*border: 1px solid red;*/
+}
+
+.input-container{
+    width: 100%;
+    height: 33.3%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    /*border: 1px solid red;*/
+}
+
+.input-container input{
+    width: 400px;
+}
+
+.input-password{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.input-password #senha{
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 50px;
+    position: relative;
+}
+
+.input-password #verSenha{
+    position: absolute;
+    left: 58.6%;
+}
+
+#imgLogo{
+    max-width: 70%;
+    max-height: 70%;
+}
+
+.action-pass{
+    width: 100%;
+    height: 3%;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+#verSenha{
+    cursor: pointer;  
+    user-select: none;
+}

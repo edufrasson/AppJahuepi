@@ -16,9 +16,15 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch ($url) {
 
+    /* INDEX */
+
     case '/produto':
         ProdutoController::index();
         break;
+
+    case '/login':
+        LoginController::form();
+        break;    
 
     case '/extrato':
         ExtratoController::index();
@@ -44,6 +50,7 @@ switch ($url) {
         ProdutoVendaController::index();
         break;
 
+    /* SAVE */
 
     case '/produto/save':
         ProdutoController::save();
@@ -73,6 +80,7 @@ switch ($url) {
         ProdutoVendaController::save();
         break;
 
+    /* DELETE */
 
     case '/produto/delete':
         ProdutoController::delete();
@@ -103,9 +111,13 @@ switch ($url) {
         break;
 
 
-    
+        /* OUTROS */
     
     case '/auth':
         LoginController::auth();
         break;   
+
+    default:
+        header('Location: /login');
+        break;    
 }
