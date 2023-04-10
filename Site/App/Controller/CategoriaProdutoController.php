@@ -12,7 +12,7 @@ class CategoriaProdutoController extends Controller
         $model = new CategoriaProdutoModel();
         $model->getAllRows();
 
-        parent::setResponseAsJSON($model);
+        include 'View/modules/CategoriaProduto/ListarCategoria.php';
     }
 
     public static function form()

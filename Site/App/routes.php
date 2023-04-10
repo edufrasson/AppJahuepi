@@ -38,7 +38,7 @@ switch ($url) {
         PagamentoController::index();
         break;
 
-    case '/categoria/produto':
+    case '/categoria_produto':
         CategoriaProdutoController::index();
         break;
 
