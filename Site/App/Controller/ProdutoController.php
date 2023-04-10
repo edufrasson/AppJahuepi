@@ -12,7 +12,7 @@ class ProdutoController extends Controller
         $model = new ProdutoModel();
         $model->getAllRows();
 
-        parent::setResponseAsJSON($model);
+        include 'View/modules/Produto/ListarProduto.php';
     }
 
     public static function save()
