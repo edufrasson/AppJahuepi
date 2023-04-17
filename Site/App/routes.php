@@ -82,6 +82,31 @@ switch ($url) {
 
 
     /* GET-BY-ID */
+
+    case '/produto/get-by-id':
+        ProdutoController::getById();
+        break;
+
+    case '/extrato/get-by-id':
+        ExtratoController::getById();
+        break;
+
+    case '/parcela/get-by-id':
+        ParcelaController::getById();
+        break;
+
+    case '/pagamento/get-by-id':
+        PagamentoController::getById();
+        break;
+
+    case '/categoria_produto/get-by-id':
+        CategoriaProdutoController::getById();
+        break;
+
+    case '/venda/get-by-id':
+        VendaController::getById();
+        break;
+
     case '/categoria_produto/get-by-id':
         CategoriaProdutoController::getById();
         break;    

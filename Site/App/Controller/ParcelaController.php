@@ -15,13 +15,11 @@ class ParcelaController extends Controller
         parent::setResponseAsJSON($model);
     }
 
-    public static function form()
+    public static function getById()
     {
         $model = new ParcelaModel();
 
-        if(isset($_GET['id']))
-            $model = $model->getById( (int) $_GET['id']);
-        
+        parent::setResponseAsJSON($model->getById($_GET['id']));
     }
 
     public static function save()

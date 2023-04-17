@@ -15,6 +15,13 @@ class ProdutoController extends Controller
         include 'View/modules/Produto/ListarProduto.php';
     }
 
+    public static function getById()
+    {
+        $model = new ProdutoModel();
+
+        parent::setResponseAsJSON($model->getById($_GET['id']));
+    }
+
     public static function save()
     {
         $produto = new ProdutoModel();

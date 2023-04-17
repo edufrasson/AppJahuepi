@@ -15,14 +15,11 @@ class ExtratoController extends Controller
         parent::setResponseAsJSON($model);
     }
 
-    public static function form()
+    public static function getById()
     {
         $model = new ExtratoModel();
 
-        if(isset($_GET['id']))
-            $model = $model->getById( (int) $_GET['id']);
-
-        //parent::render('Extrato/FormExtrato', $model);
+        parent::setResponseAsJSON($model->getById($_GET['id']));
     }
 
     public static function save()
