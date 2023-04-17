@@ -46,7 +46,7 @@ switch ($url) {
         VendaController::index();
         break;
 
-    case '/produto/venda':
+    case '/produto_venda':
         ProdutoVendaController::index();
         break;
 
@@ -68,7 +68,7 @@ switch ($url) {
         PagamentoController::save();
         break;
 
-    case '/categoria/produto/save':
+    case '/categoria_produto/save':
         CategoriaProdutoController::save();
         break;
 
@@ -76,9 +76,15 @@ switch ($url) {
         VendaController::save();
         break;
 
-    case '/produto/venda/save':
+    case '/produto_venda/save':
         ProdutoVendaController::save();
         break;
+
+
+    /* GET-BY-ID */
+    case '/categoria_produto/get-by-id':
+        CategoriaProdutoController::getById();
+        break;    
 
     /* DELETE */
 
@@ -98,7 +104,7 @@ switch ($url) {
         PagamentoController::delete();
         break;
 
-    case '/categoria/produto/save/delete':
+    case '/categoria_produto/delete':
         CategoriaProdutoController::delete();
         break;
 
@@ -106,7 +112,7 @@ switch ($url) {
         VendaController::delete();
         break;
 
-    case '/produto/venda/delete':
+    case '/produto_venda/delete':
         ProdutoVendaController::delete();
         break;
 

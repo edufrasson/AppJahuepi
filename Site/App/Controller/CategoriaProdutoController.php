@@ -15,15 +15,13 @@ class CategoriaProdutoController extends Controller
         include 'View/modules/CategoriaProduto/ListarCategoria.php';
     }
 
-    public static function form()
+    public static function getById()
     {
         $model = new CategoriaProdutoModel();
 
-        if(isset($_GET['id']))
-            $model = $model->getById( (int) $_GET['id']);
-        
-        //parent::render('categoria_produto/Formcategoria_produto', $model);
+        parent::setResponseAsJSON($model->getById($_GET['id']));
     }
+
 
     public static function save()
     {
@@ -34,7 +32,7 @@ class CategoriaProdutoController extends Controller
 
         $categoria_produto->save();
 
-        parent::setResponseAsJSON($categoria_produto);
+        header("Location: /categoria_produto");
     }
 
     public static function delete()
