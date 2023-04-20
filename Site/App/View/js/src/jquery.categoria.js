@@ -1,7 +1,5 @@
-function addCategoria(id, descricao)
-{
-    if(descricao !== "")
-    {
+function addCategoria(id, descricao) {
+    if (descricao !== "") {
         $.ajax({
             type: "POST",
             url: "/categoria_produto/save",
@@ -20,8 +18,7 @@ function addCategoria(id, descricao)
     }
 }
 
-function getCategoriaById(id)
-{
+function getCategoriaById(id) {
     $.ajax({
         type: "GET",
         url: "/categoria_produto/get-by-id?id=" + id,
@@ -36,8 +33,7 @@ function getCategoriaById(id)
     });
 }
 
-function deleteCategoria(id)
-{
+function deleteCategoria(id) {
     $.ajax({
         type: "GET",
         url: "/categoria_produto/delete?id=" + id,
@@ -51,12 +47,32 @@ function deleteCategoria(id)
     });
 }
 
-$(document).ready(function (){
-    $('.btn-edit').click(function(event){
+$(document).ready(function () {
+    $('.table-style').DataTable({
+        "language": {
+            "info": "Mostrando _START_ - _END_ de _TOTAL_ registros",
+            "infoEmpty": "Mostrando 0 - 0 de 0 registros",
+            "infoFiltered": "(Filtrado em _MAX_ registros totais)",
+            "paginate": {
+                "first": "Primeiro",
+                "last": "Último",
+                "next": "Próximo",
+                "previous": "Anterior"
+            },
+            "search": "Pesquisar:",
+            "lengthMenu": "Mostrar _MENU_ registros",
+            "zeroRecords": "Nenhum registro encontrado!",
+        },
+        "ajax": {
+            "url": "/categoria/get-all"
+        }
+    });
+
+    $('.btn-edit').click(function (event) {
         getCategoriaById(event.target.id);
     })
 
-    $('.btn-delete').click(function(event){
+    $('.btn-delete').click(function (event) {
         deleteCategoria(event.target.id);
 
         window.location.reload(true);
