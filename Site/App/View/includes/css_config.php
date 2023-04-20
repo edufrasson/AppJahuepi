@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="View/bootstrap/dist/css/bootstrap.min.css">
-<script src="View/js/DataTable/datables.min.css"></script>
+<script src="View/js/DataTable/datatables.min.css"></script>
 <link rel="stylesheet" href="View/styles/global.css">
 <link rel="shortcut icon" href="View/assets/icone.png" type="image/x-icon">
 

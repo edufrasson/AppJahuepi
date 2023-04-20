@@ -6,10 +6,13 @@ use FFI\Exception;
 
 abstract class Controller{
     
+    protected static function loginFailed(){
+        header('Location: /login?erro=true');
+    }
     /* Verifica se o usuário está logado. */
     protected static function isAuthenticated(){
         if(!isset($_SESSION['user_logged']))
-            self::setResponseAsJSON('unset_user');
+            header('Location: /login');
     }
     /* Retorna um valor como um objeto JSON*/
     protected static function setResponseAsJSON($data, $request_status = true)

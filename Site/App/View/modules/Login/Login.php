@@ -21,13 +21,21 @@
                 <input type="email" class="form-control" name="email" id="email"><br>
 
                 <label for="senha">Senha de Acesso:</label>
-                <div class="input-password">
-                    <input type="password" class="form-control" name="senha" id="senha">
-                    <box-icon name='show' id="verSenha"></box-icon>
+                <div class="input-password">                    
+                    <input type="password" class="form-control" name="senha" id="senha"><br>
+                           
                 </div>
 
                 <div class="action-pass">
-                    <a href="">Esqueceu a senha?</a>                 
+                    <a href="">Esqueceu a senha?</a>   
+                    <box-icon name='show' id="verSenha"></box-icon>                 
+                </div>
+
+                <div>
+                    <?php if($loginFailed == true): ?>
+                        <h6 class="text-danger">Falha no login, tente novamente!</h6>
+                    <?php endif;?>
+                    
                 </div>
 
                 <section class="btn-container">

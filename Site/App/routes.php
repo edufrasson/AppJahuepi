@@ -144,9 +144,12 @@ switch ($url) {
 
         /* OUTROS */
     
-    case '/auth':
+    case '/login/auth':
         LoginController::auth();
         break;   
+    case '/home':
+        CategoriaProdutoController::index();
+        break;
 
     default:
         header('Location: /login');
