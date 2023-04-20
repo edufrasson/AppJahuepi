@@ -12,7 +12,7 @@ class ExtratoController extends Controller
         $model = new ExtratoModel();
         $model->getAllRows();
 
-        parent::setResponseAsJSON($model);
+        include 'View/modules/Extrato/ListarExtrato.php';
     }
 
     public static function getById()
@@ -28,11 +28,11 @@ class ExtratoController extends Controller
 
         $extrato->id = $_POST['id'];
         $extrato->valor = $_POST['valor'];
-        $extrato->data_extrato = $_POST['data_extrato'];
+        $extrato->dataExtrato = $_POST['data_extrato'];
 
         $extrato->save();
 
-        parent::setResponseAsJSON($extrato);
+        header("Location: /extrato");
     }
 
     public static function delete()

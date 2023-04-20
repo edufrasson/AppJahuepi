@@ -6,7 +6,7 @@ use App\DAO\ExtratoDAO;
 
 class ExtratoModel extends Model
 {
-    public $id, $valor, $data_extrato;
+    public $id, $valor, $dataExtrato;
 
     public function save()
     {
