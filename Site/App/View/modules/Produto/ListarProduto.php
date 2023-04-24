@@ -40,6 +40,7 @@
                                     <th>Preço</th>
                                     <th>Quantidade</th>
                                     <th>Código de Barras</th>
+                                    <th>Categoria</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
@@ -49,9 +50,10 @@
                                         <tr>
                                          
                                             <td><?= $Produto->descricao ?></td>
-                                            <td><?= $Produto->preco ?></td>
+                                            <td>R$ <?= $Produto->preco ?></td>
                                             <td><?= $Produto->quantidade ?></td>
                                             <td><?= $Produto->codigo_barra ?></td>
+                                            <td><?= $Produto->categoria ?></td>
                                             <td class="actions-list">
                                                 <box-icon name="edit" color="#e8ac07" id="<?= $Produto->id ?>" data-bs-toggle="modal" data-bs-target="#modalProduto" class="btn-icon btn-edit"></box-icon>
                                                 <box-icon name="trash" color="#e8ac07" id="<?= $Produto->id ?>" class="btn-icon btn-delete"></box-icon>
