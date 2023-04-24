@@ -124,7 +124,7 @@
         </div>
     </div>
     <?php include 'View/includes/js_config.php' ?>
-    <script src="View/js/src/jquery.categoria.js"></script>
+    <script src="View/js/src/jquery.produto.js"></script>
 
 
 </body>
