@@ -89,12 +89,9 @@ switch ($url) {
     case '/categoria_produto':
         CategoriaProdutoController::index();
         break;
-<<<<<<< HEAD
     case '/categoria_produto/get-all':
         CategoriaProdutoController::getAll();
         break;
-=======
->>>>>>> c6a5d8ca6c71072b7d9360ea22c352628ce7a3be
     case '/categoria_produto/save':
         CategoriaProdutoController::save();
         break;
