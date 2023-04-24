@@ -16,7 +16,7 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch ($url) {
 
-    /* Produto */
+        /* Produto */
 
     case '/produto':
         ProdutoController::index();
@@ -31,7 +31,7 @@ switch ($url) {
         ProdutoController::delete();
         break;
 
-    /* Login*/
+        /* Login*/
     case '/login':
         LoginController::form();
         break;
@@ -39,12 +39,15 @@ switch ($url) {
         LoginController::auth();
         break;
 
-    /* Extrato*/
+        /* Extrato*/
     case '/extrato':
         ExtratoController::index();
         break;
     case '/extrato/save':
         ExtratoController::save();
+        break;
+    case '/extrato/get-all':
+        ExtratoController::getAll();
         break;
     case '/extrato/get-by-id':
         ExtratoController::getById();
@@ -53,7 +56,7 @@ switch ($url) {
         ExtratoController::delete();
         break;
 
-    /* Parcela */
+        /* Parcela */
 
     case '/parcela':
         ParcelaController::index();
@@ -68,7 +71,7 @@ switch ($url) {
         ParcelaController::delete();
         break;
 
-    /* Pagamento*/
+        /* Pagamento*/
 
     case '/pagamento':
         PagamentoController::index();
@@ -85,7 +88,7 @@ switch ($url) {
         PagamentoController::delete();
         break;
 
-    /* Categoria do Produto */
+        /* Categoria do Produto */
     case '/categoria_produto':
         CategoriaProdutoController::index();
         break;
@@ -103,7 +106,7 @@ switch ($url) {
         CategoriaProdutoController::delete();
         break;
 
-    /* Venda*/
+        /* Venda*/
     case '/venda':
         VendaController::index();
         break;
@@ -117,7 +120,7 @@ switch ($url) {
         VendaController::delete();
         break;
 
-    /* Produto_Venda*/
+        /* Produto_Venda*/
     case '/produto_venda':
         ProdutoVendaController::index();
         break;
@@ -128,7 +131,7 @@ switch ($url) {
         ProdutoVendaController::delete();
         break;
 
-    /* Outros */
+        /* Outros */
     case '/home':
         CategoriaProdutoController::index();
         break;

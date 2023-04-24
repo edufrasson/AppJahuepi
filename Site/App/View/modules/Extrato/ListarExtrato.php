@@ -25,6 +25,11 @@
                     </div>
 
                     <div class="container-table">
+                        <div class="loading-container d-flex justify-content-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
                         <table id="tableExtrato" class="table table-bordered table-style">
                             <thead>
                                 <tr>

@@ -31,9 +31,9 @@
             Cadastros
         </a>
         <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-            <li><a class="dropdown-item" href="/pessoa">Cadastrar Pessoas</a></li>
+            <li><a class="dropdown-item" href="/extrato">Extrato</a></li>
             <li><a class="dropdown-item" href="/produto">Cadastrar Produto</a></li>
-            <li><a class="dropdown-item" href="/categoria">Cadastrar Categoria Produto</a></li>
+            <li><a class="dropdown-item" href="/categoria_produto">Cadastrar Categoria Produto</a></li>
         </ul>
     </div>
 </div>
