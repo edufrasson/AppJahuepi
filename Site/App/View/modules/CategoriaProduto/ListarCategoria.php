@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-
-=======
->>>>>>> c6a5d8ca6c71072b7d9360ea22c352628ce7a3be
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,14 +8,9 @@
     <link rel="stylesheet" href="View/modules/CategoriaProduto/categoria.css">
     <title>Cadastro de Categoria</title>
 </head>
-<<<<<<< HEAD
 
 <body>
 
-=======
-<body>
-    
->>>>>>> c6a5d8ca6c71072b7d9360ea22c352628ce7a3be
     <div class="content-container">
         <div class="navbar">
             <?php include 'View/includes/navbar.php' ?>
@@ -35,16 +26,12 @@
                     </div>
 
                     <div class="container-table">
-<<<<<<< HEAD
                         <div class="loading-container d-flex justify-content-center">
                             <div class="spinner-border" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
                         <table id="tableCategoria" class="table table-bordered table-style off">
-=======
-                        <table id="tableCategoria" class="table table-bordered table-style">
->>>>>>> c6a5d8ca6c71072b7d9360ea22c352628ce7a3be
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -59,13 +46,8 @@
                                             <td><?= $categoria->id ?></td>
                                             <td><?= $categoria->descricao ?></td>
                                             <td class="actions-list">
-<<<<<<< HEAD
                                                 <box-icon name="edit" color="#e8ac07" id="<?= $categoria->id ?>" data-bs-toggle="modal" data-bs-target="#modalCategoria" class="btn-icon btn-edit"></box-icon>
                                                 <box-icon name="trash" color="#e8ac07" id="<?= $categoria->id ?>" class="btn-icon btn-delete"></box-icon>
-=======
-                                                <box-icon name="edit" color="#e8ac07" id="<?=$categoria->id?>"data-bs-toggle="modal" data-bs-target="#modalCategoria" class="btn-icon btn-edit"></box-icon>
-                                                <box-icon name="trash" color="#e8ac07" id="<?=$categoria->id?>" class="btn-icon btn-delete"></box-icon>
->>>>>>> c6a5d8ca6c71072b7d9360ea22c352628ce7a3be
                                             </td>
                                         </tr>
                                     <?php endforeach ?>

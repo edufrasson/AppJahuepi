@@ -47,7 +47,6 @@ function deleteCategoria(id) {
     });
 }
 
-<<<<<<< HEAD
 function loadTableCategoria() {   
     $('.spinner-border').delay(1000).hide();
     $('.table-style').delay(1000).removeClass("off");
@@ -56,28 +55,6 @@ function loadTableCategoria() {
 
 $(document).ready(function () {    
     loadTableCategoria();
-=======
-$(document).ready(function () {
-    $('.table-style').DataTable({
-        "language": {
-            "info": "Mostrando _START_ - _END_ de _TOTAL_ registros",
-            "infoEmpty": "Mostrando 0 - 0 de 0 registros",
-            "infoFiltered": "(Filtrado em _MAX_ registros totais)",
-            "paginate": {
-                "first": "Primeiro",
-                "last": "Último",
-                "next": "Próximo",
-                "previous": "Anterior"
-            },
-            "search": "Pesquisar:",
-            "lengthMenu": "Mostrar _MENU_ registros",
-            "zeroRecords": "Nenhum registro encontrado!",
-        },
-        "ajax": {
-            "url": "/categoria/get-all"
-        }
-    });
->>>>>>> c6a5d8ca6c71072b7d9360ea22c352628ce7a3be
 
     $('.btn-edit').click(function (event) {
         getCategoriaById(event.target.id);
