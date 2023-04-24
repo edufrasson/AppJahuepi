@@ -19,7 +19,7 @@ class ExtratoDAO extends DAO
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->valor);
-        $stmt->bindValue(2, $model->data_extrato);
+        $stmt->bindValue(2, $model->dataExtrato);
 
         $stmt->execute();
     }
@@ -30,7 +30,7 @@ class ExtratoDAO extends DAO
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $model->valor);
-        $stmt->bindValue(2, $model->data_extrato);
+        $stmt->bindValue(2, $model->dataExtrato);
         $stmt->bindValue(3, $model->id);
 
         $stmt->execute();

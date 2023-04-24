@@ -15,14 +15,11 @@ class VendaController extends Controller
         parent::setResponseAsJSON($model);
     }
 
-    public static function form()
+    public static function getById()
     {
         $model = new VendaModel();
 
-        if(isset($_GET['id']))
-            $model = $model->getById( (int) $_GET['id']);
-
-        //parent::render('Venda/FormVenda', $model);
+        parent::setResponseAsJSON($model->getById($_GET['id']));
     }
 
     public static function save()

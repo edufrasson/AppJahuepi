@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('.table-style').DataTable({
+    $('.table-style').DataTable({       
         "language": {
             "info": "Mostrando _START_ - _END_ de _TOTAL_ registros",
             "infoEmpty": "Mostrando 0 - 0 de 0 registros",
@@ -13,7 +13,7 @@ $(document).ready(function(){
             "search": "Pesquisar:",
             "lengthMenu":     "Mostrar _MENU_ registros",
             "zeroRecords": "Nenhum registro encontrado!",
-          }
+          }       
     });
 
     

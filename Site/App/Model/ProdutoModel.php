@@ -2,11 +2,13 @@
 
 namespace App\Model;
 
+use App\DAO\CategoriaProdutoDAO;
 use App\DAO\ProdutoDAO;
 
 class ProdutoModel extends Model
 {
-    public $id, $descricao, $preco, $codigo_barra, $id_categoria;
+    public $id, $descricao, $preco, $codigo_barra, $quantidade, $id_categoria;
+    public $lista_categoria;
 
     public function save()
     {
@@ -33,6 +35,12 @@ class ProdutoModel extends Model
         $obj = $dao->selectById($id);
 
         return ($obj) ? $obj : new ProdutoModel();
+    }
+
+    public function getAllCategoria(){
+        $dao = new CategoriaProdutoDAO();
+
+        $this->lista_categoria = $dao->select();
     }
 
     public function delete(int $id)

@@ -43,15 +43,14 @@
 }
 
 .input-password #senha{
-    width: 100%;
+    width: 110%;
     padding-left: 10px;
     padding-right: 50px;
     position: relative;
 }
 
-.input-password #verSenha{
-    position: absolute;
-    left: 58.6%;
+.input-password #verSenha{   
+    
 }
 
 #imgLogo{

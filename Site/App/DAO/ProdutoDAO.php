@@ -14,26 +14,30 @@ class ProdutoDAO extends DAO
 
     public function insert(ProdutoModel $model)
     {
-        $sql = "INSERT INTO produto (descricao, preco, codigo_barra) VALUE (?, ?, ?)";
+        $sql = "INSERT INTO produto (descricao, preco, codigo_barra, quantidade, id_categoria) VALUE (?, ?, ?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
 
         $stmt->bindValue(1, $model->descricao);
         $stmt->bindValue(2, $model->preco);      
         $stmt->bindValue(3, $model->codigo_barra);
+        $stmt->bindValue(4, $model->quantidade);
+        $stmt->bindValue(5, $model->id_categoria);
 
         $stmt->execute();
     }
 
     public function update(ProdutoModel $model)
     {
-        $sql = "UPDATE produto SET descricao=?, preco=?, codigo_barra=? WHERE id=?";
+        $sql = "UPDATE produto SET descricao=?, preco=?, codigo_barra=?, quantidade = ? WHERE id=?";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $model->descricao);
         $stmt->bindValue(2, $model->preco);
         $stmt->bindValue(3, $model->codigo_barra);
-        $stmt->bindValue(4, $model->id);
+        $stmt->bindValue(4, $model->quantidade);
+        $stmt->bindValue(5, $model->id_categoria);
+        $stmt->bindValue(6, $model->id);
 
         $stmt->execute();
     }
@@ -42,7 +46,7 @@ class ProdutoDAO extends DAO
     {
         $sql = "SELECT p.*, c.descricao AS categoria
                 FROM produto p
-                JOIN categoria_produto c ON (c.id = p.codigo_barra)";
+                JOIN categoria_produto c ON (c.id = p.id_categoria)";
 
         $stmt = $this->conexao->prepare($sql);
 
@@ -55,7 +59,7 @@ class ProdutoDAO extends DAO
     {
         $sql = "SELECT p.*, c.descricao AS categoria
         FROM produto p
-        JOIN categoria_produto c ON (c.id = p.codigo_barra)
+        JOIN categoria_produto c ON (c.id = p.id_categoria)
         WHERE p.id=?";
 
         $stmt = $this->conexao->prepare($sql);
