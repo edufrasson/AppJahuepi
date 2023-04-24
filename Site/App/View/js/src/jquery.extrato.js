@@ -53,7 +53,15 @@ function deleteExtrato(id)
     });
 }
 
+function loadTableCategoria() {   
+    $('.spinner-border').delay(1000).hide();
+    $('.table-style').delay(1000).removeClass("off");
+  
+}
+
 $(document).ready(function (){
+    loadTableCategoria();
+
     $('.btn-edit').click(function(event){
         getExtratoById(event.target.id);
     })

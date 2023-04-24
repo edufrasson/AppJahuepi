@@ -15,6 +15,13 @@ class ExtratoController extends Controller
         include 'View/modules/Extrato/ListarExtrato.php';
     }
 
+    public static function getAll(){
+        $model = new ExtratoModel();
+        $model->getAllRows();
+       
+        parent::setResponseAsJSON($model->rows);
+    }
+
     public static function getById()
     {
         $model = new ExtratoModel();
