@@ -15,6 +15,7 @@ class CategoriaProdutoController extends Controller
         include 'View/modules/CategoriaProduto/ListarCategoria.php';
     }
 
+<<<<<<< HEAD
     public static function getAll(){
         $model = new CategoriaProdutoModel();
         $model->getAllRows();
@@ -22,6 +23,8 @@ class CategoriaProdutoController extends Controller
         parent::setResponseAsJSON($model->rows);
     }
 
+=======
+>>>>>>> c6a5d8ca6c71072b7d9360ea22c352628ce7a3be
     public static function getById()
     {
         $model = new CategoriaProdutoModel();

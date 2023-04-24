@@ -12,7 +12,11 @@
         <a href="#" class="btn">Vendas</a>
     </div>
     <div class="link-container">
+<<<<<<< HEAD
         <a href="/produto" class="btn">Estoque</a>
+=======
+        <a href="#" class="btn">Estoque</a>
+>>>>>>> c6a5d8ca6c71072b7d9360ea22c352628ce7a3be
     </div>
     <div class="link-container">
         <a href="#" class="btn">Financeiro</a>

@@ -3,8 +3,11 @@
 <link rel="stylesheet" href="View/styles/global.css">
 <link rel="shortcut icon" href="View/assets/icone.png" type="image/x-icon">
 
+<<<<<<< HEAD
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
 
+=======
+>>>>>>> c6a5d8ca6c71072b7d9360ea22c352628ce7a3be
 <!-- JQuery DataTable -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/b-2.3.4/cr-1.6.1/r-2.4.0/rr-1.3.2/sc-2.1.0/sb-1.4.0/datatables.min.css"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">

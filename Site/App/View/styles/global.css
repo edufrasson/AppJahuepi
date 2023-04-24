@@ -125,7 +125,11 @@ body{
 .actions-list{
     display: flex;
     justify-content: space-around;
+<<<<<<< HEAD
 }
 .off{
     display: none;
 }
+=======
+}
+>>>>>>> c6a5d8ca6c71072b7d9360ea22c352628ce7a3be
