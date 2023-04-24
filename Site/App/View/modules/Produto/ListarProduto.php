@@ -32,7 +32,7 @@
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
-                        <table id="tableCategoria" class="table table-bordered table-style off">
+                        <table id="tableProduto" class="table table-bordered table-style off">
                             <thead>
                                 <tr>
                                 
@@ -99,6 +99,7 @@
                             <input type="number" name="codigo_barra" class="form-control" id="txtCodigo_Barra" required maxlength="90">
                         </div>
                         <div class="mb-3">
+                            <label for="id_categoria">Categoria: </label>
                             <select class="selectpicker border border-black" data-live-search="true" name="id_categoria" id="id_categoria">
 
                                 <?php if ($model->lista_categoria == null) : ?>
