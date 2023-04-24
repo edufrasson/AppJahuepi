@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include 'View/includes/css_config.php' ?>
     <link rel="stylesheet" href="View/modules/Produto/produto.css">
-    <title>Cadastro de Produtos</title>
+    <title>Estoque</title>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
         <div class="content">
             <div class="main-container">
                 <div class="text-container">
-                    <h4>Cadastro de Produtos</h4>
+                    <h4>Estoque</h4>
                 </div>
                 <div class="table-container">
                     <div class="button-container">

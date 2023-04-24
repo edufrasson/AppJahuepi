@@ -34,7 +34,7 @@
             <li><a class="dropdown-item" href="/extrato">Extrato</a></li>            
             <li><a class="dropdown-item" href="/taxa">Cadastrar Taxa</a></li>
             <li><a class="dropdown-item" href="/categoria_produto">Cadastrar Categoria Produto</a></li>
-            <li><a class="dropdown-item" href="/produto">Cadastrar Produto</a></li>
+            <li><a class="dropdown-item" href="/produto">Estoque</a></li>
         </ul>
     </div>
 </div>
