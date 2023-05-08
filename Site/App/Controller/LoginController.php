@@ -34,8 +34,53 @@ class LoginController extends Controller{
             parent::getExceptionAsJSON($e);
         }        
     }
+
     public static function logout(){
         unset($_SESSION['user_logged']);
         parent::isAuthenticated();
+    }
+
+    public static function index()
+    {
+        $model = new LoginModel();
+        $model->getAllRows();
+
+        include 'View/modules/Login/ListarUsuarios.php';
+    }
+
+    public static function getAll(){
+        $model = new LoginModel();
+        $model->getAllRows();
+       
+        parent::setResponseAsJSON($model->rows);
+    }
+
+    public static function getById()
+    {
+        $model = new LoginModel();
+
+        parent::setResponseAsJSON($model->getById($_GET['id']));
+    }
+
+    public static function save()
+    {
+        $login = new LoginModel();
+
+        $login->id = $_POST['id'];
+        $login->email = $_POST['email'];
+        $login->senha = $_POST['senha'];
+
+        $login->save();
+
+        header("Location: /login");
+    }
+
+    public static function delete()
+    {
+        $model = new LoginModel();
+
+        $model->delete( (int) $_GET['id']);
+
+        parent::setResponseAsJSON($model);
     }
 }
