@@ -39,6 +39,24 @@ switch ($url) {
     case '/login/auth':
         LoginController::auth();
         break;
+    case '/usuario':
+        LoginController::index();
+        break;
+    case '/login/save':
+        LoginController::save();
+        break;
+    
+    case '/login/get-all':
+        LoginController::getAll();
+        break;
+
+    case '/login/get-by-id':
+        LoginController::getById();
+        break;
+
+    case '/login/delete':
+        LoginController::delete();
+        break;
 
         /* Extrato*/
     case '/extrato':

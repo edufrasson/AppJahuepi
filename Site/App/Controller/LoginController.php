@@ -64,15 +64,15 @@ class LoginController extends Controller{
 
     public static function save()
     {
-        $login = new LoginModel();
+        $usuario = new LoginModel();
 
-        $login->id = $_POST['id'];
-        $login->email = $_POST['email'];
-        $login->senha = $_POST['senha'];
+        $usuario->id = $_POST['id'];
+        $usuario->email = $_POST['email'];
+        $usuario->senha = $_POST['senha'];
 
-        $login->save();
+        $usuario->save();
 
-        header("Location: /login");
+        header("Location: /usuario");
     }
 
     public static function delete()
