@@ -10,9 +10,9 @@ class VendaController extends Controller
     public static function index()
     {
         $model = new VendaModel();
-        $model->getAllRows();
+        $model->getAllProdutos();
 
-        parent::setResponseAsJSON($model);
+        include 'View/modules/Venda/NovaVenda.php';
     }
 
     public static function getById()
@@ -31,7 +31,7 @@ class VendaController extends Controller
 
         $venda->save();
 
-        parent::setResponseAsJSON($venda);
+        //parent::setResponseAsJSON($venda);
     }
 
     public static function delete()

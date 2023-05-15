@@ -9,7 +9,7 @@
         <a href="/home" class="btn">Dashboard</a>
     </div>
     <div class="link-container">
-        <a href="#" class="btn">Vendas</a>
+        <a href="/venda" class="btn">Nova Venda</a>
     </div>
     <div class="link-container">
         <a href="/produto" class="btn">Estoque</a>

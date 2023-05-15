@@ -73,6 +73,17 @@ function loadTableLogin() {
   
 }
 
+function validarSenha() {  
+    if ( $('#txtSenha').val() != $('#txtConfirmarSenha').val()) {
+      $('#txtConfirmarSenha').addClass("border border-danger")
+      return false;
+    } 
+    else 
+    {
+      return true;
+    }
+  }
+
 $(document).ready(function () {    
     loadTableLogin();
 
@@ -101,13 +112,3 @@ $(document).ready(function () {
     })
 })
 
-function validarSenha() {  
-    if ( $('#txtSenha').val() != $('#txtConfirmarSenha').val()) {
-      $('#txtConfirmarSenha').addClass("border border-danger")
-      return false;
-    } 
-    else 
-    {
-      return true;
-    }
-  }

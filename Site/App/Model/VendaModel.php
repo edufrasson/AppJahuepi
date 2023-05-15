@@ -2,11 +2,13 @@
 
 namespace App\Model;
 
+use App\DAO\ProdutoDAO;
 use App\DAO\VendaDAO;
 
 class VendaModel extends Model
 {
     public $id, $data_venda;
+    public $arr_produtos;
 
     public function save()
     {
@@ -40,5 +42,11 @@ class VendaModel extends Model
         $dao = new VendaDAO();
 
         $dao->delete($id);
+    }
+
+    public function getAllProdutos(){
+        $dao = new ProdutoDAO();
+
+        $this->arr_produtos = $dao->select();
     }
 }
