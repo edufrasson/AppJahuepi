@@ -23,6 +23,8 @@ class LoginDAO extends DAO{
 
         $stmt->bindValue(1, $model->email);
         $stmt->bindValue(2, $model->senha);
+
+        $stmt->execute();
     }
 
     public function update(LoginModel $model){
