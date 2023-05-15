@@ -1,3 +1,5 @@
+
+
 var isVisible = false;
 
 $(document).ready(function(){
@@ -13,7 +15,7 @@ $(document).ready(function(){
 })
 
 function addUsuario(id, email, senha) {
-    if (descricao !== "") {
+    if (email !== "" && senha !== "") {
         $.ajax({
             type: "POST",
             url: "/login/save",
@@ -30,6 +32,8 @@ function addUsuario(id, email, senha) {
                 console.log(result)
             }
         });
+    }else{
+        alert("Digite todos os campos!")
     }
 }
 
@@ -72,6 +76,20 @@ function loadTableLogin() {
 $(document).ready(function () {    
     loadTableLogin();
 
+    $('#adicionarUsuario').click(() => {
+        var condicao = validarSenha()
+        if (condicao == true){
+            addUsuario($('#id').val(), $('#txtEmail').val(), $('#txtSenha').val())
+            window.location.reload(true);
+        }else
+            swal({
+                title: "Erro!",
+                text: "As senhas não batem!",
+                icon: "error"
+            })
+            //$('#error').text("As senhas não batem!")
+    })
+
     $('.btn-edit').click(function (event) {
         getLoginById(event.target.id);
     })
@@ -83,12 +101,9 @@ $(document).ready(function () {
     })
 })
 
-function validarSenha() {
-    senha = document.getElementsByName('senha').value;
-    confSenha = document.getElementsByName('confSenha').value;
-  
-    if (senha != confSenha) {
-      senhaC.setCustomValidity("Senhas diferentes!");
+function validarSenha() {  
+    if ( $('#txtSenha').val() != $('#txtConfirmarSenha').val()) {
+      $('#txtConfirmarSenha').addClass("border border-danger")
       return false;
     } 
     else 

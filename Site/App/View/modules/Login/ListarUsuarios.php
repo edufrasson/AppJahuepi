@@ -73,7 +73,7 @@
                         <span aria-hidden="true">&times;</span>-->
                     </button>
                 </div>
-                <form method="post" action="/login/save">
+                <form method="post" >
                     <div class="modal-body">
                         <input type="hidden" name="id" id="id">
                         <label for="txtEmail">E-mail:</label>
@@ -82,10 +82,11 @@
                         <input type="password" name="senha" class="form-control" id="txtSenha" required>
                         <label for="txtConfirmarSenha">Confirmar Senha:</label>
                         <input type="password" name="confSenha" class="form-control" id="txtConfirmarSenha" required>
+                        <span><p class="text-danger" id="error"></p></span>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn" style="background-color: #f4c71e;" id="adicionarTipo">Salvar Registro</button>
+                        <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn" style="background-color: #f4c71e;" id="adicionarUsuario">Salvar Registro</button>
                     </div>
                 </form>
             </div>
