@@ -35,8 +35,8 @@
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
-                        <table id="tableProduto" class="table table-bordered  off">
-                            <thead>
+                        <table id="tableProduto" class="table-produto table table-bordered  off">
+                            <thead class="thead-produto">
                                 <tr>
                                 
                                     <th>Descricao</th>
@@ -48,7 +48,7 @@
                                    
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="tbody-produto">
                             </tbody>
                         </table>
                     </div>

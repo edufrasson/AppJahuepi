@@ -137,18 +137,18 @@ body{
     height: 100vh;
 }
 
-table {
+.table-produto {
     display: flex;
     flex-flow: column;
     height: 50%;
     width: 100%;
 }
-table thead {
+.table-produto .thead-produto {
     
     flex: 0 0 auto;
     width: calc(100% - 0.8rem);
 }
-table tbody {
+.table-produto .tbody-produto {
     
     flex: 1 1 auto;
     display: block;
@@ -156,10 +156,10 @@ table tbody {
     overflow-y: scroll;
     width: calc(100% + 0.25rem);
 }
-table tbody tr {
+.table-produto .tbody-produto tr {
     width: 100%;
 }
-table thead, table tbody tr {
+.table-produto .thead-produto, .table-produto .tbody-produto tr {
     display: table;
     table-layout: fixed;
 }
