@@ -59,7 +59,10 @@ function loadTableProduto() {
   
 }
 
-$(document).ready(function () {    
+$(document).ready(function () {   
+   
+    
+
     loadTableProduto();
 
     $('.btn-edit').click(function (event) {
@@ -71,4 +74,6 @@ $(document).ready(function () {
 
         window.location.reload(true);
     })
+
+    
 })

@@ -15,7 +15,7 @@
         <a href="/produto" class="btn">Estoque</a>
     </div>
     <div class="link-container">
-        <a href="#" class="btn">Financeiro</a>
+        <a href="/extrato" class="btn">Financeiro</a>
     </div>
     <div class="link-container">
         <a href="#" class="btn">Taxas de Cartão</a>
@@ -30,8 +30,7 @@
         <a href="#" class=" btn color align-items-center link-white text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
             Cadastros
         </a>
-        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-            <li><a class="dropdown-item" href="/extrato">Extrato</a></li>            
+        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">                   
             <li><a class="dropdown-item" href="/taxa">Cadastrar Taxa</a></li>
             <li><a class="dropdown-item" href="/usuario">Cadastrar Usuário</a></li>
             <li><a class="dropdown-item" href="/categoria_produto">Cadastrar Categoria Produto</a></li>

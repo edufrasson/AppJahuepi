@@ -8,6 +8,7 @@ use App\DAO\ProdutoDAO;
 class ProdutoModel extends Model
 {
     public $id, $descricao, $preco, $codigo_barra, $quantidade, $id_categoria;
+    public $quantidade_venda;
     public $lista_categoria;
 
     public function save()
@@ -26,6 +27,12 @@ class ProdutoModel extends Model
         $dao = new ProdutoDAO();
 
         $this->rows = $dao->select();
+    }
+
+    public function getAll(){
+        $dao = new ProdutoDAO();
+
+        return $dao->select();
     }
 
     public function getById(int $id)

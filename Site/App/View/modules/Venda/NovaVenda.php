@@ -35,7 +35,7 @@
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
-                        <table id="tableProduto" class="table table-bordered table-style off">
+                        <table id="tableProduto" class="table table-bordered  off">
                             <thead>
                                 <tr>
                                 
@@ -45,6 +45,7 @@
                                     <th>Código de Barras</th>
                                     <th>Categoria</th>
                                     <th>Ações</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>

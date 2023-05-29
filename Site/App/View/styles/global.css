@@ -130,3 +130,41 @@ body{
 .off{
     display: none;
 }
+
+
+/* TABELA COM SCROLL */
+.content-body {
+    height: 100vh;
+}
+
+table {
+    display: flex;
+    flex-flow: column;
+    height: 50%;
+    width: 100%;
+}
+table thead {
+    
+    flex: 0 0 auto;
+    width: calc(100% - 0.8rem);
+}
+table tbody {
+    
+    flex: 1 1 auto;
+    display: block;
+    height: 500px;
+    overflow-y: scroll;
+    width: calc(100% + 0.25rem);
+}
+table tbody tr {
+    width: 100%;
+}
+table thead, table tbody tr {
+    display: table;
+    table-layout: fixed;
+}
+
+.data-actions{
+    display: flex;
+    justify-content: center;
+}
