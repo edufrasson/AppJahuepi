@@ -22,6 +22,9 @@ switch ($url) {
     case '/produto':
         ProdutoController::index();
         break;
+    case '/produto/listar':
+        ProdutoController::getList();
+        break;
     case '/produto/save':
         ProdutoController::save();
         break;
@@ -45,7 +48,7 @@ switch ($url) {
     case '/login/save':
         LoginController::save();
         break;
-    
+
     case '/login/get-all':
         LoginController::getAll();
         break;
@@ -138,9 +141,15 @@ switch ($url) {
     case '/venda/delete':
         VendaController::delete();
         break;
+    case '/carrinho/inserir':
+        VendaController::setProdutosOnTable();
+        break;
+    case '/carrinho/ver':
+        VendaController::getProdutosOnTable();
+        break;
 
-       /* Taxa*/
-       case '/taxa':
+        /* Taxa*/
+    case '/taxa':
         TaxaController::index();
         break;
     case '/taxa/save':
@@ -151,7 +160,7 @@ switch ($url) {
         break;
     case '/taxa/delete':
         TaxaController::delete();
-        break;    
+        break;
 
         /* Produto_Venda*/
     case '/produto_venda':
