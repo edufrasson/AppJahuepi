@@ -2,21 +2,21 @@
 
 namespace App\Controller;
 
-use App\Model\ExtratoModel;
+use App\Model\TaxaModel;
 use App\Controller\Controller;
 
-class ExtratoController extends Controller
+class TaxaController extends Controller
 {
     public static function index()
     {
-        $model = new ExtratoModel();
+        $model = new TaxaModel();
         $model->getAllRows();
 
-        include 'View/modules/Extrato/ListarExtrato.php';
+        include 'View/modules/Taxa/ListarTaxa.php';
     }
 
     public static function getAll(){
-        $model = new ExtratoModel();
+        $model = new TaxaModel();
         $model->getAllRows();
        
         parent::setResponseAsJSON($model->rows);
@@ -24,27 +24,28 @@ class ExtratoController extends Controller
 
     public static function getById()
     {
-        $model = new ExtratoModel();
+        $model = new TaxaModel();
 
         parent::setResponseAsJSON($model->getById($_GET['id']));
     }
 
+
     public static function save()
     {
-        $extrato = new ExtratoModel();
+        $taxa = new TaxaModel();
 
-        $extrato->id = $_POST['id'];
-        $extrato->valor = $_POST['valor'];
-        $extrato->dataExtrato = $_POST['data_extrato'];
+        $taxa->id = $_POST['id'];
+        $taxa->codigo = $_POST['codigo'];
+        $taxa->valor = $_POST['valor'] / 100;
 
-        $extrato->save();
+        $taxa->save();
 
-        header("Location: /extrato");
+        header("Location: /taxa");
     }
 
     public static function delete()
     {
-        $model = new ExtratoModel();
+        $model = new TaxaModel();
 
         $model->delete( (int) $_GET['id']);
 
