@@ -126,6 +126,45 @@ body{
     display: flex;
     justify-content: space-around;
 }
+
 .off{
     display: none;
+}
+
+
+/* TABELA COM SCROLL */
+.content-body {
+    height: 100vh;
+}
+
+.table-produto {
+    display: flex;
+    flex-flow: column;
+    height: 50%;
+    width: 100%;
+}
+.table-produto .thead-produto {
+    
+    flex: 0 0 auto;
+    width: calc(100% - 0.8rem);
+}
+.table-produto .tbody-produto {
+    
+    flex: 1 1 auto;
+    display: block;
+    height: 500px;
+    overflow-y: scroll;
+    width: calc(100% + 0.25rem);
+}
+.table-produto .tbody-produto tr {
+    width: 100%;
+}
+.table-produto .thead-produto, .table-produto .tbody-produto tr {
+    display: table;
+    table-layout: fixed;
+}
+
+.data-actions{
+    display: flex;
+    justify-content: center;
 }

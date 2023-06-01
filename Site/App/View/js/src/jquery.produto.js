@@ -1,14 +1,14 @@
-function addExtrato(id, valor, dataExtrato)
-{
-    if(descricao !== "")
-    {
+function addProduto(id, descricao, preco, quantidade, codigo_barra) {
+    if (descricao !== "") {
         $.ajax({
             type: "POST",
-            url: "/extrato/save",
+            url: "/produto/save",
             data: {
                 id: id,
-                valor: valor,
-                dataExtrato: dataExtrato
+                descricao: descricao,
+                preco: preco,
+                quantidade: quantidade,
+                codigo_barra: codigo_barra
             },
             dataType: 'json',
             success: function (result) {
@@ -21,15 +21,16 @@ function addExtrato(id, valor, dataExtrato)
     }
 }
 
-function getExtratoById(id)
-{
+function getProdutoById(id) {
     $.ajax({
         type: "GET",
-        url: "/extrato/get-by-id?id=" + id,
+        url: "/produto/get-by-id?id=" + id,
         dataType: 'json',
         success: function (result) {
-            $('#txtValor').val(result.response_data.valor);
-            $('#txtExtrato').val(result.response_data.dataExtrato);
+            $('#txtNome').val(result.response_data.descricao);
+            $('#txtPreco').val(result.response_data.preco);
+            $('#txtQuantidade').val(result.response_data.quantidade);
+            $('#txtCodigo_Barra').val(result.response_data.codigo_barra);
             $('#id').val(result.response_data.id);
         },
         error: function (result) {
@@ -38,11 +39,10 @@ function getExtratoById(id)
     });
 }
 
-function deleteExtrato(id)
-{
+function deleteProduto(id) {
     $.ajax({
         type: "GET",
-        url: "/extrato/delete?id=" + id,
+        url: "/produto/delete?id=" + id,
         dataType: 'json',
         success: function (result) {
             console.log(result)
@@ -53,22 +53,27 @@ function deleteExtrato(id)
     });
 }
 
-function loadTableCategoria() {   
+function loadTableProduto() {   
     $('.spinner-border').delay(1000).hide();
     $('.table-style').delay(1000).removeClass("off");
   
 }
 
-$(document).ready(function (){
-    loadTableCategoria();
+$(document).ready(function () {   
+   
+    
 
-    $('.btn-edit').click(function(event){
-        getExtratoById(event.target.id);
+    loadTableProduto();
+
+    $('.btn-edit').click(function (event) {
+        getProdutoById(event.target.id);
     })
 
-    $('.btn-delete').click(function(event){
-        deleteExtrato(event.target.id);
+    $('.btn-delete').click(function (event) {
+        deleteProduto(event.target.id);
 
         window.location.reload(true);
     })
+
+    
 })

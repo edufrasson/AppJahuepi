@@ -7,6 +7,13 @@ use App\Controller\Controller;
 
 class ProdutoController extends Controller
 {
+    public static function getList(){
+        $model = new ProdutoModel();
+        $data = $model->getAllRows();
+
+        parent::setResponseAsJSON($data);
+    }
+
     public static function index()
     {
         $model = new ProdutoModel();

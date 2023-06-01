@@ -8,6 +8,7 @@ use App\Controller\{
     ProdutoController,
     ProdutoVendaController,
     LoginController,
+    TaxaController,
     CategoriaProdutoController
 };
 use App\DAO\CategoriaProdutoDAO;
@@ -16,10 +17,13 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch ($url) {
 
-    /* Produto */
+        /* Produto */
 
     case '/produto':
         ProdutoController::index();
+        break;
+    case '/produto/listar':
+        ProdutoController::getList();
         break;
     case '/produto/save':
         ProdutoController::save();
@@ -31,20 +35,41 @@ switch ($url) {
         ProdutoController::delete();
         break;
 
-    /* Login*/
+        /* Login*/
     case '/login':
         LoginController::form();
         break;
     case '/login/auth':
         LoginController::auth();
         break;
+    case '/usuario':
+        LoginController::index();
+        break;
+    case '/login/save':
+        LoginController::save();
+        break;
 
-    /* Extrato*/
+    case '/login/get-all':
+        LoginController::getAll();
+        break;
+
+    case '/login/get-by-id':
+        LoginController::getById();
+        break;
+
+    case '/login/delete':
+        LoginController::delete();
+        break;
+
+        /* Extrato*/
     case '/extrato':
         ExtratoController::index();
         break;
     case '/extrato/save':
         ExtratoController::save();
+        break;
+    case '/extrato/get-all':
+        ExtratoController::getAll();
         break;
     case '/extrato/get-by-id':
         ExtratoController::getById();
@@ -53,7 +78,7 @@ switch ($url) {
         ExtratoController::delete();
         break;
 
-    /* Parcela */
+        /* Parcela */
 
     case '/parcela':
         ParcelaController::index();
@@ -68,7 +93,7 @@ switch ($url) {
         ParcelaController::delete();
         break;
 
-    /* Pagamento*/
+        /* Pagamento*/
 
     case '/pagamento':
         PagamentoController::index();
@@ -85,7 +110,7 @@ switch ($url) {
         PagamentoController::delete();
         break;
 
-    /* Categoria do Produto */
+        /* Categoria do Produto */
     case '/categoria_produto':
         CategoriaProdutoController::index();
         break;
@@ -103,7 +128,7 @@ switch ($url) {
         CategoriaProdutoController::delete();
         break;
 
-    /* Venda*/
+        /* Venda*/
     case '/venda':
         VendaController::index();
         break;
@@ -116,8 +141,28 @@ switch ($url) {
     case '/venda/delete':
         VendaController::delete();
         break;
+    case '/carrinho/inserir':
+        VendaController::setProdutosOnTable();
+        break;
+    case '/carrinho/ver':
+        VendaController::getProdutosOnTable();
+        break;
 
-    /* Produto_Venda*/
+        /* Taxa*/
+    case '/taxa':
+        TaxaController::index();
+        break;
+    case '/taxa/save':
+        TaxaController::save();
+        break;
+    case '/taxa/get-by-id':
+        TaxaController::getById();
+        break;
+    case '/taxa/delete':
+        TaxaController::delete();
+        break;
+
+        /* Produto_Venda*/
     case '/produto_venda':
         ProdutoVendaController::index();
         break;
@@ -128,7 +173,7 @@ switch ($url) {
         ProdutoVendaController::delete();
         break;
 
-    /* Outros */
+        /* Outros */
     case '/home':
         CategoriaProdutoController::index();
         break;

@@ -1,14 +1,11 @@
-function addExtrato(id, valor, dataExtrato)
-{
-    if(descricao !== "")
-    {
+function addTaxa(id, descricao) {
+    if (descricao !== "") {
         $.ajax({
             type: "POST",
-            url: "/extrato/save",
+            url: "/taxa/save",
             data: {
                 id: id,
-                valor: valor,
-                dataExtrato: dataExtrato
+                descricao: descricao
             },
             dataType: 'json',
             success: function (result) {
@@ -21,15 +18,14 @@ function addExtrato(id, valor, dataExtrato)
     }
 }
 
-function getExtratoById(id)
-{
+function getTaxaById(id) {
     $.ajax({
         type: "GET",
-        url: "/extrato/get-by-id?id=" + id,
+        url: "/taxa/get-by-id?id=" + id,
         dataType: 'json',
         success: function (result) {
-            $('#txtValor').val(result.response_data.valor);
-            $('#txtExtrato').val(result.response_data.dataExtrato);
+            $('#txtCodigo').val(result.response_data.codigo);
+            $('#txtValor').val(result.response_data.valor * 100);
             $('#id').val(result.response_data.id);
         },
         error: function (result) {
@@ -38,11 +34,10 @@ function getExtratoById(id)
     });
 }
 
-function deleteExtrato(id)
-{
+function deleteTaxa(id) {
     $.ajax({
         type: "GET",
-        url: "/extrato/delete?id=" + id,
+        url: "/taxa/delete?id=" + id,
         dataType: 'json',
         success: function (result) {
             console.log(result)
@@ -53,21 +48,21 @@ function deleteExtrato(id)
     });
 }
 
-function loadTableCategoria() {   
+function loadTableTaxa() {   
     $('.spinner-border').delay(1000).hide();
     $('.table-style').delay(1000).removeClass("off");
   
 }
 
-$(document).ready(function (){
-    loadTableCategoria();
+$(document).ready(function () {    
+    loadTableTaxa();
 
-    $('.btn-edit').click(function(event){
-        getExtratoById(event.target.id);
+    $('.btn-edit-taxa').click(function (event) {
+        getTaxaById(event.target.id);
     })
 
-    $('.btn-delete').click(function(event){
-        deleteExtrato(event.target.id);
+    $('.btn-delete-taxa').click(function (event) {
+        deleteTaxa(event.target.id);
 
         window.location.reload(true);
     })

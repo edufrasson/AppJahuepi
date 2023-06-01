@@ -4,15 +4,19 @@ namespace App\Controller;
 
 use App\Model\VendaModel;
 use App\Controller\Controller;
+use App\Model\ProdutoModel;
 
 class VendaController extends Controller
 {
+    public static $carrinho_produtos = [];
+
     public static function index()
     {
         $model = new VendaModel();
-        $model->getAllRows();
+        unset($carrinho_produtos);
+        $model->getAllProdutos();
 
-        parent::setResponseAsJSON($model);
+        include 'View/modules/Venda/NovaVenda.php';
     }
 
     public static function getById()
@@ -31,7 +35,7 @@ class VendaController extends Controller
 
         $venda->save();
 
-        parent::setResponseAsJSON($venda);
+        //parent::setResponseAsJSON($venda);
     }
 
     public static function delete()
@@ -41,5 +45,20 @@ class VendaController extends Controller
         $model->delete( (int) $_GET['id']);
 
         parent::setResponseAsJSON($model);
+    }
+
+    public static function getProdutosOnTable(){       
+        parent::setResponseAsJSON(VendaController::$carrinho_produtos);
+    }
+
+    public static function setProdutosOnTable(){
+        $model = new ProdutoModel();
+        $obj = $model->getById($_POST['id']);
+        $obj->quantidade = $_POST['quantidade'];
+
+
+        VendaController::$carrinho_produtos[] = $obj;
+
+        self::getProdutosOnTable();
     }
 }

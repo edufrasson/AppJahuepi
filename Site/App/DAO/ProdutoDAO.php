@@ -29,7 +29,11 @@ class ProdutoDAO extends DAO
 
     public function update(ProdutoModel $model)
     {
+<<<<<<< HEAD
         $sql = "UPDATE produto SET descricao=?, preco=?, codigo_barra=?, quantidade = ? WHERE id=?";
+=======
+        $sql = "UPDATE produto SET descricao=?, preco=?, codigo_barra=?, quantidade = ?, id_categoria = ? WHERE id=?";
+>>>>>>> 980f975eba9515fabd51a0c2ef08c285ee745f2e
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $model->descricao);
