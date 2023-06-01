@@ -89,6 +89,9 @@ switch ($url) {
     case '/categoria_produto':
         CategoriaProdutoController::index();
         break;
+    case '/categoria_produto/get-all':
+        CategoriaProdutoController::getAll();
+        break;
     case '/categoria_produto/save':
         CategoriaProdutoController::save();
         break;

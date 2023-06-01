@@ -11,6 +11,7 @@ class ProdutoController extends Controller
     {
         $model = new ProdutoModel();
         $model->getAllRows();
+        $model->getAllCategoria();
 
         include 'View/modules/Produto/ListarProduto.php';
     }
@@ -29,12 +30,13 @@ class ProdutoController extends Controller
         $produto->id = $_POST['id'];                          
         $produto->descricao = $_POST['descricao'];     
         $produto->preco = $_POST['preco'];     
+        $produto->quantidade = $_POST['quantidade'];     
         $produto->codigo_barra = $_POST['codigo_barra']; 
         $produto->id_categoria = $_POST['id_categoria'];         
 
         $produto->save();
 
-        parent::setResponseAsJSON($produto);
+       header("Location: /produto");
     }
 
     public static function delete()

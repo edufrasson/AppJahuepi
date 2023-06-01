@@ -126,3 +126,6 @@ body{
     display: flex;
     justify-content: space-around;
 }
+.off{
+    display: none;
+}

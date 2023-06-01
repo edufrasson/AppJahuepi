@@ -12,7 +12,7 @@
         <a href="#" class="btn">Vendas</a>
     </div>
     <div class="link-container">
-        <a href="#" class="btn">Estoque</a>
+        <a href="/produto" class="btn">Estoque</a>
     </div>
     <div class="link-container">
         <a href="#" class="btn">Financeiro</a>
