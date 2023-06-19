@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,36 +22,35 @@
                     <h4>Cadastro de Vendas</h4>
                 </div>
                 <div class="table-container">
-                    <div class="input-container">
-                        <label for="txtDataVenda">Data da Venda: </label><br>
-                        <input class="form-control" type="date" name="data_venda" id="txtDataVenda">
-                    </div>
-                    <div class="button-container">
-                        <button id="adicionar" class="btn d-flex   align-items-center" style="background-color: #f4c71e;" data-bs-toggle="modal" data-bs-target="#modalProduto"><box-icon name='plus-circle'></box-icon>&nbsp &nbsp &nbsp Produtos</button>
+
+                    <div class="button-container d-flex justify-content-between">
+                        <div class="input-container">
+                            <label for="txtDataVenda">Data da Venda: </label><br>
+                            <input class="form-control" type="date" name="data_venda" id="txtDataVenda">
+                        </div>
+                        <button id="adicionar" class="btn d-flex   align-items-center" style="background-color: #f4c71e;" data-bs-toggle="modal" data-bs-target="#modalProduto">+ Produtos</button>
                     </div>
 
                     <div class="container-table">
-                        <div class="loading-container d-flex justify-content-center">
-                            <div class="spinner-border" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                        </div>
-                        <table id="tableProduto" class="table-produto table table-bordered  off">
+                        <table id="tableProduto" class="table-produto table table-bordered off">
                             <thead class="thead-produto">
                                 <tr>
-                                
+
                                     <th>Descricao</th>
                                     <th>Preço</th>
                                     <th>Quantidade</th>
                                     <th>Código de Barras</th>
                                     <th>Categoria</th>
                                     <th>Ações</th>
-                                   
+
                                 </tr>
                             </thead>
                             <tbody class="tbody-produto">
                             </tbody>
                         </table>
+                    </div>
+                    <div class="final-actions">
+                        <button class="btn btn-warning">Método de Pagamento</button>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                         <span aria-hidden="true">&times;</span>-->
                     </button>
                 </div>
-                <form method="post" >
+                <form method="post">
                     <div class="modal-body">
                         <input type="hidden" name="id" id="id">
                         <label for="txtEmail">E-mail:</label>
@@ -75,7 +75,9 @@
                         <input type="password" name="senha" class="form-control" id="txtSenha" required>
                         <label for="txtConfirmarSenha">Confirmar Senha:</label>
                         <input type="password" name="confSenha" class="form-control" id="txtConfirmarSenha" required>
-                        <span><p class="text-danger" id="error"></p></span>
+                        <span>
+                            <p class="text-danger" id="error"></p>
+                        </span>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Fechar</button>
@@ -91,4 +93,5 @@
 
 
 </body>
+
 </html>

@@ -1,10 +1,5 @@
 lista_produtos = Array();
 
-function loadTableProduto() {
-    $('.spinner-border').delay(1000).hide();
-    $('.table').delay(1000).removeClass("off");
-
-}
 
 function reloadTableProduct() {
     $.ajax({
@@ -34,7 +29,6 @@ function reloadTableProduct() {
 }
 
 $(document).ready(function () {
-    loadTableProduto();
 
     $('.btn-edit').click(function (event) {
         getLoginById(event.target.id);

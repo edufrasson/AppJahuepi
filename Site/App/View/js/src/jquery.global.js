@@ -9,11 +9,12 @@ $(document).ready(function(){
                 "last":       "Último",
                 "next":       "Próximo",
                 "previous":   "Anterior"
-            },
+            },            
             "search": "Pesquisar:",
             "lengthMenu":     "Mostrar _MENU_ registros",
             "zeroRecords": "Nenhum registro encontrado!",
-          }       
+          },    
+          'scrollY':  ($(window).height() - 400),   
     });
 
     

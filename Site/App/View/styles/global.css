@@ -27,6 +27,12 @@ body{
     background-color: #212120;
 }
 
+
+.table-style{
+    overflow: auto;
+    min-height: 5px;
+}
+
 .logo-container{
     height: 25%;
     width: 100%;
@@ -140,7 +146,7 @@ body{
 .table-produto {
     display: flex;
     flex-flow: column;
-    height: 50%;
+    height: 20%;
     width: 100%;
 }
 .table-produto .thead-produto {
@@ -152,7 +158,7 @@ body{
     
     flex: 1 1 auto;
     display: block;
-    height: 500px;
+    height: 48vh;
     overflow-y: scroll;
     width: calc(100% + 0.25rem);
 }
