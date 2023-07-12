@@ -15,11 +15,20 @@ function reloadTableProduct() {
             <td> ${$('#quantidade').val()} </td> 
             <td> ${result.response_data.codigo_barra} </td> 
             <td> ${result.response_data.categoria} </td> 
-            <td class="actions-list">
-                <box-icon name="edit" color="#e8ac07" id="${result.response_data.id}" data-bs-toggle="modal" data-bs-target="#modalProduto" class="btn-icon btn-edit"></box-icon>
-                <box-icon name="trash" color="#e8ac07" id="${result.response_data.id}" class="btn-icon btn-delete"></box-icon>
+            <td class="actions-list">                
+                <box-icon name="trash" color="#e8ac07" id="${result.response_data.id}" class="btn-icon btn-delete-list"></box-icon>
             </td>
            </tr>`)
+
+           $('.btn-delete-list').click(function (event) {
+            console.log("chegou aqui")
+
+            lista_produtos.splice(lista_produtos.findIndex(produto => produto.id_produto == result.response_data.id), 1);
+
+            $(this).closest("tr").remove(); // You can remove row like this
+    
+            //window.location.reload(true);
+        })
           
         },
         error: function (result) {
@@ -35,9 +44,9 @@ $(document).ready(function () {
     })
 
     $('.btn-delete').click(function (event) {
-        deleteLogin(event.target.id);
+        deleteLoginById(event.target.id);
 
-        window.location.reload(true);
+        //window.location.reload(true);
     })
 
     $('#adicionarProduto').click(function () {       

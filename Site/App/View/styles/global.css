@@ -33,6 +33,12 @@ body{
     min-height: 5px;
 }
 
+td{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .logo-container{
     height: 25%;
     width: 100%;
