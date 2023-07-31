@@ -53,5 +53,33 @@ $(document).ready(function () {
         reloadTableProduct();
     })
 
+    $('#forma_pagamento').change(function(){
+        switch ($('#selectPagamento').val()) {
+            case 'CARTAO':
+              $('#modal-credito').removeClass('d-none')
+              $('#modal-debito').addClass('d-none')
+              $('#modal-boleto').addClass('d-none')
+              break;     
+
+      
+            case 'MANUAL':
+              $('#modal-credito').addClass('d-none')
+              $('#modal-debito').addClass('d-none')
+              $('#modal-boleto').removeClass('d-none')
+              break;
+
+            case 'DEBITO':
+                $('#modal-credito').addClass('d-none')
+                $('#modal-debito').removeClass('d-none')
+                $('#modal-boleto').addClass('d-none')
+                break;  
+      
+            default:
+              $('#modal-credito').addClass('d-none')
+              $('#modal-debito').addClass('d-none')
+              $('#modal-boleto').addClass('d-none')
+              break;
+          }
+    })
 
 })
