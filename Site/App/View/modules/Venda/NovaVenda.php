@@ -50,45 +50,17 @@
                         </table>
                     </div>
                     <div class="final-actions">
-                        <button class="btn btn-warning">Método de Pagamento</button>
+                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalPagamento">Método de Pagamento</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="modalUsuario" tabindex="-1" role="dialog" aria-labelledby="modalUsuarioTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalUsuarioTitle">Cadastrar Categoria</h5>
-                    <!--<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>-->
-                    </button>
-                </div>
-                <form method="post">
-                    <div class="modal-body">
-                        <input type="hidden" name="id" id="id">
-                        <label for="txtEmail">E-mail:</label>
-                        <input type="email" name="email" class="form-control" id="txtEmail" required maxlength="90">
-                        <label for="txtSenha">Senha:</label>
-                        <input type="password" name="senha" class="form-control" id="txtSenha" required>
-                        <label for="txtConfirmarSenha">Confirmar Senha:</label>
-                        <input type="password" name="confSenha" class="form-control" id="txtConfirmarSenha" required>
-                        <span>
-                            <p class="text-danger" id="error"></p>
-                        </span>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Fechar</button>
-                        <button type="button" class="btn" style="background-color: #f4c71e;" id="adicionarUsuario">Salvar Registro</button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
     <?php include 'View/includes/js_config.php' ?>
     <?php include 'View/modules/Venda/ModalProduto.php' ?>
+    <?php include 'View/modules/Venda/ModalPagamento.php' ?>
     <script src="View/js/src/jquery.venda.js"></script>
 
 

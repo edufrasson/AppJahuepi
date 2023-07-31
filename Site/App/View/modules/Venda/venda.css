@@ -1,5 +1,5 @@
 .input-container{
-    width: 15%;
+    width: 45%;
     padding-bottom: 15px; 
 }
 
@@ -8,3 +8,8 @@
     justify-content: space-between;
 }
 
+.input-row{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}

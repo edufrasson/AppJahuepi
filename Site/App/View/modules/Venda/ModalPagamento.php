@@ -3,8 +3,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="input-container">
-                    <label for="forma_pagamento">Forma de Pagamento:</label><br>
+                    <label for="forma_pagamento">Forma Pagamento:</label>
                     <select class="selectpicker" name="forma_pagamento" id="forma_pagamento">
+                        <option value="">Escolha uma opção de pagamento!</option>
                         <option value="CARTAO">Cartão de Crédito</option>
                         <option value="DEBITO">Cartão de Débito</option>
                         <option value="MANUAL">Boleto Bancário</option>
@@ -15,45 +16,55 @@
                 <!--
                     Modal do crédito
                 -->
-                <div class="modal-body modal-credito off">
-                    <div class="input-container">
-                        <label for="valor_total">Valor total (R$): </label><br>
-                        <input class="form-control p-1" type="number" name="valor_total" id="valor_total">
+                <div class="modal-body modal-credito d-none" id="modal-credito">
+                    <div class="input-row ">
+                        <div class="input-container">
+                            <label for="valor_total">Valor total (R$): </label><br>
+                            <input class="form-control p-1" type="number" name="valor_total" id="valor_total">
+                        </div>
+                        <div class="input-container">
+                            <label for="qnt_parcelas">Quantidade de parcelas: </label><br>
+                            <input class="form-control p-1" type="number" name="qnt_parcelas" id="qnt_parcelas">
+                        </div>
                     </div>
-                    <div class="input-container">
-                        <label for="qnt_parcelas">Quantidade de parcelas: </label><br>
-                        <input class="form-control p-1" type="number" name="qnt_parcelas" id="qnt_parcelas">
+                    <div class="input-row d-flex justify-content-center">
+                        <div class="input-container">
+                            <label for="id_taxa">Taxa do cartão:</label><br>
+                            <select class="selectpicker" name="taxa" id="taxa">
+                                <option value="">Cadastre um produto primeiro!</option>
+                                <?php foreach ($model->arr_taxas as $taxa) : ?>
+                                    <option value="<?= $taxa->valor ?>"><?= $taxa->codigo ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                     </div>
-                    <div class="input-container">
-                        <label for="id_taxa">Taxa do cartão:</label><br>
-                        <select class="selectpicker" name="taxa" id="taxa">
-                            <option value="">Cadastre um produto primeiro!</option>
-                            <?php foreach ($model->arr_taxas as $taxa) : ?>
-                                <option value="<?= $taxa->valor ?>"><?= $taxa->codigo ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                    <div class="input-row">
+                        <div class="input-container pagamento-details ">
+                            <label for="valor_taxa">Valor da Taxa: </label><br>
+                            <input disabled class="form-control p-1" type="number" name="valor_taxa" id="valor_taxa">
+                        </div>
+                        <div class="input-container pagamento-details ">
+                            <label for="valor_liquido">Valor Líquido: </label><br>
+                            <input disabled class="form-control p-1" type="number" name="valor_liquido" id="valor_liquido">
+                        </div>
                     </div>
-                    <div class="input-container pagamento-details ">
-                        <label for="valor_taxa">Valor da Taxa: </label><br>
-                        <input disabled class="form-control p-1" type="number" name="valor_taxa" id="valor_taxa">
+                    <div class="input-row">
+                        <div class="input-container pagamento-details">
+                            <label for="valor_bruto_parcela">Valor Bruto da Parcela: </label><br>
+                            <input disabled class="form-control p-1" type="number" name="valor_bruto_parcela" id="valor_bruto_parcela">
+                        </div>
+                        <div class="input-container pagamento-details">
+                            <label for="valor_liquido_parcela">Valor Líquido da Taxa: </label><br>
+                            <input disabled class="form-control p-1" type="number" name="valor_liquido_parcela" id="valor_liquido_parcela">
+                        </div>
                     </div>
-                    <div class="input-container pagamento-details ">
-                        <label for="valor_liquido">Valor Líquido: </label><br>
-                        <input disabled class="form-control p-1" type="number" name="valor_liquido" id="valor_liquido">
-                    </div>
-                    <div class="input-container pagamento-details">
-                        <label for="valor_bruto_parcela">Valor Bruto da Parcela: </label><br>
-                        <input disabled class="form-control p-1" type="number" name="valor_bruto_parcela" id="valor_bruto_parcela">
-                    </div>
-                    <div class="input-container pagamento-details">
-                        <label for="valor_liquido_parcela">Valor Líquido da Taxa: </label><br>
-                        <input disabled class="form-control p-1" type="number" name="valor_liquido_parcela" id="valor_liquido_parcela">
-                    </div>
+
+
                 </div>
                 <!--
                     Modal do débito
                 -->
-                <div class="modal-body modal-debito off">
+                <div class="modal-body modal-debito d-none" id="modal-debito">
                     <div class="input-container">
                         <label for="id_produto">Produto:</label><br>
                         <select class="selectpicker" name="id_produto" id="id_produto">
@@ -71,7 +82,7 @@
                 <!--
                     Modal do boleto
                 -->
-                <div class="modal-body modal-boleto off">
+                <div class="modal-body modal-boleto d-none" id="modal-boleto">
                     <div class="input-container">
                         <label for="id_produto">Produto:</label><br>
                         <select class="selectpicker" name="id_produto" id="id_produto">
