@@ -9,13 +9,23 @@ $(document).ready(function(){
                 "last":       "Último",
                 "next":       "Próximo",
                 "previous":   "Anterior"
-            },            
+            },
             "search": "Pesquisar:",
             "lengthMenu":     "Mostrar _MENU_ registros",
             "zeroRecords": "Nenhum registro encontrado!",
-          },    
-          'scrollY':  ($(window).height() - 400),   
+          },
+        'scrollY':  ($(window).height() - 450),   
+        'info': false,
+        'ordering': true,  
+        'fixedHeader': true,
+        'orderFixed': true,
+        'rowReorder': false,
+        'responsive': true,
+        "lengthChange": false,
+        'autoWidth': true,  
+        
     });
+
 
     
 })

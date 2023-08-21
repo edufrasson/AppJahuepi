@@ -11,27 +11,27 @@
 </head>
 
 <body>
-
     <?php include 'View/includes/navbar.php' ?>
 
-    <div class="content-container">
-        <div class="content">
-            <div class="main-container">
-                <div class="text-container">
-                    <h4>Cadastro de Categoria</h4>
+    <main class="main-container">
+        <div class="container-card">
+            <div class="header-card">
+                <div class="text-container-header-card">
+                    <p>Cadastro de Categoria</p>
                 </div>
-                <div class="table-container">
-                    <div class="button-container">
-                        <button id="adicionar" class="btn" style="background-color: #f4c71e;" data-bs-toggle="modal" data-bs-target="#modalCategoria">Adicionar</button>
-                    </div>
-
+            </div>
+            <div class="main-card">
+                <div class="containers-card buttons-container">
+                    <button class="btn" data-bs-toggle="modal" data-bs-target="#modalCategoria">Nova Categoria</button>
+                </div>
+                <div class="containers-card table-container">
                     <div class="container-table">
                         <div class="loading-container d-flex justify-content-center">
                             <div class="spinner-border" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
-                        <table id="tableCategoria" class="table table-bordered table-style off">
+                        <table id="tableCategoria" class="table  table-style off">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -57,10 +57,15 @@
                             </tbody>
                         </table>
                     </div>
+
+                </div>
+                <div class="containers-card action-table-container">
+
                 </div>
             </div>
         </div>
-    </div>
+    </main>
+
 
     <div class="modal fade" id="modalCategoria" tabindex="-1" role="dialog" aria-labelledby="modalCategoriaTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">

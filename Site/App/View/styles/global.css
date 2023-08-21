@@ -1,16 +1,118 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
-html{
-    font-family: 'Poppins';
-}
-
-body{
+* {
     margin: 0;
     padding: 0;
+    outline: none;
+    border: none;
+    text-decoration: none;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif !important;
+    font-family: "Poppins", sans-serif;
+    list-style: none;
 }
 
+:root{
+    /* ===== Colors ===== */
+    --body-color: #f5f3d6;
+    --sidebar-color: #FFF;
+    --primary-color: #f4c71e;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --text-color: #707070;
+    /* ====== Transition ====== */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+  }
+
+/* MAIN */
+
+body{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Poppins' , sans-serif;
+    background: #707070 !important;
+  }
+
+  .btn{
+    background-color: var(--primary-color);
+  }
+  
+  .main-container{
+    margin-left: 5%;
+    width: 92vw;  
+    height: 100vh;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s; 
+  }
+  
+  .main-alt-size{
+    width: 84vw;     
+    margin-left: 13%;
+    transition: 0.2s; 
+  }
+  
+  .btn-pet{
+    background-color: var(--primary-color);
+  }
+
+/* CONTAINER */
+.container-card{
+    width: 100%;
+    height: 95%;
+    background-color: white;
+    border-radius: 10px;
+  }
+  
+  .containers-card{
+    width: 100%;  
+    padding: 20px;
+  }
+  
+  .header-card{
+    width: 100%;
+    height: 8%;
+    padding: 20px; 
+  }
+  
+  .text-container-header-card{
+    font-size: 25px;
+  }
+  
+/* COMANDOS PARA RESPONSIVIDADE */
+@media screen and (max-width: 1600px){
+  .main-container{
+    width: 90vw;
+    margin-left: 6%;
+  }
+}
+
+@media screen and (max-width: 1380px){
+  .main-container{
+    margin-left: 7%;
+  }
+}
+
+@media screen and (max-width: 1180px){
+  .main-container{
+    margin-left: 8%;
+  }
+}
+
+@media screen and (max-width: 1080px){
+  .main-container{
+    width: 88vw;
+    margin-left: 9%;
+  }
+}
+
+/*
 .content-container{
     width: 100vw;
     height: 100vh;

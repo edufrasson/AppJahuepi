@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="View/bootstrap/dist/css/bootstrap.min.css">
 <script src="View/js/DataTable/datatables.min.css"></script>
 <link rel="stylesheet" href="View/styles/global.css">
+<link rel="stylesheet" href="View/styles/navbar.css">
 <link rel="shortcut icon" href="View/assets/icone.png" type="image/x-icon">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
