@@ -12,10 +12,9 @@
 
 <body>
 
+    <?php include 'View/includes/navbar.php' ?>
+
     <div class="content-container">
-        <div class="navbar">
-            <?php include 'View/includes/navbar.php' ?>
-        </div>
         <div class="content">
             <div class="main-container">
                 <div class="text-container">

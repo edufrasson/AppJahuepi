@@ -4,6 +4,7 @@
 <link rel="shortcut icon" href="View/assets/icone.png" type="image/x-icon">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 <!-- JQuery DataTable -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/b-2.3.4/cr-1.6.1/r-2.4.0/rr-1.3.2/sc-2.1.0/sb-1.4.0/datatables.min.css"/>

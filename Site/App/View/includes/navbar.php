@@ -1,39 +1,65 @@
-<div class="logo-container">
-    <a href="/home">
-        <img src="View/assets/icone.png" height="110" width="110">
-    </a>
-</div>
+<nav class="sidebar close">
+    <header>
+        <div class="image-text">
+            <span class="image">
+                <!--<img src="View/assets/icone.png">-->
+            </span>
+            <div class="text logo-text">
+                <span class="name">JahuEPI</span>
+            </div>
+        </div>
+        <i class='bx bx-chevron-right toggle'></i>
+    </header>
 
-<div class="action-container">
-    <div class="link-container">
-        <a href="/home" class="btn">Dashboard</a>
-    </div>
-    <div class="link-container">
-        <a href="/venda" class="btn">Nova Venda</a>
-    </div>
-    <div class="link-container">
-        <a href="/produto" class="btn">Estoque</a>
-    </div>
-    <div class="link-container">
-        <a href="/extrato" class="btn">Financeiro</a>
-    </div>
-    <div class="link-container">
-        <a href="#" class="btn">Taxas de Cartão</a>
-    </div>
-    <div class="link-container">
-        <a href="#" class="btn">Funções</a>
-    </div>
-</div>
+    <div class="menu-bar">
+        <div class="menu">
 
-<div class="dropdown-container">
-    <div class="dropdown">
-        <a href="#" class=" btn color align-items-center link-white text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-            Cadastros
-        </a>
-        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">                   
-            <li><a class="dropdown-item" href="/taxa">Cadastrar Taxa</a></li>
-            <li><a class="dropdown-item" href="/usuario">Cadastrar Usuário</a></li>
-            <li><a class="dropdown-item" href="/categoria_produto">Cadastrar Categoria Produto</a></li>
-        </ul>
+            <li class="nav-link">
+                <a href="">
+                    <i class="bx bx-home-alt icon"></i>
+                    <span class="text nav-text">Dashboard</span>
+                </a>
+            </li>
+
+            <li class="nav-link">
+                <a href="">
+                    <i class='bx bx-bar-chart-alt-2 icon'></i>
+                    <span class="text nav-text">Produtos</span>
+                </a>
+            </li>
+
+            <li class="nav-link">
+                <a href="">
+                    <i class='bx bxs-dog icon'></i>
+                    <span class="text nav-text">Pet</span>
+                </a>
+            </li>
+
+            <li class="nav-link">
+                <a href="">
+                    <i class='bx bx-user-circle icon'></i>
+                    <span class="text nav-text">Cliente</span>
+                </a>
+            </li>
+
+            <li class="nav-link">
+                <a href="">
+                    <i class='bx bx-cart-add icon'></i>
+                    <span class="text nav-text">Nova Venda</span>
+                </a>
+            </li>
+
+        </div>
+
+        <div class="bottom-content">
+            <li class="">
+                <a href="#">
+                    <i class='bx bx-log-out icon'></i>
+                    <span class="text nav-text">Logout</span>
+                </a>
+            </li>
+
+        </div>
+
     </div>
-</div>
+</nav>
