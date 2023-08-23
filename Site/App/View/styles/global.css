@@ -30,9 +30,9 @@
 
 body{
     display: flex;
-    justify-content: space-around;
+
     align-items: center;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     font-family: 'Poppins' , sans-serif;
     background: #707070 !important;
@@ -46,17 +46,22 @@ body{
     margin-left: 5%;
     width: 92vw;  
     height: 100vh;  
+    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 0.2s; 
   }
-  
-  .main-alt-size{
-    width: 84vw;     
-    margin-left: 13%;
-    transition: 0.2s; 
+
+  .dataTables_wrapper{
+    position: relative;
   }
+  
+ /* .main-alt-size{
+    width: 84vw;     
+    margin-left: 55%;
+    transition: 0.2s; 
+  }*/
   
   .btn-pet{
     background-color: var(--primary-color);
@@ -90,19 +95,23 @@ body{
   .main-container{
     width: 90vw;
     margin-left: 6%;
-  }
+  } 
 }
 
 @media screen and (max-width: 1380px){
   .main-container{
+    width: 87vw;
+
     margin-left: 7%;
-  }
+  }  
 }
 
 @media screen and (max-width: 1180px){
   .main-container{
     margin-left: 8%;
   }
+ 
+  
 }
 
 @media screen and (max-width: 1080px){

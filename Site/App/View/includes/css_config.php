@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="View/styles/navbar.css">
 <link rel="shortcut icon" href="View/assets/icone.png" type="image/x-icon">
 
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 

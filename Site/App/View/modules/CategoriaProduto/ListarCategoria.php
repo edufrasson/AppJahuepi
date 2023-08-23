@@ -13,7 +13,7 @@
 <body>
     <?php include 'View/includes/navbar.php' ?>
 
-    <main class="main-container">
+    <div class="main-container">
         <div class="container-card">
             <div class="header-card">
                 <div class="text-container-header-card">
@@ -22,7 +22,7 @@
             </div>
             <div class="main-card">
                 <div class="containers-card buttons-container">
-                    <button class="btn" data-bs-toggle="modal" data-bs-target="#modalCategoria">Nova Categoria</button>
+                    <button class="btn" style="background-color: #f4c71e;" data-bs-toggle="modal" data-bs-target="#modalCategoria">Nova Categoria</button>
                 </div>
                 <div class="containers-card table-container">
                     <div class="container-table">
@@ -64,7 +64,7 @@
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 
 
     <div class="modal fade" id="modalCategoria" tabindex="-1" role="dialog" aria-labelledby="modalCategoriaTitle" aria-hidden="true">

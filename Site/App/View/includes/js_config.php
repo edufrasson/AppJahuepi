@@ -19,10 +19,30 @@
         modeText = body.querySelector(".mode-text"),
         mainContainer = body.querySelector(".main-container");
 
+    var state = 0;
+    let style = window.getComputedStyle(mainContainer)
+
+    const startWidth =  mainContainer.offsetWidth    
+    const startHeight = mainContainer.offsetHeight
+    const startMargin = style.marginLeft
+
     toggle.addEventListener("click", () => {
+             
+
         sidebar.classList.toggle("close");
-        console.log("CHEGOU AQUI")       
-        mainContainer.classList.toggle("main-alt-size")
+      
+        if($(window).width() < 1380 && state == 0){
+            mainContainer.style.width = "75vw";
+            mainContainer.style.marginLeft = "19%";
+            console.log(startWidth)
+            state = 1
+        }else{
+            mainContainer.style.width = startWidth + "px"
+            mainContainer.style.marginLeft = startMargin
+            state = 0
+        }  
+           
+        
     })
    
 </script>
