@@ -12,57 +12,58 @@
 
 <body>
 
-    <div class="content-container">
-        <div class="navbar">
-            <?php include 'View/includes/navbar.php' ?>
-        </div>
-        <div class="content">
-            <div class="main-container">
-                <div class="text-container">
-                    <h4>Cadastro de Produtos</h4>
+    <?php include 'View/includes/navbar.php' ?>
+
+    <div class="main-container">
+        <div class="container-card">
+            <div class="header-card">
+                <div class="text-container-header-card">
+                    <p>Cadastro de Produto</p>
                 </div>
-                <div class="table-container">
-                    <div class="button-container">
+                <div class="main-card">
+                    <div class="containers-card buttons-container">
                         <button id="adicionar" class="btn" style="background-color: #f4c71e;" data-bs-toggle="modal" data-bs-target="#modalProduto">Adicionar</button>
                     </div>
 
-                    <div class="container-table">
-                        <div class="loading-container d-flex justify-content-center">
-                            <div class="spinner-border" role="status">
-                                <span class="visually-hidden">Loading...</span>
+                    <div class="container-card">
+                        <div class="container-table">
+                            <div class="loading-container d-flex justify-content-center">
+                                <div class="spinner-border" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
                             </div>
+                            <table id="tableCategoria" class="table table-bordered table-style off">
+                                <thead>
+                                    <tr>
+
+                                        <th>Descricao</th>
+                                        <th>Preço</th>
+                                        <th>Quantidade</th>
+                                        <th>Código de Barras</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if ($model->rows !== null) : ?>
+                                        <?php foreach ($model->rows as $Produto) : ?>
+                                            <tr>
+
+                                                <td><?= $Produto->descricao ?></td>
+                                                <td><?= $Produto->preco ?></td>
+                                                <td><?= $Produto->quantidade ?></td>
+                                                <td><?= $Produto->codigo_barra ?></td>
+                                                <td class="actions-list">
+                                                    <box-icon name="edit" color="#e8ac07" id="<?= $Produto->id ?>" data-bs-toggle="modal" data-bs-target="#modalProduto" class="btn-icon btn-edit"></box-icon>
+                                                    <box-icon name="trash" color="#e8ac07" id="<?= $Produto->id ?>" class="btn-icon btn-delete"></box-icon>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach ?>
+                                    <?php else : ?>
+                                        Nenhum registro.
+                                    <?php endif ?>
+                                </tbody>
+                            </table>
                         </div>
-                        <table id="tableCategoria" class="table table-bordered table-style off">
-                            <thead>
-                                <tr>
-                                
-                                    <th>Descricao</th>
-                                    <th>Preço</th>
-                                    <th>Quantidade</th>
-                                    <th>Código de Barras</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if ($model->rows !== null) : ?>
-                                    <?php foreach ($model->rows as $Produto) : ?>
-                                        <tr>
-                                         
-                                            <td><?= $Produto->descricao ?></td>
-                                            <td><?= $Produto->preco ?></td>
-                                            <td><?= $Produto->quantidade ?></td>
-                                            <td><?= $Produto->codigo_barra ?></td>
-                                            <td class="actions-list">
-                                                <box-icon name="edit" color="#e8ac07" id="<?= $Produto->id ?>" data-bs-toggle="modal" data-bs-target="#modalProduto" class="btn-icon btn-edit"></box-icon>
-                                                <box-icon name="trash" color="#e8ac07" id="<?= $Produto->id ?>" class="btn-icon btn-delete"></box-icon>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach ?>
-                                <?php else : ?>
-                                    Nenhum registro.
-                                <?php endif ?>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
@@ -74,7 +75,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalProdutoTitle">Cadastrar Produto</h5>
-                   
+
                     </button>
                 </div>
                 <form method="post" action="/produto/save">

@@ -24,7 +24,7 @@
                 <div class="containers-card buttons-container">
                     <button class="btn" style="background-color: #f4c71e;" data-bs-toggle="modal" data-bs-target="#modalCategoria">Nova Categoria</button>
                 </div>
-                <div class="containers-card table-container">
+                <div class="containers-card">
                     <div class="container-table">
                         <div class="loading-container d-flex justify-content-center">
                             <div class="spinner-border" role="status">
