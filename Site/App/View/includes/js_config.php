@@ -31,7 +31,7 @@
 
         sidebar.classList.toggle("close");
 
-        if ($(window).width() < 1380 && state == 0) {
+        /*if ($(window).width() < 1380 && state == 0) {
             mainContainer.style.width = "75vw";
             mainContainer.style.marginLeft = "19%";
             console.log(startWidth)
@@ -40,7 +40,7 @@
             mainContainer.style.width = startWidth + "px"
             mainContainer.style.marginLeft = startMargin
             state = 0
-        }
+        }*/
     })
 
     body.addEventListener("click", (event) => {
