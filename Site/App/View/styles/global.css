@@ -44,7 +44,7 @@ body{
   
   .main-container{
     margin-left: 5%;
-    width: 92vw;  
+    width: 94.6vw;  
     height: 100vh;  
     padding: 10px;
     display: flex;
@@ -73,6 +73,7 @@ body{
     height: 95%;
     background-color: white;
     border-radius: 10px;
+    /*margin-left: 160px;*/
   }
   
   .containers-card{
@@ -89,6 +90,12 @@ body{
   .text-container-header-card{
     font-size: 25px;
   }
+
+  /*.container-table{
+    overflow: auto;
+  }*/
+
+
   
 /* COMANDOS PARA RESPONSIVIDADE */
 @media screen and (max-width: 1600px){
@@ -118,6 +125,17 @@ body{
   .main-container{
     width: 88vw;
     margin-left: 9%;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .header-card{
+    text-align: center;
+  }
+
+  .buttons-container{
+    padding: 10px 20px;
+    width: auto;
   }
 }
 
