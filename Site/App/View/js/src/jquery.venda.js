@@ -1,5 +1,5 @@
 lista_produtos = Array();
-
+var valor_total = 0
 
 function reloadTableProduct() {
     $.ajax({
@@ -7,6 +7,7 @@ function reloadTableProduct() {
         url: "/produto/get-by-id?id=" + $('#id_produto').val(),
         dataType: 'json',
         success: function (result) {
+          valor_total += ($('#quantidade').val() * result.response_data.preco)
           lista_produtos.push({ id_produto: result.response_data.id, quantidade: $('#quantidade').val() })
       
           $('#tableProduto').append(`<tr> 
@@ -37,6 +38,24 @@ function reloadTableProduct() {
       })  
 }
 
+function updateTotalValue(qnt_parcelas = null){
+  $('.valor_total').val(valor_total);
+}
+
+function updateTaxasValue(valor_taxa){  
+  $('#valor_taxa_credito').val((valor_taxa * 100))
+  $('#valor_liquido_credito').val((valor_total - (valor_total * valor_taxa)))
+
+  $('#valor_taxa_debito').val((valor_taxa * 100))
+  $('#valor_liquido_debito').val((valor_total - (valor_total * valor_taxa)))
+}
+
+function updateParcelasValue(qnt_parcelas){
+  $('.valor_bruto_parcela').val(valor_total / qnt_parcelas)
+  $('.valor_liquido_parcela').val($('.valor_liquido').val() / qnt_parcelas)
+}
+
+
 $(document).ready(function () {
 
     $('.btn-edit').click(function (event) {
@@ -54,11 +73,16 @@ $(document).ready(function () {
     })
 
     $('#forma_pagamento').change(function(){
+        updateTotalValue();
         switch ($('#forma_pagamento').val()) {
+            
             case 'CARTAO':
               $('#modal-credito').removeClass('d-none')
               $('#modal-debito').addClass('d-none')
               $('#modal-boleto').addClass('d-none')
+              $('#select-taxa-credito').change(function(){
+                updateTaxasValue($('#select-taxa-credito').val());
+              })
               break;     
 
       
@@ -66,12 +90,16 @@ $(document).ready(function () {
               $('.modal-credito').addClass('d-none')
               $('.modal-debito').addClass('d-none')
               $('.modal-boleto').removeClass('d-none')
+              
               break;
 
             case 'DEBITO':
                 $('.modal-credito').addClass('d-none')
                 $('.modal-debito').removeClass('d-none')
                 $('.modal-boleto').addClass('d-none')
+                $('#select-taxa-debito').change(function(){
+                  updateTaxasValue($('#select-taxa-debito').val());
+                })
                 break;  
       
             default:
@@ -80,6 +108,16 @@ $(document).ready(function () {
               $('.modal-boleto').addClass('d-none')
               break;
           }
+    })
+
+ 
+
+    $('.qnt_parcelas').change(() => {
+      updateParcelasValue($('.qnt_parcelas').val())
+    })
+
+    $('#finalizarVenda').change(function(){
+      concluirVenda($('#data_venda').val())
     })
 
 })

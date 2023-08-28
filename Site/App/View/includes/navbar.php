@@ -14,31 +14,31 @@
     <div class="menu-bar">
         <div class="menu">
             <li>
-                <a href="">
+                <a href="/home">
                     <i class="bx bx-home-alt icon"></i>
                     <span class="text nav-text">Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="/produto">
                     <i class='bx bx-bar-chart-alt-2 icon'></i>
                     <span class="text nav-text">Produtos</span>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="/categoria_produto">
                     <i class='bx bxs-dog icon'></i>
-                    <span class="text nav-text">Pet</span>
+                    <span class="text nav-text">Categoria</span>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="/extrato">
                     <i class='bx bx-user-circle icon'></i>
-                    <span class="text nav-text">Cliente</span>
+                    <span class="text nav-text">Movimentação</span>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="/venda">
                     <i class='bx bx-cart-add icon'></i>
                     <span class="text nav-text">Nova Venda</span>
                 </a>

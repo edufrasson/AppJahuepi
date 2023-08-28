@@ -9,7 +9,8 @@ use App\Controller\{
     ProdutoVendaController,
     LoginController,
     TaxaController,
-    CategoriaProdutoController
+    CategoriaProdutoController,
+    DashboardController
 };
 use App\DAO\CategoriaProdutoDAO;
 
@@ -175,7 +176,7 @@ switch ($url) {
 
         /* Outros */
     case '/home':
-        CategoriaProdutoController::index();
+        DashboardController::index();
         break;
 
     default:

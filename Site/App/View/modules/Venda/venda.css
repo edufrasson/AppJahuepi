@@ -1,15 +1,17 @@
-.input-container{
-    width: 45%;
-    padding-bottom: 15px; 
-}
-
-.venda-actions{
+.buttons-container{
     display: flex;
     justify-content: space-between;
+    padding: 20px;
 }
 
 .input-row{
-    width: 100%;
+   /* border: 1px solid red;*/
     display: flex;
+    padding-right: 10px;
     justify-content: space-between;
+}
+
+
+.modal-body{
+    gap: 15px;
 }

@@ -3,12 +3,13 @@
 namespace App\Model;
 
 use App\DAO\ProdutoDAO;
+use App\DAO\TaxaDAO;
 use App\DAO\VendaDAO;
 
 class VendaModel extends Model
 {
     public $id, $data_venda;
-    public $arr_produtos;
+    public $arr_produtos, $arr_taxas;
 
     public function save()
     {
@@ -48,5 +49,12 @@ class VendaModel extends Model
         $dao = new ProdutoDAO();
 
         $this->arr_produtos = $dao->select();
+    }
+
+    
+    public function getAllTaxas(){
+        $dao = new TaxaDAO();
+
+        $this->arr_taxas = $dao->select();
     }
 }

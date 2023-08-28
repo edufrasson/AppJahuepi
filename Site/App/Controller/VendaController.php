@@ -15,6 +15,7 @@ class VendaController extends Controller
         $model = new VendaModel();
         unset($carrinho_produtos);
         $model->getAllProdutos();
+        $model->getAllTaxas();
 
         include 'View/modules/Venda/NovaVenda.php';
     }
