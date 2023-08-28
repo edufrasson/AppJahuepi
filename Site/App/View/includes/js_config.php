@@ -22,27 +22,32 @@
     var state = 0;
     let style = window.getComputedStyle(mainContainer)
 
-    const startWidth =  mainContainer.offsetWidth    
+    const startWidth = mainContainer.offsetWidth
     const startHeight = mainContainer.offsetHeight
     const startMargin = style.marginLeft
 
     toggle.addEventListener("click", () => {
-             
+
 
         sidebar.classList.toggle("close");
-      
-        if($(window).width() < 1380 && state == 0){
+
+        if ($(window).width() < 1380 && state == 0) {
             mainContainer.style.width = "75vw";
             mainContainer.style.marginLeft = "19%";
             console.log(startWidth)
             state = 1
-        }else{
+        } else {
             mainContainer.style.width = startWidth + "px"
             mainContainer.style.marginLeft = startMargin
             state = 0
-        }  
-           
-        
+        }
     })
-   
+
+    body.addEventListener("click", (event) => {
+        if (!sidebar.contains(event.target) && !toggle.contains(event.target)) {
+            if (!sidebar.classList.contains("close")) {
+                sidebar.classList.add("close");
+            }
+        }
+    });
 </script>
