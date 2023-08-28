@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,22 +9,24 @@
     <link rel="stylesheet" href="View/modules/Extrato/extrato.css">
     <title>Cadastro de Extrato</title>
 </head>
-<body>
-    
-    <div class="content-container">
-        <div class="navbar">
-            <?php include 'View/includes/navbar.php' ?>
-        </div>
-        <div class="content">
-            <div class="main-container">
-                <div class="text-container">
-                    <h4>Cadastro de Extrato</h4>
-                </div>
-                <div class="table-container">
-                    <div class="button-container">
-                        <button id="adicionar" class="btn" style="background-color: #f4c71e;" data-bs-toggle="modal" data-bs-target="#modalExtrato">Adicionar</button>
-                    </div>
 
+<body>
+
+    <?php include 'View/includes/navbar.php' ?>
+
+    <div class="main-container">
+        <div class="container-card">
+            <div class="header-card">
+                <div class="text-container-header-card">
+                    <p>Cadastro de Extrato</p>
+                </div>
+            </div>
+            <div class="main-card">
+                <div class="containers-card buttons-container">
+                    <button id="adicionar" class="btn" style="background-color: #f4c71e;" data-bs-toggle="modal" data-bs-target="#modalExtrato">Adicionar</button>
+                </div>
+
+                <div class="containers-card">
                     <div class="container-table">
                         <div class="loading-container d-flex justify-content-center">
                             <div class="spinner-border" role="status">
@@ -47,8 +50,8 @@
                                             <td><?= $extrato->valor ?></td>
                                             <td><?= $extrato->data_extrato ?></td>
                                             <td class="actions-list">
-                                                <box-icon name="edit" color="#e8ac07" id="<?=$extrato->id?>"data-bs-toggle="modal" data-bs-target="#modalExtrato" class="btn-icon btn-edit"></box-icon>
-                                                <box-icon name="trash" color="#e8ac07" id="<?=$extrato->id?>" class="btn-icon btn-delete"></box-icon>
+                                                <box-icon name="edit" color="#e8ac07" id="<?= $extrato->id ?>" data-bs-toggle="modal" data-bs-target="#modalExtrato" class="btn-icon btn-edit"></box-icon>
+                                                <box-icon name="trash" color="#e8ac07" id="<?= $extrato->id ?>" class="btn-icon btn-delete"></box-icon>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>
@@ -59,6 +62,7 @@
                         </table>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -93,4 +97,5 @@
 
 
 </body>
+
 </html>

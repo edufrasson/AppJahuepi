@@ -20,50 +20,50 @@
                 <div class="text-container-header-card">
                     <p>Cadastro de Produto</p>
                 </div>
-                <div class="main-card">
-                    <div class="containers-card buttons-container">
-                        <button id="adicionar" class="btn" style="background-color: #f4c71e;" data-bs-toggle="modal" data-bs-target="#modalProduto">Adicionar</button>
-                    </div>
+            </div>
+            <div class="main-card">
+                <div class="containers-card buttons-container">
+                    <button id="adicionar" class="btn" style="background-color: #f4c71e;" data-bs-toggle="modal" data-bs-target="#modalProduto">Adicionar</button>
+                </div>
 
-                    <div class="container-card">
-                        <div class="container-table">
-                            <div class="loading-container d-flex justify-content-center">
-                                <div class="spinner-border" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
+                <div class="containers-card">
+                    <div class="container-table">
+                        <div class="loading-container d-flex justify-content-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
                             </div>
-                            <table id="tableCategoria" class="table table-bordered table-style off">
-                                <thead>
-                                    <tr>
-
-                                        <th>Descricao</th>
-                                        <th>Preço</th>
-                                        <th>Quantidade</th>
-                                        <th>Código de Barras</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if ($model->rows !== null) : ?>
-                                        <?php foreach ($model->rows as $Produto) : ?>
-                                            <tr>
-
-                                                <td><?= $Produto->descricao ?></td>
-                                                <td><?= $Produto->preco ?></td>
-                                                <td><?= $Produto->quantidade ?></td>
-                                                <td><?= $Produto->codigo_barra ?></td>
-                                                <td class="actions-list">
-                                                    <box-icon name="edit" color="#e8ac07" id="<?= $Produto->id ?>" data-bs-toggle="modal" data-bs-target="#modalProduto" class="btn-icon btn-edit"></box-icon>
-                                                    <box-icon name="trash" color="#e8ac07" id="<?= $Produto->id ?>" class="btn-icon btn-delete"></box-icon>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach ?>
-                                    <?php else : ?>
-                                        Nenhum registro.
-                                    <?php endif ?>
-                                </tbody>
-                            </table>
                         </div>
+                        <table id="tableCategoria" class="table table-bordered table-style off">
+                            <thead>
+                                <tr>
+
+                                    <th>Descricao</th>
+                                    <th>Preço</th>
+                                    <th>Quantidade</th>
+                                    <th>Código de Barras</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if ($model->rows !== null) : ?>
+                                    <?php foreach ($model->rows as $Produto) : ?>
+                                        <tr>
+
+                                            <td><?= $Produto->descricao ?></td>
+                                            <td><?= $Produto->preco ?></td>
+                                            <td><?= $Produto->quantidade ?></td>
+                                            <td><?= $Produto->codigo_barra ?></td>
+                                            <td class="actions-list">
+                                                <box-icon name="edit" color="#e8ac07" id="<?= $Produto->id ?>" data-bs-toggle="modal" data-bs-target="#modalProduto" class="btn-icon btn-edit"></box-icon>
+                                                <box-icon name="trash" color="#e8ac07" id="<?= $Produto->id ?>" class="btn-icon btn-delete"></box-icon>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach ?>
+                                <?php else : ?>
+                                    Nenhum registro.
+                                <?php endif ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
