@@ -12,20 +12,21 @@
 
 <body>
 
-    <div class="content-container">
-        <div class="navbar">
-            <?php include 'View/includes/navbar.php' ?>
-        </div>
-        <div class="content">
-            <div class="main-container">
-                <div class="text-container">
-                    <h4>Cadastro de Taxa</h4>
-                </div>
-                <div class="table-container">
-                    <div class="button-container">
-                        <button id="adicionar" class="btn" style="background-color: #f4c71e;" data-bs-toggle="modal" data-bs-target="#modalTaxa">Adicionar</button>
-                    </div>
+    <?php include 'View/includes/navbar.php' ?>
 
+    <div class="main-container">
+        <div class="container-card">
+            <div class="header-card">
+                <div class="text-container-header-card">
+                    <p>Cadastro de Taxa</p>
+                </div>
+            </div>
+            <div class="main-card">
+                <div class="containers-card buttons-container">
+                    <button id="adicionar" class="btn" style="background-color: #f4c71e;" data-bs-toggle="modal" data-bs-target="#modalTaxa">Adicionar</button>
+                </div>
+
+                <div class="containers-card">
                     <div class="container-table">
                         <div class="loading-container d-flex justify-content-center">
                             <div class="spinner-border" role="status">
@@ -69,7 +70,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalTaxaTitle">Cadastrar Taxa</h5>                
+                    <h5 class="modal-title" id="modalTaxaTitle">Cadastrar Taxa</h5>
                 </div>
                 <form method="post" action="/taxa/save">
                     <div class="modal-body">
