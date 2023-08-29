@@ -21,19 +21,19 @@
             </li>
             <li>
                 <a href="/produto">
-                    <i class='bx bx-bar-chart-alt-2 icon'></i>
+                    <i class='bx bx-package icon'></i>
                     <span class="text nav-text">Produtos</span>
                 </a>
             </li>
             <li>
                 <a href="/categoria_produto">
-                    <i class='bx bxs-dog icon'></i>
+                    <i class='bx bx-category icon'></i>
                     <span class="text nav-text">Categoria</span>
                 </a>
             </li>
             <li>
                 <a href="/extrato">
-                    <i class='bx bx-user-circle icon'></i>
+                    <i class='bx bx-money-withdraw icon'></i>
                     <span class="text nav-text">Movimentação</span>
                 </a>
             </li>
