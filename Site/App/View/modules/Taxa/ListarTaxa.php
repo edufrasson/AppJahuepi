@@ -23,7 +23,7 @@
             </div>
             <div class="main-card">
                 <div class="containers-card buttons-container">
-                    <button id="adicionar" class="btn" style="background-color: #f4c71e;" data-bs-toggle="modal" data-bs-target="#modalTaxa">Adicionar</button>
+                    <button id="adicionar" class="btn" data-bs-toggle="modal" data-bs-target="#modalTaxa">Adicionar</button>
                 </div>
 
                 <div class="containers-card">

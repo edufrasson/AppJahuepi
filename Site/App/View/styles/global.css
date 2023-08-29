@@ -38,8 +38,9 @@ body{
     background: #707070 !important;
   }
 
-  .btn{
+  .main-card .btn{
     background-color: var(--primary-color);
+
   }
   
   .main-container{
@@ -63,9 +64,6 @@ body{
     transition: 0.2s; 
   }*/
   
-  .btn-pet{
-    background-color: var(--primary-color);
-  }
 
 /* CONTAINER */
 .container-card{
@@ -108,7 +106,6 @@ body{
 @media screen and (max-width: 1380px){
   .main-container{
     width: 87vw;
-
     margin-left: 7%;
   }  
 }
@@ -118,7 +115,9 @@ body{
     margin-left: 8%;
   }
  
-  
+  .main-card .btn{
+    /*padding-right: 14%;*/
+  }
 }
 
 @media screen and (max-width: 1080px){
@@ -132,10 +131,12 @@ body{
   .header-card{
     text-align: center;
   }
+}
 
-  .buttons-container{
-    padding: 10px 20px;
-    width: auto;
+@media screen and (max-width: 900px){
+  .main-card .btn{
+    padding-right: 32%;
+    margin-left: 30%;
   }
 }
 

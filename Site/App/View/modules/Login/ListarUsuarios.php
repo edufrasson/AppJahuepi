@@ -22,7 +22,7 @@
                 </div>
                 <div class="table-container">
                     <div class="button-container">
-                        <button id="adicionar" class="btn" style="background-color: #f4c71e;" data-bs-toggle="modal" data-bs-target="#modalUsuario">Adicionar</button>
+                        <button id="adicionar" class="btn" data-bs-toggle="modal" data-bs-target="#modalUsuario">Adicionar</button>
                     </div>
 
                     <div class="container-table">
