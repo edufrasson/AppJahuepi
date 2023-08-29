@@ -66,6 +66,11 @@
                         </table>
                     </div>
                 </div>
+                <div class="containers-card action-container">
+                    <div class="final-actions">
+                        <button id="adicionar" class="btn" style="background-color: #f4c71e;" data-bs-toggle="modal" data-bs-target="#modalCategoria">Adicionar Categoria</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -121,6 +126,8 @@
             </div>
         </div>
     </div>
+
+    <?php include 'View/modules/Produto/ModalCategoria.php' ?>
     <?php include 'View/includes/js_config.php' ?>
     <script src="View/js/src/jquery.categoria.js"></script>
 
