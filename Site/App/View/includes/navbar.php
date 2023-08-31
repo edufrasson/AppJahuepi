@@ -43,6 +43,12 @@
                     <span class="text nav-text">Nova Venda</span>
                 </a>
             </li>
+            <li>
+                <a href="/taxa">
+                    <i class='bx bx-credit-card icon'></i>
+                    <span class="text nav-text">Taxas do Cartão</span>
+                </a>
+            </li>
 
         </div>
 

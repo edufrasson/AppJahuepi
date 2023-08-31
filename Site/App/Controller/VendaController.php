@@ -34,9 +34,9 @@ class VendaController extends Controller
         $venda->id = $_POST['id'];     
         $venda->data_venda = $_POST['data_venda'];
 
-        $venda->save();
+        $model_retorno = $venda->save();
 
-        //parent::setResponseAsJSON($venda);
+        parent::setResponseAsJSON($model_retorno);
     }
 
     public static function delete()

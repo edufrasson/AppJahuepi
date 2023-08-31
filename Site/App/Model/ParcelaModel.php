@@ -6,7 +6,7 @@ use App\DAO\ParcelaDAO;
 
 class ParcelaModel extends Model
 {
-    public $id, $valor, $data_parcela, $status, $id_pagamento;
+    public $id, $valor, $data_parcela, $status, $id_pagamento, $indice;
 
     public function save()
     {

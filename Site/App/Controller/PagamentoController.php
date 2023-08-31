@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\PagamentoModel;
 use App\Controller\Controller;
+use App\Model\ParcelaModel;
 
 class PagamentoController extends Controller
 {
@@ -25,6 +26,7 @@ class PagamentoController extends Controller
     public static function save()
     {
         $pagamento = new PagamentoModel();
+        $parcela = new ParcelaModel();
 
         $pagamento->id = $_POST['id'];                          
         $pagamento->qnt_parcelas = $_POST['qnt_parcelas'];     
@@ -32,6 +34,11 @@ class PagamentoController extends Controller
         $pagamento->id_venda = $_POST['id_venda'];          
 
         $pagamento->save();
+
+        for($i = 1; $i <= $pagamento->qnt_parcelas; $i++){
+            $parcela->indice = $i;
+            $parcela->valor = $_POST['valor_total'] / $pagamento->qnt_parcelas;
+        }
 
         parent::setResponseAsJSON($pagamento);
     }

@@ -29,7 +29,7 @@
                         </div>
                         <div class="input-container">
                             <label for="qnt_parcelas">Quantidade de parcelas: </label><br>
-                            <input class="form-control p-1" type="number" name="qnt_parcelas" id="qnt_parcelas">
+                            <input class="form-control p-1 qnt_parcelas" type="number" name="qnt_parcelas" id="qnt_parcelas">
                         </div>
                     </div>
                     <div class="input-row d-flex justify-content-center">
@@ -56,7 +56,7 @@
                             <input disabled class="form-control p-1 valor_liquido_parcela" type="number" name="valor_liquido_parcela" id="valor_liquido_parcela">
                         </div>
                     </div>
-                    <div class="input-row mb-3">
+                    <div class="input-row mb-3 d-flex justify-content-center">
                         <div class="input-container pagamento-details ">
                             <label for="valor_liquido">Valor Líquido: </label><br>
                             <input disabled class="form-control p-1" type="number" name="valor_liquido" id="valor_liquido_credito">
@@ -68,7 +68,8 @@
                     Modal do débito
                 -->
                 <div class="modal-body modal-debito d-none" id="modal-debito">
-                <div class="input-container">
+                    <div class="input-row mb-3">
+                        <div class="input-container">
                             <label for="id_taxa">Taxa do cartão:</label><br>
                             <select class="selectpicker select-taxa" name="taxa" id="select-taxa-debito">
                                 <option value="">Cadastre uma taxa primeiro!</option>
@@ -77,9 +78,20 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                    <div class="input-container">
-                        <label for="quantidade">Quantidade: </label><br>
-                        <input class="form-control p-1" type="number" name="quantidade" id="quantidade">
+                        <div class="input-container">
+                            <label for="valor_total">Valor total (R$): </label><br>
+                            <input disabled class="form-control p-1 valor_total" type="number" name="valor_total" id="valor_total">
+                        </div>
+                    </div>
+                    <div class="input-row mb-3">
+                        <div class="input-container pagamento-details ">
+                            <label for="valor_taxa">Valor da Taxa: </label><br>
+                            <input disabled class="form-control p-1 valor_taxa" type="number" name="valor_taxa" id="valor_taxa_debito">
+                        </div>
+                        <div class="input-container pagamento-details ">
+                            <label for="valor_liquido">Valor Líquido: </label><br>
+                            <input disabled class="form-control p-1" type="number" name="valor_liquido" id="valor_liquido_debito">
+                        </div>
                     </div>
                 </div>
                 <!--
@@ -88,12 +100,12 @@
                 <div class="modal-body modal-boleto d-none" id="modal-boleto">
                     <div class="input-row input-container-value">
                         <div class="input-container mb-3">
-                            <label for="id_produto">Valor da Taxa (%):</label><br>
-                            <input class="form-control p-1" type="number" name="taxa" required default="0">
+                            <label for="taxa_boleto">Valor da Taxa (R$):</label><br>
+                            <input class="form-control p-1" type="number" id="taxa-boleto" required default="0">
                         </div>
                         <div class="input-container">
                             <label for="qnt_parcelas">Quantidade de parcelas: </label><br>
-                            <input class="form-control p-1" type="number" name="qnt_parcelas" id="qnt_parcelas">
+                            <input class="form-control p-1 qnt_parcelas" type="number" name="qnt_parcelas" id="qnt_parcelas">
                         </div>
                     </div>
                     <div class="input-row mb-3">

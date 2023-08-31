@@ -68,7 +68,7 @@
                 </div>
                 <div class="containers-card action-container">
                     <div class="final-actions">
-                        <button id="adicionar" class="btn"><a href="/categoria_produto">Adicionar Categoria</a></button>
+                        <a class="btn" href="/categoria_produto">Add Categoria</a>
                     </div>
                 </div>
             </div>

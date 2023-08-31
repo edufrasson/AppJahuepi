@@ -108,9 +108,13 @@ body{
 
 @media screen and (max-width: 1380px){
   .main-container{
-    width: 87vw;
+    width: 92vw;
     margin-left: 7%;
   }  
+
+  .final-actions{
+    margin-top: -50px;
+  }
 }
 
 @media screen and (max-width: 1180px){
@@ -118,9 +122,10 @@ body{
     margin-left: 8%;
   }
  
-  .main-card .btn{
-    /*padding-right: 14%;*/
+  /*.main-card .btn{
+    padding-right: 14%;
   }
+  */
 }
 
 @media screen and (max-width: 1080px){

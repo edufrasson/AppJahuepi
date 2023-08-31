@@ -18,9 +18,13 @@ class VendaDAO extends DAO
 
         $stmt = $this->conexao->prepare($sql);
 
-        $stmt->bindValue(1, $model->data_venda);        
+        $stmt->bindValue(1, $model->data_venda);
 
         $stmt->execute();
+
+        $model_retorno = new VendaModel();
+        $model_retorno->id = $this->conexao->lastInsertId();
+        return $model_retorno;
     }
 
     public function update(VendaModel $model)
@@ -28,7 +32,7 @@ class VendaDAO extends DAO
         $sql = "UPDATE Venda SET data_venda = ? WHERE id = ?";
 
         $stmt = $this->conexao->prepare($sql);
-   
+
         $stmt->bindValue(1, $model->data_venda);
         $stmt->bindValue(2, $model->id);
 
@@ -64,7 +68,7 @@ class VendaDAO extends DAO
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $id);
-        
+
         $stmt->execute();
     }
 }

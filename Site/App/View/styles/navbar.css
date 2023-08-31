@@ -315,5 +315,5 @@ body.dark .home .text{
 }
 
 .off{
-    display: none;
+    opacity: 0;
 }

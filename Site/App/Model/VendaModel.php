@@ -16,7 +16,7 @@ class VendaModel extends Model
         $dao = new VendaDAO();
         
         if(empty($this->id))        
-            $dao->insert($this);
+            return $dao->insert($this);
         else
             $dao->update($this);
         
