@@ -130,7 +130,7 @@ body{
 
 @media screen and (max-width: 1080px){
   .main-container{
-    width: 88vw;
+    width: 90vw;
     margin-left: 9%;
   }
 }
@@ -139,14 +139,27 @@ body{
   .header-card{
     text-align: center;
   }
-}
 
-@media screen and (max-width: 900px){
   .main-card .btn{
     padding-right: 32%;
     margin-left: 30%;
   }
+
+  .btn span{
+    display: none;
+  }
 }
+
+/*@media screen and (max-width: 900px){
+  .main-card .btn{
+    padding-right: 32%;
+    margin-left: 30%;
+  }
+
+  .btn span{
+    display: none;
+  }
+}*/
 
 /*
 .content-container{
