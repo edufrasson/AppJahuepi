@@ -9,10 +9,12 @@
                         <option value="CARTAO">Cartão de Crédito</option>
                         <option value="DEBITO">Cartão de Débito</option>
                         <option value="MANUAL">Boleto Bancário</option>
+                        <option value="DINHEIRO">Dinheiro</option>
                     </select>
                 </div>
             </div>
             <form method="post">
+                <input type="hidden" id="id">
                 <!--
                     Modal do crédito
                 -->

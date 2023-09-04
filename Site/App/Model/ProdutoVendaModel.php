@@ -6,14 +6,15 @@ use App\DAO\ProdutoVendaDAO;
 
 class ProdutoVendaModel extends Model
 {
-    public $id, $quantidade, $id_produto, $id_venda;
+    public $id, $quantidade, $id_produto, $id_venda, $valor_unit;
+    public $lista_produtos;
 
     public function save()
     {
         $dao = new ProdutoVendaDAO();
         
         if(empty($this->id))        
-            $dao->insert($this);
+            return $dao->insert($this);
         else
             $dao->update($this);
         

@@ -14,27 +14,35 @@ class ProdutoVendaDAO extends DAO
 
     public function insert(ProdutoVendaModel $model)
     {
-        $sql = "INSERT INTO produto_venda (quantidade, id_produto, id_venda) VALUE (?, ?, ?)";
+        parent::getConnection()->beginTransaction();
 
-        $stmt = parent::getConnection()->prepare($sql);
+        foreach ($model->lista_produtos as $produto) {
+            $sql = "INSERT INTO produto_venda (quantidade, id_produto, id_venda, valor_unit) VALUE (?, ?, ?, ?)";
 
-        $stmt->bindValue(1, $model->quantidade);        
-        $stmt->bindValue(2, $model->id_produto);        
-        $stmt->bindValue(3, $model->id_venda);         
+            $stmt = parent::getConnection()->prepare($sql);
 
-        $stmt->execute();
+            $stmt->bindValue(1, $produto->quantidade);
+            $stmt->bindValue(2, $produto->id_produto);
+            $stmt->bindValue(3, $model->id_venda);
+            $stmt->bindValue(4, $produto->valor_unit);
+
+            $stmt->execute();
+        }
+
+        return (parent::getConnection()->commit()) ? $model : false;
     }
 
     public function update(ProdutoVendaModel $model)
     {
-        $sql = "UPDATE produto_venda SET quantidade = ?, id_produto = ?, id_venda = ? WHERE id = ?";
+        $sql = "UPDATE produto_venda SET quantidade = ?, id_produto = ?, id_venda = ?, valor_unit = ? WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
-   
+
         $stmt->bindValue(1, $model->quantidade);
         $stmt->bindValue(2, $model->id_produto);
         $stmt->bindValue(3, $model->id_venda);
-        $stmt->bindValue(4, $model->id);
+        $stmt->bindValue(4, $model->valor_unit);
+        $stmt->bindValue(5, $model->id);
 
         $stmt->execute();
     }
@@ -52,7 +60,7 @@ class ProdutoVendaDAO extends DAO
 
     public function selectById(int $id)
     {
-        $sql = "SELECT * FROM produto_venda WHERE id = ?";
+        $sql = "SELECT * FROM produto_venda WHERE id_venda = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
@@ -68,7 +76,7 @@ class ProdutoVendaDAO extends DAO
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
-        
+
         $stmt->execute();
     }
 }

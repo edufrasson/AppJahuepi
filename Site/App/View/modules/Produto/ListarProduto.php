@@ -103,6 +103,7 @@
                             <input type="number" name="codigo_barra" class="form-control" id="txtCodigo_Barra" required maxlength="90">
                         </div>
                         <div class="mb-3">
+                            <label for="id_categoria">Categoria:</label><br>
                             <select class="selectpicker border border-black" data-live-search="true" name="id_categoria" id="id_categoria">
 
                                 <?php if ($model->lista_categoria == null) : ?>
