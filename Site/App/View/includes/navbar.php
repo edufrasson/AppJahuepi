@@ -49,6 +49,12 @@
                     <span class="text nav-text">Taxas do Cartão</span>
                 </a>
             </li>
+            <li>
+                <a href="/usuario">
+                    <i class='bx bx-user icon'></i>
+                    <span class="text nav-text">Usuários</span>
+                </a>
+            </li>
 
         </div>
 

@@ -1,32 +1,42 @@
-body{
-    background-color: white !important;
+.container-login{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    opacity: 0.9;
+    z-index: 1;
 }
 
-.container{
-    width: 100%;
- 
-   
-    display: flex;
-    justify-content: center;
-  
-    flex-direction: column;
+.container-white{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background-color: #fff; 
+    padding: 30px; 
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    width: 25%;
 }
+
 
 .image-container{
     width: 100%;
-    margin-top: 8%;
     height: 33.3%;
 
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /*border: 1px solid red;*/
+    
+    padding-bottom: 50px;
 }
 
 .input-container{
     width: 100%;
-    height: 33.3%;
+    height: 20%;
 
     display: flex;
     justify-content: center;
@@ -66,9 +76,32 @@ body{
 
     display: flex;
     justify-content: space-between;
+    padding-top: 8px;
+}
+
+section .btn-container{
+    padding-top: 35px;
 }
 
 #verSenha{
     cursor: pointer;  
     user-select: none;
+}
+
+/* ======== MEDIA QUERIES ======== */
+@media screen and (max-width: 768px){
+    .input-container input{
+        width: 100%;
+    }
+
+    .container-white{
+        width: 90%;
+    }
+    
+}
+
+@media screen and (min-width: 768px){
+    .input-container input{
+        width: 100%;
+    }
 }
