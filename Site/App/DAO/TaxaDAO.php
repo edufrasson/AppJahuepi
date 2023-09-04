@@ -16,7 +16,7 @@ class TaxaDAO extends DAO
     {
         $sql = "INSERT INTO taxa (codigo, valor) VALUE (?, ?)";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
 
         $stmt->bindValue(1, $model->codigo);
         $stmt->bindValue(2, $model->valor);
@@ -28,7 +28,7 @@ class TaxaDAO extends DAO
     {
         $sql = "UPDATE taxa SET codigo=?, valor = ? WHERE id=?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $model->codigo);
         $stmt->bindValue(2, $model->valor);
         $stmt->bindValue(3, $model->id);
@@ -40,7 +40,7 @@ class TaxaDAO extends DAO
     {
         $sql = "SELECT * FROM taxa";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
 
         $stmt->execute();
 
@@ -51,7 +51,7 @@ class TaxaDAO extends DAO
     {
         $sql = "SELECT * FROM taxa WHERE id = ?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
 
         $stmt->execute();
@@ -64,7 +64,7 @@ class TaxaDAO extends DAO
     {
         $sql = "DELETE FROM taxa WHERE id = ?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
 
         $stmt->execute();

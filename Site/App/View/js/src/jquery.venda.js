@@ -1,6 +1,10 @@
+
+
 lista_produtos = Array();
 var valor_total = 0
 var last_id_venda = false;
+var venda_inserida = false;
+var produtos_relacionados = Array();
 
 function inserirVenda(data_venda) {
   if (data_venda !== "") {
@@ -14,16 +18,36 @@ function inserirVenda(data_venda) {
       dataType: 'json',
       success: function (result) {
         last_id_venda = result.response_data.id
+        venda_inserida = true
         console.log("venda deu bom:")
         console.log(result.response_data)
       },
       error: function (result) {
         console.log("erro na venda:")
         last_id_venda = false
+
       }
     });
   }
 
+}
+
+function relacionarProdutoVenda(id_venda, lista_produtos){
+  $.ajax({
+    type: "POST",
+    url: "/produto_venda/save",
+    data: {
+      id_venda: id_venda,
+      lista_produtos: JSON.stringify(lista_produtos),      
+    },
+    dataType: 'json',
+    success: function (result) {
+      
+    },
+    error: function (result) {
+      produtos_relacionados.push(false)
+    }
+  })
 }
 
 function reloadTableProduct() {
@@ -82,6 +106,7 @@ function updateParcelasValue(qnt_parcelas) {
 
 
 $(document).ready(function () {
+  
 
   $('.btn-edit').click(function (event) {
     getLoginById(event.target.id);
@@ -143,9 +168,20 @@ $(document).ready(function () {
 
   $('#finalizarVenda').change(async function () {
     await inserirVenda($('#data_venda').val())
-    await lista_produtos.map(produto => {
-      relacionarProdutoVenda(last_id_venda, produto.id)
-    })
+    if (venda_inserida != false) {
+      await lista_produtos.map(produto => {
+        relacionarProdutoVenda(last_id_venda, produto.id)
+      })
+    }else{
+      swal({
+        title: "Erro!",
+        text: "Erro interno ao inserir a venda. Tente Novamente",
+        icon: "error",
+        button: "OK",
+      })
+    }
+
+
     switch ($('#forma_pagamento').val()) {
       case 'CARTAO':
         adicionarPagamento(last_id_venda, valor_total, $('.qnt_parcelas').val(), $('#forma_pagamento').val(), $('#select-taxa-credito').val())

@@ -16,7 +16,7 @@ class ParcelaDAO extends DAO
     {
         $sql = "INSERT INTO Parcela (valor, data_parcela, status, id_pagamento) VALUE (?, ?, ?, ?)";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
 
         $stmt->bindValue(1, $model->valor);
         $stmt->bindValue(2, $model->data_parcela);
@@ -30,7 +30,7 @@ class ParcelaDAO extends DAO
     {
         $sql = "UPDATE Parcela SET valor=?, data_parcela=?, status = ?, id_pagamento = ? WHERE id=?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $model->valor);
         $stmt->bindValue(2, $model->data_parcela);
         $stmt->bindValue(3, $model->status);
@@ -44,7 +44,7 @@ class ParcelaDAO extends DAO
     {
         $sql = "SELECT * FROM Parcela";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
 
         $stmt->execute();
 
@@ -55,7 +55,7 @@ class ParcelaDAO extends DAO
     {
         $sql = "SELECT * FROM Parcela WHERE id = ?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
 
         $stmt->execute();
@@ -67,7 +67,7 @@ class ParcelaDAO extends DAO
     {
         $sql = "DELETE FROM Parcela WHERE id = ?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
         
         $stmt->execute();

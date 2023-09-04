@@ -16,7 +16,7 @@ class ExtratoDAO extends DAO
     {
         $sql = "INSERT INTO extrato (valor, data_extrato) VALUE (?, ?)";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
 
         $stmt->bindValue(1, $model->valor);
         $stmt->bindValue(2, $model->dataExtrato);
@@ -28,7 +28,7 @@ class ExtratoDAO extends DAO
     {
         $sql = "UPDATE extrato SET valor=?, data_extrato=? WHERE id=?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $model->valor);
         $stmt->bindValue(2, $model->dataExtrato);
         $stmt->bindValue(3, $model->id);
@@ -40,7 +40,7 @@ class ExtratoDAO extends DAO
     {
         $sql = "SELECT * FROM extrato";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
 
         $stmt->execute();
 
@@ -51,7 +51,7 @@ class ExtratoDAO extends DAO
     {
         $sql = "SELECT * FROM extrato WHERE id = ?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
 
         $stmt->execute();
@@ -63,7 +63,7 @@ class ExtratoDAO extends DAO
     {
         $sql = "DELETE FROM extrato WHERE id = ?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
         
         $stmt->execute();

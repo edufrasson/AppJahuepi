@@ -16,7 +16,7 @@ class ProdutoVendaDAO extends DAO
     {
         $sql = "INSERT INTO produto_venda (quantidade, id_produto, id_venda) VALUE (?, ?, ?)";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
 
         $stmt->bindValue(1, $model->quantidade);        
         $stmt->bindValue(2, $model->id_produto);        
@@ -29,7 +29,7 @@ class ProdutoVendaDAO extends DAO
     {
         $sql = "UPDATE produto_venda SET quantidade = ?, id_produto = ?, id_venda = ? WHERE id = ?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
    
         $stmt->bindValue(1, $model->quantidade);
         $stmt->bindValue(2, $model->id_produto);
@@ -43,7 +43,7 @@ class ProdutoVendaDAO extends DAO
     {
         $sql = "SELECT * FROM produto_venda";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
 
         $stmt->execute();
 
@@ -54,7 +54,7 @@ class ProdutoVendaDAO extends DAO
     {
         $sql = "SELECT * FROM produto_venda WHERE id = ?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
 
         $stmt->execute();
@@ -66,7 +66,7 @@ class ProdutoVendaDAO extends DAO
     {
         $sql = "DELETE FROM produto_venda WHERE id = ?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
         
         $stmt->execute();

@@ -16,7 +16,7 @@ class PagamentoDAO extends DAO
     {
         $sql = "INSERT INTO Pagamento (valor, qnt_parcelas, forma_pagamento, id_venda) VALUE (?, ?, ?, ?)";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
 
         $stmt->bindValue(1, $model->valor);        
         $stmt->bindValue(2, $model->qnt_parcelas);        
@@ -30,7 +30,7 @@ class PagamentoDAO extends DAO
     {
         $sql = "UPDATE Pagamento SET valor = ?, qnt_parcelas = ?, forma_pagamento = ?, id_venda = ? WHERE id = ?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
    
         $stmt->bindValue(1, $model->valor);
         $stmt->bindValue(2, $model->qnt_parcelas);
@@ -45,7 +45,7 @@ class PagamentoDAO extends DAO
     {
         $sql = "SELECT * FROM Pagamento";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
 
         $stmt->execute();
 
@@ -56,7 +56,7 @@ class PagamentoDAO extends DAO
     {
         $sql = "SELECT * FROM Pagamento WHERE id = ?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
 
         $stmt->execute();
@@ -68,7 +68,7 @@ class PagamentoDAO extends DAO
     {
         $sql = "DELETE FROM Pagamento WHERE id = ?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
         
         $stmt->execute();

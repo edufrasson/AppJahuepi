@@ -24,16 +24,20 @@ class ProdutoVendaController extends Controller
 
     public static function save()
     {
-        $produto_venda = new ProdutoVendaModel();
+ 
+        $arr_produtos = json_decode($_POST['lista_produtos']);
+        foreach($arr_produtos as $produto){
+            $model = new ProdutoVendaModel();
 
-        $produto_venda->id = $_POST['id'];                          
-        $produto_venda->quantidade = $_POST['quantidade'];     
-        $produto_venda->id_produto = $_POST['id_produto'];     
-        $produto_venda->id_venda = $_POST['id_venda'];          
+            $model->id_venda = $_POST['id_venda'];
+            $model->id_produto = $produto->id_produto;
+            $model->quantidade = $produto->quantidade;
+            $model->save();
+        }      
 
-        $produto_venda->save();
+      
 
-        parent::setResponseAsJSON($produto_venda);
+        parent::setResponseAsJSON($model);
     }
 
     public static function delete()

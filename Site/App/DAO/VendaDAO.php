@@ -16,14 +16,14 @@ class VendaDAO extends DAO
     {
         $sql = "INSERT INTO Venda (data_venda) VALUE (?)";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
 
         $stmt->bindValue(1, $model->data_venda);
 
         $stmt->execute();
 
         $model_retorno = new VendaModel();
-        $model_retorno->id = $this->conexao->lastInsertId();
+        $model_retorno->id = parent::getConnection()->lastInsertId();
         return $model_retorno;
     }
 
@@ -31,7 +31,7 @@ class VendaDAO extends DAO
     {
         $sql = "UPDATE Venda SET data_venda = ? WHERE id = ?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
 
         $stmt->bindValue(1, $model->data_venda);
         $stmt->bindValue(2, $model->id);
@@ -43,7 +43,7 @@ class VendaDAO extends DAO
     {
         $sql = "SELECT * FROM Venda";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
 
         $stmt->execute();
 
@@ -54,7 +54,7 @@ class VendaDAO extends DAO
     {
         $sql = "SELECT * FROM Venda WHERE id = ?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
 
         $stmt->execute();
@@ -66,7 +66,7 @@ class VendaDAO extends DAO
     {
         $sql = "DELETE FROM Venda WHERE id = ?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
 
         $stmt->execute();

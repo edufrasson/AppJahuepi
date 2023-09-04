@@ -8,7 +8,7 @@ use PDOException;
 
 abstract class DAO
 {
-    protected $conexao;
+    private static $conexao = null;
 
     public function __construct()
     {
@@ -21,15 +21,19 @@ abstract class DAO
 
             $dsn = "mysql:host=" . $_ENV['db']['host'] . ";dbname=" . $_ENV['db']['database'];
 
-            $this->conexao = new PDO(
+            (self::$conexao == null) ? new PDO(
                 $dsn,
                 $_ENV['db']['user'],
                 $_ENV['db']['pass'],
-                $options);
+                $options) :  self::$conexao;
         }   
         catch (PDOException $e)
         {
             throw new Exception("Ocorreu um erro ao tentar conectar ao MySQL", 0 ,$e);
         }
+    }
+
+    protected function getConnection(){
+        return self::$conexao;
     }
 }

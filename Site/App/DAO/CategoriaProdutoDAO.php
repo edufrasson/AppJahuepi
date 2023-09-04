@@ -16,7 +16,7 @@ class CategoriaProdutoDAO extends DAO
     {
         $sql = "INSERT INTO categoria_produto (descricao) VALUE (?)";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
 
         $stmt->bindValue(1, $model->descricao);
 
@@ -27,7 +27,7 @@ class CategoriaProdutoDAO extends DAO
     {
         $sql = "UPDATE categoria_produto SET descricao=? WHERE id=?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $model->descricao);
         $stmt->bindValue(2, $model->id);
 
@@ -38,7 +38,7 @@ class CategoriaProdutoDAO extends DAO
     {
         $sql = "SELECT * FROM categoria_produto";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
 
         $stmt->execute();
 
@@ -49,7 +49,7 @@ class CategoriaProdutoDAO extends DAO
     {
         $sql = "SELECT * FROM categoria_produto WHERE id = ?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
 
         $stmt->execute();
@@ -62,7 +62,7 @@ class CategoriaProdutoDAO extends DAO
     {
         $sql = "DELETE FROM categoria_produto WHERE id = ?";
 
-        $stmt = $this->conexao->prepare($sql);
+        $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
 
         $stmt->execute();
