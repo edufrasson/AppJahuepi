@@ -24,6 +24,9 @@ class PagamentoDAO extends DAO
         $stmt->bindValue(4, $model->id_venda);        
 
         $stmt->execute();
+
+        $model->id = parent::getConnection()->lastInsertId();
+        return $model;
     }
 
     public function update(PagamentoModel $model)

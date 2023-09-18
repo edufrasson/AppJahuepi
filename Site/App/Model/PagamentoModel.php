@@ -14,7 +14,7 @@ class PagamentoModel extends Model
         $dao = new PagamentoDAO();
         
         if(empty($this->id))        
-            $dao->insert($this);
+            return $dao->insert($this);
         else
             $dao->update($this);
         

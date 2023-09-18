@@ -27,19 +27,21 @@ class PagamentoController extends Controller
     public static function save()
     {
         $pagamento = new PagamentoModel();
-        $parcela = new ParcelaModel();
+    
         $model_parcela = new ParcelaModel();
-
-        $pagamento->id = $_POST['id'];                          
+              
         $pagamento->qnt_parcelas = $_POST['qnt_parcelas'];     
         $pagamento->valor_total = $_POST['valor_total'];     
         $pagamento->forma_pagamento = $_POST['forma_pagamento'];     
         $pagamento->id_venda = $_POST['id_venda'];          
 
-        $pagamento->save();
+        $pagamento = $pagamento->save();
 
+      
         $data_parcela = new DateTime($_POST['data_venda']);
-        for($i = 1; $i <= $pagamento->qnt_parcelas; $i++){            
+        
+        for($i = 1; $i <= $pagamento->qnt_parcelas; $i++){      
+            $parcela = new ParcelaModel();      
             $parcela->indice = $i;
             $parcela->id_pagamento = $pagamento->id;
             $parcela->valor = $_POST['valor_total'] / $pagamento->qnt_parcelas;
@@ -48,10 +50,10 @@ class PagamentoController extends Controller
 
             $data_parcela = $data_parcela->modify("+1 month");
         }
-
+        
         $model_parcela->save();
-
-        parent::setResponseAsJSON($pagamento);
+  
+        parent::setResponseAsJSON($model_parcela);
     }
 
     public static function delete()
