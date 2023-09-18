@@ -14,11 +14,11 @@ class PagamentoDAO extends DAO
 
     public function insert(PagamentoModel $model)
     {
-        $sql = "INSERT INTO Pagamento (valor, qnt_parcelas, forma_pagamento, id_venda) VALUE (?, ?, ?, ?)";
+        $sql = "INSERT INTO Pagamento (valor_total, qnt_parcela, forma_pagamento, id_venda) VALUE (?, ?, ?, ?)";
 
         $stmt = parent::getConnection()->prepare($sql);
 
-        $stmt->bindValue(1, $model->valor);        
+        $stmt->bindValue(1, $model->valor_total);        
         $stmt->bindValue(2, $model->qnt_parcelas);        
         $stmt->bindValue(3, $model->forma_pagamento);        
         $stmt->bindValue(4, $model->id_venda);        
@@ -28,11 +28,11 @@ class PagamentoDAO extends DAO
 
     public function update(PagamentoModel $model)
     {
-        $sql = "UPDATE Pagamento SET valor = ?, qnt_parcelas = ?, forma_pagamento = ?, id_venda = ? WHERE id = ?";
+        $sql = "UPDATE Pagamento SET valor_total = ?, qnt_parcela = ?, forma_pagamento = ?, id_venda = ? WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
    
-        $stmt->bindValue(1, $model->valor);
+        $stmt->bindValue(1, $model->valor_total);
         $stmt->bindValue(2, $model->qnt_parcelas);
         $stmt->bindValue(3, $model->forma_pagamento);
         $stmt->bindValue(4, $model->id_venda);

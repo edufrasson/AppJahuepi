@@ -14,16 +14,22 @@ class ParcelaDAO extends DAO
 
     public function insert(ParcelaModel $model)
     {
-        $sql = "INSERT INTO Parcela (valor, data_parcela, status, id_pagamento) VALUE (?, ?, ?, ?)";
+        parent::getConnection()->beginTransaction();
 
-        $stmt = parent::getConnection()->prepare($sql);
+        foreach ($model->lista_parcelas as $parcela) {
+            $sql = "INSERT INTO Parcela (valor, data_parcela, status, id_pagamento, indice) VALUE (?, ?, ?, ?, ?)";
 
-        $stmt->bindValue(1, $model->valor);
-        $stmt->bindValue(2, $model->data_parcela);
-        $stmt->bindValue(3, $model->status);
-        $stmt->bindValue(4, $model->id_pagamento);
-
-        $stmt->execute();
+            $stmt = parent::getConnection()->prepare($sql);
+    
+            $stmt->bindValue(1, $parcela->valor);
+            $stmt->bindValue(2, $parcela->data_parcela);
+            $stmt->bindValue(3, $parcela->status);
+            $stmt->bindValue(4, $parcela->id_pagamento);
+            $stmt->bindValue(5, $parcela->indice);
+    
+            $stmt->execute();
+        }
+        
     }
 
     public function update(ParcelaModel $model)
