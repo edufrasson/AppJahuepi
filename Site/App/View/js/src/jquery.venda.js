@@ -56,15 +56,15 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
       success: function (result) {
         switch ($('#forma_pagamento').val()) {
           case 'CARTAO':
-            adicionarPagamento(last_id_venda, valor_total, $('.qnt_parcelas').val(), $('#forma_pagamento').val(), $('#select-taxa-credito').val())
+            adicionarPagamento(last_id_venda, valor_total, $('.qnt_parcelas').val(), $('#forma_pagamento').val(), $('#select-taxa-credito').val(), $('#data_venda').val())
             break
   
           case 'DEBITO':
-            adicionarPagamento(last_id_venda, valor_total, $('.qnt_parcelas').val(), $('#forma_pagamento').val(), $('#select-taxa-debito').val())
+            adicionarPagamento(last_id_venda, valor_total, $('.qnt_parcelas').val(), $('#forma_pagamento').val(), $('#select-taxa-debito').val(), $('#data_venda').val())
             break
   
           case 'MANUAL':
-            adicionarPagamento(last_id_venda, valor_total, $('.qnt_parcelas').val(), $('#forma_pagamento').val(), $('#taxa-boleto').val())
+            adicionarPagamento(last_id_venda, valor_total, $('.qnt_parcelas').val(), $('#forma_pagamento').val(), $('#taxa-boleto').val(), $('#data_venda').val())
             break
         }
       },
@@ -81,7 +81,7 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
  *  Requisição para insert na tabela de Pagamento
  */
 
-function adicionarPagamento(id_venda, valor_total, qnt_parcelas, forma_pagamento, taxa) {
+function adicionarPagamento(id_venda, valor_total, qnt_parcelas, forma_pagamento, taxa, data_venda) {
   if (id_venda != false && valor_total != false && qnt_parcelas != false && forma_pagamento != false && id_venda != false) {
     $.ajax({
       type: "POST",
@@ -91,17 +91,15 @@ function adicionarPagamento(id_venda, valor_total, qnt_parcelas, forma_pagamento
         valor_total: valor_total,
         qnt_parcelas: qnt_parcelas,
         forma_pagamento: forma_pagamento,
-        taxa: taxa
+        taxa: taxa, 
+        data_venda: data_venda
       },
       dataType: 'json',
       success: function (result) {
-        if (result.response_data != false)
-          produtos_relacionados = true;
-
-
+        console.log(result.response_data);
       },
       error: function (result) {
-        produtos_relacionados = false;
+        console.log(result.response_data);
       }
     })
   } else {
