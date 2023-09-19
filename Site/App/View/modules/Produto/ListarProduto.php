@@ -65,9 +65,14 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="buttons-container">
+                        <!--<button id="adicionar" class="btn add-categoria" data-bs-toggle="modal"><a href="/categoria_produto">Categoria</a></button>-->
+                    </div>
                 </div>
-                <div class="containers-card buttons-container">
-                    <button id="adicionar" class="btn" data-bs-toggle="modal" data-bs-target="#modalProduto"><span>Add</span> Categoria</button>
+            </div>
+            <div class="containers-card action-container">
+                <div class="final-actions">
+                    <button class="btn btn-warning" data-bs-toggle="modal"><a href="/categoria_produto">Adicionar Categoria</a></button>
                 </div>
             </div>
         </div>

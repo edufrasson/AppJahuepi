@@ -9,3 +9,9 @@
     display: flex;
     flex-direction: column;
 }
+
+@media screen and (max-height: 768px){
+    .containers-card .add-categoria{
+        margin-bottom: 80px;
+    }
+  }
