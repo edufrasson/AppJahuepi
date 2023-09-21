@@ -27,7 +27,7 @@
                         <label for="txtDataVenda">Data da Venda: </label><br>
                         <input class="form-control" type="date" name="data_venda" id="data_venda">
                     </div>
-                    <button id="adicionar" class="btn d-flex   align-items-center" style="background-color: #f4c71e;" data-bs-toggle="modal" data-bs-target="#modalProduto">+ Produtos</button>
+                    <button id="adicionar" class="btn align-items-center" style="background-color: #f4c71e;" data-bs-toggle="modal" data-bs-target="#modalProduto">+ Produtos</button>
                 </div>
 
                 <div class="containers-card table-container">
@@ -48,16 +48,13 @@
                         </table>
                     </div>
                 </div>
-                <div class="containers-card action-container">
-                    <div class="final-actions">
-                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalPagamento">Método de Pagamento</button>
-                    </div>
+            </div>
+            <div class="containers-card action-container">
+                <div class="final-actions">
+                    <button class="btn btn-warning btn-pagamento" data-bs-toggle="modal" data-bs-target="#modalPagamento">Método de Pagamento</button>
                 </div>
             </div>
-
         </div>
-
-
     </div>
 
 

@@ -110,7 +110,13 @@ body {
   color: #000;
 }
 
+.final-actions {
+  margin-top: -50px;
+}
 
+.final-actions .btn-pagamento {
+  margin-top: 10px;
+}
 
 /* COMANDOS PARA RESPONSIVIDADE */
 @media screen and (max-width: 1600px) {
@@ -125,10 +131,7 @@ body {
     width: 92vw;
     margin-left: 7%;
   }
-
-  .final-actions {
-    margin-top: -50px;
-  }
+  
 }
 
 @media screen and (max-width: 1180px) {
@@ -146,6 +149,12 @@ body {
   .main-container {
     width: 90vw;
     margin-left: 9%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .final-actions .btn-pagamento{
+    margin-top: -70px;
   }
 }
 
