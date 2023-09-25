@@ -54,6 +54,7 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
       },
       dataType: 'json',
       success: function (result) {
+        produtos_relacionados = true;
         switch ($('#forma_pagamento').val()) {
           case 'CARTAO':
             adicionarPagamento(last_id_venda, valor_total, $('.qnt_parcelas').val(), $('#forma_pagamento').val(), $('#select-taxa-credito').val(), $('#data_venda').val())
@@ -77,6 +78,23 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
 
 }
 
+function baixaEstoque(id_venda){
+  $.ajax({
+    type: "POST",
+    url: "/produto_venda/baixa_estoque",
+    data: {
+      id_venda: id_venda
+    },
+    dataType: 'json',
+    success: function (result) {      
+      console.log(result.response_data)
+    },
+    error: function (result) {
+      console.log(result.response_data)
+    }
+  })
+}
+
 /** 
  *  Requisição para insert na tabela de Pagamento
  */
@@ -96,7 +114,9 @@ function adicionarPagamento(id_venda, valor_total, qnt_parcelas, forma_pagamento
       },
       dataType: 'json',
       success: function (result) {
-        console.log(result.response_data);
+        if(result.response_data == true){
+          baixaEstoque(last_id_venda)
+        };
       },
       error: function (result) {
         console.log(result.response_data);
@@ -248,8 +268,7 @@ $(document).ready(function () {
     await inserirVenda($('#data_venda').val(), $('#id').val())
 
     if (venda_inserida != false) {
-      valor = await relacionarProdutoVenda(last_id_venda, lista_produtos)
-      console.log(produtos_relacionados)
+      valor = await relacionarProdutoVenda(last_id_venda, lista_produtos)      
     } else {
       swal({ title: "Erro!", text: "Erro interno ao adicionar a venda. Tente Novamente", icon: "error", button: "OK" })
     }

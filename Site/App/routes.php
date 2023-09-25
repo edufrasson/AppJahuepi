@@ -173,6 +173,9 @@ switch ($url) {
     case '/produto_venda/delete':
         ProdutoVendaController::delete();
         break;
+    case '/produto_venda/baixa_estoque':
+        ProdutoVendaController::baixaEstoque();
+        break;
 
         /* Outros */
     case '/home':

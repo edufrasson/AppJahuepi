@@ -47,6 +47,23 @@ class ProdutoVendaDAO extends DAO
         $stmt->execute();
     }
 
+    public function baixaEstoque($arr_produtos)
+    {
+        parent::getConnection()->beginTransaction();
+        $sql = "UPDATE Produto SET quantidade = ? WHERE id = ?";
+
+        $stmt = parent::getConnection()->prepare($sql);
+
+        foreach ($arr_produtos as $produto) {
+            $stmt->execute(array(
+                ($produto->old_quantidade - $produto->new_quantidade),
+                $produto->id_produto
+            ));
+        }
+
+        return (parent::getConnection()->commit()) ? true : null;
+    }
+
     public function select()
     {
         $sql = "SELECT * FROM produto_venda";
@@ -60,14 +77,19 @@ class ProdutoVendaDAO extends DAO
 
     public function selectById(int $id)
     {
-        $sql = "SELECT * FROM produto_venda WHERE id_venda = ?";
+        $sql = "SELECT  pv.id_produto AS id_produto,
+                        p.quantidade AS old_quantidade,
+                        pv.quantidade AS new_quantidade              
+                FROM produto_venda pv
+                JOIN produto p ON p.id = pv.id_produto
+                WHERE pv.id_venda = ?;";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
 
         $stmt->execute();
 
-        return $stmt->fetchObject("App\Model\ProdutoVendaModel");
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
     public function delete(int $id)

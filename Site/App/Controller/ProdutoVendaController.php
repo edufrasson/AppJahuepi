@@ -32,6 +32,11 @@ class ProdutoVendaController extends Controller
 
         parent::setResponseAsJSON($res);
     }
+    public static function baixaEstoque(){
+        $model = new ProdutoVendaModel();       
+        
+        parent::setResponseAsJSON($model->baixaEstoque($model->getById($_POST['id_venda'])));
+    }
 
     public static function delete()
     {

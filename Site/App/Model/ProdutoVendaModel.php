@@ -7,7 +7,8 @@ use App\DAO\ProdutoVendaDAO;
 class ProdutoVendaModel extends Model
 {
     public $id, $quantidade, $id_produto, $id_venda, $valor_unit;
-    public $lista_produtos;
+    public $lista_produtos = array();
+    public $old_quantidade, $new_quantidade;
 
     public function save()
     {
@@ -18,6 +19,12 @@ class ProdutoVendaModel extends Model
         else
             $dao->update($this);
         
+    }
+
+    public function baixaEstoque($arr_produtos){
+        $dao = new ProdutoVendaDAO();
+
+        return $dao->baixaEstoque($arr_produtos);
     }
 
     public function getAllRows()

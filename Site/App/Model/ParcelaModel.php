@@ -15,7 +15,7 @@ class ParcelaModel extends Model
         
         if(empty($this->id))
         {
-            $dao->insert($this);
+            return $dao->insert($this);
         }
         else
         $dao->update($this);

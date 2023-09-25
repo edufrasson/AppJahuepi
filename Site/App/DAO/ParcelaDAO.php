@@ -29,7 +29,7 @@ class ParcelaDAO extends DAO
             $stmt->execute();
         }
         
-        return (parent::getConnection()->commit()) ? $model : null;  
+        return (parent::getConnection()->commit()) ? true : null;  
     }
 
     public function update(ParcelaModel $model)
