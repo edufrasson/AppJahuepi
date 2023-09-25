@@ -72,7 +72,7 @@
             </div>
             <div class="containers-card action-container">
                 <div class="final-actions">
-                    <button class="btn btn-warning" data-bs-toggle="modal"><a href="/categoria_produto">Adicionar Categoria</a></button>
+                    <button class="btn btn-warning btn-addCategoria" data-bs-toggle="modal"><a href="/categoria_produto">Adicionar Categoria</a></button>
                 </div>
             </div>
         </div>
