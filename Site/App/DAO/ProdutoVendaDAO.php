@@ -79,7 +79,10 @@ class ProdutoVendaDAO extends DAO
     {
         $sql = "SELECT  pv.id_produto AS id_produto,
                         p.quantidade AS old_quantidade,
-                        pv.quantidade AS new_quantidade              
+                        pv.quantidade AS new_quantidade,
+                        pv.quantidade as quantidade,
+                        p.descricao as descricao,
+                        pv.valor_unit as valor_unit            
                 FROM produto_venda pv
                 JOIN produto p ON p.id = pv.id_produto
                 WHERE pv.id_venda = ?;";

@@ -20,6 +20,13 @@ class VendaController extends Controller
         include 'View/modules/Venda/NovaVenda.php';
     }
 
+    public static function relatorio(){
+        $model = new VendaModel();
+        $model->getAllRows();
+
+        include 'View/modules/Venda/VerRelatorio.php';
+    }
+
     public static function getById()
     {
         $model = new VendaModel();
@@ -52,7 +59,7 @@ class VendaController extends Controller
         parent::setResponseAsJSON(VendaController::$carrinho_produtos);
     }
 
-    public static function setProdutosOnTable(){
+   /* public static function setProdutosOnTable(){
         $model = new ProdutoModel();
         $obj = $model->getById($_POST['id']);
         $obj->quantidade = $_POST['quantidade'];
@@ -61,5 +68,5 @@ class VendaController extends Controller
         VendaController::$carrinho_produtos[] = $obj;
 
         self::getProdutosOnTable();
-    }
+    }*/
 }

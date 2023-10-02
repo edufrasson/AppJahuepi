@@ -2,15 +2,15 @@
 
 namespace App\Model;
 
-use App\DAO\ExtratoDAO;
+use App\DAO\MovimentacaoDAO;
 
-class ExtratoModel extends Model
+class MovimentacaoModel extends Model
 {
-    public $id, $valor, $dataExtrato;
+    public $id, $valor, $dataMovimentacao;
 
     public function save()
     {
-        $dao = new ExtratoDAO();
+        $dao = new MovimentacaoDAO();
         
         if(empty($this->id))
         {
@@ -23,23 +23,23 @@ class ExtratoModel extends Model
 
     public function getAllRows()
     {
-        $dao = new ExtratoDAO();
+        $dao = new MovimentacaoDAO();
 
         $this->rows = $dao->select();
     }
 
     public function getById(int $id)
     {
-        $dao = new ExtratoDAO();
+        $dao = new MovimentacaoDAO();
 
         $obj = $dao->selectById($id);
 
-        return ($obj) ? $obj : new ExtratoModel();
+        return ($obj) ? $obj : new MovimentacaoModel();
     }
 
     public function delete(int $id)
     {
-        $dao = new ExtratoDAO();
+        $dao = new MovimentacaoDAO();
 
         $dao->delete($id);
     }

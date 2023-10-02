@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li>
-                <a href="/extrato">
+                <a href="/movimentacao">
                     <i class='bx bx-money-withdraw icon'></i>
                     <span class="text nav-text">Movimentação</span>
                 </a>
@@ -41,6 +41,12 @@
                 <a href="/venda">
                     <i class='bx bx-cart-add icon'></i>
                     <span class="text nav-text">Nova Venda</span>
+                </a>
+            </li>
+            <li>
+                <a href="/relatorio">
+                    <i class='bx bx-line-chart icon'></i>
+                    <span class="text nav-text">Relatório de Venda</span>
                 </a>
             </li>
             <li>

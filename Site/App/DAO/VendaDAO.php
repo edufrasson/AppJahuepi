@@ -41,7 +41,14 @@ class VendaDAO extends DAO
 
     public function select()
     {
-        $sql = "SELECT * FROM Venda";
+        $sql = "SELECT v.*,
+                v.id as id_venda,
+                p.valor_total as total_bruto,
+                p.valor_liquido as total_liquido,
+                p.qnt_parcela as parcelas,
+                p.id as id_pagamento       
+        FROM Venda v
+        JOIN Pagamento p ON v.id = p.id_venda";
 
         $stmt = parent::getConnection()->prepare($sql);
 

@@ -21,6 +21,14 @@ class ProdutoVendaModel extends Model
         
     }
 
+    public function getProdutos($id){
+        $dao = new ProdutoVendaDAO();
+
+        $obj = $dao->selectById($id);
+
+        return ($obj) ? $obj : new ProdutoVendaModel();
+    }
+
     public function baixaEstoque($arr_produtos){
         $dao = new ProdutoVendaDAO();
 

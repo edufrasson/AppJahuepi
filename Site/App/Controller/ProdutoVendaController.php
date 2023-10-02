@@ -15,6 +15,13 @@ class ProdutoVendaController extends Controller
         parent::setResponseAsJSON($model);
     }
 
+    public static function getProdutos(){
+        $model = new ProdutoVendaModel();
+        $model->getProdutos($_GET['id_venda']);
+
+        parent::setResponseAsJSON($model);
+    }
+
     public static function getById()
     {
         $model = new ProdutoVendaModel();

@@ -9,6 +9,7 @@ use App\DAO\VendaDAO;
 class VendaModel extends Model
 {
     public $id, $data_venda;
+    public $id_venda, $id_pagamento, $total_bruto, $total_liquido, $parcelas;
     public $arr_produtos, $arr_taxas;
 
     public function save()

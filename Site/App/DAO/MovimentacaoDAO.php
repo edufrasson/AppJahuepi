@@ -2,35 +2,35 @@
 
 namespace App\DAO;
 
-use App\Model\ExtratoModel;
+use App\Model\MovimentacaoModel;
 use \PDO;
 
-class ExtratoDAO extends DAO
+class MovimentacaoDAO extends DAO
 {
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function insert(ExtratoModel $model)
+    public function insert(MovimentacaoModel $model)
     {
-        $sql = "INSERT INTO extrato (valor, data_extrato) VALUE (?, ?)";
+        $sql = "INSERT INTO Movimentacao (valor, data_Movimentacao) VALUE (?, ?)";
 
         $stmt = parent::getConnection()->prepare($sql);
 
         $stmt->bindValue(1, $model->valor);
-        $stmt->bindValue(2, $model->dataExtrato);
+        $stmt->bindValue(2, $model->dataMovimentacao);
 
         $stmt->execute();
     }
 
-    public function update(ExtratoModel $model)
+    public function update(MovimentacaoModel $model)
     {
-        $sql = "UPDATE extrato SET valor=?, data_extrato=? WHERE id=?";
+        $sql = "UPDATE Movimentacao SET valor=?, data_Movimentacao=? WHERE id=?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $model->valor);
-        $stmt->bindValue(2, $model->dataExtrato);
+        $stmt->bindValue(2, $model->dataMovimentacao);
         $stmt->bindValue(3, $model->id);
 
         $stmt->execute();
@@ -38,7 +38,7 @@ class ExtratoDAO extends DAO
 
     public function select()
     {
-        $sql = "SELECT * FROM extrato";
+        $sql = "SELECT * FROM Movimentacao";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -49,19 +49,19 @@ class ExtratoDAO extends DAO
 
     public function selectById(int $id)
     {
-        $sql = "SELECT * FROM extrato WHERE id = ?";
+        $sql = "SELECT * FROM Movimentacao WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
 
         $stmt->execute();
 
-        return $stmt->fetchObject("App\Model\ExtratoModel");
+        return $stmt->fetchObject("App\Model\MovimentacaoModel");
     }
 
     public function delete(int $id)
     {
-        $sql = "DELETE FROM extrato WHERE id = ?";
+        $sql = "DELETE FROM Movimentacao WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

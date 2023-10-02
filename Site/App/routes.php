@@ -1,7 +1,6 @@
 <?php
 
 use App\Controller\{
-    ExtratoController,
     PagamentoController,
     ParcelaController,
     VendaController,
@@ -10,7 +9,8 @@ use App\Controller\{
     LoginController,
     TaxaController,
     CategoriaProdutoController,
-    DashboardController
+    DashboardController,
+    MovimentacaoController
 };
 use App\DAO\CategoriaProdutoDAO;
 
@@ -62,21 +62,21 @@ switch ($url) {
         LoginController::delete();
         break;
 
-        /* Extrato*/
-    case '/extrato':
-        ExtratoController::index();
+        /* movimentacao*/
+    case '/movimentacao':
+        MovimentacaoController::index();
         break;
-    case '/extrato/save':
-        ExtratoController::save();
+    case '/movimentacao/save':
+        MovimentacaoController::save();
         break;
-    case '/extrato/get-all':
-        ExtratoController::getAll();
+    case '/movimentacao/get-all':
+        MovimentacaoController::getAll();
         break;
-    case '/extrato/get-by-id':
-        ExtratoController::getById();
+    case '/movimentacao/get-by-id':
+        MovimentacaoController::getById();
         break;
-    case '/extrato/delete':
-        ExtratoController::delete();
+    case '/movimentacao/delete':
+        MovimentacaoController::delete();
         break;
 
         /* Parcela */
@@ -142,11 +142,11 @@ switch ($url) {
     case '/venda/delete':
         VendaController::delete();
         break;
-    case '/carrinho/inserir':
-        VendaController::setProdutosOnTable();
+    case '/venda/get-produtos':
+        ProdutoVendaController::getProdutos();
         break;
-    case '/carrinho/ver':
-        VendaController::getProdutosOnTable();
+    case '/relatorio':
+        VendaController::relatorio();    
         break;
 
         /* Taxa*/

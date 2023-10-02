@@ -1,5 +1,3 @@
-
-
 lista_produtos = Array();
 var valor_total = 0
 var last_id_venda = false;

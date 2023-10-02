@@ -1,14 +1,14 @@
-function addExtrato(id, valor, dataExtrato)
+function addMovimentacao(id, valor, dataMovimentacao)
 {
     if(descricao !== "")
     {
         $.ajax({
             type: "POST",
-            url: "/extrato/save",
+            url: "/movimentacao/save",
             data: {
                 id: id,
                 valor: valor,
-                dataExtrato: dataExtrato
+                dataMovimentacao: dataMovimentacao
             },
             dataType: 'json',
             success: function (result) {
@@ -21,15 +21,15 @@ function addExtrato(id, valor, dataExtrato)
     }
 }
 
-function getExtratoById(id)
+function getMovimentacaoById(id)
 {
     $.ajax({
         type: "GET",
-        url: "/extrato/get-by-id?id=" + id,
+        url: "/movimentacao/get-by-id?id=" + id,
         dataType: 'json',
         success: function (result) {
             $('#txtValor').val(result.response_data.valor);
-            $('#txtExtrato').val(result.response_data.dataExtrato);
+            $('#txtMovimentacao').val(result.response_data.dataMovimentacao);
             $('#id').val(result.response_data.id);
         },
         error: function (result) {
@@ -38,11 +38,11 @@ function getExtratoById(id)
     });
 }
 
-function deleteExtrato(id)
+function deleteMovimentacao(id)
 {
     $.ajax({
         type: "GET",
-        url: "/extrato/delete?id=" + id,
+        url: "/movimentacao/delete?id=" + id,
         dataType: 'json',
         success: function (result) {
             console.log(result)
@@ -63,11 +63,11 @@ $(document).ready(function (){
     loadTableCategoria();
 
     $('.btn-edit').click(function(event){
-        getExtratoById(event.target.id);
+        getMovimentacaoById(event.target.id);
     })
 
     $('.btn-delete').click(function(event){
-        deleteExtrato(event.target.id);
+        deleteMovimentacao(event.target.id);
 
         window.location.reload(true);
     })

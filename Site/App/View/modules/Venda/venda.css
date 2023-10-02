@@ -15,3 +15,16 @@
 .modal-body{
     gap: 15px;
 }
+
+tr{
+    height: auto;
+}
+
+td{
+    height: 30px;
+    
+}
+
+.actions-list{
+    margin-top: 8px;
+}
