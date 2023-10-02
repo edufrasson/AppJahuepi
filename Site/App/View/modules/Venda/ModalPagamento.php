@@ -6,7 +6,7 @@
                     <label for="forma_pagamento">Forma Pagamento:</label><br>
                     <select class="selectpicker" name="forma_pagamento" id="forma_pagamento">
                         <option value="">Escolha uma opção de pagamento!</option>
-                        <option value="CARTAO">Cartão de Crédito</option>
+                        <option value="CREDITO">Cartão de Crédito</option>
                         <option value="DEBITO">Cartão de Débito</option>
                         <option value="MANUAL">Boleto Bancário</option>
                         <option value="DINHEIRO">Dinheiro</option>
@@ -133,6 +133,17 @@
                             <input disabled class="form-control p-1 valor_liquido_parcela" type="number" name="valor_liquido_parcela" id="valor_liquido_parcela">
                         </div>
                     </div>
+                </div>
+                  <!--
+                    Modal do dinheiro
+                -->
+                <div class="modal-body modal-dinheiro d-none" id="modal-dinheiro">                   
+                    <div class="input-row mb-3">
+                        <div class="input-container">
+                            <label for="valor_total">Valor total (R$): </label><br>
+                            <input disabled class="form-control p-1 valor_total" type="number" name="valor_total" id="valor_total">
+                        </div>                        
+                    </div>                                     
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Fechar</button>

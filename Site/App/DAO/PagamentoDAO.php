@@ -14,7 +14,7 @@ class PagamentoDAO extends DAO
 
     public function insert(PagamentoModel $model)
     {
-        $sql = "INSERT INTO Pagamento (valor_total, qnt_parcela, forma_pagamento, id_venda) VALUE (?, ?, ?, ?)";
+        $sql = "INSERT INTO Pagamento (valor_total, qnt_parcela, forma_pagamento, id_venda, valor_liquido) VALUE (?, ?, ?, ?, ?)";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -22,6 +22,7 @@ class PagamentoDAO extends DAO
         $stmt->bindValue(2, $model->qnt_parcelas);        
         $stmt->bindValue(3, $model->forma_pagamento);        
         $stmt->bindValue(4, $model->id_venda);        
+        $stmt->bindValue(5, $model->valor_liquido);        
 
         $stmt->execute();
 

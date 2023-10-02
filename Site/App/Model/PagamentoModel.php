@@ -6,7 +6,7 @@ use App\DAO\PagamentoDAO;
 
 class PagamentoModel extends Model
 {
-    public $id, $valor_total, $qnt_parcelas, $forma_pagamento, $id_venda;
+    public $id, $valor_total, $valor_liquido, $qnt_parcelas, $forma_pagamento, $id_venda, $taxa;
     public $lista_parcelas;
 
     public function save()

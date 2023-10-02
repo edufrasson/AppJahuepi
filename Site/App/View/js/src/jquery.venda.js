@@ -56,20 +56,26 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
       success: function (result) {
         produtos_relacionados = true;
         switch ($('#forma_pagamento').val()) {
-          case 'CARTAO':
+          case 'CREDITO':
             adicionarPagamento(last_id_venda, valor_total, $('.qnt_parcelas').val(), $('#forma_pagamento').val(), $('#select-taxa-credito').val(), $('#data_venda').val())
             break
-  
+
           case 'DEBITO':
-            adicionarPagamento(last_id_venda, valor_total, $('.qnt_parcelas').val(), $('#forma_pagamento').val(), $('#select-taxa-debito').val(), $('#data_venda').val())
+            console.log($('#select-taxa-debito').val())
+            adicionarPagamento(last_id_venda, valor_total, 1, $('#forma_pagamento').val(), $('#select-taxa-debito').val(), $('#data_venda').val())
             break
-  
+
           case 'MANUAL':
             adicionarPagamento(last_id_venda, valor_total, $('.qnt_parcelas').val(), $('#forma_pagamento').val(), $('#taxa-boleto').val(), $('#data_venda').val())
+            break
+
+          case 'DINHEIRO':
+            adicionarPagamento(last_id_venda, valor_total, 1, $('#forma_pagamento').val(), null, $('#data_venda').val())
             break
         }
       },
       error: function (result) {
+        console.log(result)
         swal({ title: "Erro!", text: "Erro interno ao adicionar o produto na venda. Tente Novamente", icon: "error", button: "OK" })
       }
     })
@@ -78,7 +84,7 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
 
 }
 
-function baixaEstoque(id_venda){
+function baixaEstoque(id_venda) {
   $.ajax({
     type: "POST",
     url: "/produto_venda/baixa_estoque",
@@ -86,7 +92,7 @@ function baixaEstoque(id_venda){
       id_venda: id_venda
     },
     dataType: 'json',
-    success: function (result) {      
+    success: function (result) {
       console.log(result.response_data)
     },
     error: function (result) {
@@ -109,17 +115,19 @@ function adicionarPagamento(id_venda, valor_total, qnt_parcelas, forma_pagamento
         valor_total: valor_total,
         qnt_parcelas: qnt_parcelas,
         forma_pagamento: forma_pagamento,
-        taxa: taxa, 
+        taxa: taxa,
         data_venda: data_venda
       },
       dataType: 'json',
       success: function (result) {
-        if(result.response_data == true){
+        console.log(result.response_data);
+        if (result.response_data == true) {
           baixaEstoque(last_id_venda)
         };
       },
       error: function (result) {
         console.log(result.response_data);
+        console.log(taxa);
       }
     })
   } else {
@@ -217,9 +225,10 @@ $(document).ready(function () {
     updateTotalValue();
     switch ($('#forma_pagamento').val()) {
 
-      case 'CARTAO':
+      case 'CREDITO':
         $('#modal-credito').removeClass('d-none')
         $('#modal-debito').addClass('d-none')
+        $('.modal-dinheiro').addClass('d-none')
         $('#modal-boleto').addClass('d-none')
         $('#select-taxa-credito').change(function () {
           updateTaxasValue($('#select-taxa-credito').val());
@@ -229,6 +238,7 @@ $(document).ready(function () {
 
       case 'MANUAL':
         $('.modal-credito').addClass('d-none')
+        $('.modal-dinheiro').addClass('d-none')
         $('.modal-debito').addClass('d-none')
         $('.modal-boleto').removeClass('d-none')
 
@@ -238,15 +248,26 @@ $(document).ready(function () {
         $('.modal-credito').addClass('d-none')
         $('.modal-debito').removeClass('d-none')
         $('.modal-boleto').addClass('d-none')
+        $('.modal-dinheiro').addClass('d-none')
         $('#select-taxa-debito').change(function () {
           updateTaxasValue($('#select-taxa-debito').val());
         })
         break;
 
+      case 'DINHEIRO':
+        $('.modal-credito').addClass('d-none')
+        $('.modal-debito').addClass('d-none')
+        $('.modal-boleto').addClass('d-none')
+        $('.modal-dinheiro').removeClass('d-none')
+        $('#select-taxa-debito').change(function () {
+          updateTaxasValue($('#select-taxa-debito').val());
+        })
+        break;
       default:
         $('.modal-credito').addClass('d-none')
         $('.modal-debito').addClass('d-none')
         $('.modal-boleto').addClass('d-none')
+        $('.modal-dinheiro').addClass('d-none')
         break;
     }
   })
@@ -268,12 +289,12 @@ $(document).ready(function () {
     await inserirVenda($('#data_venda').val(), $('#id').val())
 
     if (venda_inserida != false) {
-      valor = await relacionarProdutoVenda(last_id_venda, lista_produtos)      
+      valor = await relacionarProdutoVenda(last_id_venda, lista_produtos)
     } else {
       swal({ title: "Erro!", text: "Erro interno ao adicionar a venda. Tente Novamente", icon: "error", button: "OK" })
     }
     setInterval(5000)
- 
+
 
 
 

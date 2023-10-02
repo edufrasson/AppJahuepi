@@ -29,7 +29,7 @@ class ProdutoVendaDAO extends DAO
             $stmt->execute();
         }
 
-        return (parent::getConnection()->commit()) ? $model : false;
+        return (parent::getConnection()->commit()) ? true : false;
     }
 
     public function update(ProdutoVendaModel $model)
