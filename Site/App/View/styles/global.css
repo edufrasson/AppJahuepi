@@ -62,31 +62,18 @@ body {
   position: relative;
 }
 
-/* .main-alt-size{
-    width: 84vw;     
-    margin-left: 55%;
-    transition: 0.2s; 
-  }*/
-
-
 /* CONTAINER */
 .container-card {
   width: 100%;
   height: 95%;
   background-color: white;
   border-radius: 10px;
-  /*margin-left: 160px;*/
 }
 
 .containers-card {
   width: 100%;
   padding: 20px;
 }
-
-/*.container-card .buttons-container{
-  display: flex;
-  justify-content: space-between;
-}*/
 
 .btn:first-child {
   margin-right: 10px;
@@ -102,10 +89,6 @@ body {
   font-size: 25px;
 }
 
-/*.container-table{
-    overflow: auto;
-  }*/
-
 .final-actions .btn a{
   text-decoration: none;
   color: #000;
@@ -117,6 +100,48 @@ body {
 
 .final-actions .btn-pagamento {
   margin-top: 10px;
+}
+
+/* TABELA COM SCROLL */
+.content-body {
+  height: 100vh;
+}
+
+.table-produto {
+  display: flex;
+  flex-flow: column;
+  height: 20%;
+  width: 100%;
+}
+
+.table-produto .thead-produto {
+
+  flex: 0 0 auto;
+  width: calc(100% - 0.8rem);
+}
+
+.table-produto .tbody-produto {
+
+  flex: 1 1 auto;
+  display: block;
+  height: 48vh;
+  overflow-y: scroll;
+  width: calc(100% + 0.25rem);
+}
+
+.table-produto .tbody-produto tr {
+  width: 100%;
+}
+
+.table-produto .thead-produto,
+.table-produto .tbody-produto tr {
+  display: table;
+  table-layout: fixed;
+}
+
+.data-actions {
+  display: flex;
+  justify-content: center;
 }
 
 /* COMANDOS PARA RESPONSIVIDADE */
@@ -286,193 +311,4 @@ body {
     margin-left: 17.5%;
     margin-top: 30px;
   }
-}
-
-
-/*@media screen and (max-width: 900px){
-  .main-card .btn{
-    padding-right: 32%;
-    margin-left: 30%;
-  }
-
-  .btn span{
-    display: none;
-  }
-}*/
-
-/*
-.content-container{
-    width: 100vw;
-    height: 100vh;
-
-    display: flex;
-}
-
-.navbar{
-    width: 18%;
-    height: 100vh;
-    box-shadow: 10px 10px 14px -13px rgba(0,0,0,0.25);
-    flex-direction: column;
-    justify-content: first;
-    background-color: #212120;
-}
-
-
-
-.table-style{
-    overflow: auto;
-    min-height: 5px;
-}
-
-td{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.logo-container{
-    height: 25%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.action-container{
-    width: 100%;
-    padding: 15px;
-    height: 34%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.link-container a{
-    color: #fff;
-    font-weight: bold;
-    border-radius: 20px;
-}
-
-.link-container a:hover{
-    background: #f4c71e;
-    border-radius: 20px;
-}
-
-.dropdown-container{
-    width: 100%;
-    height: 35%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;  
-}
-
-.dropdown-container .color{
-    color: #fff;
-    font-weight: bold;
-    border-radius: 20px;
-}
-
-.dropdown-container .color:hover{
-    background: #f4c71e;
-    border-radius: 20px;
-}
-
-.dropdown-menu a{
-    font-weight: bold;
-}
-
-.content{
-    width: 82%;
-    height: 100vh;
-    background-color: #dfdfdf;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.main-container{
-    height: 90vh;
-    width: 92%;
-    border-radius: 15px;
-    background-color: #fff;
-    padding: 30px;
-}
-
-.main-container-about{
-    height: 90vh;
-    width: 92%;
-    border-radius: 15px;
-    background-color: #fff;
-    padding: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-#adicionar{
-    width: 12%;
-    margin-bottom: 2%;
-}
-
-.table-container{
-    display: flex;
-    flex-direction: column;
-}
-
-.btn-icon{
-    cursor: pointer;
-}
-
-.actions-list{
-    display: flex;
-    justify-content: space-around;
-}
-
-.off{
-    display: none;
-}
-
-
-/* TABELA COM SCROLL */
-.content-body {
-  height: 100vh;
-}
-
-.table-produto {
-  display: flex;
-  flex-flow: column;
-  height: 20%;
-  width: 100%;
-}
-
-.table-produto .thead-produto {
-
-  flex: 0 0 auto;
-  width: calc(100% - 0.8rem);
-}
-
-.table-produto .tbody-produto {
-
-  flex: 1 1 auto;
-  display: block;
-  height: 48vh;
-  overflow-y: scroll;
-  width: calc(100% + 0.25rem);
-}
-
-.table-produto .tbody-produto tr {
-  width: 100%;
-}
-
-.table-produto .thead-produto,
-.table-produto .tbody-produto tr {
-  display: table;
-  table-layout: fixed;
-}
-
-.data-actions {
-  display: flex;
-  justify-content: center;
 }
