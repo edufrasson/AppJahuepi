@@ -57,7 +57,7 @@ class ParcelaDAO extends DAO
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
-    public function selectById(int $id)
+    public function getById(int $id)
     {
         $sql = "SELECT * FROM Parcela WHERE id = ?";
 
@@ -67,6 +67,26 @@ class ParcelaDAO extends DAO
         $stmt->execute();
 
         return $stmt->fetchObject("App\Model\ParcelaModel");
+    }
+
+    public function getByIdVenda(int $id){
+        $sql = "SELECT 
+		        p.indice as indice,
+		        p.valor as valor_parcela,
+	            date_format(p.data_parcela, '%d/%m/%Y') as data_parcela,
+                p.status as status      
+        FROM Parcela p 
+        JOIN Pagamento pgt ON pgt.id = p.id_pagamento
+        JOIN Venda v ON v.id = pgt.id_venda
+        WHERE v.id = ?
+        ORDER BY p.indice ASC";
+
+        $stmt = parent::getConnection()->prepare($sql);
+        $stmt->bindValue(1, $id);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
     public function delete(int $id)

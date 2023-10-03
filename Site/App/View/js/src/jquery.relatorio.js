@@ -1,6 +1,3 @@
-var arrayProdutos = Array();
-var arrayParcelas = Array();
-
 function getVendaById(id) {
     $.ajax({
         type: "GET",
@@ -33,10 +30,40 @@ function deleteVenda(id) {
 function getAllProducts(id_venda) {
     $.ajax({
         type: "GET",
-        url: "/venda/get-produtos?id_venda=" + id_venda,
+        url: "/venda/get-produtos?id=" + id_venda,
         dataType: 'json',
-        success: async (result) => {
-            arrayProdutos = result.response_data
+        success: async (result) => {            
+            result.response_data.forEach(element => {
+                $('#tableProdutos').append(`<tr> 
+                <td> ${element.descricao} </td> 
+                <td> ${Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(element.valor_unit.toString())} </td> 
+                <td> ${element.quantidade} </td>        
+               
+               </tr>`)
+            })
+        },
+        error: () => {
+            console.log(' :( ')
+        }
+
+    })
+}
+
+function getAllParcelas(id_venda) {
+    $.ajax({
+        type: "GET",
+        url: "/venda/get-parcelas?id=" + id_venda,
+        dataType: 'json',
+        success: async (result) => {            
+            result.response_data.forEach(element => {
+                $('#tableParcelas').append(`<tr> 
+                <td> ${element.indice} </td> 
+                <td> ${Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(element.valor_parcela.toString())} </td> 
+                <td> ${element.data_parcela} </td>        
+                <td> ${element.status} </td>        
+               
+               </tr>`)
+            })
         },
         error: () => {
             console.log(' :( ')
@@ -56,18 +83,19 @@ $(document).ready(function () {
     loadTableVenda();
 
     $('.open-produtos').click((event) => {
-        getAllProducts(event.target.id);
-        arrayProdutos.forEach(element => {
-            $('#tableProdutos').append(`<tr> 
-            <td> ${element.descricao} </td> 
-            <td> ${Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(element.valor_unit.toString())} </td> 
-            <td> ${element.quantidade} </td>         
-            <td class="actions-list">                
-                <box-icon name="trash" color="#e8ac07" id="${element.id}" class="btn-icon btn-delete-list"></box-icon>
-            </td>
-           </tr>`)
-        })
+        event.preventDefault();
+        $('#tableProdutos').empty();
+
+        getAllProducts(event.target.id);     
+        
     })
+
+    $('.open-parcelas').click(function (e) { 
+        e.preventDefault();
+        $('#tableParcelas').empty();
+
+        getAllParcelas(e.target.id);     
+    });
 
     $('.btn-edit').click(function (event) {
         getVendaById(event.target.id);

@@ -145,8 +145,11 @@ switch ($url) {
     case '/venda/get-produtos':
         ProdutoVendaController::getProdutos();
         break;
+    case '/venda/get-parcelas':
+        ParcelaController::getByIdVenda();
+        break;
     case '/relatorio':
-        VendaController::relatorio();    
+        VendaController::relatorio();
         break;
 
         /* Taxa*/

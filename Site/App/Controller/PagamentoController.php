@@ -38,23 +38,23 @@ class PagamentoController extends Controller
         $pagamento->id_venda = $_POST['id_venda'];
         $pagamento->taxa = $_POST['taxa'];
         if ($pagamento->taxa <= 1) {
-            if ($pagamento->taxa == null && $pagamento->taxa == 0) {
+            if ($pagamento->taxa == null || $pagamento->taxa == 0) {
                 $pagamento->valor_liquido = $pagamento->valor_total;
             } else
                 $pagamento->valor_liquido = $pagamento->valor_total - ((float)$pagamento->valor_total * (int)$pagamento->taxa);
         } else
             $pagamento->valor_liquido = $pagamento->valor_total - $pagamento->taxa;
 
-        $pagamento = $pagamento->save();
+        $pgt = $pagamento->save();
 
-        if ($pagamento->id !== 0 || $pagamento->id !== null) {
+        if ($pgt->id != 0 || $pgt->id != null) {
             $data_parcela = new DateTime($_POST['data_venda']);
 
-            for ($i = 1; $i <= $pagamento->qnt_parcelas; $i++) {
+            for ($i = 1; $i <= $pgt->qnt_parcelas; $i++) {
                 $parcela = new ParcelaModel();
                 $parcela->indice = $i;
-                $parcela->id_pagamento = $pagamento->id;
-                $parcela->valor = $_POST['valor_total'] / $pagamento->qnt_parcelas;
+                $parcela->id_pagamento = $pgt->id;
+                $parcela->valor = $_POST['valor_total'] / $pgt->qnt_parcelas;
                 $parcela->data_parcela = $data_parcela->format('Y-m-d');
                 $model_parcela->lista_parcelas[] = $parcela;
 

@@ -91,10 +91,10 @@ function baixaEstoque(id_venda) {
     },
     dataType: 'json',
     success: function (result) {
-      console.log(result.response_data)
+      swal({ title: "Sucesso!", text: "Venda cadastrada com sucesso!", icon: "success", button: "OK" })
     },
     error: function (result) {
-      console.log(result.response_data)
+      swal({ title: "Erro!", text: "Erro interno ao adicionar a venda. Tente Novamente", icon: "error", button: "OK" })
     }
   })
 }

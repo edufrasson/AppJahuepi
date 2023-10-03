@@ -44,10 +44,10 @@
                                     <?php foreach ($model->rows as $venda) : ?>
                                         <tr>
                                             <td><?= $venda->data_venda ?></td>
-                                            <td><?= $venda->total_bruto ?></td>
-                                            <td><?= $venda->total_liquido ?></td>
+                                            <td>R$ <?= $venda->total_bruto ?></td>
+                                            <td>R$ <?= $venda->total_liquido ?></td>
                                             <td><button id="<?= $venda->id_venda ?>" class="btn open-produtos" data-bs-toggle="modal" data-bs-target="#modalProdutos">Produtos</button></td>
-                                            <td><button id="<?= $venda->id_pagamento ?>" class="btn open-parcelas" data-bs-toggle="modal" data-bs-target="#modalParcelas">Parcelas</button></td>
+                                            <td><button id="<?= $venda->id_venda ?>" class="btn open-parcelas" data-bs-toggle="modal" data-bs-target="#modalParcelas">Parcelas</button></td>
                                             <td class="actions-list">
                                                 <box-icon name="edit" color="#e8ac07" id="<?= $venda->id ?>" data-bs-toggle="modal" data-bs-target="#modalVenda" class="btn-icon btn-edit"></box-icon>
                                                 <box-icon name="trash" color="#e8ac07" id="<?= $venda->id ?>" class="btn-icon btn-delete"></box-icon>
@@ -75,7 +75,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalProdutosTitle">Cadastrar Categoria</h5>
+                    <h5 class="modal-title" id="modalProdutosTitle">Lista de Produtos na Venda</h5>
                     <!--<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>-->
                     </button>
@@ -89,7 +89,6 @@
                                         <th>Descrição</th>
                                         <th>Valor Unitário</th>
                                         <th>Quantidade</th>
-                                        <th>Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tableProdutos">
@@ -103,7 +102,38 @@
         </div>
     </div>
 
+    <!-- Modal de Parcelas  -->
+    <div class="modal fade" id="modalParcelas" tabindex="-1" role="dialog" aria-labelledby="modalParcelasTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalParcelasTitle">Lista de Parcelas da Venda</h5>
+                    <!--<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>-->
+                    </button>
+                </div>
+                <form method="post">
+                    <div class="modal-body">
+                        <div class="table-container">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Índice</th>
+                                        <th>Valor (R$)</th>
+                                        <th>Data</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableParcelas">
 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <?php include 'View/includes/js_config.php' ?>
     <script src="View/js/src/jquery.relatorio.js"></script>

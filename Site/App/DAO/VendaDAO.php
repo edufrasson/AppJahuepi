@@ -41,7 +41,8 @@ class VendaDAO extends DAO
 
     public function select()
     {
-        $sql = "SELECT v.*,
+        $sql = "SELECT
+                DATE_FORMAT(v.data_venda, '%d/%m/%Y') as data_venda,
                 v.id as id_venda,
                 p.valor_total as total_bruto,
                 p.valor_liquido as total_liquido,

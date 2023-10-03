@@ -16,10 +16,9 @@ class ProdutoVendaController extends Controller
     }
 
     public static function getProdutos(){
-        $model = new ProdutoVendaModel();
-        $model->getProdutos($_GET['id_venda']);
+        $model = new ProdutoVendaModel(); 
 
-        parent::setResponseAsJSON($model);
+        parent::setResponseAsJSON($model->getProdutos($_GET['id']));
     }
 
     public static function getById()

@@ -22,6 +22,13 @@ class ParcelaModel extends Model
         
     }
 
+    public function getByIdVenda(int $id)
+    {
+        $dao = new ParcelaDAO();
+
+        return $dao->getByIdVenda($id);
+    }
+
     public function getAllRows()
     {
         $dao = new ParcelaDAO();
@@ -33,7 +40,7 @@ class ParcelaModel extends Model
     {
         $dao = new ParcelaDAO();
 
-        $obj = $dao->selectById($id);
+        $obj = $dao->getById($id);
 
         return ($obj) ? $obj : new ParcelaModel();
     }
