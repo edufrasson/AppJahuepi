@@ -38,14 +38,11 @@
         <div class="panels-container">
             <div class="panel left-panel">
                 <div class="content-login">
-                    <h3>New here ?</h3>
+                    <h3>Bem-Vindo!</h3>
                     <p>
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
                         ex ratione. Aliquid!
                     </p>
-                    <button class="btn-sign-up transparent" id="sign-up-btn">
-                        Sign up
-                    </button>
                 </div>
                 <img src="View/assets/log.svg" class="image" alt="" />
             </div>
