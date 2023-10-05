@@ -293,11 +293,15 @@ form.sign-in-form {
   .container-login::before {
     height: 1650px;
   }
+
+  .content-login {
+    margin-top: 50px;
+  }
 }
 
 @media screen and (max-width: 1366px) {
   .container-login::before {
-    height: 1400px;
+    height: 1200px;
     width: 2050px;
   }
 
@@ -318,8 +322,34 @@ form.sign-in-form {
     height: 1300px;
   }
 
-  .content-login{
+  .content-login {
     margin-top: 50px;
+  }
+}
+
+@media screen and (max-width: 1152px) {
+  .container-login::before {
+    height: 1650px;
+  }
+}
+
+@media screen and (max-width: 1128px) {
+  .container-login::before {
+    height: 1150px;
+  }
+
+  .content-login {
+    margin-top: 80px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .container-login::before {
+    height: 1500px;
+  }
+
+  .content-login {
+    margin-bottom: 40px;
   }
 }
 
