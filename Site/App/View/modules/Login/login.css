@@ -277,6 +277,52 @@ form.sign-in-form {
   pointer-events: all;
 }
 
+@media screen and (max-width: 1760px) {
+  .container-login::before {
+    height: 1800px;
+  }
+}
+
+@media screen and (max-width: 1680px) {
+  .container-login::before {
+    height: 1950px;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .container-login::before {
+    height: 1650px;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .container-login::before {
+    height: 1400px;
+    width: 2050px;
+  }
+
+  .content-login {
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .container-login::before {
+    height: 2000px;
+    margin-right: -60px;
+  }
+}
+
+@media screen and (max-height: 720px) {
+  .container-login::before {
+    height: 1300px;
+  }
+
+  .content-login{
+    margin-top: 50px;
+  }
+}
+
 @media (max-width: 870px) {
   .container-login {
     min-height: 800px;
