@@ -3,7 +3,7 @@
     top: 0;
     left: 0;
     height: 100vh;
-    width: 250px;
+    width: 300px;
     padding: 10px 14px;
     background: var(--sidebar-color);
     transition: var(--tran-05);

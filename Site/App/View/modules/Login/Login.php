@@ -47,7 +47,7 @@
                         Sign up
                     </button>
                 </div>
-                <img src="../../assets/log.svg" class="image" alt="" />
+                <img src="View/assets/log.svg" class="image" alt="" />
             </div>
         </div>
     </div>

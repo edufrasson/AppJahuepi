@@ -157,7 +157,6 @@ form.sign-in-form {
   left: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  margin-top: -120px;
 }
 
 .content-login h3,
@@ -169,7 +168,7 @@ form.sign-in-form {
   content: "";
   position: absolute;
   height: 2000px;
-  width: 2000px;
+  width: 2600px;
   top: -10%;
   right: 48%;
   transform: translateY(-50%);
@@ -280,18 +279,21 @@ form.sign-in-form {
 @media screen and (max-width: 1760px) {
   .container-login::before {
     height: 1800px;
+    width: 3600px;
   }
 }
 
 @media screen and (max-width: 1680px) {
   .container-login::before {
     height: 1950px;
+    width: 2800px;
   }
 }
 
 @media screen and (max-width: 1600px) {
   .container-login::before {
     height: 1650px;
+    width: 4400px;
   }
 
   .content-login {
@@ -299,10 +301,16 @@ form.sign-in-form {
   }
 }
 
+@media screen and (max-width: 1440px) {
+  .container-login::before {
+    width: 4000px;
+  }
+}
+
 @media screen and (max-width: 1366px) {
   .container-login::before {
-    height: 1200px;
-    width: 2050px;
+    height: 3000px;
+    width: 5800px;
   }
 
   .content-login {
@@ -313,6 +321,7 @@ form.sign-in-form {
 @media screen and (max-width: 1280px) {
   .container-login::before {
     height: 2000px;
+    width: 2500px;
     margin-right: -60px;
   }
 }
@@ -320,6 +329,7 @@ form.sign-in-form {
 @media screen and (max-height: 720px) {
   .container-login::before {
     height: 1300px;
+    width: 7500px;
   }
 
   .content-login {
@@ -330,26 +340,39 @@ form.sign-in-form {
 @media screen and (max-width: 1152px) {
   .container-login::before {
     height: 1650px;
+    width: 4150px;
   }
 }
 
 @media screen and (max-width: 1128px) {
   .container-login::before {
     height: 1150px;
+    width: 9000px;
   }
 
   .content-login {
-    margin-top: 80px;
+    margin-top: 20px;
+  }
+
+  .content-login h3 p {
+    margin-top: -30px;
   }
 }
 
 @media screen and (max-width: 1024px) {
   .container-login::before {
     height: 1500px;
+    width: 500px;
   }
 
   .content-login {
     margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-height: 964px) {
+  .container-login::before {
+    height: 2100px;
   }
 }
 
