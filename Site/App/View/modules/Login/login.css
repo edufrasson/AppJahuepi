@@ -362,7 +362,7 @@ form.sign-in-form {
 @media screen and (max-width: 1024px) {
   .container-login::before {
     height: 1500px;
-    width: 500px;
+    width: 5100px;
   }
 
   .content-login {
