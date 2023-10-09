@@ -43,6 +43,9 @@ switch ($url) {
     case '/login/auth':
         LoginController::auth();
         break;
+    case '/logout':
+        LoginController::logout();
+        break;
     case '/usuario':
         LoginController::index();
         break;

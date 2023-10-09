@@ -1,3 +1,13 @@
+<?php
+/*session_start();
+
+if(isset($_SESSION['user_logged'])){
+    header('Location: /home'); // Redireciona para a página inicial se o usuário já estiver autenticado
+    exit;
+}
+*/
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
