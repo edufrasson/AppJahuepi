@@ -107,6 +107,15 @@ form.sign-in-form {
   font-size: 1rem;
 }
 
+.social-text a{
+  text-decoration: none;
+  color: #000;
+}
+
+.social-text a:hover{
+  color: #ffc107;
+}
+
 .social-media {
   display: flex;
   justify-content: center;
@@ -274,6 +283,32 @@ form.sign-in-form {
 
 .container.sign-up-mode .right-panel {
   pointer-events: all;
+}
+
+form.sign-in-form h2{
+  margin-bottom: 5px;
+}
+
+form.sign-in-form p {
+  margin-bottom: 5px;
+}
+
+.verification-code-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.verification-code {
+  width: 35px;
+  height: 40px;
+  text-align: center;
+  font-size: 20px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
 }
 
 @media screen and (max-width: 1760px) {
