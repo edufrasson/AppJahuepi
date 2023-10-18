@@ -37,13 +37,7 @@ class PagamentoController extends Controller
         $pagamento->forma_pagamento = $_POST['forma_pagamento'];        
         $pagamento->id_venda = $_POST['id_venda'];
         $pagamento->taxa = $_POST['taxa'];
-        if ($pagamento->taxa <= 1) {
-            if ($pagamento->taxa == null || $pagamento->taxa == 0) {
-                $pagamento->valor_liquido = $pagamento->valor_total;
-            } else
-                $pagamento->valor_liquido = $pagamento->valor_total - ((float)$pagamento->valor_total * (int)$pagamento->taxa);
-        } else
-            $pagamento->valor_liquido = $pagamento->valor_total - $pagamento->taxa;
+        $pagamento->valor_liquido = $_POST['valor_liquido'];
 
         $pgt = $pagamento->save();
 

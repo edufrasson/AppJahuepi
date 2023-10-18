@@ -33,7 +33,7 @@
                                 <tr>
                                     <th>Data da Venda</th>
                                     <th>Total Bruto</th>
-                                    <th>Total Líquido</th>
+                                    <!--<th>Total Líquido</th>-->
                                     <th>Ver Produtos</th>
                                     <th>Ver Parcelas</th>
                                     <th>Ações</th>
@@ -45,7 +45,7 @@
                                         <tr>
                                             <td><?= $venda->data_venda ?></td>
                                             <td>R$ <?= $venda->total_bruto ?></td>
-                                            <td>R$ <?= $venda->total_liquido ?></td>
+                                            <!--<td>R$ <?= $venda->total_liquido ?></td>-->
                                             <td><button id="<?= $venda->id_venda ?>" class="btn open-produtos" data-bs-toggle="modal" data-bs-target="#modalProdutos">Produtos</button></td>
                                             <td><button id="<?= $venda->id_venda ?>" class="btn open-parcelas" data-bs-toggle="modal" data-bs-target="#modalParcelas">Parcelas</button></td>
                                             <td class="actions-list">

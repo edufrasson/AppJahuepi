@@ -103,7 +103,7 @@ function baixaEstoque(id_venda) {
  *  Requisição para insert na tabela de Pagamento
  */
 
-function adicionarPagamento(id_venda, valor_total, qnt_parcelas, forma_pagamento, taxa, data_venda) {
+function adicionarPagamento(id_venda, valor_total, qnt_parcelas, forma_pagamento, taxa, data_venda, valor_liquido) {
   if (id_venda != false && valor_total != false && qnt_parcelas != false && forma_pagamento != false && id_venda != false) {
     $.ajax({
       type: "POST",
