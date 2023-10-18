@@ -56,6 +56,7 @@ function deleteProduto(id) {
 function loadTableProduto() {   
     $('.spinner-border').delay(1000).hide();
     $('.table-style').delay(1000).removeClass("off");
+    $('.action-container').delay(1000).removeClass("off");
   
 }
 

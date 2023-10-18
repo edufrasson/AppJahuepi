@@ -34,7 +34,7 @@ class PagamentoController extends Controller
 
         $pagamento->qnt_parcelas = $_POST['qnt_parcelas'];
         $pagamento->valor_total = $_POST['valor_total'];
-        $pagamento->forma_pagamento = $_POST['forma_pagamento'];
+        $pagamento->forma_pagamento = $_POST['forma_pagamento'];        
         $pagamento->id_venda = $_POST['id_venda'];
         $pagamento->taxa = $_POST['taxa'];
         if ($pagamento->taxa <= 1) {
@@ -55,7 +55,7 @@ class PagamentoController extends Controller
                 $parcela->indice = $i;
                 $parcela->id_pagamento = $pgt->id;
                 $parcela->valor = $_POST['valor_total'] / $pgt->qnt_parcelas;
-                $parcela->data_parcela = $data_parcela->format('Y-m-d');
+                $parcela->data_parcela = $data_parcela->format('Y-m-d');               
                 $model_parcela->lista_parcelas[] = $parcela;
 
                 $data_parcela = $data_parcela->modify("+1 month");

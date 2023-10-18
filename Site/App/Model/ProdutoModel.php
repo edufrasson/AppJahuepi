@@ -11,7 +11,7 @@ class ProdutoModel extends Model
 
     public $quantidade_venda;
 
-    public $lista_categoria;
+    public $lista_categoria, $categoria;
 
     public function save()
     {

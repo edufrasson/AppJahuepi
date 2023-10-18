@@ -170,6 +170,7 @@ function reloadTableProduct() {
     },
     error: function (result) {
       alert("erro");
+      console.log(result)
     }
   })
 }

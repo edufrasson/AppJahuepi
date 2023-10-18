@@ -38,6 +38,11 @@ body {
   background: #707070 !important;
 }
 
+.off{
+  opacity: 0;
+}
+
+
 .main-card .btn {
   background-color: var(--primary-color);
 }

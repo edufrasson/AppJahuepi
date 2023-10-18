@@ -57,6 +57,22 @@ class ParcelaDAO extends DAO
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
+    public function checkCondicoesParcela(){
+        $sql = "SELECT p.id as id_parcela
+        FROM parcela p
+        JOIN pagamento pgt ON pgt.id = p.id_pagamento
+        WHERE p.status = 'PENDENTE'
+        AND p.data_parcela <= current_date() AND pgt.forma_pagamento = 'CREDITO' OR pgt.forma_pagamento = 'DEBITO'
+        OR pgt.forma_pagamento = 'DINHEIRO' 
+        ;";
+
+        $stmt = parent::getConnection()->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
+
     public function getById(int $id)
     {
         $sql = "SELECT * FROM Parcela WHERE id = ?";
