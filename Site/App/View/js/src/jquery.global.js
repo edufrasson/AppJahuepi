@@ -23,6 +23,7 @@ $(document).ready(function(){
         'responsive': true,
         "lengthChange": false,
         'autoWidth': true,  
+        'paging': false
         
     });
 

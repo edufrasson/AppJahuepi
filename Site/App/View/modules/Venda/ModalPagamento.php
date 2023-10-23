@@ -10,7 +10,7 @@
                         <option value="">Escolha uma opção de pagamento!</option>
                         <option value="CREDITO">Cartão de Crédito</option>
                         <option value="DEBITO">Cartão de Débito</option>
-                        <option value="MANUAL">Boleto Bancário</option>
+                        <option value="BOLETO">Boleto Bancário</option>
                         <option value="DINHEIRO">Dinheiro</option>
                     </select>
 
@@ -52,9 +52,9 @@
 
                     </div>
                     <hr class="hr">
-                    <div class="d-flex justify-content-center">
-                        Parcelas
-                    </div>
+                        <div class="d-flex justify-content-center">
+                            Parcelas
+                        </div>
                     <hr class="hr">
                     <div class="input-row mb-3">
                         <div class="input-container pagamento-details">
@@ -116,9 +116,26 @@
                         </div>
                         <div class="input-container">
                             <label for="qnt_parcelas">Quantidade de parcelas: </label><br>
-                            <input class="form-control p-1 qnt_parcelas" type="number" name="qnt_parcelas" id="qnt_parcelas">
+                            <input class="form-control p-1" type="number" name="qnt_parcelas" id="qnt_parcelas_boleto">
                         </div>
                     </div>
+                   
+                    <hr class="hr">
+                        <div class="d-flex justify-content-center">
+                            Parcelas
+                        </div>
+                    <hr class="hr">
+                    <div class="input-row mb-3">
+                        <div class="input-container pagamento-details mb-3">
+                            <label for="valor_bruto_parcela">Valor Bruto (R$): </label><br>
+                            <input disabled class="form-control p-1 valor_bruto_parcela" type="number" name="valor_bruto_parcela" id="valor_bruto_parcela_boleto">
+                        </div>
+                        <div class="input-container pagamento-details">
+                            <label for="valor_liquido_parcela">Valor Líquido (R$): </label><br>
+                            <input disabled class="form-control p-1 valor_liquido_parcela" type="number" name="valor_liquido_parcela" id="valor_liquido_parcela_boleto">
+                        </div>
+                    </div>
+                    <hr class="hr">
                     <div class="input-row mb-3">
                         <div class="input-container">
                             <label for="valor_total">Valor total (R$): </label><br>
@@ -127,19 +144,6 @@
                         <div class="input-container pagamento-details ">
                             <label for="valor_liquido">Valor Líquido (R$): </label><br>
                             <input disabled class="form-control p-1 valor_liquido" type="number" name="valor_liquido" id="valor_liquido_boleto">
-                        </div>
-                    </div>
-                    <div class="input-row input-container-value">
-                        <hr class="hr">
-                    </div>
-                    <div class="input-row mb-3">
-                        <div class="input-container pagamento-details mb-3">
-                            <label for="valor_bruto_parcela">Valor Bruto da Parcela (R$): </label><br>
-                            <input disabled class="form-control p-1 valor_bruto_parcela" type="number" name="valor_bruto_parcela" id="valor_bruto_parcela">
-                        </div>
-                        <div class="input-container pagamento-details">
-                            <label for="valor_liquido_parcela">Valor Líquido da Parcela (R$): </label><br>
-                            <input disabled class="form-control p-1 valor_liquido_parcela" type="number" name="valor_liquido_parcela" id="valor_liquido_parcela_boleto">
                         </div>
                     </div>
                 </div>

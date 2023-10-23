@@ -47,6 +47,7 @@ class VendaDAO extends DAO
                 p.valor_total as total_bruto,
                 p.valor_liquido as total_liquido,
                 p.qnt_parcela as parcelas,
+                p.forma_pagamento as forma_pagamento,
                 p.id as id_pagamento       
         FROM Venda v
         JOIN Pagamento p ON v.id = p.id_venda";

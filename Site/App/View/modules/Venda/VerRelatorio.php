@@ -32,6 +32,7 @@
                             <thead>
                                 <tr>
                                     <th>Data da Venda</th>
+                                    <th>Pagamento</th>
                                     <th>Total Bruto</th>
                                     <th>Total Líquido</th>
                                     <th>Ver Produtos</th>
@@ -45,6 +46,7 @@
                                     <?php foreach ($model->rows as $venda) : ?>
                                         <tr>
                                             <td><?= $venda->data_venda ?></td>
+                                            <td><?= $venda->forma_pagamento ?></td>
                                             <td>R$ <?= $venda->total_bruto ?></td>
                                             <td>R$ <?= $venda->total_liquido ?></td>
                                             <td><button id="<?= $venda->id_venda ?>" class="btn open-produtos" data-bs-toggle="modal" data-bs-target="#modalProdutos">Produtos</button></td>
