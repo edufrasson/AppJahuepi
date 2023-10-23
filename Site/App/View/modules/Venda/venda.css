@@ -28,3 +28,7 @@ td{
 .actions-list{
     margin-top: 8px;
 }
+
+.main-card .buttons-container .select-container .btn {
+    background-color: white !important;
+  }

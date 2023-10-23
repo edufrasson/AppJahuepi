@@ -3,7 +3,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="input-container">
-                    <label for="forma_pagamento">Forma Pagamento:</label><br>
+                    
+                        <label for="forma_pagamento">Forma de Pagamento</label><br>
+                  
                     <select class="selectpicker" name="forma_pagamento" id="forma_pagamento">
                         <option value="">Escolha uma opção de pagamento!</option>
                         <option value="CREDITO">Cartão de Crédito</option>
@@ -11,6 +13,7 @@
                         <option value="MANUAL">Boleto Bancário</option>
                         <option value="DINHEIRO">Dinheiro</option>
                     </select>
+
                 </div>
             </div>
             <form method="post">
@@ -43,21 +46,27 @@
                             <input disabled class="form-control p-1 valor_total" type="number" name="valor_total" id="valor_total">
                         </div>
                         <div class="input-container pagamento-details ">
-                            <label for="valor_taxa">Valor da Taxa: </label><br>
+                            <label for="valor_taxa">Valor da Taxa (%): </label><br>
                             <input disabled class="form-control p-1 valor_taxa" type="number" name="valor_taxa" id="valor_taxa_credito">
                         </div>
 
                     </div>
+                    <hr class="hr">
+                    <div class="d-flex justify-content-center">
+                        Parcelas
+                    </div>
+                    <hr class="hr">
                     <div class="input-row mb-3">
                         <div class="input-container pagamento-details">
-                            <label for="valor_bruto_parcela">Valor Bruto da Parcela: </label><br>
+                            <label for="valor_bruto_parcela">Valor Bruto (R$): </label><br>
                             <input disabled class="form-control p-1 valor_bruto_parcela" type="number" name="valor_bruto_parcela" id="valor_bruto_parcela">
                         </div>
                         <div class="input-container pagamento-details">
-                            <label for="valor_liquido_parcela">Valor Líquido da Parcela: </label><br>
-                            <input disabled class="form-control p-1 valor_liquido_parcela" type="number" name="valor_liquido_parcela" id="valor_liquido_parcela">
+                            <label for="valor_liquido_parcela">Valor Líquido (R$): </label><br>
+                            <input disabled class="form-control p-1 valor_liquido_parcela" type="number" name="valor_liquido_parcela" id="valor_liquido_parcela_credito">
                         </div>
                     </div>
+                    <hr class="hr">
                     <div class="input-row mb-3 d-flex justify-content-center">
                         <div class="input-container pagamento-details ">
                             <label for="valor_liquido">Valor Líquido: </label><br>
@@ -117,33 +126,33 @@
                         </div>
                         <div class="input-container pagamento-details ">
                             <label for="valor_liquido">Valor Líquido (R$): </label><br>
-                            <input disabled class="form-control p-1 valor_liquido" type="number" name="valor_liquido" id="valor_liquido">
+                            <input disabled class="form-control p-1 valor_liquido" type="number" name="valor_liquido" id="valor_liquido_boleto">
                         </div>
                     </div>
                     <div class="input-row input-container-value">
-
+                        <hr class="hr">
                     </div>
                     <div class="input-row mb-3">
                         <div class="input-container pagamento-details mb-3">
-                            <label for="valor_bruto_parcela">Valor Bruto da Parcela: </label><br>
+                            <label for="valor_bruto_parcela">Valor Bruto da Parcela (R$): </label><br>
                             <input disabled class="form-control p-1 valor_bruto_parcela" type="number" name="valor_bruto_parcela" id="valor_bruto_parcela">
                         </div>
                         <div class="input-container pagamento-details">
-                            <label for="valor_liquido_parcela">Valor Líquido da Parcela: </label><br>
-                            <input disabled class="form-control p-1 valor_liquido_parcela" type="number" name="valor_liquido_parcela" id="valor_liquido_parcela">
+                            <label for="valor_liquido_parcela">Valor Líquido da Parcela (R$): </label><br>
+                            <input disabled class="form-control p-1 valor_liquido_parcela" type="number" name="valor_liquido_parcela" id="valor_liquido_parcela_boleto">
                         </div>
                     </div>
                 </div>
-                  <!--
+                <!--
                     Modal do dinheiro
                 -->
-                <div class="modal-body modal-dinheiro d-none" id="modal-dinheiro">                   
+                <div class="modal-body modal-dinheiro d-none" id="modal-dinheiro">
                     <div class="input-row mb-3">
                         <div class="input-container">
                             <label for="valor_total">Valor total (R$): </label><br>
                             <input disabled class="form-control p-1 valor_total" type="number" name="valor_total" id="valor_total">
-                        </div>                        
-                    </div>                                     
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Fechar</button>

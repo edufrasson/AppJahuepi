@@ -87,6 +87,8 @@ class ParcelaDAO extends DAO
 
     public function getByIdVenda(int $id){
         $sql = "SELECT 
+                p.id as id,
+                pgt.forma_pagamento as tipo_parcela,
 		        p.indice as indice,
 		        p.valor as valor_parcela,
 	            date_format(p.data_parcela, '%d/%m/%Y') as data_parcela,

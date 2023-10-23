@@ -80,6 +80,22 @@ body {
   padding: 20px;
 }
 
+.buttons-container{
+  height: 5%;
+}
+
+.form-add-product{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+.form-add-product #adicionarProduto{
+  margin-bottom: -15px;
+}
+
 .btn:first-child {
   margin-right: 10px;
 }

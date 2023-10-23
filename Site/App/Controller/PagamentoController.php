@@ -54,9 +54,6 @@ class PagamentoController extends Controller
 
                 $data_parcela = $data_parcela->modify("+1 month");
             }
-
-
-
             parent::setResponseAsJSON($model_parcela->save());
         } else
             parent::setResponseAsJSON(false);

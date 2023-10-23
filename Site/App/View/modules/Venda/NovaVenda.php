@@ -23,12 +23,30 @@
             </div>
             <div class="main-card">
                 <div class="containers-card buttons-container">
-                    <div class="input-container">
-                        <label for="txtDataVenda">Data da Venda: </label><br>
-                        <input class="form-control" type="date" name="data_venda" id="data_venda">
-                    </div>
-                    <button id="adicionar" class="btn align-items-center" style="background-color: #f4c71e;" data-bs-toggle="modal" data-bs-target="#modalProduto">Adicionar</button>
+                    <form class="form-add-product" method="post">
+                        <div class="input-container">
+                            <label for="txtDataVenda">Data da Venda: </label><br>
+                            <input class="form-control" type="date" name="data_venda" id="data_venda">
+                        </div>
+                        <div class="input-container select-container">
+                            <label for="id_produto">Produto:</label><br>
+                            <select class="selectpicker bg-light" name="id_produto" id="id_produto">
+                                <option value="">Cadastre um produto primeiro!</option>
+                                <?php foreach ($model->arr_produtos as $produto) : ?>
+                                    <option value="<?= $produto->id ?>"><?= $produto->descricao ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="input-container">
+                            <label for="quantidade">Quantidade: </label><br>
+                            <input class="form-control p-1" type="number" name="quantidade" id="quantidade">
+                        </div>
+                        <div class="input-container">
+                            <button type="button" class="btn" style="background-color: #f4c71e;" id="adicionarProduto">Salvar Registro</button>
+                        </div>
+                    </form>
                 </div>
+
 
                 <div class="containers-card table-container">
                     <div class="container-table">
@@ -48,22 +66,18 @@
                         </table>
                     </div>
                 </div>
-            </div>
-            <div class="containers-card action-container">
-                <div class="final-actions">
-                    <button class="btn btn-warning btn-pagamento" data-bs-toggle="modal" data-bs-target="#modalPagamento">Método de Pagamento</button>
+                <div class="containers-card action-container">
+                    <div class="final-actions">
+                        <button class="btn btn-warning btn-pagamento" data-bs-toggle="modal" data-bs-target="#modalPagamento">Método de Pagamento</button>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
-
-
-    <?php include 'View/includes/js_config.php' ?>
-    <?php include 'View/modules/Venda/ModalProduto.php' ?>
+    <?php include 'View/includes/js_config.php' ?>    
     <?php include 'View/modules/Venda/ModalPagamento.php' ?>
     <script src="View/js/src/jquery.venda.js"></script>
-
-
 </body>
 
 </html>

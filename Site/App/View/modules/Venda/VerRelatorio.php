@@ -33,11 +33,12 @@
                                 <tr>
                                     <th>Data da Venda</th>
                                     <th>Total Bruto</th>
-                                    <!--<th>Total Líquido</th>-->
+                                    <th>Total Líquido</th>
                                     <th>Ver Produtos</th>
                                     <th>Ver Parcelas</th>
                                     <th>Ações</th>
                                 </tr>
+             
                             </thead>
                             <tbody>
                                 <?php if ($model->rows !== null) : ?>
@@ -45,12 +46,12 @@
                                         <tr>
                                             <td><?= $venda->data_venda ?></td>
                                             <td>R$ <?= $venda->total_bruto ?></td>
-                                            <!--<td>R$ <?= $venda->total_liquido ?></td>-->
+                                            <td>R$ <?= $venda->total_liquido ?></td>
                                             <td><button id="<?= $venda->id_venda ?>" class="btn open-produtos" data-bs-toggle="modal" data-bs-target="#modalProdutos">Produtos</button></td>
                                             <td><button id="<?= $venda->id_venda ?>" class="btn open-parcelas" data-bs-toggle="modal" data-bs-target="#modalParcelas">Parcelas</button></td>
                                             <td class="actions-list">
-                                                <box-icon name="edit" color="#e8ac07" id="<?= $venda->id ?>" data-bs-toggle="modal" data-bs-target="#modalVenda" class="btn-icon btn-edit"></box-icon>
-                                                <box-icon name="trash" color="#e8ac07" id="<?= $venda->id ?>" class="btn-icon btn-delete"></box-icon>
+                                                <box-icon name="edit" color="blue" id="<?= $venda->id ?>" data-bs-toggle="modal" data-bs-target="#modalVenda" class="btn-icon btn-edit"></box-icon>
+                                                <box-icon name="trash" color="red" id="<?= $venda->id ?>" class="btn-icon btn-delete"></box-icon>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>
@@ -122,6 +123,7 @@
                                         <th>Valor (R$)</th>
                                         <th>Data</th>
                                         <th>Status</th>
+                                        <th>Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tableParcelas">

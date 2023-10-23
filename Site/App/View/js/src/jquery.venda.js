@@ -55,20 +55,17 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
         produtos_relacionados = true;
         switch ($('#forma_pagamento').val()) {
           case 'CREDITO':
-            adicionarPagamento(last_id_venda, valor_total, $('.qnt_parcelas').val(), $('#forma_pagamento').val(), $('#select-taxa-credito').val(), $('#data_venda').val())
+            adicionarPagamento(last_id_venda, valor_total, $('.qnt_parcelas').val(), $('#forma_pagamento').val(), $('#select-taxa-credito').val(), $('#data_venda').val(), $('#valor_liquido_credito').val())
             break
-
           case 'DEBITO':
             console.log($('#select-taxa-debito').val())
-            adicionarPagamento(last_id_venda, valor_total, 1, $('#forma_pagamento').val(), $('#select-taxa-debito').val(), $('#data_venda').val())
+            adicionarPagamento(last_id_venda, valor_total, 1, $('#forma_pagamento').val(), $('#select-taxa-debito').val(), $('#data_venda').val(), $('#valor_liquido_debito').val())
             break
-
           case 'MANUAL':
-            adicionarPagamento(last_id_venda, valor_total, $('.qnt_parcelas').val(), $('#forma_pagamento').val(), $('#taxa-boleto').val(), $('#data_venda').val())
+            adicionarPagamento(last_id_venda, valor_total, $('.qnt_parcelas').val(), $('#forma_pagamento').val(), $('#taxa-boleto').val(), $('#data_venda').val(), $('#valor_liquido_boleto').val())
             break
-
           case 'DINHEIRO':
-            adicionarPagamento(last_id_venda, valor_total, 1, $('#forma_pagamento').val(), null, $('#data_venda').val())
+            adicionarPagamento(last_id_venda, valor_total, 1, $('#forma_pagamento').val(), null, $('#data_venda').val(), valor_total)
             break
         }
       },
@@ -114,7 +111,8 @@ function adicionarPagamento(id_venda, valor_total, qnt_parcelas, forma_pagamento
         qnt_parcelas: qnt_parcelas,
         forma_pagamento: forma_pagamento,
         taxa: taxa,
-        data_venda: data_venda
+        data_venda: data_venda,
+        valor_liquido: valor_liquido
       },
       dataType: 'json',
       success: function (result) {
@@ -152,19 +150,15 @@ function reloadTableProduct() {
             <td> ${$('#quantidade').val()} </td> 
             <td> ${result.response_data.codigo_barra} </td> 
             <td> ${result.response_data.categoria} </td> 
-            <td class="actions-list">                
+            <td class="actions-list-venda d-flex justify-content-center">                
                 <box-icon name="trash" color="#e8ac07" id="${result.response_data.id}" class="btn-icon btn-delete-list"></box-icon>
             </td>
            </tr>`)
 
-      $('.btn-delete-list').click(function (event) {
-        console.log("chegou aqui")
-
+      // Função que retira os produtos da lista de compras 
+      $('.btn-delete-list').click(function() {        
         lista_produtos.splice(lista_produtos.findIndex(produto => produto.id_produto == result.response_data.id), 1);
-
-        $(this).closest("tr").remove(); // You can remove row like this
-
-        //window.location.reload(true);
+        $(this).closest("tr").remove(); // Removendo linha do elemento da tabela
       })
 
     },
@@ -205,16 +199,6 @@ $(document).ready(function () {
   /* 
     Funções dos botões da tabela
   */
-
-  $('.btn-edit').click(function (event) {
-    getLoginById(event.target.id);
-  })
-
-  $('.btn-delete').click(function (event) {
-    deleteLoginById(event.target.id);
-
-    //window.location.reload(true);
-  })
 
   $('#adicionarProduto').click(function () {
     reloadTableProduct();

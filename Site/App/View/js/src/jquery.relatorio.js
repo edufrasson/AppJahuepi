@@ -32,7 +32,7 @@ function getAllProducts(id_venda) {
         type: "GET",
         url: "/venda/get-produtos?id=" + id_venda,
         dataType: 'json',
-        success: async (result) => {            
+        success: async (result) => {
             result.response_data.forEach(element => {
                 $('#tableProdutos').append(`<tr> 
                 <td> ${element.descricao} </td> 
@@ -54,15 +54,30 @@ function getAllParcelas(id_venda) {
         type: "GET",
         url: "/venda/get-parcelas?id=" + id_venda,
         dataType: 'json',
-        success: async (result) => {            
+        success: async (result) => {
             result.response_data.forEach(element => {
                 $('#tableParcelas').append(`<tr> 
                 <td> ${element.indice} </td> 
                 <td> ${Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(element.valor_parcela.toString())} </td> 
                 <td> ${element.data_parcela} </td>        
-                <td> ${element.status} </td>        
-               
-               </tr>`)
+                <td id="status-parcela${element.id}"> ${element.status} </td>        
+                <td class="confirm-container d-none">
+                    <a id="${element.id}" class="btn btn-danger btnConfirmarParcela">Confirmar</a>
+                </td>
+               </tr>`);
+                switch (element.status) {
+                    case 'PENDENTE':
+                        $(`#status-parcela${element.id}`).css("color", "#Dab13d")
+                        break
+                    case 'CONFIRMADO':
+                        $(`#status-parcela${element.id}`).css("color", "#228c0c")
+                        break
+                    case 'ATRASO':
+                        $(`#status-parcela${element.id}`).css("color", "#8c1a0c")
+                        break
+                }
+                (element.tipo_parcela == "BOLETO") ?  $(`.confirm-container`).removeClass("d-none") :  $(`.confirm-container`).addClass("d-none")
+
             })
         },
         error: () => {
@@ -86,15 +101,15 @@ $(document).ready(function () {
         event.preventDefault();
         $('#tableProdutos').empty();
 
-        getAllProducts(event.target.id);     
-        
+        getAllProducts(event.target.id);
+
     })
 
-    $('.open-parcelas').click(function (e) { 
+    $('.open-parcelas').click(function (e) {
         e.preventDefault();
         $('#tableParcelas').empty();
 
-        getAllParcelas(e.target.id);     
+        getAllParcelas(e.target.id);
     });
 
     $('.btn-edit').click(function (event) {
