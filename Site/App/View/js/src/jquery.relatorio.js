@@ -60,6 +60,7 @@ function getAllParcelas(id_venda) {
                 <td> ${element.indice} </td> 
                 <td> ${Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(element.valor_parcela.toString())} </td> 
                 <td> ${element.data_parcela} </td>        
+                <td> ${element.data_recebimento} </td>        
                 <td id="status-parcela${element.id}"> ${element.status} </td>        
                 <td class="confirm-container${element.id} d-none">
                     <a href="/venda/confirm-parcela?id=${element.id}" class="btn btn-danger btnConfirmarParcela">Confirmar</a>

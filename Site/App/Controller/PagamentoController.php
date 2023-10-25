@@ -41,22 +41,34 @@ class PagamentoController extends Controller
 
         $pgt = $pagamento->save();
 
+        // Verificando se o pagamento foi inserido e aplicando loop de inserção de parcelas
+
         if ($pgt->id != 0 || $pgt->id != null) {
+            // Definindo valores bases das datas de parcela e recebimento
+
             $data_parcela = new DateTime($_POST['data_venda']);
             
             $data_recebimento = new DateTime($_POST['data_venda']);
             $data_recebimento = $data_recebimento->modify("+1 month");
             
+            // Loop de inserção de parcelas
+
             for ($i = 1; $i <= $pgt->qnt_parcelas; $i++) {
                 $parcela = new ParcelaModel();
+
                 $parcela->indice = $i;
                 $parcela->id_pagamento = $pgt->id;
                 $parcela->valor = $_POST['valor_total'] / $pgt->qnt_parcelas;
-                $parcela->data_parcela = $data_parcela->format('Y-m-d');               
+                $parcela->data_parcela = $data_parcela->format('Y-m-d');
+                
+                // Adaptando as datas de recebimento de acordo com o tipo de pagamento da parcela
+                
                 ($pgt->forma_pagamento == "BOLETO") ? $parcela->data_recebimento = $data_parcela->format('Y-m-d') : "";            
                 ($pgt->forma_pagamento == "DEBITO") ? $parcela->data_recebimento = $data_parcela->modify("+1 day")->format('Y-m-d') : $parcela->data_recebimento = $data_recebimento->format('Y-m-d');            
+
                 $model_parcela->lista_parcelas[] = $parcela;
 
+                // Adicionando mais um mês para o próximo item do loop
                 $data_parcela = $data_parcela->modify("+1 month");
                 $data_recebimento = $data_recebimento->modify("+1 month");
                

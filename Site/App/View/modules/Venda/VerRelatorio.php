@@ -123,7 +123,8 @@
                                     <tr>
                                         <th>Índice</th>
                                         <th>Valor (R$)</th>
-                                        <th>Data</th>
+                                        <th>Data da Parcela</th>
+                                        <th>Recebimento</th>
                                         <th>Status</th>
                                         <th>Ações</th>
                                     </tr>
