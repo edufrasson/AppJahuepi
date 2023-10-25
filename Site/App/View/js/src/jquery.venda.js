@@ -122,8 +122,8 @@ function adicionarPagamento(id_venda, valor_total, qnt_parcelas, forma_pagamento
         };
       },
       error: function (result) {
-        console.log(result.response_data);
-        console.log(taxa);
+        swal({ title: "Erro!", text: "Ocorreu um erro ao adicionar pagamento da venda! Tente Novamente", icon: "error", button: "OK" })
+        console.log(result)
       }
     })
   } else {
@@ -163,8 +163,7 @@ function reloadTableProduct() {
 
     },
     error: function (result) {
-      alert("erro");
-      console.log(result)
+      swal({ title: "Erro!", text: "Ocorreu um erro ao adicionar produto na venda! Tente Novamente", icon: "error", button: "OK" })
     }
   })
 }
@@ -179,24 +178,22 @@ function updateTotalValue(qnt_parcelas = null) {
 
 function updateTaxasValue(valor_taxa) {
   $('#valor_taxa_credito').val((valor_taxa * 100))
-  $('#valor_liquido_credito').val((valor_total - (valor_total * valor_taxa)))
+  $('#valor_liquido_credito').val((valor_total - (valor_total * valor_taxa)).toFixed(2))
 
   $('#valor_taxa_debito').val((valor_taxa * 100))
-  $('#valor_liquido_debito').val((valor_total - (valor_total * valor_taxa)))
-
+  $('#valor_liquido_debito').val((valor_total - (valor_total * valor_taxa)).toFixed(2))
   $('#valor_liquido_boleto').val(valor_total - valor_taxa)
 }
 
 function updateParcelasValue(qnt_parcelas) {
-  console.log('caiu')
-
-  $('.valor_bruto_parcela').val(valor_total / qnt_parcelas)
-  $('.valor_liquido_parcela').val(($('#valor_liquido_credito').val() / qnt_parcelas) == 0 ? $('#valor_liquido_debito').val() / qnt_parcelas : $('#valor_liquido_credito').val() / qnt_parcelas)
+  $('.valor_bruto_parcela').val((valor_total / qnt_parcelas).toFixed(2)) 
+  $('.valor_liquido_parcela').val(($('#valor_liquido_credito').val() / qnt_parcelas) == 0 ? ($('#valor_liquido_debito').val() / qnt_parcelas).toFixed(2) : ($('#valor_liquido_credito').val() / qnt_parcelas).toFixed(2))
 }
 
 function updateParcelasBoleto(qnt_parcelas){
-  $('#valor_bruto_parcela_boleto').val(valor_total / qnt_parcelas)
-  $('#valor_liquido_parcela_boleto').val($('#valor_liquido_boleto').val() / qnt_parcelas)
+  $('#valor_bruto_parcela_boleto').val((valor_total / qnt_parcelas).toFixed(2))
+  $('#valor_liquido_parcela_boleto').val((($('#valor_liquido_boleto').val()/ qnt_parcelas).toFixed(2)))
+  
 }
 
 /* 
@@ -276,9 +273,6 @@ $(document).ready(function () {
   /* 
     Função que chama todas as requisições necessárias para inserir uma venda completa
 
-    - Tabela Venda OK
-    - Tabela Produto_Venda OK
-    - Tabela Pagamento 
   */
   $('#finalizarVenda').click(async () => {
     await inserirVenda($('#data_venda').val(), $('#id').val())
@@ -289,10 +283,6 @@ $(document).ready(function () {
       swal({ title: "Erro!", text: "Erro interno ao adicionar a venda. Tente Novamente", icon: "error", button: "OK" })
     }
     setInterval(5000)
-
-
-
-
   })
 
 })

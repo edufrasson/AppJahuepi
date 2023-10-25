@@ -32,3 +32,11 @@ td{
 .main-card .buttons-container .select-container .btn {
     background-color: white !important;
   }
+
+#modalParcelas .modal-content{
+    width: 40rem;
+}
+
+#tableParcelas{
+    border: 0.4px solid #DEE2E6;
+}

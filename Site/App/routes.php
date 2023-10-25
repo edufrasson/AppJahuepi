@@ -151,8 +151,8 @@ switch ($url) {
     case '/venda/get-parcelas':
         ParcelaController::getByIdVenda();
         break;
-    case '/venda/confirm-parcelas':
-        ParcelaController::getByIdVenda();
+    case '/venda/confirm-parcela':
+        ParcelaController::confirmParcela();
         break;
     case '/relatorio':
         VendaController::relatorio();

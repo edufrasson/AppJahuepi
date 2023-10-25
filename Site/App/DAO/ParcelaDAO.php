@@ -17,14 +17,15 @@ class ParcelaDAO extends DAO
         parent::getConnection()->beginTransaction();
 
         foreach ($model->lista_parcelas as $parcela) {
-            $sql = "INSERT INTO Parcela (valor, data_parcela, id_pagamento, indice) VALUE (?, ?, ?, ?)";
+            $sql = "INSERT INTO Parcela (valor, data_parcela, data_recebimento, id_pagamento, indice) VALUE (?, ?, ?, ?, ?)";
 
             $stmt = parent::getConnection()->prepare($sql);
     
             $stmt->bindValue(1, $parcela->valor);
             $stmt->bindValue(2, $parcela->data_parcela);          
-            $stmt->bindValue(3, $parcela->id_pagamento);
-            $stmt->bindValue(4, $parcela->indice);
+            $stmt->bindValue(3, $parcela->data_recebimento);          
+            $stmt->bindValue(4, $parcela->id_pagamento);
+            $stmt->bindValue(5, $parcela->indice);
     
             $stmt->execute();
         }
@@ -62,7 +63,7 @@ class ParcelaDAO extends DAO
         FROM parcela p
         JOIN pagamento pgt ON pgt.id = p.id_pagamento
         WHERE p.status = 'PENDENTE'
-        AND p.data_parcela <= current_date() AND pgt.forma_pagamento = 'CREDITO' OR pgt.forma_pagamento = 'DEBITO'
+        AND p.data_recebimento <= current_date() AND pgt.forma_pagamento = 'CREDITO' OR pgt.forma_pagamento = 'DEBITO'
         OR pgt.forma_pagamento = 'DINHEIRO' 
         ;";
 
@@ -103,6 +104,7 @@ class ParcelaDAO extends DAO
 		        p.indice as indice,
 		        p.valor as valor_parcela,
 	            date_format(p.data_parcela, '%d/%m/%Y') as data_parcela,
+	            date_format(p.data_recebimento, '%d/%m/%Y') as data_recebimento,
                 p.status as status      
         FROM Parcela p 
         JOIN Pagamento pgt ON pgt.id = p.id_pagamento

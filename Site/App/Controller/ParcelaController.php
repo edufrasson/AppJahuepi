@@ -32,7 +32,9 @@ class ParcelaController extends Controller
     public static function confirmParcela(){
         $model = new ParcelaModel();
 
-        parent::setResponseAsJSON($model->confirmParcela($_GET['id']));
+        $model->confirmParcela($_GET['id']);
+
+        header('Location: /relatorio');
     }
 
     public static function save()

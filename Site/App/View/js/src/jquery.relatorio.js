@@ -61,8 +61,8 @@ function getAllParcelas(id_venda) {
                 <td> ${Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(element.valor_parcela.toString())} </td> 
                 <td> ${element.data_parcela} </td>        
                 <td id="status-parcela${element.id}"> ${element.status} </td>        
-                <td class="confirm-container d-none">
-                    <a id="${element.id}" class="btn btn-danger btnConfirmarParcela">Confirmar</a>
+                <td class="confirm-container${element.id} d-none">
+                    <a href="/venda/confirm-parcela?id=${element.id}" class="btn btn-danger btnConfirmarParcela">Confirmar</a>
                 </td>
                </tr>`);
                 switch (element.status) {
@@ -76,27 +76,14 @@ function getAllParcelas(id_venda) {
                         $(`#status-parcela${element.id}`).css("color", "#8c1a0c")
                         break
                 }
-                (element.tipo_parcela == "BOLETO" && element.status == "PENDENTE") ?  $('.confirm-container').removeClass("d-none") :  $(`.confirm-container`).addClass("d-none")
+            (element.tipo_parcela == "BOLETO" && element.status != "CONFIRMADO") ? $(`.confirm-container${element.id}`).removeClass('d-none') : $(`.confirm-container${element.id}`).addClass('d-none')
+                    
+              
               
             })
         },
         error: () => {
             console.log(' :( ')
-        }
-
-    })
-}
-
-function confirmParcela(id_parcela){
-    $.ajax({
-        type: "GET",
-        url: "/venda/confirm-parcela?id=" + id_parcela,
-        dataType: 'json',
-        success: async (result) => {
-            
-        },
-        error: (result) => {
-            console.log('Erro ao confirmar parcela: ' + result)
         }
 
     })
@@ -116,11 +103,6 @@ $(document).ready(function () {
         $('#tableProdutos').empty();
 
         getAllProducts(event.target.id);
-
-    })
-
-    $('.btnConfirmarParcela').click(function(){
-        confirmParcela();
     })
 
     $('.open-parcelas').click(function (e) {

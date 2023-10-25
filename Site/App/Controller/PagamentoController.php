@@ -43,16 +43,22 @@ class PagamentoController extends Controller
 
         if ($pgt->id != 0 || $pgt->id != null) {
             $data_parcela = new DateTime($_POST['data_venda']);
-
+            
+            $data_recebimento = new DateTime($_POST['data_venda']);
+            $data_recebimento = $data_recebimento->modify("+1 month");
+            
             for ($i = 1; $i <= $pgt->qnt_parcelas; $i++) {
                 $parcela = new ParcelaModel();
                 $parcela->indice = $i;
                 $parcela->id_pagamento = $pgt->id;
                 $parcela->valor = $_POST['valor_total'] / $pgt->qnt_parcelas;
                 $parcela->data_parcela = $data_parcela->format('Y-m-d');               
+                ($pgt->forma_pagamento == "BOLETO") ? $parcela->data_recebimento = $data_parcela->format('Y-m-d') : $parcela->data_recebimento = $data_recebimento->format('Y-m-d');            
                 $model_parcela->lista_parcelas[] = $parcela;
 
                 $data_parcela = $data_parcela->modify("+1 month");
+                $data_recebimento = $data_recebimento->modify("+1 month");
+               
             }
             parent::setResponseAsJSON($model_parcela->save());
         } else
