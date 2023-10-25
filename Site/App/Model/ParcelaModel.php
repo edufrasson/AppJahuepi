@@ -29,6 +29,12 @@ class ParcelaModel extends Model
         return $dao->getByIdVenda($id);
     }
 
+    public function confirmParcela(int $id){
+        $dao = new ParcelaDAO();
+
+        return $dao->confirmParcela($id); 
+    }
+
     public function getAllRows()
     {
         $dao = new ParcelaDAO();

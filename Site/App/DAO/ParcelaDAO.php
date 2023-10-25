@@ -73,6 +73,17 @@ class ParcelaDAO extends DAO
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
+    public function confirmParcela($id){
+        $sql = "UPDATE Parcela SET status = 'CONFIRMADO' WHERE id = ?";
+
+        $stmt = parent::getConnection()->prepare($sql);
+        $stmt->bindValue(1, $id);
+
+        $stmt->execute();
+
+        return $this->getById($id);
+    }
+
     public function getById(int $id)
     {
         $sql = "SELECT * FROM Parcela WHERE id = ?";

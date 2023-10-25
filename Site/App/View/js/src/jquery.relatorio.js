@@ -87,12 +87,26 @@ function getAllParcelas(id_venda) {
     })
 }
 
+function confirmParcela(id_parcela){
+    $.ajax({
+        type: "GET",
+        url: "/venda/confirm-parcela?id=" + id_parcela,
+        dataType: 'json',
+        success: async (result) => {
+            
+        },
+        error: (result) => {
+            console.log('Erro ao confirmar parcela: ' + result)
+        }
+
+    })
+}
+
 function loadTableVenda() {
     $('.spinner-border').delay(1000).hide();
     $('.table-style').delay(1000).removeClass("off");
 
 }
-
 
 $(document).ready(function () {
     loadTableVenda();
@@ -103,6 +117,10 @@ $(document).ready(function () {
 
         getAllProducts(event.target.id);
 
+    })
+
+    $('.btnConfirmarParcela').click(function(){
+        confirmParcela();
     })
 
     $('.open-parcelas').click(function (e) {
