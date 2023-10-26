@@ -117,9 +117,24 @@ $(document).ready(function () {
         getVendaById(event.target.id);
     })
 
-    $('.btn-delete').click(function (event) {
-        deleteVenda(event.target.id);
-
-        window.location.reload(true);
+    $('.btn-delete').click(async function (event) {
+        await swal({
+            title: "Excluir registro",
+            text: "Você tem certeza que deseja apagar esse registro?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Excluir",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }).then((isConfirm) => {
+            if (isConfirm) {
+                deleteVenda(event.target.id);// Executa a função quando o usuário clica em OK   
+                window.location.reload(true);     
+            } else {
+              swal("Cancelado", "Seu registro não foi excluído.", "error");
+            }
+        }); 
     })
 })
