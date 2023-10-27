@@ -9,13 +9,18 @@ class TaxaController extends Controller
 {
     public static function index()
     {
+        //parent::isAuthenticated();
+
         $model = new TaxaModel();
         $model->getAllRows();
 
         include 'View/modules/Taxa/ListarTaxa.php';
     }
 
-    public static function getAll(){
+    public static function getAll()
+    {
+        //parent::isAuthenticated();
+
         $model = new TaxaModel();
         $model->getAllRows();
        
@@ -24,6 +29,8 @@ class TaxaController extends Controller
 
     public static function getById()
     {
+        //parent::isAuthenticated();
+
         $model = new TaxaModel();
 
         parent::setResponseAsJSON($model->getById($_GET['id']));
@@ -32,6 +39,8 @@ class TaxaController extends Controller
 
     public static function save()
     {
+        //parent::isAuthenticated();
+
         $taxa = new TaxaModel();
 
         $taxa->id = $_POST['id'];
@@ -45,6 +54,8 @@ class TaxaController extends Controller
 
     public static function delete()
     {
+        //parent::isAuthenticated();
+
         $model = new TaxaModel();
 
         $model->delete( (int) $_GET['id']);

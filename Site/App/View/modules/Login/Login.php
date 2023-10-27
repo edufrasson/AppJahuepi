@@ -1,13 +1,3 @@
-<?php
-/*session_start();
-
-if(isset($_SESSION['user_logged'])){
-    header('Location: /home'); // Redireciona para a página inicial se o usuário já estiver autenticado
-    exit;
-}
-*/
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,7 +47,7 @@ if(isset($_SESSION['user_logged'])){
                     <p>Digite seu e-mail para recuperação</p>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="email" placeholder="Email" name="email" id="email" />
+                        <input type="email" placeholder="Email" name="email_verificacao" id="email_verificacao" />
                     </div>
                     <input type="submit" value="Enviar" class="btn-login solid btn-warning" />
                 </form>

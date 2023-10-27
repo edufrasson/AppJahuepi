@@ -9,13 +9,18 @@ class MovimentacaoController extends Controller
 {
     public static function index()
     {
+        //parent::isAuthenticated();
+
         $model = new MovimentacaoModel();
         $model->getAllRows();
 
         include 'View/modules/Movimentacao/ListarMovimentacao.php';
     }
 
-    public static function getAll(){
+    public static function getAll()
+    {
+        //parent::isAuthenticated();
+
         $model = new MovimentacaoModel();
         $model->getAllRows();
        
@@ -24,6 +29,8 @@ class MovimentacaoController extends Controller
 
     public static function getById()
     {
+        //parent::isAuthenticated();
+
         $model = new MovimentacaoModel();
 
         parent::setResponseAsJSON($model->getById($_GET['id']));
@@ -31,6 +38,8 @@ class MovimentacaoController extends Controller
 
     public static function save()
     {
+        //parent::isAuthenticated();
+
         $Movimentacao = new MovimentacaoModel();
 
         $Movimentacao->id = $_POST['id'];
@@ -44,6 +53,8 @@ class MovimentacaoController extends Controller
 
     public static function delete()
     {
+        //parent::isAuthenticated();
+
         $model = new MovimentacaoModel();
 
         $model->delete( (int) $_GET['id']);

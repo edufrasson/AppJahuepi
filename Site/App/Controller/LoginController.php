@@ -5,11 +5,13 @@ namespace App\Controller;
 use App\Model\LoginModel;
 use FFI\Exception;
 
-class LoginController extends Controller{
-    public static function form(){
+class LoginController extends Controller
+{
+    public static function form()
+    {
         $loginFailed = false;
-        if(isset($_GET['erro'])){
-            if($_GET['erro'] == true){
+        if (isset($_GET['erro'])) {
+            if ($_GET['erro'] == true) {
                 $loginFailed = true;
             }
         }
@@ -18,24 +20,22 @@ class LoginController extends Controller{
     }
     public static function auth()
     {
-        try{
-            $model = new LoginModel(); 
-
+        try {
+            $model = new LoginModel();
             $user = $model->getByEmailAndSenha($_POST['email'], $_POST['senha']);
-    
-            if($user == false){
-                parent::loginFailed();                 
-            } 
-            else{
+            if ($user == false) {
+                parent::loginFailed();
+            } else {
                 $_SESSION['user_logged'] = json_encode($user);
                 header('Location: /home');
-            }            
-        }catch(Exception $e){
+            }
+        } catch (Exception $e) {
             parent::getExceptionAsJSON($e);
-        }        
+        }
     }
 
-    public static function logout(){
+    public static function logout()
+    {
         unset($_SESSION['user_logged']);
         parent::isAuthenticated();
     }
@@ -48,10 +48,11 @@ class LoginController extends Controller{
         include 'View/modules/Login/ListarUsuarios.php';
     }
 
-    public static function getAll(){
+    public static function getAll()
+    {
         $model = new LoginModel();
         $model->getAllRows();
-       
+
         parent::setResponseAsJSON($model->rows);
     }
 
@@ -72,14 +73,14 @@ class LoginController extends Controller{
 
         $usuario->save();
 
-        header("Location: /usuario");
+        parent::setResponseAsJSON($usuario);
     }
 
     public static function delete()
     {
         $model = new LoginModel();
 
-        $model->delete( (int) $_GET['id']);
+        $model->delete((int) $_GET['id']);
 
         parent::setResponseAsJSON($model);
     }

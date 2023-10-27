@@ -13,6 +13,8 @@ class PagamentoController extends Controller
 {
     public static function index()
     {
+        //parent::isAuthenticated();
+
         $model = new PagamentoModel();
         $model->getAllRows();
 
@@ -21,6 +23,8 @@ class PagamentoController extends Controller
 
     public static function getById()
     {
+        //parent::isAuthenticated();
+
         $model = new PagamentoModel();
 
         parent::setResponseAsJSON($model->getById($_GET['id']));
@@ -28,6 +32,8 @@ class PagamentoController extends Controller
 
     public static function save()
     {
+        //parent::isAuthenticated();
+
         $pagamento = new PagamentoModel();
 
         $model_parcela = new ParcelaModel();
@@ -88,6 +94,8 @@ class PagamentoController extends Controller
 
     public static function delete()
     {
+        //parent::isAuthenticated();
+
         $model = new PagamentoModel();
 
         $model->delete((int) $_GET['id']);
