@@ -9,6 +9,8 @@ class MovimentacaoController extends Controller
 {
     public static function index()
     {
+        parent::checkParcelas();
+
         $model = new MovimentacaoModel();
         $model->getAllRows();
 
@@ -31,13 +33,14 @@ class MovimentacaoController extends Controller
 
     public static function save()
     {
-        $Movimentacao = new MovimentacaoModel();
+        $movimentacao = new MovimentacaoModel();
 
-        $Movimentacao->id = $_POST['id'];
-        $Movimentacao->valor = $_POST['valor'];
-        $Movimentacao->dataMovimentacao = $_POST['dataMovimentacao'];
+        $movimentacao->id = $_POST['id'];
+        ($_POST['tipo'] == "ENTRADA") ? $movimentacao->valor = $_POST['valor'] :  $movimentacao->valor = -$_POST['valor'];
+        $movimentacao->descricao = $_POST['descricao'];
+        $movimentacao->data_movimentacao = $_POST['data_movimentacao'];
 
-        $Movimentacao->save();
+        $movimentacao->save();
 
         header("Location: /movimentacao");
     }

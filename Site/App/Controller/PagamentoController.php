@@ -63,7 +63,7 @@ class PagamentoController extends Controller
                 
                 // Adaptando as datas de recebimento de acordo com o tipo de pagamento da parcela
                 
-                ($pgt->forma_pagamento == "BOLETO") ? $parcela->data_recebimento = $data_parcela->format('Y-m-d') : "";            
+                ($pgt->forma_pagamento == "BOLETO" || $pgt->forma_pagamento == "DINHEIRO" ) ? $parcela->data_recebimento = $data_parcela->format('Y-m-d') : "";            
                 ($pgt->forma_pagamento == "DEBITO") ? $parcela->data_recebimento = $data_parcela->modify("+1 day")->format('Y-m-d') : $parcela->data_recebimento = $data_recebimento->format('Y-m-d');            
 
                 $model_parcela->lista_parcelas[] = $parcela;

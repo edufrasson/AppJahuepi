@@ -53,14 +53,14 @@ function deleteMovimentacao(id)
     });
 }
 
-function loadTableCategoria() {   
+function loadTableMovimentacao() {   
     $('.spinner-border').delay(1000).hide();
     $('.table-style').delay(1000).removeClass("off");
   
 }
 
 $(document).ready(function (){
-    loadTableCategoria();
+    loadTableMovimentacao();
 
     $('.btn-edit').click(function(event){
         getMovimentacaoById(event.target.id);

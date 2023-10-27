@@ -10,6 +10,10 @@
     flex-direction: column;
 }
 
+.final-actions{
+   height: 1%;
+}
+
 @media screen and (max-height: 768px){
     .containers-card .add-categoria{
         margin-bottom: 80px;

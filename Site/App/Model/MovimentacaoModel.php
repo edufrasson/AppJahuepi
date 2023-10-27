@@ -6,7 +6,7 @@ use App\DAO\MovimentacaoDAO;
 
 class MovimentacaoModel extends Model
 {
-    public $id, $valor, $dataMovimentacao;
+    public $id, $valor, $descricao, $data_movimentacao, $id_parcela;
 
     public function save()
     {

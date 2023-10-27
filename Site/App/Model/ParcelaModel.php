@@ -35,6 +35,12 @@ class ParcelaModel extends Model
         return $dao->confirmParcela($id); 
     }
 
+    public function checkParcelas(){
+        $dao = new ParcelaDAO();
+
+        return $dao->checkCondicoesParcela(); 
+    }
+
     public function getAllRows()
     {
         $dao = new ParcelaDAO();

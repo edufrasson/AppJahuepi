@@ -44,8 +44,8 @@ class VendaDAO extends DAO
         $sql = "SELECT
                 DATE_FORMAT(v.data_venda, '%d/%m/%Y') as data_venda,
                 v.id as id_venda,
-                p.valor_total as total_bruto,
-                p.valor_liquido as total_liquido,
+                FORMAT(p.valor_total, 2, 'de_DE') as total_bruto,
+                FORMAT(p.valor_liquido, 2, 'de_DE') as total_liquido,
                 p.qnt_parcela as parcelas,
                 p.forma_pagamento as forma_pagamento,
                 p.id as id_pagamento       

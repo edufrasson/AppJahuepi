@@ -14,31 +14,40 @@ class MovimentacaoDAO extends DAO
 
     public function insert(MovimentacaoModel $model)
     {
-        $sql = "INSERT INTO Movimentacao (valor, data_Movimentacao) VALUE (?, ?)";
+        $sql = "INSERT INTO Movimentacao (descricao, valor, data_movimentacao, id_parcela) VALUE (?, ?, ?, ?)";
 
         $stmt = parent::getConnection()->prepare($sql);
 
-        $stmt->bindValue(1, $model->valor);
-        $stmt->bindValue(2, $model->dataMovimentacao);
+        $stmt->bindValue(1, $model->descricao);
+        $stmt->bindValue(2, $model->valor);
+        $stmt->bindValue(3, $model->data_movimentacao);
+        $stmt->bindValue(4, $model->id_parcela);
 
         $stmt->execute();
     }
 
     public function update(MovimentacaoModel $model)
     {
-        $sql = "UPDATE Movimentacao SET valor=?, data_Movimentacao=? WHERE id=?";
+        $sql = "UPDATE Movimentacao SET valor = ?, data_movimentacao = ?, id_parcela = ? WHERE id=?";
 
         $stmt = parent::getConnection()->prepare($sql);
-        $stmt->bindValue(1, $model->valor);
-        $stmt->bindValue(2, $model->dataMovimentacao);
-        $stmt->bindValue(3, $model->id);
+        $stmt->bindValue(1, $model->descricao);
+        $stmt->bindValue(2, $model->valor);
+        $stmt->bindValue(3, $model->data_movimentacao);
+        $stmt->bindValue(4, $model->id_parcela);
+        $stmt->bindValue(5, $model->id);
 
         $stmt->execute();
     }
 
     public function select()
     {
-        $sql = "SELECT * FROM Movimentacao";
+        $sql = "SELECT  m.id as id,
+                        m.descricao as descricao,
+                        FORMAT(m.valor, 2, 'de_DE') as valor,
+                        m.id_parcela as id_parcela,
+                        DATE_FORMAT(m.data_movimentacao, '%d/%m/%Y') as data_movimentacao
+                FROM Movimentacao m";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -65,7 +74,7 @@ class MovimentacaoDAO extends DAO
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
-        
+
         $stmt->execute();
     }
 }

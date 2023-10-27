@@ -6,6 +6,10 @@ use FFI\Exception;
 
 abstract class Controller{
     
+    protected static function checkParcelas(){
+        ParcelaController::checkParcelas();
+    }
+    
     protected static function loginFailed(){
         header('Location: /login?erro=true');
     }

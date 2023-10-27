@@ -2,6 +2,7 @@
 
 namespace App\DAO;
 
+use App\Model\MovimentacaoModel;
 use App\Model\ParcelaModel;
 use \PDO;
 
@@ -64,7 +65,7 @@ class ParcelaDAO extends DAO
         JOIN pagamento pgt ON pgt.id = p.id_pagamento
         WHERE p.status = 'PENDENTE'
         AND p.data_recebimento <= current_date() AND pgt.forma_pagamento = 'CREDITO' OR pgt.forma_pagamento = 'DEBITO'
-        OR pgt.forma_pagamento = 'DINHEIRO' 
+        OR pgt.forma_pagamento = 'DINHEIRO' AND p.status = 'PENDENTE'
         ;";
 
         $stmt = parent::getConnection()->prepare($sql);
@@ -80,7 +81,8 @@ class ParcelaDAO extends DAO
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
 
-        $stmt->execute();
+        $stmt->execute();      
+        
 
         return $this->getById($id);
     }

@@ -12,6 +12,8 @@ class VendaController extends Controller
 
     public static function index()
     {
+        parent::checkParcelas();
+
         $model = new VendaModel();
         unset($carrinho_produtos);
         $model->getAllProdutos();
