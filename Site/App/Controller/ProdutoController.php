@@ -7,7 +7,10 @@ use App\Controller\Controller;
 
 class ProdutoController extends Controller
 {
-    public static function getList(){
+    public static function getList()
+    {
+        //parent::isAuthenticated();
+
         $model = new ProdutoModel();
         $data = $model->getAllRows();
 
@@ -16,6 +19,8 @@ class ProdutoController extends Controller
 
     public static function index()
     {
+        //parent::isAuthenticated();
+
         $model = new ProdutoModel();
         $model->getAllRows();
         $model->getAllCategoria();
@@ -25,6 +30,8 @@ class ProdutoController extends Controller
 
     public static function getById()
     {
+        //parent::isAuthenticated();
+
         $model = new ProdutoModel();
 
         parent::setResponseAsJSON($model->getById($_GET['id']));
@@ -32,6 +39,8 @@ class ProdutoController extends Controller
 
     public static function save()
     {
+        //parent::isAuthenticated();
+
         $produto = new ProdutoModel();
 
         $produto->id = $_POST['id'];                          
@@ -48,6 +57,8 @@ class ProdutoController extends Controller
 
     public static function delete()
     {
+        //parent::isAuthenticated();
+
         $model = new ProdutoModel();
 
         $model->delete( (int) $_GET['id']);

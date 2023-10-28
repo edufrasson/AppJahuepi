@@ -10,6 +10,8 @@ class ParcelaController extends Controller
 {
     public static function index()
     {
+        //parent::isAuthenticated();
+
         $model = new ParcelaModel();
         $model->getAllRows();
 
@@ -17,7 +19,9 @@ class ParcelaController extends Controller
     }
 
     public static function getById()
-    {
+    {   
+        //::isAuthenticated();
+        
         $model = new ParcelaModel();
 
         parent::setResponseAsJSON($model->getById($_GET['id']));
@@ -46,6 +50,8 @@ class ParcelaController extends Controller
 
     public static function getByIdVenda()
     {
+        //parent::isAuthenticated();
+
         $model = new ParcelaModel();
 
         parent::setResponseAsJSON($model->getByIdVenda($_GET['id']));
@@ -53,6 +59,8 @@ class ParcelaController extends Controller
 
     public static function confirmParcela()
     {
+        //parent::isAuthenticated();
+
         $model = new ParcelaModel();
 
         $model->confirmParcela($_GET['id']);
@@ -62,6 +70,8 @@ class ParcelaController extends Controller
 
     public static function save()
     {
+        //parent::isAuthenticated();
+
         $parcela = new ParcelaModel();
 
         $parcela->id = $_POST['id'];
@@ -77,6 +87,8 @@ class ParcelaController extends Controller
 
     public static function delete()
     {
+        //parent::isAuthenticated();
+
         $model = new ParcelaModel();
 
         $model->delete((int) $_GET['id']);

@@ -9,13 +9,18 @@ class ProdutoVendaController extends Controller
 {
     public static function index()
     {
+        //parent::isAuthenticated();
+
         $model = new ProdutoVendaModel();
         $model->getAllRows();
 
         parent::setResponseAsJSON($model);
     }
 
-    public static function getProdutos(){
+    public static function getProdutos()
+    {
+        //parent::isAuthenticated();
+
         $model = new ProdutoVendaModel(); 
 
         parent::setResponseAsJSON($model->getProdutos($_GET['id']));
@@ -23,6 +28,8 @@ class ProdutoVendaController extends Controller
 
     public static function getById()
     {
+        //parent::isAuthenticated();
+        
         $model = new ProdutoVendaModel();
 
         parent::setResponseAsJSON($model->getById($_GET['id']));
@@ -30,6 +37,8 @@ class ProdutoVendaController extends Controller
 
     public static function save()
     { 
+        //parent::isAuthenticated();
+
         $arr_produtos = json_decode($_POST['lista_produtos']);
         $model = new ProdutoVendaModel();
         $model->id_venda = $_POST['id_venda'];     
@@ -38,7 +47,11 @@ class ProdutoVendaController extends Controller
 
         parent::setResponseAsJSON($res);
     }
-    public static function baixaEstoque(){
+
+    public static function baixaEstoque()
+    {
+        //parent::isAuthenticated();
+
         $model = new ProdutoVendaModel();       
         
         parent::setResponseAsJSON($model->baixaEstoque($model->getById($_POST['id_venda'])));
@@ -46,6 +59,8 @@ class ProdutoVendaController extends Controller
 
     public static function delete()
     {
+        //parent::isAuthenticated();
+
         $model = new ProdutoVendaModel();
 
         $model->delete( (int) $_GET['id']);
