@@ -28,6 +28,12 @@ class MovimentacaoController extends Controller
         parent::setResponseAsJSON($model->rows);
     }
 
+    public static function faturamentoMes(){
+        $model = new MovimentacaoModel();      
+       
+        parent::setResponseAsJSON($model->getFaturamentoMes());
+    }
+
     public static function getById()
     {
         //parent::isAuthenticated();

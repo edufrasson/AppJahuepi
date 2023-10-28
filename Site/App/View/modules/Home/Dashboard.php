@@ -18,6 +18,7 @@ if(!isset($_SESSION['user_logged'])){
     <?php include 'View/includes/css_config.php' ?>
     <link rel="stylesheet" href="View/modules/Home/home.css">
     <title>Dashboard - JahuEPI</title>
+    <?php include 'View/js/graphics.php'?>
 </head>
 
 <body>
@@ -60,7 +61,14 @@ if(!isset($_SESSION['user_logged'])){
                 </div>
             </div>
             <div class="main-card">
+                <div class="graphic-bar-container">
+                    <div id="faturamento-mes">
 
+                    </div>
+                </div>
+                <div class="graphic-pie-container">
+
+                </div>
             </div>
         </div>
     </div>

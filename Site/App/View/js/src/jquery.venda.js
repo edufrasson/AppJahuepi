@@ -272,7 +272,6 @@ $(document).ready(function () {
 
   /* 
     Função que chama todas as requisições necessárias para inserir uma venda completa
-
   */
   $('#finalizarVenda').click(async () => {
     await inserirVenda($('#data_venda').val(), $('#id').val())

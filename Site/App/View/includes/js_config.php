@@ -4,6 +4,7 @@
 <script src="View/js/DataTable/datatables.min.js"></script>
 <script src="View/js/src/jquery.global.js"></script>
 <script src="View/js/plugin/sweetalert.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"></script>
 
 <!-- Bootstrap Select -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>

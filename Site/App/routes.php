@@ -78,6 +78,9 @@ switch ($url) {
     case '/movimentacao/get-by-id':
         MovimentacaoController::getById();
         break;
+    case '/movimentacao/faturamento-mes':
+        MovimentacaoController::faturamentoMes();
+        break;
     case '/movimentacao/delete':
         MovimentacaoController::delete();
         break;

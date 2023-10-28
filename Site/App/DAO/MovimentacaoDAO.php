@@ -109,6 +109,44 @@ class MovimentacaoDAO extends DAO
         return $stmt->fetchObject();
     }
 
+    public function getTotalEntradaByMonth()
+    {
+        $sql = "SELECT 
+                    monthname(m.data_movimentacao) as mes,
+
+                    sum(m.valor) as total_entrada
+                FROM Movimentacao m
+                WHERE 
+                    m.valor > 0
+                GROUP BY monthname(m.data_movimentacao);    
+        ";
+
+        $stmt = parent::getConnection()->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
+
+    public function getTotalSaidaByMonth()
+    {
+        $sql = "SELECT 
+                    monthname(m.data_movimentacao) as num_mes,
+
+                    sum(m.valor) as total_saida
+                FROM Movimentacao m
+                WHERE 
+                    m.valor < 0
+                GROUP BY monthname(m.data_movimentacao);    
+        ";
+
+        $stmt = parent::getConnection()->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchObject();
+    }
+
     public function delete(int $id)
     {
         $sql = "DELETE FROM Movimentacao WHERE id = ?";
