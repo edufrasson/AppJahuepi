@@ -21,17 +21,17 @@ class ParcelaDAO extends DAO
             $sql = "INSERT INTO Parcela (valor, data_parcela, data_recebimento, id_pagamento, indice) VALUE (?, ?, ?, ?, ?)";
 
             $stmt = parent::getConnection()->prepare($sql);
-    
+
             $stmt->bindValue(1, $parcela->valor);
-            $stmt->bindValue(2, $parcela->data_parcela);          
-            $stmt->bindValue(3, $parcela->data_recebimento);          
+            $stmt->bindValue(2, $parcela->data_parcela);
+            $stmt->bindValue(3, $parcela->data_recebimento);
             $stmt->bindValue(4, $parcela->id_pagamento);
             $stmt->bindValue(5, $parcela->indice);
-    
+
             $stmt->execute();
         }
-        
-        return (parent::getConnection()->commit()) ? true : null;  
+
+        return (parent::getConnection()->commit()) ? true : null;
     }
 
     public function update(ParcelaModel $model)
@@ -59,13 +59,19 @@ class ParcelaDAO extends DAO
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
-    public function checkCondicoesParcela(){
+    public function checkCondicoesParcela()
+    {
         $sql = "SELECT p.id as id_parcela
         FROM parcela p
         JOIN pagamento pgt ON pgt.id = p.id_pagamento
-        WHERE p.status = 'PENDENTE'
-        AND p.data_recebimento <= current_date() AND pgt.forma_pagamento = 'CREDITO' OR pgt.forma_pagamento = 'DEBITO'
-        OR pgt.forma_pagamento = 'DINHEIRO' AND p.status = 'PENDENTE'
+        WHERE 
+            p.status = 'PENDENTE'
+        AND 
+            p.data_recebimento <= current_date() 
+        AND 
+            pgt.forma_pagamento = 'CREDITO' OR pgt.forma_pagamento = 'DEBITO' AND p.status = 'PENDENTE' AND p.data_recebimento <= current_date()
+        OR  
+            pgt.forma_pagamento = 'DINHEIRO' AND p.status = 'PENDENTE'
         ;";
 
         $stmt = parent::getConnection()->prepare($sql);
@@ -75,14 +81,15 @@ class ParcelaDAO extends DAO
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
-    public function confirmParcela($id){
+    public function confirmParcela($id)
+    {
         $sql = "UPDATE Parcela SET status = 'CONFIRMADO' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
 
-        $stmt->execute();      
-        
+        $stmt->execute();
+
 
         return $this->getById($id);
     }
@@ -99,7 +106,43 @@ class ParcelaDAO extends DAO
         return $stmt->fetchObject("App\Model\ParcelaModel");
     }
 
-    public function getByIdVenda(int $id){
+    public function getTotalPendenteOfCurrentMonth()
+    {
+        $sql = "SELECT 
+                    FORMAT(sum(P.valor), 2, 'de_DE') as total_pendente
+                FROM Parcela p
+                WHERE 
+                month(p.data_recebimento) = month(CURRENT_TIMESTAMP())
+                AND
+                    p.status = 'PENDENTE'";
+
+        $stmt = parent::getConnection()->prepare($sql);       
+
+        $stmt->execute();
+
+        return $stmt->fetchObject();
+    }
+
+    public function getTotalPendenteOfMonth($month)
+    {
+        $sql = "SELECT 
+                    sum(p.valor)
+                FROM Parcela p
+                WHERE 
+                month(p.data_recebimento) = ?
+                AND
+                    p.status = 'PENDENTE'";
+
+        $stmt = parent::getConnection()->prepare($sql);  
+        $stmt->bindValue(1, $month);     
+
+        $stmt->execute();
+
+        return $stmt->fetchObject();
+    }
+
+    public function getByIdVenda(int $id)
+    {
         $sql = "SELECT 
                 p.id as id,
                 pgt.forma_pagamento as tipo_parcela,
@@ -128,7 +171,7 @@ class ParcelaDAO extends DAO
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
-        
+
         $stmt->execute();
     }
 }

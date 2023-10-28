@@ -25,6 +25,7 @@ class VendaController extends Controller
     public static function relatorio()
     {
         //parent::isAuthenticated();
+        parent::checkParcelas();
 
         $model = new VendaModel();
         $model->getAllRows();

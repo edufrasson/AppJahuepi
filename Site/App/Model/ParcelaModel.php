@@ -29,6 +29,12 @@ class ParcelaModel extends Model
         return $dao->getByIdVenda($id);
     }
 
+    public function getTotalPendenteOfCurrentMonth(){
+        $dao = new ParcelaDAO();
+
+        return $dao->getTotalPendenteOfCurrentMonth();
+    }
+
     public function confirmParcela(int $id){
         $dao = new ParcelaDAO();
 

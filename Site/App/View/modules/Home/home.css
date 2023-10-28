@@ -1,0 +1,33 @@
+.container-card{
+    background-color: #bebebe !important;;
+}
+
+.header-card{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.dashboard-label{
+    width: 20%;
+    height: 17%;
+    background-color: white;
+    box-shadow: 5px 4px 11px -3px rgba(0,0,0,0.34);
+}
+
+.head-label{
+    text-align: center;
+    font-size: 15px;
+    color: #9b9090;
+    padding: 5px;
+}
+
+.body-label{
+    text-align: center;
+    font-size: 30px;
+}
+
+#label-entrada{color: rgb(44, 150, 44)}
+#label-saida{color: rgb(185, 33, 33)}
+#label-pendente{color: rgb(214, 214, 61)}

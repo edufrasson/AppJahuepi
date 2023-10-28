@@ -37,6 +37,25 @@ class MovimentacaoModel extends Model
         return ($obj) ? $obj : new MovimentacaoModel();
     }
 
+    public function getSaldo()
+    {
+        $dao = new MovimentacaoDAO();
+
+        return $dao->getSaldo();        
+    }
+    public function getTotalEntrada()
+    {
+        $dao = new MovimentacaoDAO();
+
+        return $dao->getTotalEntrada();  
+    }
+    public function getTotalSaida()
+    {
+        $dao = new MovimentacaoDAO();
+
+        return $dao->getTotalSaida();  
+    }
+
     public function delete(int $id)
     {
         $dao = new MovimentacaoDAO();

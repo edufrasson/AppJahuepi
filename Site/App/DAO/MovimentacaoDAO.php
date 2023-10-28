@@ -68,6 +68,47 @@ class MovimentacaoDAO extends DAO
         return $stmt->fetchObject("App\Model\MovimentacaoModel");
     }
 
+    public function getSaldo()
+    {
+        $sql = "SELECT  
+                    FORMAT(sum(m.valor), 2, 'de_DE') as total_saldo
+                FROM Movimentacao m";
+
+        $stmt = parent::getConnection()->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchObject();
+    }
+    public function getTotalEntrada()
+    {
+        $sql = "SELECT  
+                    FORMAT(sum(m.valor), 2, 'de_DE') as total_entrada
+                FROM Movimentacao m
+                WHERE m.valor > 0
+        ";
+
+        $stmt = parent::getConnection()->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchObject();
+    }
+    public function getTotalSaida()
+    {
+        $sql = "SELECT  
+                    FORMAT(sum(m.valor), 2, 'de_DE') as total_saida
+                FROM Movimentacao m
+                WHERE m.valor < 0
+        ";
+
+        $stmt = parent::getConnection()->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchObject();
+    }
+
     public function delete(int $id)
     {
         $sql = "DELETE FROM Movimentacao WHERE id = ?";
