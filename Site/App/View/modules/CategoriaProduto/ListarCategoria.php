@@ -31,10 +31,9 @@
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
-                        <table id="tableCategoria" class="table  table-style off">
+                        <table id="tableCategoria" class="table  table-bordered table-style off">
                             <thead>
-                                <tr>
-                                    <th>ID</th>
+                                <tr>                                    
                                     <th>Descricao</th>
                                     <th>Ações</th>
                                 </tr>
@@ -42,12 +41,11 @@
                             <tbody>
                                 <?php if ($model->rows !== null) : ?>
                                     <?php foreach ($model->rows as $categoria) : ?>
-                                        <tr>
-                                            <td><?= $categoria->id ?></td>
+                                        <tr>                                            
                                             <td><?= $categoria->descricao ?></td>
                                             <td class="actions-list">
-                                                <box-icon name="edit" color="#e8ac07" id="<?= $categoria->id ?>" data-bs-toggle="modal" data-bs-target="#modalCategoria" class="btn-icon btn-edit"></box-icon>
-                                                <box-icon name="trash" color="#e8ac07" id="<?= $categoria->id ?>" class="btn-icon btn-delete"></box-icon>
+                                                <box-icon name="edit" color="blue" id="<?= $categoria->id ?>" data-bs-toggle="modal" data-bs-target="#modalCategoria" class="btn-icon btn-edit"></box-icon>
+                                                <box-icon name="trash" color="red" id="<?= $categoria->id ?>" class="btn-icon btn-delete"></box-icon>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>

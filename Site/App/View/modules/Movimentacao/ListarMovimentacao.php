@@ -55,8 +55,8 @@
                                                 <?= ($movimentacao->valor > 0) ? "ENTRADA" : "SAÍDA" ?>
                                             </td>
                                             <td class="actions-list">
-                                                <box-icon name="edit" color="#e8ac07" id="<?= $movimentacao->id ?>" data-bs-toggle="modal" data-bs-target="#modalMovimentacao" class="btn-icon btn-edit"></box-icon>
-                                                <box-icon name="trash" color="#e8ac07" id="<?= $movimentacao->id ?>" class="btn-icon btn-delete"></box-icon>
+                                                <a class="text-decoration-none" href="/editar_movimentacao?id=<?= $movimentacao->id ?>"><box-icon name="edit" color="blue" id="<?= $movimentacao->id ?>" data-bs-toggle="modal" data-bs-target="#modalMovimentacao" class="btn-icon btn-edit"></box-icon></a>
+                                                <box-icon name="trash" color="red" id="<?= $movimentacao->id ?>" class="btn-icon btn-delete"></box-icon>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>

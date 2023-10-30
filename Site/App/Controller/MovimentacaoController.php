@@ -60,6 +60,13 @@ class MovimentacaoController extends Controller
         header("Location: /movimentacao");
     }
 
+    public static function edit(){
+        $model = new MovimentacaoModel();
+        $dados = $model->getById($_GET['id']);
+
+        include 'View/modules/Movimentacao/EditarMovimentacao.php';
+    }
+
     public static function delete()
     {
         //parent::isAuthenticated();

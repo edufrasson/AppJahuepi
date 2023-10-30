@@ -35,8 +35,7 @@
                         </div>
                         <table id="tableTaxa" class="table table-bordered table-style off">
                             <thead>
-                                <tr>
-                                    <th>Id</th>
+                                <tr>                                    
                                     <th>Código</th>
                                     <th>Valor</th>
                                     <th>Ações</th>
@@ -44,14 +43,13 @@
                             </thead>
                             <tbody>
                                 <?php if ($model->rows !== null) : ?>
-                                    <?php foreach ($model->rows as $Taxa) : ?>
-                                        <tr>
-                                            <td><?= $Taxa->id ?></td>
-                                            <td><?= $Taxa->codigo ?></td>
-                                            <td><?= $Taxa->valor * 100 ?>%</td>
+                                    <?php foreach ($model->rows as $taxa) : ?>
+                                        <tr>                                            
+                                            <td><?= $taxa->codigo ?></td>
+                                            <td><?= $taxa->valor * 100 ?>%</td>
                                             <td class="actions-list">
-                                                <box-icon name="edit" color="#e8ac07" id="<?= $Taxa->id ?>" data-bs-toggle="modal" data-bs-target="#modalTaxa" class="btn-icon btn-edit-taxa"></box-icon>
-                                                <box-icon name="trash" color="#e8ac07" id="<?= $Taxa->id ?>" class="btn-icon btn-delete-taxa"></box-icon>
+                                                <box-icon name="edit" color="blue" id="<?= $taxa->id ?>" data-bs-toggle="modal" data-bs-target="#modalTaxa" class="btn-icon btn-edit-taxa"></box-icon>
+                                                <box-icon name="trash" color="red" id="<?= $taxa->id ?>" class="btn-icon btn-delete-taxa"></box-icon>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>

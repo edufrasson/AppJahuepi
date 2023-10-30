@@ -1,0 +1,13 @@
+.main-card .input-container-edit .btn {
+    background-color: white;
+    border-color: #fcfcfc;
+}
+
+.input-container-edit input, select{
+    width: 300px;
+}
+
+.selectpicker{
+    width: 300px;
+}
+

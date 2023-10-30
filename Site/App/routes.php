@@ -86,6 +86,10 @@ switch ($url) {
     case '/movimentacao/delete':
         MovimentacaoController::delete();
         break;
+    case '/editar_movimentacao':
+        MovimentacaoController::edit();
+        break;
+
 
         /* Parcela */
 

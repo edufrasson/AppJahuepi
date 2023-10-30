@@ -35,8 +35,7 @@
                         </div>
                         <table id="tableUsuario" class="table table-bordered table-style off">
                             <thead>
-                                <tr>
-                                    <th>ID</th>
+                                <tr>                                    
                                     <th>Email</th>
                                     <th>Senha</th>
                                     <th>Ações</th>
@@ -45,13 +44,12 @@
                             <tbody>
                                 <?php if ($model->rows !== null) : ?>
                                     <?php foreach ($model->rows as $usuario) : ?>
-                                        <tr>
-                                            <td><?= $usuario->id ?></td>
+                                        <tr>                                            
                                             <td><?= $usuario->email ?></td>
                                             <td><?= $usuario->senha ?></td>
                                             <td class="actions-list">
-                                                <box-icon name="edit" color="#e8ac07" id="<?= $usuario->id ?>" data-bs-toggle="modal" data-bs-target="#modalUsuario" class="btn-icon btn-edit"></box-icon>
-                                                <box-icon name="trash" color="#e8ac07" id="<?= $usuario->id ?>" class="btn-icon btn-delete"></box-icon>
+                                                <box-icon name="edit" color="blue" id="<?= $usuario->id ?>" data-bs-toggle="modal" data-bs-target="#modalUsuario" class="btn-icon btn-edit"></box-icon>
+                                                <box-icon name="trash" color="red" id="<?= $usuario->id ?>" class="btn-icon btn-delete"></box-icon>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>

@@ -28,7 +28,7 @@ class MovimentacaoDAO extends DAO
 
     public function update(MovimentacaoModel $model)
     {
-        $sql = "UPDATE Movimentacao SET valor = ?, data_movimentacao = ?, id_parcela = ? WHERE id=?";
+        $sql = "UPDATE Movimentacao SET descricao = ?, valor = ?, data_movimentacao = ?, id_parcela = ? WHERE id=?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $model->descricao);
