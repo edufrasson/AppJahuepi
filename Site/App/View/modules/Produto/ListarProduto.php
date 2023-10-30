@@ -54,8 +54,8 @@
                                             <td><?= $produto->quantidade ?></td>
                                             <td><?= $produto->codigo_barra ?></td>
                                             <td class="actions-list">
-                                                <a class="text-decoration-none" href="/editar_produto?id=<?= $produto->id ?>"><box-icon name="edit" color="blue" id="<?= $produto->id ?>" data-bs-toggle="modal" class="btn-icon btn-edit"></box-icon></a>
-                                                <box-icon name="trash" color="red" id="<?= $produto->id ?>" class="btn-icon btn-delete"></box-icon>
+                                                <a class="text-decoration-none" href="/editar_produto?id=<?= $produto->id ?>"><i class="bx bx-edit btn-icon" id="<?= $produto->id ?>" data-bs-toggle="modal" style="color: blue;"></i>
+                                                <i class='bx bx-trash btn-icon' id="<?= $produto->id ?>" style="color: red;"></i>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>

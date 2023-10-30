@@ -48,8 +48,8 @@
                                             <td><?= $usuario->email ?></td>
                                             <td><?= $usuario->senha ?></td>
                                             <td class="actions-list">
-                                                <box-icon name="edit" color="blue" id="<?= $usuario->id ?>" data-bs-toggle="modal" data-bs-target="#modalUsuario" class="btn-icon btn-edit"></box-icon>
-                                                <box-icon name="trash" color="red" id="<?= $usuario->id ?>" class="btn-icon btn-delete"></box-icon>
+                                            <i class="bx bx-edit btn-icon" id="<?= $usuario->id ?>" data-bs-toggle="modal" data-bs-target="#modalUsuario" style="color: blue;"></i>
+                                                <i class='bx bx-trash btn-icon' id="<?= $usuario->id ?>" style="color: red;"></i>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>

@@ -38,7 +38,7 @@ body {
   background: #bebebe !important;
 }
 
-.off{
+.off {
   opacity: 0;
 }
 
@@ -80,11 +80,11 @@ body {
   padding: 20px;
 }
 
-.buttons-container{
+.buttons-container {
   height: 5%;
 }
 
-.form-add-product{
+.form-add-product {
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -92,7 +92,7 @@ body {
   text-align: center;
 }
 
-.form-add-product #adicionarProduto{
+.form-add-product #adicionarProduto {
   margin-bottom: -15px;
 }
 
@@ -110,7 +110,7 @@ body {
   font-size: 25px;
 }
 
-.final-actions .btn a{
+.final-actions .btn a {
   text-decoration: none;
   color: #000;
 }
@@ -163,6 +163,10 @@ body {
 .data-actions {
   display: flex;
   justify-content: center;
+}
+
+.btn-icon {
+  font-size: 25px;
 }
 
 /* COMANDOS PARA RESPONSIVIDADE */
@@ -234,7 +238,7 @@ body {
     width: 92vw;
     margin-left: 7%;
   }
-  
+
 }
 
 @media screen and (max-width: 1366px) {
@@ -274,21 +278,21 @@ body {
 }
 
 @media screen and (max-width: 1152px) {
-  .final-actions .btn-pagamento{
+  .final-actions .btn-pagamento {
     margin-top: 50px;
   }
 
-  .final-actions .btn-addCategoria{
+  .final-actions .btn-addCategoria {
     margin-top: 20px;
   }
 }
 
 @media screen and (max-width: 1128px) {
-  .final-actions .btn-pagamento{
+  .final-actions .btn-pagamento {
     margin-top: -25px;
   }
 
-  .final-actions .btn-addCategoria{
+  .final-actions .btn-addCategoria {
     margin-top: -75px;
   }
 
@@ -328,7 +332,7 @@ body {
     display: none;
   }
 
-  .final-actions .btn{
+  .final-actions .btn {
     margin-left: 17.5%;
     margin-top: 30px;
   }

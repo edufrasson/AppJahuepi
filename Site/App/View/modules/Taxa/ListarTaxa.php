@@ -48,8 +48,8 @@
                                             <td><?= $taxa->codigo ?></td>
                                             <td><?= $taxa->valor * 100 ?>%</td>
                                             <td class="actions-list">
-                                                <box-icon name="edit" color="blue" id="<?= $taxa->id ?>" data-bs-toggle="modal" data-bs-target="#modalTaxa" class="btn-icon btn-edit-taxa"></box-icon>
-                                                <box-icon name="trash" color="red" id="<?= $taxa->id ?>" class="btn-icon btn-delete-taxa"></box-icon>
+                                            <i class="bx bx-edit btn-icon" id="<?= $taxa->id ?>" data-bs-toggle="modal" data-bs-target="#modalTaxa" style="color: blue;"></i>
+                                                <i class='bx bx-trash btn-icon' id="<?= $taxa->id ?>" style="color: red;"></i>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>
