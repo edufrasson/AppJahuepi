@@ -61,6 +61,14 @@ class ProdutoController extends Controller
        header("Location: /produto");
     }
 
+    public static function edit(){
+        $model = new ProdutoModel();
+        $dados = $model->getById($_GET['id']);
+        $model->getAllCategoria();
+
+        include 'View/modules/Produto/EditarProduto.php';
+    }
+
     public static function delete()
     {
         //parent::isAuthenticated();

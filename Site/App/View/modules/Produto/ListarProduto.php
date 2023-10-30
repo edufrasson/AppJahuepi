@@ -54,7 +54,7 @@
                                             <td><?= $produto->quantidade ?></td>
                                             <td><?= $produto->codigo_barra ?></td>
                                             <td class="actions-list">
-                                                <box-icon name="edit" color="blue" id="<?= $produto->id ?>" data-bs-toggle="modal" data-bs-target="#modalProduto" class="btn-icon btn-edit"></box-icon>
+                                                <a class="text-decoration-none" href="/editar_produto?id=<?= $produto->id ?>"><box-icon name="edit" color="blue" id="<?= $produto->id ?>" data-bs-toggle="modal" class="btn-icon btn-edit"></box-icon></a>
                                                 <box-icon name="trash" color="red" id="<?= $produto->id ?>" class="btn-icon btn-delete"></box-icon>
                                             </td>
                                         </tr>
