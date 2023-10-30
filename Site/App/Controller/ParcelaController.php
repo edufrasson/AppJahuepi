@@ -62,8 +62,18 @@ class ParcelaController extends Controller
         //parent::isAuthenticated();
 
         $model = new ParcelaModel();
+        
 
         $model->confirmParcela($_GET['id']);
+        $dados = $model->getById($_GET['id']);
+
+        $model_mov = new MovimentacaoModel();
+        $model_mov->descricao = "Recebimento de Parcela";
+        $model_mov->data_movimentacao = $dados->data_recebimento;
+        $model_mov->valor = $dados->valor;
+        $model_mov->id_parcela = $dados->id_parcela;
+        $model_mov->save();
+        
 
         header('Location: /relatorio');
     }

@@ -46,16 +46,16 @@
                             </thead>
                             <tbody>
                                 <?php if ($model->rows !== null) : ?>
-                                    <?php foreach ($model->rows as $Produto) : ?>
+                                    <?php foreach ($model->rows as $produto) : ?>
                                         <tr>
 
-                                            <td><?= $Produto->descricao ?></td>
-                                            <td><?= $Produto->preco ?></td>
-                                            <td><?= $Produto->quantidade ?></td>
-                                            <td><?= $Produto->codigo_barra ?></td>
+                                            <td><?= $produto->descricao ?></td>
+                                            <td>R$ <?= $produto->valor_produto ?></td>
+                                            <td><?= $produto->quantidade ?></td>
+                                            <td><?= $produto->codigo_barra ?></td>
                                             <td class="actions-list">
-                                                <box-icon name="edit" color="blue" id="<?= $Produto->id ?>" data-bs-toggle="modal" data-bs-target="#modalProduto" class="btn-icon btn-edit"></box-icon>
-                                                <box-icon name="trash" color="red" id="<?= $Produto->id ?>" class="btn-icon btn-delete"></box-icon>
+                                                <box-icon name="edit" color="blue" id="<?= $produto->id ?>" data-bs-toggle="modal" data-bs-target="#modalProduto" class="btn-icon btn-edit"></box-icon>
+                                                <box-icon name="trash" color="red" id="<?= $produto->id ?>" class="btn-icon btn-delete"></box-icon>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>
@@ -71,9 +71,9 @@
                 </div>
             </div>
             <div class="containers-card action-container">
-                <div class="final-actions">
+                <!--<div class="final-actions">
                     <button class="btn btn-warning btn-addCategoria" data-bs-toggle="modal"><a href="/categoria_produto">Adicionar Categoria</a></button>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>

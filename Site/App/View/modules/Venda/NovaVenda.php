@@ -31,7 +31,11 @@
                         <div class="input-container select-container">
                             <label for="id_produto">Produto:</label><br>
                             <select class="selectpicker bg-light" name="id_produto" id="id_produto">
-                                <option value="">Cadastre um produto primeiro!</option>
+                                <option value="">Selecione um produto!</option>
+                                <?php if ($model->arr_produtos == null) : ?>
+                                    <option value="">Cadastre um produto primeiro!</option>
+                                <?php endif; ?>
+
                                 <?php foreach ($model->arr_produtos as $produto) : ?>
                                     <option value="<?= $produto->id ?>"><?= $produto->descricao ?></option>
                                 <?php endforeach; ?>
@@ -75,7 +79,7 @@
 
         </div>
     </div>
-    <?php include 'View/includes/js_config.php' ?>    
+    <?php include 'View/includes/js_config.php' ?>
     <?php include 'View/modules/Venda/ModalPagamento.php' ?>
     <script src="View/js/src/jquery.venda.js"></script>
 </body>

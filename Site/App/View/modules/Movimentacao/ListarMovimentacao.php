@@ -55,7 +55,7 @@
                                                 <?= ($movimentacao->valor > 0) ? "ENTRADA" : "SAÍDA" ?>
                                             </td>
                                             <td class="actions-list">
-                                                <a class="text-decoration-none" href="/editar_movimentacao?id=<?= $movimentacao->id ?>"><box-icon name="edit" color="blue" id="<?= $movimentacao->id ?>" data-bs-toggle="modal" data-bs-target="#modalMovimentacao" class="btn-icon btn-edit"></box-icon></a>
+                                                <a class="text-decoration-none" href="/editar_movimentacao?id=<?= $movimentacao->id ?>"><box-icon name="edit" color="blue" id="<?= $movimentacao->id ?>" data-bs-toggle="modal" class="btn-icon btn-edit"></box-icon></a>
                                                 <box-icon name="trash" color="red" id="<?= $movimentacao->id ?>" class="btn-icon btn-delete"></box-icon>
                                             </td>
                                         </tr>
@@ -107,7 +107,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn" style="background-color: #f4c71e;" id="adicionar">Salvar Registro</button>
+                        <button type="submit" class="btn" style="background-color: #f4c71e;" id="adicionarMovimentacao">Salvar </button>
                     </div>
                 </form>
             </div>

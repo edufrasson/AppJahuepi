@@ -48,7 +48,9 @@ class ProdutoDAO extends DAO
 
     public function select()
     {
-        $sql = "SELECT p.*, c.descricao AS categoria
+        $sql = "SELECT p.*,
+                         FORMAT(p.preco, 2, 'de_DE') as valor_produto,
+                         c.descricao AS categoria
                 FROM produto p
                 JOIN categoria_produto c ON (c.id = p.id_categoria)";
 

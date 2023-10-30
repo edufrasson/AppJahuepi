@@ -62,9 +62,9 @@ function loadTableMovimentacao() {
 $(document).ready(function (){
     loadTableMovimentacao();
 
-    $('.btn-edit').click(function(event){
+    /*$('.btn-edit').click(function(event){
         getMovimentacaoById(event.target.id);
-    })
+    })*/
 
     $('.btn-delete').click(async function(event){
         await swal({
