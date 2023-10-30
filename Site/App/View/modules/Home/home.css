@@ -1,5 +1,19 @@
+.main-container{
+    background-color: #bebebe !important;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .container-card{
-    background-color: #bebebe !important;;
+    background-color: #bebebe !important;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 50px;
+    align-items: center;
 }
 
 .header-card{
@@ -7,6 +21,7 @@
     height: 25%;
     display: flex;
     justify-content: space-between;
+    
 }
 
 .dashboard-label{
@@ -16,16 +31,37 @@
     box-shadow: 5px 4px 11px -3px rgba(0,0,0,0.34);
 }
 
-.graphic-bar-container{
-    /*width: 60vw;
-    height: 60vh;*/
-    background-color: white;
-}
 
 .main-card{
     width: 100%;
-    height: 30%;
+    height: 50%;
+    padding-top: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    
+    
+}
+
+.graphic-bar-container{
+    width: 74.2%;    
     background-color: white;
+    box-shadow: 5px 4px 11px -3px rgba(0,0,0,0.34);
+}
+
+.graphic-pie-container{
+    width: 20%;    
+    background-color: white;
+    box-shadow: 5px 4px 11px -3px rgba(0,0,0,0.34);
+}
+
+.text-container-label{
+    font-size: 15px;
+    padding-top: 10px;
+    width: 100%;
+    color: #9b9090;
+    text-align: center;
+    
 }
 
 .head-label{

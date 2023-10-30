@@ -19,7 +19,7 @@ class ProdutoDAO extends DAO
         $stmt = parent::getConnection()->prepare($sql);
 
         $stmt->bindValue(1, $model->descricao);
-        $stmt->bindValue(2, $model->preco);      
+        $stmt->bindValue(2, $model->preco);
         $stmt->bindValue(3, $model->codigo_barra);
         $stmt->bindValue(4, $model->quantidade);
         $stmt->bindValue(5, $model->id_categoria);
@@ -74,13 +74,30 @@ class ProdutoDAO extends DAO
         return $stmt->fetchObject("App\Model\ProdutoModel");
     }
 
+    public function getMostSaledProduct()
+    {
+        $sql = "SELECT  p.descricao as produto,
+                        sum(pv.quantidade) as quantidade        
+                FROM produto_venda pv
+                JOIN produto p ON p.id = pv.id_produto
+                JOIN venda v ON v.id = pv.id_venda
+                GROUP BY pv.id_produto
+                LIMIT 5";
+
+        $stmt = parent::getConnection()->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
+
     public function delete(int $id)
     {
         $sql = "DELETE FROM produto WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
-        
+
         $stmt->execute();
     }
 }

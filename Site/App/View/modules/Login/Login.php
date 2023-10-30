@@ -96,8 +96,7 @@
                 <div class="content-login">
                     <h3>Bem-Vindo!</h3>
                     <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-                        ex ratione. Aliquid!
+                        Este é o nosso sistema de gestão da empresa de epi's JAHUEPI!
                     </p>
                 </div>
                 <img src="View/assets/log.svg" class="image" alt="" />

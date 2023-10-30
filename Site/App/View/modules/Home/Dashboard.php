@@ -18,7 +18,7 @@ if(!isset($_SESSION['user_logged'])){
     <?php include 'View/includes/css_config.php' ?>
     <link rel="stylesheet" href="View/modules/Home/home.css">
     <title>Dashboard - JahuEPI</title>
-    <?php include 'View/js/graphics.php'?>
+    <?php include 'View/js/graphics.php' ?>
 </head>
 
 <body>
@@ -32,7 +32,7 @@ if(!isset($_SESSION['user_logged'])){
                         Saldo
                     </div>
                     <div class="body-label" id="label-saldo">
-                        R$ <?= ($saldo->total_saldo != 0) ? $saldo->total_saldo : '0,00'?>
+                        R$ <?= ($saldo->total_saldo != 0) ? $saldo->total_saldo : '0,00' ?>
                     </div>
                 </div>
                 <div class="dashboard-label">
@@ -40,7 +40,7 @@ if(!isset($_SESSION['user_logged'])){
                         Total de Entradas
                     </div>
                     <div class="body-label" id="label-entrada">
-                        R$ <?= ($entrada->total_entrada != 0) ? $entrada->total_entrada : '0,00'?>
+                        R$ <?= ($entrada->total_entrada != 0) ? $entrada->total_entrada : '0,00' ?>
                     </div>
                 </div>
                 <div class="dashboard-label">
@@ -48,7 +48,7 @@ if(!isset($_SESSION['user_logged'])){
                         Total de Saídas
                     </div>
                     <div class="body-label" id="label-saida">
-                        R$ <?= ($saida->total_saida != 0) ? $saida->total_saida : '0,00'?>
+                        R$ <?= ($saida->total_saida != 0) ? $saida->total_saida : '0,00' ?>
                     </div>
                 </div>
                 <div class="dashboard-label">
@@ -56,18 +56,23 @@ if(!isset($_SESSION['user_logged'])){
                         Total Pendente no Mês
                     </div>
                     <div class="body-label" id="label-pendente">
-                        R$ <?= ($pendente->total_pendente != 0) ? $pendente->total_pendente : '0,00'?>
+                        R$ <?= ($pendente->total_pendente != 0) ? $pendente->total_pendente : '0,00' ?>
                     </div>
                 </div>
             </div>
             <div class="main-card">
                 <div class="graphic-bar-container">
-                    <div id="faturamento-mes">
-
+                    <div class="text-container-label">
+                        <label for="faturamneto-mes">Faturamento por Mês</label>
                     </div>
+
+                    <div id="faturamento-mes" class="chart-style"></div>
                 </div>
                 <div class="graphic-pie-container">
-
+                    <div class="text-container-label">
+                        <label for="mais-vendido">Produtos mais vendidos</label>
+                    </div>
+                    <div id="mais-vendido"></div>
                 </div>
             </div>
         </div>

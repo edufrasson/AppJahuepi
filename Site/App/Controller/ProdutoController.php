@@ -17,6 +17,12 @@ class ProdutoController extends Controller
         parent::setResponseAsJSON($data);
     }
 
+    public static function getMaisVendido(){
+        $model = new ProdutoModel();
+
+        parent::setResponseAsJSON($model->getMostSaledProduct());
+    }
+
     public static function index()
     {
         //parent::isAuthenticated();

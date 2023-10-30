@@ -26,6 +26,9 @@ abstract class DAO
                 $_ENV['db']['user'],
                 $_ENV['db']['pass'],
                 $options) :  self::$conexao;
+
+                $stmt = $this->getConnection()->prepare("SET lc_time_names = 'pt_BR' "); 
+                $stmt->execute();  
         }   
         catch (PDOException $e)
         {

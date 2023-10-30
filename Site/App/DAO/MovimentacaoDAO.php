@@ -118,7 +118,7 @@ class MovimentacaoDAO extends DAO
                 FROM Movimentacao m
                 WHERE 
                     m.valor > 0
-                GROUP BY monthname(m.data_movimentacao);    
+                GROUP BY monthname(m.data_movimentacao), year(current_timestamp());    
         ";
 
         $stmt = parent::getConnection()->prepare($sql);

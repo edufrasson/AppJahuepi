@@ -35,6 +35,8 @@ switch ($url) {
     case '/produto/delete':
         ProdutoController::delete();
         break;
+    case '/produto/mais-vendido':
+        ProdutoController::getMaisVendido();
 
         /* Login*/
     case '/login':

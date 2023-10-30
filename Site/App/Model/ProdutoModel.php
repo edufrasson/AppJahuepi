@@ -31,6 +31,12 @@ class ProdutoModel extends Model
         $this->rows = $dao->select();
     }
 
+    public function getMostSaledProduct(){
+        $dao = new ProdutoDAO();
+
+        return $dao->getMostSaledProduct();
+    }
+
     public function getAll(){
         $dao = new ProdutoDAO();
 
