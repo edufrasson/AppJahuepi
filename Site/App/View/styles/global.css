@@ -44,7 +44,10 @@ body {
 
 
 .main-card .btn {
-  background-color: var(--primary-color);
+  background: linear-gradient(to bottom, #fad449, #f4c71e);
+  text-transform: uppercase;
+  font-weight: bold;
+  border: 0;
 }
 
 .main-card .btn a {
@@ -121,6 +124,11 @@ body {
 
 .final-actions .btn-pagamento {
   margin-top: 10px;
+}
+
+.modal-footer .btn{
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 /* TABELA COM SCROLL */
