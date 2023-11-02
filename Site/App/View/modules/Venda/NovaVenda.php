@@ -72,7 +72,7 @@
                 </div>
                 <div class="containers-card action-container">
                     <div class="final-actions">
-                        <button class="btn btn-warning btn-pagamento" data-bs-toggle="modal" data-bs-target="#modalPagamento">Método de Pagamento</button>
+                        <button class="btn btn-pagamento" data-bs-toggle="modal" data-bs-target="#modalPagamento">Método de Pagamento</button>
                     </div>
                 </div>
             </div>
