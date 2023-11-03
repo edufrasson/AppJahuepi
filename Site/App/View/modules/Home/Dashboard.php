@@ -32,7 +32,9 @@ if(!isset($_SESSION['user_logged'])){
                         Saldo
                     </div>
                     <div class="body-label" id="label-saldo">
-                        R$ <?= ($saldo->total_saldo != 0) ? $saldo->total_saldo : '0,00' ?>
+                        <p>
+                            R$ <?= ($saldo->total_saldo != 0) ? $saldo->total_saldo : '0,00' ?>
+                        </p>
                     </div>
                 </div>
                 <div class="dashboard-label">
@@ -40,7 +42,9 @@ if(!isset($_SESSION['user_logged'])){
                         Total de Entradas
                     </div>
                     <div class="body-label" id="label-entrada">
-                        R$ <?= ($entrada->total_entrada != 0) ? $entrada->total_entrada : '0,00' ?>
+                        <p>
+                            R$ <?= ($entrada->total_entrada != 0) ? $entrada->total_entrada : '0,00' ?>
+                        </p>
                     </div>
                 </div>
                 <div class="dashboard-label">
@@ -48,7 +52,9 @@ if(!isset($_SESSION['user_logged'])){
                         Total de Saídas
                     </div>
                     <div class="body-label" id="label-saida">
-                        R$ <?= ($saida->total_saida != 0) ? $saida->total_saida : '0,00' ?>
+                        <p>
+                            R$ <?= ($saida->total_saida != 0) ? $saida->total_saida : '0,00' ?>
+                        </p>
                     </div>
                 </div>
                 <div class="dashboard-label">
@@ -56,7 +62,9 @@ if(!isset($_SESSION['user_logged'])){
                         Total Pendente no Mês
                     </div>
                     <div class="body-label" id="label-pendente">
-                        R$ <?= ($pendente->total_pendente != 0) ? $pendente->total_pendente : '0,00' ?>
+                        <p>
+                            R$ <?= ($pendente->total_pendente != 0) ? $pendente->total_pendente : '0,00' ?>
+                        </p>
                     </div>
                 </div>
             </div>

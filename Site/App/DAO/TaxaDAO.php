@@ -38,7 +38,7 @@ class TaxaDAO extends DAO
 
     public function select()
     {
-        $sql = "SELECT * FROM taxa";
+        $sql = "SELECT * FROM taxa WHERE ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -49,7 +49,7 @@ class TaxaDAO extends DAO
 
     public function selectById(int $id)
     {
-        $sql = "SELECT * FROM taxa WHERE id = ?";
+        $sql = "SELECT * FROM taxa WHERE id = ? AND ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
@@ -62,7 +62,7 @@ class TaxaDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "DELETE FROM taxa WHERE id = ?";
+        $sql = "UPDATE Taxa SET ativo = 'N' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

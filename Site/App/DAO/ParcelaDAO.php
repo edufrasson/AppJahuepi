@@ -50,7 +50,7 @@ class ParcelaDAO extends DAO
 
     public function select()
     {
-        $sql = "SELECT * FROM Parcela";
+        $sql = "SELECT * FROM Parcela WHERE ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -65,13 +65,13 @@ class ParcelaDAO extends DAO
         FROM parcela p
         JOIN pagamento pgt ON pgt.id = p.id_pagamento
         WHERE 
-            p.status = 'PENDENTE'
+            p.status = 'PENDENTE' AND p.ativo = 'S' AND pgt.ativo = 'S'
         AND 
             p.data_recebimento <= current_date() 
         AND 
-            pgt.forma_pagamento = 'CREDITO' OR pgt.forma_pagamento = 'DEBITO' AND p.status = 'PENDENTE' AND p.data_recebimento <= current_date()
+            pgt.forma_pagamento = 'CREDITO' OR pgt.forma_pagamento = 'DEBITO' AND p.status = 'PENDENTE' AND p.data_recebimento <= current_date() AND p.ativo = 'S' AND pgt.ativo = 'S'
         OR  
-            pgt.forma_pagamento = 'DINHEIRO' AND p.status = 'PENDENTE'
+            pgt.forma_pagamento = 'DINHEIRO' AND p.status = 'PENDENTE' AND p.ativo = 'S' AND pgt.ativo = 'S'
         ;";
 
         $stmt = parent::getConnection()->prepare($sql);
@@ -96,7 +96,7 @@ class ParcelaDAO extends DAO
 
     public function getById(int $id)
     {
-        $sql = "SELECT * FROM Parcela WHERE id = ?";
+        $sql = "SELECT * FROM Parcela WHERE id = ? AND ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
@@ -114,7 +114,10 @@ class ParcelaDAO extends DAO
                 WHERE 
                 month(p.data_recebimento) = month(CURRENT_TIMESTAMP())
                 AND
-                    p.status = 'PENDENTE'";
+                    p.status = 'PENDENTE'
+                AND 
+                    p.ativo = 'S'    
+                ";
 
         $stmt = parent::getConnection()->prepare($sql);       
 
@@ -131,7 +134,9 @@ class ParcelaDAO extends DAO
                 WHERE 
                 month(p.data_recebimento) = ?
                 AND
-                    p.status = 'PENDENTE'";
+                    p.status = 'PENDENTE'
+                AND p.ativo = 'S'    
+                    ";
 
         $stmt = parent::getConnection()->prepare($sql);  
         $stmt->bindValue(1, $month);     
@@ -154,7 +159,7 @@ class ParcelaDAO extends DAO
         FROM Parcela p 
         JOIN Pagamento pgt ON pgt.id = p.id_pagamento
         JOIN Venda v ON v.id = pgt.id_venda
-        WHERE v.id = ?
+        WHERE v.id = ? AND p.ativo = 'S'AND pgt.ativo = 'S' AND v.ativo = 'S'
         ORDER BY p.indice ASC";
 
         $stmt = parent::getConnection()->prepare($sql);
@@ -167,7 +172,7 @@ class ParcelaDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "DELETE FROM Parcela WHERE id = ?";
+        $sql = "UPDATE Parcela SET ativo = 'N' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

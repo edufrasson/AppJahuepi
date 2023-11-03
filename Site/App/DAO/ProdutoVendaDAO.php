@@ -66,7 +66,7 @@ class ProdutoVendaDAO extends DAO
 
     public function select()
     {
-        $sql = "SELECT * FROM produto_venda";
+        $sql = "SELECT * FROM produto_venda WHERE ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -82,10 +82,11 @@ class ProdutoVendaDAO extends DAO
                         pv.quantidade AS new_quantidade,
                         pv.quantidade as quantidade,
                         p.descricao as descricao,
-                        pv.valor_unit as valor_unit            
+                        pv.valor_unit as valor_unit,
+                        pv.id_venda as id_venda        
                 FROM produto_venda pv
                 JOIN produto p ON p.id = pv.id_produto
-                WHERE pv.id_venda = ?;";
+                WHERE pv.id_venda = ? AND pv.ativo = 'S' AND p.ativo = 'S';";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
@@ -97,7 +98,7 @@ class ProdutoVendaDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "DELETE FROM produto_venda WHERE id = ?";
+        $sql = "UPDATE Produto_Venda SET ativo = 'N' WHERE id_venda = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

@@ -36,7 +36,7 @@ class CategoriaProdutoDAO extends DAO
 
     public function select()
     {
-        $sql = "SELECT * FROM categoria_produto";
+        $sql = "SELECT * FROM categoria_produto WHERE ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -47,7 +47,7 @@ class CategoriaProdutoDAO extends DAO
 
     public function selectById(int $id)
     {
-        $sql = "SELECT * FROM categoria_produto WHERE id = ?";
+        $sql = "SELECT * FROM categoria_produto WHERE id = ? AND ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
@@ -60,7 +60,7 @@ class CategoriaProdutoDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "DELETE FROM categoria_produto WHERE id = ?";
+        $sql = "UPDATE Categoria_produto SET ativo = 'N' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

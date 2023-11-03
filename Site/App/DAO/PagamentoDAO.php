@@ -47,7 +47,7 @@ class PagamentoDAO extends DAO
 
     public function select()
     {
-        $sql = "SELECT * FROM Pagamento";
+        $sql = "SELECT * FROM Pagamento WHERE ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -58,7 +58,7 @@ class PagamentoDAO extends DAO
 
     public function selectById(int $id)
     {
-        $sql = "SELECT * FROM Pagamento WHERE id = ?";
+        $sql = "SELECT * FROM Pagamento WHERE id = ? AND ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
@@ -70,11 +70,11 @@ class PagamentoDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "DELETE FROM Pagamento WHERE id = ?";
+        $sql = "UPDATE Pagamento SET ativo = 'N' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
-        
+
         $stmt->execute();
     }
 }

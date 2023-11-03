@@ -43,7 +43,7 @@ body {
 }
 
 
-.main-card .btn {
+.main-card .btn[type=submit], #adicionar, .open-produtos, .open-parcelas {
   background: linear-gradient(to bottom, #fad449, #f4c71e);
   text-transform: uppercase;
   font-weight: bold;
@@ -69,6 +69,7 @@ body {
 .dataTables_wrapper {
   position: relative;
 }
+
 
 /* CONTAINER */
 .container-card {
@@ -127,7 +128,12 @@ body {
   background: linear-gradient(to bottom, #fad449, #f4c71e);
 }
 
-.modal-footer .btn{
+.dropdown-toggle {
+  background-color: white !important;
+  border-color: #fcfcfc;
+}
+
+.modal-footer .btn {
   text-transform: uppercase;
   font-weight: bold;
 }

@@ -32,9 +32,6 @@ class ProdutoDAO extends DAO
 
         $sql = "UPDATE produto SET descricao=?, preco=?, codigo_barra=?, quantidade = ?, id_categoria = ? WHERE id=?";
 
-
-
-
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $model->descricao);
         $stmt->bindValue(2, $model->preco);
@@ -52,7 +49,8 @@ class ProdutoDAO extends DAO
                          FORMAT(p.preco, 2, 'de_DE') as valor_produto,
                          c.descricao AS categoria
                 FROM produto p
-                JOIN categoria_produto c ON (c.id = p.id_categoria)";
+                JOIN categoria_produto c ON (c.id = p.id_categoria)
+                WHERE p.ativo = 'S' AND c.ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -66,7 +64,7 @@ class ProdutoDAO extends DAO
         $sql = "SELECT p.*, c.descricao AS categoria
         FROM produto p
         JOIN categoria_produto c ON (c.id = p.id_categoria)
-        WHERE p.id=?";
+        WHERE p.id=? AND p.ativo = 'S' AND c.ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
@@ -83,6 +81,7 @@ class ProdutoDAO extends DAO
                 FROM produto_venda pv
                 JOIN produto p ON p.id = pv.id_produto
                 JOIN venda v ON v.id = pv.id_venda
+                WHERE p.ativo = 'S' AND pv.ativo = 'S' AND v.ativo = 'S'
                 GROUP BY pv.id_produto
                 LIMIT 5";
 
@@ -95,7 +94,7 @@ class ProdutoDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "DELETE FROM produto WHERE id = ?";
+        $sql = "UPDATE Produto SET ativo = 'N' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

@@ -50,7 +50,9 @@ class VendaDAO extends DAO
                 p.forma_pagamento as forma_pagamento,
                 p.id as id_pagamento       
         FROM Venda v
-        JOIN Pagamento p ON v.id = p.id_venda";
+        JOIN Pagamento p ON v.id = p.id_venda
+        WHERE ativo = 'S'
+        ";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -61,7 +63,7 @@ class VendaDAO extends DAO
 
     public function selectById(int $id)
     {
-        $sql = "SELECT * FROM Venda WHERE id = ?";
+        $sql = "SELECT * FROM Venda WHERE id = ? AND ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
@@ -73,7 +75,7 @@ class VendaDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "DELETE FROM Venda WHERE id = ?";
+        $sql = "UPDATE Venda SET ativo = 'N' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

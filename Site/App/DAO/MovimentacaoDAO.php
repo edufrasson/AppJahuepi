@@ -47,7 +47,7 @@ class MovimentacaoDAO extends DAO
                         FORMAT(m.valor, 2, 'de_DE') as valor,
                         m.id_parcela as id_parcela,
                         DATE_FORMAT(m.data_movimentacao, '%d/%m/%Y') as data_movimentacao
-                FROM Movimentacao m";
+                FROM Movimentacao m WHERE m.ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -58,7 +58,7 @@ class MovimentacaoDAO extends DAO
 
     public function selectById(int $id)
     {
-        $sql = "SELECT * FROM Movimentacao WHERE id = ?";
+        $sql = "SELECT * FROM Movimentacao WHERE id = ? AND ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
@@ -72,7 +72,7 @@ class MovimentacaoDAO extends DAO
     {
         $sql = "SELECT  
                     FORMAT(sum(m.valor), 2, 'de_DE') as total_saldo
-                FROM Movimentacao m";
+                FROM Movimentacao m WHERE m.ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -85,7 +85,7 @@ class MovimentacaoDAO extends DAO
         $sql = "SELECT  
                     FORMAT(sum(m.valor), 2, 'de_DE') as total_entrada
                 FROM Movimentacao m
-                WHERE m.valor > 0
+                WHERE m.valor > 0 AND m.ativo = 'S'
         ";
 
         $stmt = parent::getConnection()->prepare($sql);
@@ -99,7 +99,7 @@ class MovimentacaoDAO extends DAO
         $sql = "SELECT  
                     FORMAT(sum(m.valor), 2, 'de_DE') as total_saida
                 FROM Movimentacao m
-                WHERE m.valor < 0
+                WHERE m.valor < 0 AND m.ativo = 'S'
         ";
 
         $stmt = parent::getConnection()->prepare($sql);
@@ -113,12 +113,14 @@ class MovimentacaoDAO extends DAO
     {
         $sql = "SELECT 
                     monthname(m.data_movimentacao) as mes,
-
+                    month(m.data_movimentacao) as num_mes,
                     sum(m.valor) as total_entrada
                 FROM Movimentacao m
                 WHERE 
-                    m.valor > 0
-                GROUP BY monthname(m.data_movimentacao), year(current_timestamp());    
+                    m.valor > 0 AND m.ativo = 'S'
+                GROUP BY monthname(m.data_movimentacao), year(current_timestamp())
+                ORDER BY num_mes ASC
+                ;    
         ";
 
         $stmt = parent::getConnection()->prepare($sql);
@@ -136,7 +138,7 @@ class MovimentacaoDAO extends DAO
                     sum(m.valor) as total_saida
                 FROM Movimentacao m
                 WHERE 
-                    m.valor < 0
+                    m.valor < 0 AND m.ativo = 'S'
                 GROUP BY monthname(m.data_movimentacao);    
         ";
 
@@ -149,7 +151,7 @@ class MovimentacaoDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "DELETE FROM Movimentacao WHERE id = ?";
+        $sql = "UPDATE Movimentacao SET ativo = 'N' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
