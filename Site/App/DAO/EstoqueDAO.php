@@ -14,7 +14,7 @@ class EstoqueDAO extends DAO
 
     public function insert(EstoqueModel $model)
     {
-        $sql = "INSERT INTO Estoque (situacao, quantidade, id_venda, id_produto, data_registro) VALUE (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO Estoque (situacao, quantidade, id_venda, id_produto, data_registro) VALUES (?, ?, ?, ?, ?)";
 
         $stmt = parent::getConnection()->prepare($sql);
 
