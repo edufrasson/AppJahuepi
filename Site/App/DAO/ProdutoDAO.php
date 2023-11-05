@@ -46,10 +46,13 @@ class ProdutoDAO extends DAO
     {
         $sql = "SELECT p.*,
                          FORMAT(p.preco, 2, 'de_DE') as valor_produto,
+                         sum(e.quantidade) as saldo_estoque,
                          c.descricao AS categoria
                 FROM produto p
                 JOIN categoria_produto c ON (c.id = p.id_categoria)
-                WHERE p.ativo = 'S' AND c.ativo = 'S'";
+                LEFT JOIN estoque e ON (p.id = e.id_produto)
+                WHERE p.ativo = 'S' AND c.ativo = 'S'
+                GROUP BY p.id";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -60,10 +63,14 @@ class ProdutoDAO extends DAO
 
     public function selectById(int $id)
     {
-        $sql = "SELECT p.*, c.descricao AS categoria
-        FROM produto p
-        JOIN categoria_produto c ON (c.id = p.id_categoria)
-        WHERE p.id=? AND p.ativo = 'S' AND c.ativo = 'S'";
+        $sql = "SELECT p.*,
+                    sum(e.quantidade) as saldo_estoque,
+                    c.descricao AS categoria
+                FROM produto p
+                JOIN categoria_produto c ON (c.id = p.id_categoria)
+                JOIN estoque e ON (p.id = e.id_produto)
+                WHERE p.id = ? AND p.ativo = 'S' AND c.ativo = 'S'
+                GROUP BY e.id_produto";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

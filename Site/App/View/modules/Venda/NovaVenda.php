@@ -60,8 +60,7 @@
                                     <th>Descricao</th>
                                     <th>Preço</th>
                                     <th>Quantidade</th>
-                                    <th>Código de Barras</th>
-                                    <th>Categoria</th>
+                                    <th>Código de Barras</th>                                    
                                     <th>Ações</th>
                                 </tr>
                             </thead>

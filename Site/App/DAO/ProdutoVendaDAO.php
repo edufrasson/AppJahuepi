@@ -50,7 +50,7 @@ class ProdutoVendaDAO extends DAO
     public function baixaEstoque($arr_produtos)
     {
         parent::getConnection()->beginTransaction();
-        $sql = "UPDATE Produto SET quantidade = ? WHERE id = ?";
+        $sql = "INSERT INTO ";
 
         $stmt = parent::getConnection()->prepare($sql);
 

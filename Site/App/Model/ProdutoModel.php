@@ -9,7 +9,7 @@ class ProdutoModel extends Model
 {
     public $id, $descricao, $preco, $codigo_barra, $id_categoria, $ativo;
 
-    public $quantidade_venda;
+    public $quantidade_venda, $saldo_estoque;
 
     public $lista_categoria, $categoria;
 

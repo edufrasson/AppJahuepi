@@ -135,31 +135,40 @@ function adicionarPagamento(id_venda, valor_total, qnt_parcelas, forma_pagamento
  * Requisição para adicionar os produtos na tabela
  */
 
-function reloadTableProduct() {
+async function reloadTableProduct() {
+
   $.ajax({
     type: "GET",
     url: "/produto/get-by-id?id=" + $('#id_produto').val(),
     dataType: 'json',
-    success: function (result) {
-      valor_total += ($('#quantidade').val() * result.response_data.preco)
-      lista_produtos.push({ id_produto: result.response_data.id, quantidade: $('#quantidade').val(), valor_unit: result.response_data.preco })
+    success: async function (result) {
+      // Verificando se há produto no estoque 
+      if (parseInt($('#quantidade').val()) > result.response_data.saldo_estoque) {
+        swal({ title: "Erro!", text: "Não há estoque suficiente para cadastrar essa quantidade! Reposição necessária.", icon: "error", button: "OK" })
+      } else {      
+        // Recalculando valores
+        valor_total += ($('#quantidade').val() * result.response_data.preco)
+        lista_produtos.push({ id_produto: result.response_data.id, quantidade: $('#quantidade').val(), valor_unit: result.response_data.preco })
 
-      $('#tableProduto').append(`<tr> 
-            <td> ${result.response_data.descricao} </td> 
-            <td> ${Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(result.response_data.preco.toString())} </td>
-            <td> ${$('#quantidade').val()} </td> 
-            <td> ${result.response_data.codigo_barra} </td> 
-            <td> ${result.response_data.categoria} </td> 
-            <td class="actions-list-venda d-flex justify-content-center">                
-                <box-icon name="trash" color="#e8ac07" id="${result.response_data.id}" class="btn-icon btn-delete-list"></box-icon>
-            </td>
-           </tr>`)
+        // Adicionando produto no carrinho de compra
+        $('#tableProduto').append(`<tr> 
+       <td> ${result.response_data.descricao} </td> 
+       <td> ${Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(result.response_data.preco.toString())} </td>
+       <td> ${$('#quantidade').val()} </td> 
+       <td> ${result.response_data.codigo_barra} </td>             
+       <td class="actions-list-venda d-flex justify-content-center">                
+           <box-icon name="trash" color="#e8ac07" id="${result.response_data.id}" class="btn-icon btn-delete-list"></box-icon>
+       </td>
+      </tr>`)
 
-      // Função que retira os produtos da lista de compras 
-      $('.btn-delete-list').click(function() {        
-        lista_produtos.splice(lista_produtos.findIndex(produto => produto.id_produto == result.response_data.id), 1);
-        $(this).closest("tr").remove(); // Removendo linha do elemento da tabela
-      })
+        // Função que retira os produtos da lista de compras 
+        $('.btn-delete-list').click(function () {
+          lista_produtos.splice(lista_produtos.findIndex(produto => produto.id_produto == result.response_data.id), 1);
+          $(this).closest("tr").remove(); // Removendo linha do elemento da tabela
+        })
+
+      }
+
 
     },
     error: function (result) {
@@ -186,14 +195,14 @@ function updateTaxasValue(valor_taxa) {
 }
 
 function updateParcelasValue(qnt_parcelas) {
-  $('.valor_bruto_parcela').val((valor_total / qnt_parcelas).toFixed(2)) 
+  $('.valor_bruto_parcela').val((valor_total / qnt_parcelas).toFixed(2))
   $('.valor_liquido_parcela').val(($('#valor_liquido_credito').val() / qnt_parcelas) == 0 ? ($('#valor_liquido_debito').val() / qnt_parcelas).toFixed(2) : ($('#valor_liquido_credito').val() / qnt_parcelas).toFixed(2))
 }
 
-function updateParcelasBoleto(qnt_parcelas){
+function updateParcelasBoleto(qnt_parcelas) {
   $('#valor_bruto_parcela_boleto').val((valor_total / qnt_parcelas).toFixed(2))
-  $('#valor_liquido_parcela_boleto').val((($('#valor_liquido_boleto').val()/ qnt_parcelas).toFixed(2)))
-  
+  $('#valor_liquido_parcela_boleto').val((($('#valor_liquido_boleto').val() / qnt_parcelas).toFixed(2)))
+
 }
 
 /* 
@@ -254,7 +263,7 @@ $(document).ready(function () {
         $('.modal-boleto').addClass('d-none')
         $('.modal-dinheiro').removeClass('d-none')
         $('#select-taxa-debito').change(function () {
-          updateTaxasValue($('#select-taxa-debito').val());         
+          updateTaxasValue($('#select-taxa-debito').val());
         })
         break;
       default:
