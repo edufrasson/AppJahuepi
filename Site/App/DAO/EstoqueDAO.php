@@ -26,6 +26,8 @@ class EstoqueDAO extends DAO
         
 
         $stmt->execute();
+
+        return parent::getConnection()->lastInsertId();
     }
 
     public function update(EstoqueModel $model)
@@ -48,6 +50,7 @@ class EstoqueDAO extends DAO
     public function select()
     {
         $sql = "SELECT e.*,
+                       DATE_FORMAT(e.data_registro, '%d/%m/%Y') as data,
                        p.descricao as produto  
                 FROM Estoque e
                 JOIN Produto p ON (p.id = e.id_produto)

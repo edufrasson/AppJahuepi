@@ -23,10 +23,11 @@ class LoginController extends Controller
         try {
             $model = new LoginModel();
             $user = $model->getByEmailAndSenha($_POST['email'], $_POST['senha']);
-            if ($user == false) {
+            if ($user == false) {                
                 parent::loginFailed();
+                
             } else {
-                $_SESSION['user_logged'] = json_encode($user);
+                $_SESSION['user_logged'] = json_encode($user);                
                 header('Location: /home');
             }
         } catch (Exception $e) {

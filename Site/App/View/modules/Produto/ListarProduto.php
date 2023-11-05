@@ -38,8 +38,7 @@
                                 <tr>
 
                                     <th>Descricao</th>
-                                    <th>Preço</th>
-                                    <th>Quantidade</th>
+                                    <th>Preço</th>                                    
                                     <th>Código de Barras</th>
                                     <th>Ações</th>
                                 </tr>
@@ -50,8 +49,7 @@
                                         <tr>
 
                                             <td><?= $produto->descricao ?></td>
-                                            <td>R$ <?= $produto->valor_produto ?></td>
-                                            <td><?= $produto->quantidade ?></td>
+                                            <td>R$ <?= $produto->valor_produto ?></td>                                           
                                             <td><?= $produto->codigo_barra ?></td>
                                             <td class="actions-list">
                                                 <a class="text-decoration-none" href="/editar_produto?id=<?= $produto->id ?>"><i class="bx bx-edit btn-icon" id="<?= $produto->id ?>" data-bs-toggle="modal" style="color: blue;"></i>
@@ -96,18 +94,14 @@
                         <div class="mb-3">
                             <label for="txtPreco">Preço:</label>
                             <input type="text" name="preco" class="form-control" id="txtPreco" required maxlength="90">
-                        </div>
-                        <div class="mb-3">
-                            <label for="quantidade">Quantidade:</label>
-                            <input type="text" name="quantidade" class="form-control" id="txtQuantidade" required maxlength="90">
-                        </div>
+                        </div>                       
                         <div class="mb-3">
                             <label for="codigo_barra">Código de barra:</label>
                             <input type="number" name="codigo_barra" class="form-control" id="txtCodigo_Barra" required maxlength="90">
                         </div>
                         <div class="mb-3">
                             <label for="id_categoria">Categoria:</label><br>
-                            <select class="selectpicker border border-black" data-live-search="true" name="id_categoria" id="id_categoria">
+                            <select class="selectpicker" data-live-search="true" name="id_categoria" id="id_categoria">
 
                                 <?php if ($model->lista_categoria == null) : ?>
                                     <option class="option-evento" value="">Cadastre uma categoria primeiro!</option>

@@ -47,7 +47,6 @@
                                 <?php if ($model->rows !== null) : ?>
                                     <?php foreach ($model->rows as $movimentacao) : ?>
                                         <tr>
-
                                             <td><?= $movimentacao->data_movimentacao ?></td>
                                             <td><?= $movimentacao->descricao ?></td>
                                             <td>R$ <?= $movimentacao->valor ?></td>
@@ -55,7 +54,9 @@
                                                 <?= ($movimentacao->valor > 0) ? "ENTRADA" : "SAÍDA" ?>
                                             </td>
                                             <td class="actions-list">
-                                                <a class="text-decoration-none" href="/editar_movimentacao?id=<?= $movimentacao->id ?>"><i class="bx bx-edit btn-icon" id="<?= $movimentacao->id ?>" data-bs-toggle="modal" style="color: blue;"></i>
+                                                <a class="text-decoration-none" href="/editar_movimentacao?id=<?= $movimentacao->id ?>">
+                                                    <i class="bx bx-edit btn-icon" id="<?= $movimentacao->id ?>" data-bs-toggle="modal" style="color: blue;"></i>
+                                                </a>
                                                 <i class='bx bx-trash btn-icon' id="<?= $movimentacao->id ?>" style="color: red;"></i>
                                             </td>
                                         </tr>

@@ -1,16 +1,17 @@
 <?php
+
 namespace App\Controller;
 
 use App\Model\MovimentacaoModel;
 use App\Model\ParcelaModel;
 
-class DashboardController extends Controller {
-	public static function index() 
-	{   
-		
-		//parent::isAuthenticated();
-		parent::checkParcelas();
-		
+class DashboardController extends Controller
+{
+	public static function index()
+	{
+		parent::checkParcelas();		
+		parent::isAuthenticated();
+
 		$movimentacao = new MovimentacaoModel();
 		$parcela = new ParcelaModel();
 		$saldo = $movimentacao->getSaldo();

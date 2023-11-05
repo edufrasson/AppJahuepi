@@ -20,8 +20,14 @@
                 </a>
             </li>
             <li>
-                <a href="/produto">
+                <a href="/estoque">
                     <i class='bx bx-package icon'></i>
+                    <span class="text nav-text">Estoque</span>
+                </a>
+            </li>
+            <li>
+                <a href="/produto">
+                    <i class='bx bx-barcode icon'></i>
                     <span class="text nav-text">Produtos</span>
                 </a>
             </li>

@@ -39,7 +39,7 @@ class LoginDAO extends DAO{
     }
     
     public function getByEmailAndSenha($e, $s){
-        $sql = "SELECT * FROM Usuario WHERE email = ? AND senha = ?";
+        $sql = "SELECT * FROM Usuario WHERE email = ? AND senha = ? AND ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $e);

@@ -14,15 +14,15 @@ class ProdutoDAO extends DAO
 
     public function insert(ProdutoModel $model)
     {
-        $sql = "INSERT INTO produto (descricao, preco, codigo_barra, quantidade, id_categoria) VALUE (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO produto (descricao, preco, codigo_barra, id_categoria) VALUE (?, ?, ?, ?)";
 
         $stmt = parent::getConnection()->prepare($sql);
 
         $stmt->bindValue(1, $model->descricao);
         $stmt->bindValue(2, $model->preco);
         $stmt->bindValue(3, $model->codigo_barra);
-        $stmt->bindValue(4, $model->quantidade);
-        $stmt->bindValue(5, $model->id_categoria);
+        $stmt->bindValue(4, $model->id_categoria);
+        
 
         $stmt->execute();
     }
@@ -30,15 +30,14 @@ class ProdutoDAO extends DAO
     public function update(ProdutoModel $model)
     {
 
-        $sql = "UPDATE produto SET descricao=?, preco=?, codigo_barra=?, quantidade = ?, id_categoria = ? WHERE id=?";
+        $sql = "UPDATE produto SET descricao=?, preco=?, codigo_barra=?, id_categoria = ? WHERE id=?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $model->descricao);
         $stmt->bindValue(2, $model->preco);
         $stmt->bindValue(3, $model->codigo_barra);
-        $stmt->bindValue(4, $model->quantidade);
-        $stmt->bindValue(5, $model->id_categoria);
-        $stmt->bindValue(6, $model->id);
+        $stmt->bindValue(4, $model->id_categoria);
+        $stmt->bindValue(5, $model->id);
 
         $stmt->execute();
     }

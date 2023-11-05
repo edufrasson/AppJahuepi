@@ -6,7 +6,7 @@ use App\DAO\LoginDAO;
 
 class LoginModel extends Model
 {
-    public $id, $email, $senha;
+    public $id, $email, $senha, $ativo;
 
     public function save()
     {

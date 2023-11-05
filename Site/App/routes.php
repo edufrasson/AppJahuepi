@@ -10,6 +10,7 @@ use App\Controller\{
     TaxaController,
     CategoriaProdutoController,
     DashboardController,
+    EstoqueController,
     MovimentacaoController
 };
 use App\DAO\CategoriaProdutoDAO;
@@ -182,6 +183,20 @@ switch ($url) {
         break;
     case '/taxa/delete':
         TaxaController::delete();
+        break;
+
+        /* Estoque*/
+    case '/estoque':
+        EstoqueController::index();
+        break;
+    case '/estoque/save':
+        EstoqueController::save();
+        break;
+    case '/estoque/get-by-id':
+        EstoqueController::getById();
+        break;
+    case '/estoque/delete':
+        EstoqueController::delete();
         break;
 
         /* Produto_Venda*/

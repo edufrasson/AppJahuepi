@@ -51,8 +51,7 @@ class ProdutoController extends Controller
 
         $produto->id = $_POST['id'];                          
         $produto->descricao = $_POST['descricao'];     
-        $produto->preco = $_POST['preco'];     
-        $produto->quantidade = $_POST['quantidade'];     
+        $produto->preco = $_POST['preco'];                
         $produto->codigo_barra = $_POST['codigo_barra']; 
         $produto->id_categoria = $_POST['id_categoria'];         
 

@@ -9,7 +9,7 @@ class CategoriaProdutoController extends Controller
 {
     public static function index()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new CategoriaProdutoModel();
         $model->getAllRows();
@@ -20,7 +20,7 @@ class CategoriaProdutoController extends Controller
     public static function getAll()
     {
 
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new CategoriaProdutoModel();
         $model->getAllRows();
@@ -30,7 +30,7 @@ class CategoriaProdutoController extends Controller
 
     public static function getById()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new CategoriaProdutoModel();
 
@@ -40,7 +40,7 @@ class CategoriaProdutoController extends Controller
 
     public static function save()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $categoria_produto = new CategoriaProdutoModel();
 
@@ -54,7 +54,7 @@ class CategoriaProdutoController extends Controller
 
     public static function delete()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new CategoriaProdutoModel();
 

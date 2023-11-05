@@ -41,11 +41,7 @@
                             <div class="input-container-edit">
                                 <label for="preco">Preço:</label><br>
                                 <input class="form-control" value="<?= abs($dados->preco) ?>" type="number" min="0" name="preco" id="preco">
-                            </div>
-                            <div class="input-container-edit">
-                                <label for="quantidade">Quantidade:</label>
-                                <input type="text" name="quantidade" value="<?= $dados->quantidade ?>" class="form-control" id="quantidade" required maxlength="90">
-                            </div>
+                            </div>                         
 
 
                         </div>

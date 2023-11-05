@@ -19,7 +19,7 @@ class EstoqueModel extends Model
         $dao = new EstoqueDAO();
         
         if(empty($this->id))        
-            $dao->insert($this);
+            return $dao->insert($this);
         else
             $dao->update($this);        
     }

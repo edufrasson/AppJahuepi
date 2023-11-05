@@ -1,0 +1,12 @@
+.buttons-container{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: -1.8rem;
+}
+
+.movimentacao-entrada{
+    color: rgb(33, 201, 33);
+}
+.movimentacao-saida{
+    color: red;
+}
