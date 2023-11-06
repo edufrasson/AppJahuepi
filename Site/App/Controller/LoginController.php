@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\DAO\LoginDAO;
 use App\Model\LoginModel;
 use FFI\Exception;
 
@@ -84,5 +85,17 @@ class LoginController extends Controller
         $model->delete((int) $_GET['id']);
 
         parent::setResponseAsJSON($model);
+    }
+
+    public static function esqueciSenha()
+    {
+        include 'View/modules/Login/EsqueciSenha.php';
+    }
+
+    public static function enviarNovaSenha()
+    {
+        $nova_senha = uniqid();
+
+        $login_dao = new LoginDAO();
     }
 }
