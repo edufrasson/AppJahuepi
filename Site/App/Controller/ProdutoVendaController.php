@@ -9,7 +9,7 @@ class ProdutoVendaController extends Controller
 {
     public static function index()
     {
-        //parent::isAuthenticated();
+       parent::isAuthenticated();
 
         $model = new ProdutoVendaModel();
         $model->getAllRows();
@@ -19,7 +19,7 @@ class ProdutoVendaController extends Controller
 
     public static function getProdutos()
     {
-        //parent::isAuthenticated();
+       parent::isAuthenticated();
 
         $model = new ProdutoVendaModel(); 
 
@@ -28,7 +28,7 @@ class ProdutoVendaController extends Controller
 
     public static function getById()
     {
-        //parent::isAuthenticated();
+       parent::isAuthenticated();
         
         $model = new ProdutoVendaModel();
 
@@ -37,7 +37,7 @@ class ProdutoVendaController extends Controller
 
     public static function save()
     { 
-        //parent::isAuthenticated();
+       parent::isAuthenticated();
 
         $arr_produtos = json_decode($_POST['lista_produtos']);
         $model = new ProdutoVendaModel();
@@ -50,7 +50,7 @@ class ProdutoVendaController extends Controller
 
     public static function baixaEstoque()
     {
-        //parent::isAuthenticated();
+       parent::isAuthenticated();
 
         $model = new ProdutoVendaModel();       
         
@@ -59,7 +59,7 @@ class ProdutoVendaController extends Controller
 
     public static function delete()
     {
-        //parent::isAuthenticated();
+       parent::isAuthenticated();
 
         $model = new ProdutoVendaModel();
 
