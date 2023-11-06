@@ -51,7 +51,7 @@ class VendaDAO extends DAO
                 p.id as id_pagamento       
         FROM Venda v
         JOIN Pagamento p ON v.id = p.id_venda
-        WHERE ativo = 'S'
+        WHERE v.ativo = 'S'
         ";
 
         $stmt = parent::getConnection()->prepare($sql);

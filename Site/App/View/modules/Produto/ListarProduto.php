@@ -38,7 +38,8 @@
                                 <tr>
 
                                     <th>Descricao</th>
-                                    <th>Preço</th>                                    
+                                    <th>Preço</th>         
+                                    <th>Estoque</th>                           
                                     <th>Código de Barras</th>
                                     <th>Ações</th>
                                 </tr>
@@ -50,6 +51,7 @@
 
                                             <td><?= $produto->descricao ?></td>
                                             <td>R$ <?= $produto->valor_produto ?></td>                                           
+                                            <td><?= $produto->saldo_estoque ?></td>                                           
                                             <td><?= $produto->codigo_barra ?></td>
                                             <td class="actions-list">
                                                 <a class="text-decoration-none" href="/editar_produto?id=<?= $produto->id ?>"><i class="bx bx-edit btn-icon" id="<?= $produto->id ?>" data-bs-toggle="modal" style="color: blue;"></i>
