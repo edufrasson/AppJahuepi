@@ -112,8 +112,8 @@ class MovimentacaoDAO extends DAO
     public function getTotalEntradaByMonth()
     {
         $sql = "SELECT 
-                    monthname(m.data_movimentacao) as mes,
-                    month(m.data_movimentacao) as num_mes,
+                    ANY_VALUE(monthname(m.data_movimentacao)) as mes,
+                    ANY_VALUE(month(m.data_movimentacao)) as num_mes,
                     sum(m.valor) as total_entrada
                 FROM Movimentacao m
                 WHERE 

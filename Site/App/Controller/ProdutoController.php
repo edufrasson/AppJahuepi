@@ -9,7 +9,7 @@ class ProdutoController extends Controller
 {
     public static function getList()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new ProdutoModel();
         $data = $model->getAllRows();
@@ -25,7 +25,7 @@ class ProdutoController extends Controller
 
     public static function index()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new ProdutoModel();
         $model->getAllRows();
@@ -36,7 +36,7 @@ class ProdutoController extends Controller
 
     public static function getById()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new ProdutoModel();
 
@@ -45,7 +45,7 @@ class ProdutoController extends Controller
 
     public static function save()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $produto = new ProdutoModel();
 
@@ -61,6 +61,8 @@ class ProdutoController extends Controller
     }
 
     public static function edit(){
+        parent::isAuthenticated();
+
         $model = new ProdutoModel();
         $dados = $model->getById($_GET['id']);
         $model->getAllCategoria();
@@ -70,7 +72,7 @@ class ProdutoController extends Controller
 
     public static function delete()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new ProdutoModel();
 

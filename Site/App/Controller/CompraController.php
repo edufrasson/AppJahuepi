@@ -13,7 +13,7 @@ class CompraController extends Controller
 {
     public static function index()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new CompraModel();
         $model->getAllRows();
@@ -23,7 +23,7 @@ class CompraController extends Controller
 
     public static function getById()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new CompraModel();
 
@@ -32,7 +32,7 @@ class CompraController extends Controller
 
     public static function save()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $compra = new CompraModel();
         $compra->id = $_POST['id'];
@@ -52,7 +52,7 @@ class CompraController extends Controller
 
     public static function delete()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new CompraModel();
 

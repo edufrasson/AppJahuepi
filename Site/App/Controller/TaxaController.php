@@ -9,7 +9,7 @@ class TaxaController extends Controller
 {
     public static function index()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new TaxaModel();
         $model->getAllRows();
@@ -19,7 +19,7 @@ class TaxaController extends Controller
 
     public static function getAll()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new TaxaModel();
         $model->getAllRows();
@@ -29,7 +29,7 @@ class TaxaController extends Controller
 
     public static function getById()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new TaxaModel();
 
@@ -39,7 +39,7 @@ class TaxaController extends Controller
 
     public static function save()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $taxa = new TaxaModel();
 
@@ -54,7 +54,7 @@ class TaxaController extends Controller
 
     public static function delete()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new TaxaModel();
 

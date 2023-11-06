@@ -12,6 +12,7 @@ class VendaController extends Controller
 
     public static function index()
     {
+        parent::isAuthenticated();
         parent::checkParcelas();
 
         $model = new VendaModel();
@@ -24,7 +25,7 @@ class VendaController extends Controller
 
     public static function relatorio()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
         parent::checkParcelas();
 
         $model = new VendaModel();
@@ -35,7 +36,7 @@ class VendaController extends Controller
 
     public static function getById()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new VendaModel();
 
@@ -44,7 +45,7 @@ class VendaController extends Controller
 
     public static function save()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $venda = new VendaModel();
 
@@ -58,7 +59,7 @@ class VendaController extends Controller
 
     public static function delete()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new VendaModel();
 
@@ -69,16 +70,5 @@ class VendaController extends Controller
 
     public static function getProdutosOnTable(){       
         parent::setResponseAsJSON(VendaController::$carrinho_produtos);
-    }
-
-   /* public static function setProdutosOnTable(){
-        $model = new ProdutoModel();
-        $obj = $model->getById($_POST['id']);
-        $obj->quantidade = $_POST['quantidade'];
-
-
-        VendaController::$carrinho_produtos[] = $obj;
-
-        self::getProdutosOnTable();
-    }*/
+    } 
 }

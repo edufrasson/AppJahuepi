@@ -11,7 +11,11 @@ use App\Controller\{
     CategoriaProdutoController,
     DashboardController,
     EstoqueController,
-    MovimentacaoController
+    MovimentacaoController,
+    FornecedorController,
+    CompraController,
+    ProdutoCompraController,
+    CobrancaController
 };
 use App\DAO\CategoriaProdutoDAO;
 
@@ -41,6 +45,21 @@ switch ($url) {
         break;
     case '/produto/mais-vendido':
         ProdutoController::getMaisVendido();
+
+        /* Fornecedor */
+
+    case '/fornecedor':
+        FornecedorController::index();
+        break;
+    case '/fornecedor/save':
+        FornecedorController::save();
+        break;
+    case '/fornecedor/get-by-id':
+        FornecedorController::getById();
+        break;
+    case '/fornecedor/delete':
+        FornecedorController::delete();
+        break;
 
         /* Login*/
     case '/login':

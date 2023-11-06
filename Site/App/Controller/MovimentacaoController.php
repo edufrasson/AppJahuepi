@@ -10,7 +10,7 @@ class MovimentacaoController extends Controller
     public static function index()
     {
         parent::checkParcelas();
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new MovimentacaoModel();
         $model->getAllRows();
@@ -20,7 +20,7 @@ class MovimentacaoController extends Controller
 
     public static function getAll()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new MovimentacaoModel();
         $model->getAllRows();
@@ -36,7 +36,7 @@ class MovimentacaoController extends Controller
 
     public static function getById()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new MovimentacaoModel();
 
@@ -46,7 +46,7 @@ class MovimentacaoController extends Controller
     public static function save()
     {
         $movimentacao = new MovimentacaoModel();
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $Movimentacao = new MovimentacaoModel();
 
@@ -69,7 +69,7 @@ class MovimentacaoController extends Controller
 
     public static function delete()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new MovimentacaoModel();
 

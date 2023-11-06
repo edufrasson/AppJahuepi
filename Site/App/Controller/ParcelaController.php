@@ -10,7 +10,7 @@ class ParcelaController extends Controller
 {
     public static function index()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new ParcelaModel();
         $model->getAllRows();
@@ -20,7 +20,7 @@ class ParcelaController extends Controller
 
     public static function getById()
     {   
-        //::isAuthenticated();
+        parent::isAuthenticated();
         
         $model = new ParcelaModel();
 
@@ -50,7 +50,7 @@ class ParcelaController extends Controller
 
     public static function getByIdVenda()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new ParcelaModel();
 
@@ -59,7 +59,7 @@ class ParcelaController extends Controller
 
     public static function confirmParcela()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new ParcelaModel();
         
@@ -80,7 +80,7 @@ class ParcelaController extends Controller
 
     public static function save()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $parcela = new ParcelaModel();
 
@@ -97,7 +97,7 @@ class ParcelaController extends Controller
 
     public static function delete()
     {
-        //parent::isAuthenticated();
+        parent::isAuthenticated();
 
         $model = new ParcelaModel();
 
