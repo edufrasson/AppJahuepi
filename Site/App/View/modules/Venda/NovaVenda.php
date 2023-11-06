@@ -30,7 +30,7 @@
                         </div>
                         <div class="input-container select-container">
                             <label for="id_produto">Produto:</label><br>
-                            <select class="selectpicker bg-light" name="id_produto" id="id_produto">
+                            <select class="selectpicker bg-light" data-live-search="true"name="id_produto" id="id_produto">
                                 <option value="">Selecione um produto!</option>
                                 <?php if ($model->arr_produtos == null) : ?>
                                     <option value="">Cadastre um produto primeiro!</option>
