@@ -27,7 +27,7 @@
                         <input type="password" name="senha" id="senha" placeholder="Senha" />
                     </div>
                     <input type="submit" value="Login" class="btn-login solid btn-warning" />
-                    <p class="social-text"><a href="" id="forgotPasswordLink">Esqueceu a senha?</a></p>
+                    <p class="social-text"><a href="/esqueci-senha" id="forgotPasswordLink">Esqueceu a senha?</a></p>
 
                     <div>
                         <?php if ($loginFailed == true) : ?>
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <div class="forms-container" id="form-recoverEmail" style="display: none;">
+        <!--<div class="forms-container" id="form-recoverEmail" style="display: none;">
             <div class="signin-signup">
                 <form action="#" class="sign-in-form" method="POST">
                     <h2 class="title">E-mail de verificação</h2>
@@ -89,7 +89,7 @@
                     <input type="submit" value="Trocar senha" class="btn-login solid btn-warning" />
                 </form>
             </div>
-        </div>
+        </div>-->
 
         <div class="panels-container">
             <div class="panel left-panel">
@@ -104,7 +104,7 @@
         </div>
     </div>
 
-    <script>
+    <!--<script>
         const forgotPasswordLink = document.getElementById("forgotPasswordLink");
         const formLogin = document.getElementById("form-login");
         const formRecoverEmail = document.getElementById("form-recoverEmail");
@@ -160,7 +160,7 @@
                 }
             });
         });
-    </script>
+    </script>-->
 
     <?php include 'View/includes/js_config.php' ?>
     <script src="View/js/src/jquery.login.js"></script>

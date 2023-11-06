@@ -71,6 +71,14 @@ switch ($url) {
         LoginController::delete();
         break;
 
+    case '/esqueci-senha':
+        LoginController::esqueciSenha();
+        break;
+
+    case '/enviar-nova-senha':
+
+        break;
+
         /* movimentacao*/
     case '/movimentacao':
         MovimentacaoController::index();
