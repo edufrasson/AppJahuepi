@@ -21,7 +21,6 @@
     height: 25%;
     display: flex; /* Coluna */
     justify-content: space-between;
-    
 }
 
 .dashboard-label{
@@ -44,8 +43,6 @@
     padding: 20px;
     display: flex;
     justify-content: space-between;
-    
-    
 }
 
 .graphic-bar-container{
@@ -54,7 +51,7 @@
     box-shadow: 5px 4px 11px -3px rgba(0,0,0,0.34);
     display: flex;
     flex-direction: column;
-    row-gap: 30px;
+    row-gap: 100px;
 }
 
 .graphic-pie-container{
@@ -63,7 +60,7 @@
     box-shadow: 5px 4px 11px -3px rgba(0,0,0,0.34);
     display: flex;
     flex-direction: column;
-    row-gap: 30px;
+    row-gap: 100px;
 }
 
 .text-container-label{
@@ -94,3 +91,17 @@
 #label-entrada{color: rgb(44, 150, 44)}
 #label-saida{color: rgb(185, 33, 33)}
 #label-pendente{color: rgb(214, 214, 61)}
+
+@media screen and (max-width: 768px) {
+    .header-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

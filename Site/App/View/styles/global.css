@@ -43,7 +43,7 @@ body {
 }
 
 
-.main-card .btn[type=submit], #adicionar, .open-produtos, .open-parcelas {
+.main-card .btn[type=submit], #adicionar, .open-produtos, .open-parcelas, #adicionarProduto {
   background: linear-gradient(to bottom, #fad449, #f4c71e);
   text-transform: uppercase;
   font-weight: bold;
@@ -132,6 +132,9 @@ body {
 .final-actions .btn-pagamento {
   margin-top: 10px;
   background: linear-gradient(to bottom, #fad449, #f4c71e);
+  border: 0;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .dropdown-toggle {
