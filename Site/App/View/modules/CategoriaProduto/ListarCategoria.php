@@ -44,8 +44,8 @@
                                         <tr>                                            
                                             <td><?= $categoria->descricao ?></td>
                                             <td class="actions-list">
-                                                <i class="bx bx-edit btn-icon" id="<?= $categoria->id ?>" data-bs-toggle="modal" data-bs-target="#modalCategoria" style="color: blue;"></i>
-                                                <i class='bx bx-trash btn-icon' id="<?= $categoria->id ?>" style="color: red;"></i>
+                                                <i class="bx bx-edit btn-edit btn-icon" id="<?= $categoria->id ?>" data-bs-toggle="modal" data-bs-target="#modalCategoria" style="color: blue;"></i>
+                                                <i class='bx bx-trash btn-delete btn-icon' id="<?= $categoria->id ?>" style="color: red;"></i>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>

@@ -3,11 +3,14 @@
 namespace App\Model;
 
 use App\DAO\CompraDAO;
+use App\DAO\FornecedorDAO;
+use App\DAO\ProdutoDAO;
 
 class CompraModel extends Model
 {
     public $id, $data_compra, $valor_compra, $qnt_parcela, $id_fornecedor;
-    public $lista_cobranca;
+    public $lista_produtos;
+    public $lista_fornecedores;
 
     public function save()
     {
@@ -25,6 +28,18 @@ class CompraModel extends Model
         $dao = new CompraDAO();
 
         $this->rows = $dao->select();
+    }
+    
+    public function getAllFornecedores(){
+        $dao = new FornecedorDAO();
+
+        $this->lista_fornecedores = $dao->select();
+    }
+
+    public function getAllProdutos(){
+        $dao = new ProdutoDAO();
+
+        $this->lista_produtos = $dao->select();
     }
 
     public function getById(int $id)

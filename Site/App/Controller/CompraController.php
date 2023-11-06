@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\Model\CompraModel;
 use App\Controller\Controller;
-use App\Model\ParcelaModel;
+use App\Model\CobrancaModel;
 use App\Model\ProdutoModel;
-use App\Model\ProdutoVendaModel;
+use App\Model\ProdutoCompraModel;
 use DateTime;
 
 class CompraController extends Controller
@@ -16,9 +16,10 @@ class CompraController extends Controller
         parent::isAuthenticated();
 
         $model = new CompraModel();
-        $model->getAllRows();
+        $model->getAllProdutos();
+        $model->getAllFornecedores();
 
-        parent::setResponseAsJSON($model);
+        include 'View/modules/Compra/NovaCompra.php';
     }
 
     public static function getById()
