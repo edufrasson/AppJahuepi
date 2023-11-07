@@ -119,13 +119,13 @@ class LoginController extends Controller
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com'; // Substitua pelo seu servidor SMTP
             $mail->SMTPAuth = true;
-            $mail->Username = 'mateusgabrielmoreno321@gmail.com'; // Substitua pelo seu e-mail
-            $mail->Password = 'mateus555'; // Substitua pela sua senha
+            $mail->Username = 'email@gmail.com'; // Substitua pelo seu e-mail
+            $mail->Password = 'password'; // Substitua pela sua senha
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Use ENCRYPTION_SMTPS para SMTP seguro
             $mail->Port = 587; // Porta SMTP, 587 é comum para STARTTLS, 465 para SMTPS
 
             // Remetente e destinatário
-            $mail->setFrom('mateusgabrielmoreno321@gmail.com', 'Mateus'); // Endereço do remetente
+            $mail->setFrom('email@gmail.com', 'teste'); // Endereço do remetente
             $mail->addAddress($email); // Destinatário
             $mail->Subject = $assunto;
             $mail->Body = $mensagem;
