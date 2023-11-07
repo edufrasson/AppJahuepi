@@ -4,12 +4,16 @@ namespace App\Controller;
 
 use App\DAO\LoginDAO;
 use App\Model\LoginModel;
-use FFI\Exception as FFIException;
+use FFI\Exception;
+
+require_once('src/PHPMailer.php');
+require_once('src/SMTP.php');
+require_once('src/Exception.php');
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception as PHPMailerException;
 
 require 'vendor/autoload.php';
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception as PHPMailerException;
 
 class LoginController extends Controller
 {
@@ -35,7 +39,7 @@ class LoginController extends Controller
                 $_SESSION['user_logged'] = json_encode($user);
                 header('Location: /home');
             }
-        } catch (FFIException $e) {
+        } catch (Exception $e) {
             parent::getExceptionAsJSON($e);
         }
     }
@@ -108,33 +112,32 @@ class LoginController extends Controller
             $assunto = "Nova Senha do Sistema";
             $mensagem = "Sua nova senha é: " . $nova_senha;
 
-            // Inicializando o PHPMailer
+            // Inicialize o objeto PHPMailer
             $mail = new PHPMailer();
 
-            // Configurando o servidor SMTP
+            // Configuração do servidor SMTP
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
+            $mail->Host = 'smtp.gmail.com'; // Substitua pelo seu servidor SMTP
             $mail->SMTPAuth = true;
-            $mail->Username = 'mateusgabrielmoreno321@gmail.com';
-            $mail->Password = 'mateus555';
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
+            $mail->Username = 'mateusgabrielmoreno321@gmail.com'; // Substitua pelo seu e-mail
+            $mail->Password = 'mateus555'; // Substitua pela sua senha
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Use ENCRYPTION_SMTPS para SMTP seguro
+            $mail->Port = 587; // Porta SMTP, 587 é comum para STARTTLS, 465 para SMTPS
 
             // Remetente e destinatário
-            $mail->setFrom('mateusgabrielmoreno321@gmail.com', 'Sistema JahuEPI');
-            $mail->addAddress($email);
+            $mail->setFrom('mateusgabrielmoreno321@gmail.com', 'Mateus'); // Endereço do remetente
+            $mail->addAddress($email); // Destinatário
             $mail->Subject = $assunto;
             $mail->Body = $mensagem;
 
-            // Enviando o e-mail
+            // Envie o e-mail
             if ($mail->send()) {
-                $retorno = "Caso seu email esteja em nosso sistema, você acaba de receber um nova senha.";
+                $retorno = "Um email foi enviado contendo sua nova senha.";
             } else {
-                $retorno = "Erro: " . $mail->ErrorInfo;
-                throw new FFIException("Desculpe, ocorreu um erro ao enviar o email, tente novamente mais tarde.");
+                throw new Exception("Desculpe, ocorreu um erro ao enviar o email, tente novamente mais tarde.");
             }
-        } catch (FFIException $e) {
-            var_dump($retorno);
+        } catch (Exception $e) {
+            var_dump($mail);
             $retorno = $e->getMessage();
         }
 

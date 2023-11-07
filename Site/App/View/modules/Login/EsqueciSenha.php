@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--<link rel="stylesheet" href="View/modules/Login/login.css">-->
+    <link rel="stylesheet" href="View/modules/Login/login.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <?php include 'View/includes/css_config.php' ?>
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <title>Login - Gestão Jahuepi</title>
 </head>
@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <!--<div class="panels-container">
+        <div class="panels-container">
             <div class="panel left-panel">
                 <div class="content-login">
                     <h3>Bem-Vindo!</h3>
@@ -49,7 +49,7 @@
                 </div>
                 <img src="View/assets/log.svg" class="image" alt="" />
             </div>
-        </div>-->
+        </div>
     </div>
 
     <?php include 'View/includes/js_config.php' ?>
