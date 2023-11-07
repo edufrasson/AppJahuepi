@@ -61,21 +61,6 @@ switch ($url) {
         FornecedorController::delete();
         break;
 
-        /* Compra */
-
-    case '/compra':
-        CompraController::index();
-        break;
-    case '/compra/save':
-        CompraController::save();
-        break;
-    case '/compra/get-by-id':
-        CompraController::getById();
-        break;
-    case '/compra/delete':
-        CompraController::delete();
-        break;
-
         /* Login*/
     case '/login':
         LoginController::form();
@@ -110,7 +95,7 @@ switch ($url) {
         break;
 
     case '/enviar-nova-senha':
-
+        LoginController::enviarNovaSenha();
         break;
 
         /* movimentacao*/
