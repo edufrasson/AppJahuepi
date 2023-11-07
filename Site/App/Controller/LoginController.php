@@ -4,7 +4,12 @@ namespace App\Controller;
 
 use App\DAO\LoginDAO;
 use App\Model\LoginModel;
-use FFI\Exception;
+use FFI\Exception as FFIException;
+
+require 'vendor/autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception as PHPMailerException;
 
 class LoginController extends Controller
 {
@@ -24,14 +29,13 @@ class LoginController extends Controller
         try {
             $model = new LoginModel();
             $user = $model->getByEmailAndSenha($_POST['email'], $_POST['senha']);
-            if ($user == false) {                
+            if ($user == false) {
                 parent::loginFailed();
-                
             } else {
-                $_SESSION['user_logged'] = json_encode($user);                
+                $_SESSION['user_logged'] = json_encode($user);
                 header('Location: /home');
             }
-        } catch (Exception $e) {
+        } catch (FFIException $e) {
             parent::getExceptionAsJSON($e);
         }
     }
@@ -94,8 +98,46 @@ class LoginController extends Controller
 
     public static function enviarNovaSenha()
     {
-        $nova_senha = uniqid();
+        try {
+            $nova_senha = uniqid();
+            $email = $_POST['email'];
 
-        $login_dao = new LoginDAO();
+            $login_dao = new LoginDAO();
+            $login_dao->setNewPassword($email, $nova_senha);
+
+            $assunto = "Nova Senha do Sistema";
+            $mensagem = "Sua nova senha é: " . $nova_senha;
+
+            // Inicializando o PHPMailer
+            $mail = new PHPMailer();
+
+            // Configurando o servidor SMTP
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'mateusgabrielmoreno321@gmail.com';
+            $mail->Password = 'mateus555';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+
+            // Remetente e destinatário
+            $mail->setFrom('mateusgabrielmoreno321@gmail.com', 'Sistema JahuEPI');
+            $mail->addAddress($email);
+            $mail->Subject = $assunto;
+            $mail->Body = $mensagem;
+
+            // Enviando o e-mail
+            if ($mail->send()) {
+                $retorno = "Caso seu email esteja em nosso sistema, você acaba de receber um nova senha.";
+            } else {
+                $retorno = "Erro: " . $mail->ErrorInfo;
+                throw new FFIException("Desculpe, ocorreu um erro ao enviar o email, tente novamente mais tarde.");
+            }
+        } catch (FFIException $e) {
+            var_dump($retorno);
+            $retorno = $e->getMessage();
+        }
+
+        include 'View/modules/Login/EsqueciSenha.php';
     }
 }
