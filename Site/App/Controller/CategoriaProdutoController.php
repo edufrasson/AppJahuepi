@@ -24,7 +24,7 @@ class CategoriaProdutoController extends Controller
 
         $model = new CategoriaProdutoModel();
         $model->getAllRows();
-       
+
         parent::setResponseAsJSON($model->rows);
     }
 
@@ -58,7 +58,7 @@ class CategoriaProdutoController extends Controller
 
         $model = new CategoriaProdutoModel();
 
-        $model->delete( (int) $_GET['id']);
+        $model->delete((int) $_GET['id']);
 
         parent::setResponseAsJSON($model);
     }

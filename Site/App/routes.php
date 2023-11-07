@@ -212,6 +212,9 @@ switch ($url) {
     case '/relatorio':
         VendaController::relatorio();
         break;
+    case '/template':
+        VendaController::template();
+        break;
 
         /* Taxa*/
     case '/taxa':

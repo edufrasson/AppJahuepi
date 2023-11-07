@@ -4,6 +4,14 @@
     padding: 20px;
 }
 
+.main-container{
+    z-index: 999;
+}
+
+.orcamento{
+    z-index: 0;
+}
+
 .input-row{
    /* border: 1px solid red;*/
     display: flex;
