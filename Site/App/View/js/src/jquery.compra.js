@@ -260,7 +260,9 @@ $(document).ready(function () {
 
   $("#ajustarParcelas").click(() => {
     if ($("#qnt_parcelas").val() != 0 || $("#qnt_parcelas").val() != "") {
-      console.log($("#qnt_parcelas").val());
+      $('#botaoVoltar').removeClass("d-none");
+      $('.title-parcelas').removeClass("d-none");
+      $('#modalPagamentoCompraTitle').addClass("d-none");
       $(".initial-values").addClass("d-none");
       qnt_parcelas = $("#qnt_parcelas").val()
       for (let i = 1; i <= qnt_parcelas; i++) {
@@ -284,7 +286,17 @@ $(document).ready(function () {
           </div>`
         )
       }
-      $(".ajustes-parcela").removeClass("off");
+      $(".ajustes-parcela").removeClass("d-none");
+
+      $('#botaoVoltar').click(function () { 
+        $('#botaoVoltar').addClass("d-none");
+        $('.title-parcelas').addClass("d-none");
+        $('#modalPagamentoCompraTitle').removeClass("d-none");
+        $(".initial-values").removeClass("d-none");
+        $(".ajustes-parcela").empty();
+        $(".ajustes-parcela").addClass("d-none");
+
+      });
     } else {
       swal({
         title: "Erro!",

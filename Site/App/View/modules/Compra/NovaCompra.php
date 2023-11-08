@@ -94,11 +94,11 @@
     <div class="modal fade" id="modalPagamentoCompra" tabindex="-1" role="dialog" aria-labelledby="modalPagamentoCompraTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header d-flex justify-content-between">
+                    <box-icon size="md" class="d-none" name='left-arrow-circle' id="botaoVoltar"></box-icon>
                     <h5 class="modal-title" id="modalPagamentoCompraTitle">Cadastrar Pagamento da Compra</h5>
-                    <!--<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>-->
-                    </button>
+                    <h5 class="modal-title title-parcelas d-none" id="modalPagamentoCompraTitle2">Ajuste de Parcelas</h5>
+                   
                 </div>
                 <form method="post">
                     <div class="modal-body modal-boleto " id="modal-boleto">
@@ -138,7 +138,7 @@
                                 <button type="button" class="btn" style="background-color: #f4c71e;" id="ajustarParcelas">Ajustar Parcelas</button>
                             </div>
                         </div>
-                        <div class="ajustes-parcela off">
+                        <div class="ajustes-parcela d-none">
                             <div class="container-parcelas">
 
                             </div>
