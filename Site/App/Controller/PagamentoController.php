@@ -40,10 +40,10 @@ class PagamentoController extends Controller
 
         $pagamento->qnt_parcelas = $_POST['qnt_parcelas'];
         $pagamento->valor_total = $_POST['valor_total'];
-        $pagamento->forma_pagamento = $_POST['forma_pagamento'];        
+        $pagamento->forma_pagamento = $_POST['forma_pagamento'];
         $pagamento->id_venda = $_POST['id_venda'];
-        $pagamento->taxa = $_POST['taxa'];
-        $pagamento->valor_liquido = $_POST['valor_liquido'];
+        (isset($_POST['taxa'])) ? $pagamento->taxa = $_POST['taxa'] : $pagamento->taxa = "";
+        (isset($_POST['valor_liquido'])) ? $pagamento->valor_liquido = $_POST['valor_liquido']  : $pagamento->valor_liquido = $_POST['valor_total'];
 
         $pgt = $pagamento->save();
 
@@ -53,10 +53,31 @@ class PagamentoController extends Controller
             // Definindo valores bases das datas de parcela e recebimento
 
             $data_parcela = new DateTime($_POST['data_venda']);
-            
+
             $data_recebimento = new DateTime($_POST['data_venda']);
             $data_recebimento = $data_recebimento->modify("+1 month");
-            
+
+            // Verificando se é uma compra no boleto com parcelas predefinidas 
+            if ($pgt->forma_pagamento == "BOLETO" && isset($_POST['arr_parcelas'])) {
+                $arr_parcelas = json_decode($_POST['arr_parcelas']);
+                $i = 1;
+                foreach ($arr_parcelas as $item) {
+                    $parcela = new ParcelaModel();
+
+                    $parcela->id_pagamento = $pgt->id;
+                    $parcela->valor = $item->valor_parcela;
+                    $parcela->data_parcela = $data_parcela->format('Y-m-d');
+                    $parcela->data_recebimento = $item->data_parcela;
+                    $parcela->indice = $i;
+                    $i++;
+
+                    $model_parcela->lista_parcelas[] = $parcela;
+                }
+                parent::setResponseAsJSON($model_parcela->save());
+            }
+
+
+
             // Loop de inserção de parcelas
 
             for ($i = 1; $i <= $pgt->qnt_parcelas; $i++) {
@@ -64,21 +85,20 @@ class PagamentoController extends Controller
 
                 $parcela->indice = $i;
                 $parcela->id_pagamento = $pgt->id;
-                $parcela->valor = $_POST['valor_liquido'] / $pgt->qnt_parcelas;
+                $parcela->valor = $pgt->valor_liquido / $pgt->qnt_parcelas;
                 $parcela->data_parcela = $data_parcela->format('Y-m-d');
-                
+
                 // Adaptando as datas de recebimento de acordo com o tipo de pagamento da parcela
-                
-                ($pgt->forma_pagamento == "BOLETO" || $pgt->forma_pagamento == "DINHEIRO" ) ? $parcela->data_recebimento = $data_parcela->format('Y-m-d') : "";            
-                ($pgt->forma_pagamento == "DEBITO") ? $parcela->data_recebimento = $data_parcela->modify("+1 day")->format('Y-m-d') : "";            
-                ($pgt->forma_pagamento == "CREDITO") ? $parcela->data_recebimento = $parcela->data_recebimento = $data_recebimento->format('Y-m-d') : "";            
+
+                ($pgt->forma_pagamento == "BOLETO" || $pgt->forma_pagamento == "DINHEIRO") ? $parcela->data_recebimento = $data_parcela->format('Y-m-d') : "";
+                ($pgt->forma_pagamento == "DEBITO") ? $parcela->data_recebimento = $data_parcela->modify("+1 day")->format('Y-m-d') : "";
+                ($pgt->forma_pagamento == "CREDITO") ? $parcela->data_recebimento = $parcela->data_recebimento = $data_recebimento->format('Y-m-d') : "";
 
                 $model_parcela->lista_parcelas[] = $parcela;
 
                 // Adicionando mais um mês para o próximo item do loop
                 $data_parcela = $data_parcela->modify("+1 month");
                 $data_recebimento = $data_recebimento->modify("+1 month");
-               
             }
             parent::setResponseAsJSON($model_parcela->save());
         } else

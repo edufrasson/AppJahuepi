@@ -57,11 +57,11 @@ function loadTableTaxa() {
 $(document).ready(function () {    
     loadTableTaxa();
 
-    $('.btn-edit-taxa').click(function (event) {
+    $('.btn-edit').click(function (event) {
         getTaxaById(event.target.id);
     })
 
-    $('.btn-delete-taxa').click(async function (event) {
+    $('.btn-delete').click(async function (event) {
         await swal({
             title: "Excluir registro",
             text: "Você tem certeza que deseja apagar esse registro?",

@@ -44,8 +44,9 @@ class TaxaController extends Controller
         $taxa = new TaxaModel();
 
         $taxa->id = $_POST['id'];
-        $taxa->codigo = $_POST['codigo'];
-        $taxa->valor = $_POST['valor'] / 100;
+        $taxa->bandeira = $_POST['bandeira'];
+        $taxa->valor_credito = $_POST['valor_credito'] / 100;
+        $taxa->valor_debito = $_POST['valor_debito'] / 100;
 
         $taxa->save();
 

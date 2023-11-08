@@ -6,7 +6,7 @@ use App\DAO\TaxaDAO;
 
 class TaxaModel extends Model
 {
-    public $id, $codigo, $valor;
+    public $id, $bandeira, $valor_credito, $valor_debito;
 
     public function save()
     {

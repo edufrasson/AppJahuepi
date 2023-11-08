@@ -24,10 +24,7 @@
                 <div class="main-card">
                     <div class="containers-card buttons-container">
                         <form class="form-add-product" method="post">
-                            <div class="input-container">
-                                <label for="txtDataVenda">Data da Venda: </label><br>
-                                <input class="form-control" type="date" name="data_venda" id="data_venda">
-                            </div>
+                           
                             <div class="input-container select-container">
                                 <label for="id_produto">Produto:</label><br>
                                 <select class="selectpicker bg-light" data-live-search="true" name="id_produto" id="id_produto">

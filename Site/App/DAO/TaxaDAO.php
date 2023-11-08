@@ -14,23 +14,25 @@ class TaxaDAO extends DAO
 
     public function insert(TaxaModel $model)
     {
-        $sql = "INSERT INTO taxa (codigo, valor) VALUE (?, ?)";
+        $sql = "INSERT INTO taxa (bandeira, valor_credito, valor_debito) VALUE (?, ?, ?)";
 
         $stmt = parent::getConnection()->prepare($sql);
 
-        $stmt->bindValue(1, $model->codigo);
-        $stmt->bindValue(2, $model->valor);
+        $stmt->bindValue(1, $model->bandeira);
+        $stmt->bindValue(2, $model->valor_credito);
+        $stmt->bindValue(3, $model->valor_debito);
 
         $stmt->execute();
     }
 
     public function update(TaxaModel $model)
     {
-        $sql = "UPDATE taxa SET codigo=?, valor = ? WHERE id=?";
+        $sql = "UPDATE taxa SET bandeira=?, valor_credito = ?, valor_debito = ? WHERE id=?";
 
         $stmt = parent::getConnection()->prepare($sql);
-        $stmt->bindValue(1, $model->codigo);
-        $stmt->bindValue(2, $model->valor);
+        $stmt->bindValue(1, $model->bandeira);
+        $stmt->bindValue(2, $model->valor_credito);
+        $stmt->bindValue(3, $model->valor_debito);
         $stmt->bindValue(3, $model->id);
 
         $stmt->execute();

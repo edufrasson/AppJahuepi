@@ -35,21 +35,23 @@
                         </div>
                         <table id="tableTaxa" class="table table-bordered table-style off">
                             <thead>
-                                <tr>                                    
-                                    <th>Código</th>
-                                    <th>Valor</th>
+                                <tr>
+                                    <th>Bandeira</th>
+                                    <th>Valor no Crédito</th>
+                                    <th>Valor no Débito</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php if ($model->rows !== null) : ?>
                                     <?php foreach ($model->rows as $taxa) : ?>
-                                        <tr>                                            
-                                            <td><?= $taxa->codigo ?></td>
-                                            <td><?= $taxa->valor * 100 ?>%</td>
+                                        <tr>
+                                            <td><?= $taxa->bandeira ?></td>
+                                            <td><?= $taxa->valor_credito * 100 ?>%</td>
+                                            <td><?= $taxa->valor_debito * 100 ?>%</td>
                                             <td class="actions-list">
-                                            <i class="bx bx-edit btn-icon" id="<?= $taxa->id ?>" data-bs-toggle="modal" data-bs-target="#modalTaxa" style="color: blue;"></i>
-                                                <i class='bx bx-trash btn-icon' id="<?= $taxa->id ?>" style="color: red;"></i>
+                                                <i class="bx bx-edit btn-icon btn-edit" id="<?= $taxa->id ?>" data-bs-toggle="modal" data-bs-target="#modalTaxa" style="color: blue;"></i>
+                                                <i class='bx bx-trash btn-icon btn-delete' id="<?= $taxa->id ?>" style="color: red;"></i>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>
@@ -74,14 +76,17 @@
                     <div class="modal-body">
                         <input type="hidden" name="id" id="id">
                         <div class="mb-3">
-                            <label for="txtCodigo">Código:</label>
-                            <input type="text" name="codigo" class="form-control" id="txtCodigo" required maxlength="90">
+                            <label for="bandeira">Bandeira:</label>
+                            <input type="text" name="bandeira" class="form-control" id="bandeira" required maxlength="90">
                         </div>
                         <div class="mb-3">
-                            <label for="txtValor">Valor (em %):</label>
-                            <input type="number" name="valor" class="form-control" id="txtValor" required maxlength="90">
+                            <label for="valor_credito">Valor no Crédito(em %):</label>
+                            <input type="number" name="valor_credito" class="form-control" id="valor_credito" step="0.01" required maxlength="90">
                         </div>
-
+                        <div class="mb-3">
+                            <label for="valor_debito">Valor no Débito(em %):</label>
+                            <input type="number" name="valor_debito" class="form-control" id="valor_debito" step="0.01" required maxlength="90">
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>

@@ -1,14 +1,22 @@
 lista_produtos = Array();
+lista_parcelas = Array();
 
+var valor_parcelas = 0;
+var qnt_parcelas = 0;
 var valor_total = 0;
+
 var last_id_venda = false;
+var verifica_parcelas = true;
 var venda_inserida = false;
 var produtos_relacionados = false;
+
 
 /*
   Requisição para inserir a venda
 */
 function inserirVenda(data_venda, id) {
+  console.log("caiu na funcao");
+
   if (data_venda !== "") {
     $.ajax({
       type: "POST",
@@ -81,6 +89,7 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
             );
             break;
           case "BOLETO":
+            console.log(lista_parcelas)
             adicionarPagamento(
               last_id_venda,
               valor_total,
@@ -88,7 +97,8 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
               $("#forma_pagamento").val(),
               $("#taxa-boleto").val(),
               $("#data_venda").val(),
-              $("#valor_liquido_boleto").val()
+              $("#valor_liquido_boleto").val(),
+              lista_parcelas
             );
             break;
           case "DINHEIRO":
@@ -142,7 +152,7 @@ function baixaEstoque(id_venda) {
     error: function (result) {
       swal({
         title: "Erro!",
-        text: "Erro interno ao adicionar a venda. Tente Novamente",
+        text: "Erro interno ao realizar baixa no estoque. Tente Novamente",
         icon: "error",
         button: "OK",
       });
@@ -161,7 +171,8 @@ function adicionarPagamento(
   forma_pagamento,
   taxa,
   data_venda,
-  valor_liquido
+  valor_liquido,
+  lista_parcelas_prop = null
 ) {
   if (
     id_venda != false &&
@@ -181,6 +192,7 @@ function adicionarPagamento(
         taxa: taxa,
         data_venda: data_venda,
         valor_liquido: valor_liquido,
+        arr_parcelas: JSON.stringify(lista_parcelas_prop)
       },
       dataType: "json",
       success: function (result) {
@@ -283,7 +295,7 @@ async function reloadTableProduct() {
  */
 
 function updateTotalValue(qnt_parcelas = null) {
-  $(".valor_total").val(valor_total);
+  $(".valor_total").val(valor_total.toFixed(2));
 }
 
 function updateTaxasValue(valor_taxa) {
@@ -296,7 +308,7 @@ function updateTaxasValue(valor_taxa) {
   $("#valor_liquido_debito").val(
     (valor_total - valor_total * valor_taxa).toFixed(2)
   );
-  $("#valor_liquido_boleto").val(valor_total - valor_taxa);
+  $("#valor_liquido_boleto").val((valor_total - valor_taxa).toFixed(2));
 }
 
 function updateParcelasValue(qnt_parcelas) {
@@ -308,11 +320,14 @@ function updateParcelasValue(qnt_parcelas) {
   );
 }
 
-function updateParcelasBoleto(qnt_parcelas) {
-  $("#valor_bruto_parcela_boleto").val((valor_total / qnt_parcelas).toFixed(2));
+function updateParcelasBoleto(qnt_parcelas_prop) {
+  $("#valor_bruto_parcela_boleto").val((valor_total / qnt_parcelas_prop).toFixed(2));
+  valor_parcelas = (valor_total / qnt_parcelas_prop).toFixed(2)
   $("#valor_liquido_parcela_boleto").val(
-    ($("#valor_liquido_boleto").val() / qnt_parcelas).toFixed(2)
+    ($("#valor_liquido_boleto").val() / qnt_parcelas_prop).toFixed(2)
   );
+
+  qnt_parcelas = qnt_parcelas_prop
 }
 
 /* 
@@ -352,6 +367,67 @@ $(document).ready(function () {
         $("#qnt_parcelas_boleto").change(() => {
           updateParcelasBoleto($("#qnt_parcelas_boleto").val());
         });
+
+        $("#finalizarVenda").addClass("d-none");
+        $("#ajustarParcela").removeClass("d-none");
+
+        // Função executada ao iniciar ajuste de parcelas
+        $("#ajustarParcela").click(() => {
+          if ($("#qnt_parcelas_boleto").val() != 0 || $("#qnt_parcelas_boleto").val() != "") {
+            // Fazendo aparecer a tela de ajuste de parcelas
+            $("#botaoVoltar").removeClass("d-none");
+            $(".container-forma-pagamento").addClass("d-none");
+            $("#ajustarParcela").addClass("d-none");
+            $("#finalizarVenda").removeClass("d-none");
+            $(".title-parcelas").removeClass("d-none");
+            $("#modalPagamentoCompraTitle").addClass("d-none");
+            $(".initial-values").addClass("d-none");
+            qnt_parcelas = $("#qnt_parcelas_boleto").val();
+            
+            // Adicionando na div as parcelas correspondentes ao num de parcelas
+            for (let i = 1; i <= qnt_parcelas; i++) {
+              $(".ajustes-parcela").append(
+                ` <div class="input-container">    
+                  <div class="label-container"> 
+                    <p> Parcela nº ${i}</p>
+                  </div>                     
+                  <hr class="hr">            
+                  <div class="input-row">
+                    <div class="input-container"> 
+                      <label> Valor da Parcela</label><br>
+                      <input class="form-control" type="text" name="valor_parcela_disabled" id="valor_parcela_disabled${i}" value="${valor_parcelas}"disabled>
+                    </div>                
+                    <div class="input-container"> 
+                      <label> Data de recebimento</label><br>
+                      <input class="form-control" type="date" name="data_recebimento" id="data_recebimento${i}">
+                    </div>              
+                  </div>
+                  <hr class="hr"> 
+                </div>`
+              );
+            }
+            $(".ajustes-parcela").removeClass("d-none");
+
+            // Botão de Voltar do Ajuste -> Retorna aos valores iniciais
+            $("#botaoVoltar").click(function () {
+              $("#botaoVoltar").addClass("d-none");              
+              $("#ajustarParcela").removeClass("d-none");
+              $(".container-forma-pagamento").removeClass("d-none");
+              $("#finalizarVenda").addClass("d-none");
+              $("#modalPagamentoVendaTitle").removeClass("d-none");
+              $(".initial-values").removeClass("d-none");
+              $(".ajustes-parcela").empty();
+              $(".ajustes-parcela").addClass("d-none");
+            });
+          } else {
+            swal({
+              title: "Erro!",
+              text: "Insira a quantidade de parcelas antes do ajuste!",
+              icon: "error",
+              button: "OK",
+            });
+          }
+        });
         break;
 
       case "DEBITO":
@@ -390,7 +466,44 @@ $(document).ready(function () {
     Função que chama todas as requisições necessárias para inserir uma venda completa
   */
   $("#finalizarVenda").click(async () => {
-    await inserirVenda($("#data_venda").val(), $("#id").val());
+    switch ($("#forma_pagamento").val()) {
+      case "CREDITO":
+        await inserirVenda($("#data_venda").val(), $("#id").val());
+        break;
+      case "DEBITO":
+        await inserirVenda($("#data_venda_debito").val(), $("#id").val());
+        break;
+      case "BOLETO":
+        console.log('caiu no boleto')
+        for (let i = 1; i <= qnt_parcelas; i++) {
+          if ($(`#data_recebimento${i}`).val() == "") 
+            verifica_parcelas = false;
+        }
+        console.log('passou a primeira')
+
+
+        if (verifica_parcelas != false) {
+          console.log('passou o segundo if')
+          for (let i = 1; i <= qnt_parcelas; i++) {
+            lista_parcelas.push(
+              {           
+                indice: i,
+                valor_parcela: (valor_total / qnt_parcelas).toFixed(2),
+                data_parcela: $(`#data_recebimento${i}`).val()            
+              }
+            )
+          }
+          console.log(lista_parcelas)
+
+          await inserirVenda($("#data_venda_boleto").val(), $("#id").val());
+        }
+        
+
+        break;
+      case "DINHEIRO":
+        await inserirVenda($("#data_venda_dinheiro").val(), $("#id").val());
+        break;
+    }
 
     if (venda_inserida != false) {
       valor = await relacionarProdutoVenda(last_id_venda, lista_produtos);
@@ -407,16 +520,20 @@ $(document).ready(function () {
 
   $(".btn-orcamento").click(() => {
     console.log("caiu orcamento");
-    $("#valor_total").val(Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor_total));
+    $("#valor_total").val(
+      Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(
+        valor_total
+      )
+    );
     $("#arr_produtos").val(JSON.stringify(lista_produtos));
     const option = {
       year: "numeric",
-      month: "long" || "short" || "numeric",      
+      month: "long" || "short" || "numeric",
       day: "numeric",
     };
     const locale = "pt-br";
     const data = new Date().toLocaleDateString(locale, option);
-    console.log(data)
+    console.log(data);
     $("#data_dia").val(data);
   });
 });
