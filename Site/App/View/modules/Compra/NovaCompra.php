@@ -24,7 +24,7 @@
             <div class="main-card">
                 <div class="containers-card buttons-container">
                     <form class="form-add-product" method="post">
-                    <div class="input-container select-container">
+                        <div class="input-container select-container">
                             <label for="id_fornecedor">Fornecedor:</label><br>
                             <select class="selectpicker bg-light" data-live-search="true" name="id_fornecedor" id="id_fornecedor">
                                 <option value="">Selecione um fornecedor!</option>
@@ -72,7 +72,7 @@
                                 <tr>
                                     <th>Descricao</th>
                                     <th>Preço</th>
-                                    <th>Quantidade</th>                                    
+                                    <th>Quantidade</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
@@ -102,35 +102,52 @@
                 </div>
                 <form method="post">
                     <div class="modal-body modal-boleto " id="modal-boleto">
-                        <div class="input-row input-container-value">
-                            <div class="input-container">
-                                <label for="txtDataVenda">Data da compra: </label><br>
-                                <input class="form-control" type="date" name="data_compra" id="data_compra">
+                        <div class="initial-values">
+                            <div class="input-row input-container-value ">
+                                <div class="input-container">
+                                    <label for="txtDataVenda">Data da compra: </label><br>
+                                    <input class="form-control" type="date" name="data_compra" id="data_compra">
+                                </div>
+                                <div class="input-container">
+                                    <label for="qnt_parcelas">Quantidade de parcelas: </label><br>
+                                    <input class="form-control p-1" type="number" name="qnt_parcelas" id="qnt_parcelas" min="1" max="12">
+                                </div>
                             </div>
-                            <div class="input-container">
-                                <label for="qnt_parcelas">Quantidade de parcelas: </label><br>
-                                <input class="form-control p-1" type="number" name="qnt_parcelas" id="qnt_parcelas" max="12">
+
+                            <hr class="hr">
+                            <div class="d-flex justify-content-center">
+                                Detalhes
+                            </div>
+                            <hr class="hr">
+                            <div class="input-row mb-3">
+                                <div class="input-container">
+                                    <label for="valor_total">Valor total (R$): </label><br>
+                                    <input disabled class="form-control p-1 valor_total" type="text" name="valor_total" id="valor_total">
+                                </div>
+                                <div class="input-container pagamento-details">
+                                    <label for="valor_parcela">Valor por Parcela (R$): </label><br>
+                                    <input disabled class="form-control p-1 valor_parcela" type="text" name="valor_parcela" id="valor_parcela">
+                                </div>
+                            </div>
+                            <hr class="hr">
+                            <div class="d-flex justify-content-center">
+                                Parcelas
+                            </div>
+                            <hr class="hr">
+                            <div class="input-container d-flex justify-content-center">
+                                <button type="button" class="btn" style="background-color: #f4c71e;" id="ajustarParcelas">Ajustar Parcelas</button>
+                            </div>
+                        </div>
+                        <div class="ajustes-parcela off">
+                            <div class="container-parcelas">
+
                             </div>
                         </div>
 
-                        <hr class="hr">
-                        <div class="d-flex justify-content-center">
-                            Detalhes
-                        </div>
-                        <hr class="hr">
-                        <div class="input-row mb-3">
-                        <div class="input-container">
-                                <label for="valor_total">Valor total (R$): </label><br>
-                                <input disabled class="form-control p-1 valor_total" type="text" name="valor_total" id="valor_total">
-                            </div>
-                            <div class="input-container pagamento-details">
-                                <label for="valor_parcela">Valor por Parcela (R$): </label><br>
-                                <input disabled class="form-control p-1 valor_parcela" type="text" name="valor_parcela" id="valor_parcela">
-                            </div>
-                        </div>                       
-                        
                     </div>
-                    <div class="modal-footer">
+
+
+                    <div class="modal-footer d-flex justify-content-between">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                         <button type="submit" class="btn" style="background-color: #f4c71e;" id="adicionarCompra">Salvar Registro</button>
                     </div>
@@ -139,7 +156,7 @@
         </div>
     </div>
     <?php include 'View/includes/js_config.php' ?>
-   
+
     <script src="View/js/src/jquery.compra.js"></script>
 </body>
 
