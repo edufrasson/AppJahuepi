@@ -18,15 +18,14 @@ class CobrancaDAO extends DAO
         parent::getConnection()->beginTransaction();
 
         foreach ($model->lista_cobrancas as $cobranca) {
-            $sql = "INSERT INTO Cobranca (valor_cobranca, data_cobranca, id_compra, indice, status) VALUE (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO Cobranca (valor_cobranca, data_cobranca, id_compra, indice) VALUE (?, ?, ?, ?)";
 
             $stmt = parent::getConnection()->prepare($sql);
 
             $stmt->bindValue(1, $cobranca->valor_cobranca);
             $stmt->bindValue(2, $cobranca->data_cobranca);
-            $stmt->bindValue(3, $cobranca->id_compra);
-            $stmt->bindValue(4, $cobranca->indice);
-            $stmt->bindValue(5, $cobranca->status);
+            $stmt->bindValue(3, $model->id_compra);
+            $stmt->bindValue(4, $cobranca->indice);           
 
             $stmt->execute();
         }

@@ -48,13 +48,13 @@ class CobrancaController extends Controller
         }
     }
 
-    public static function getByIdVenda()
+    public static function getByIdCompra()
     {
         parent::isAuthenticated();
 
         $model = new CobrancaModel();
 
-        parent::setResponseAsJSON($model->getByIdVenda($_GET['id']));
+        parent::setResponseAsJSON($model->getByIdCompra($_GET['id']));
     }
 
     public static function confirmcobranca()

@@ -50,7 +50,7 @@ class ProdutoCompraDAO extends DAO
     public function baixaEstoque($arr_produtos)
     {
         parent::getConnection()->beginTransaction();
-        $sql = "INSERT INTO Estoque (situacao, quantidade, id_Compra, id_produto, data_registro) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO Estoque (situacao, quantidade, id_compra, id_produto, data_registro) VALUES (?, ?, ?, ?, ?)";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -85,11 +85,11 @@ class ProdutoCompraDAO extends DAO
                         p.descricao as descricao,
                         pv.valor_unit as valor_unit,
                         pv.id_compra as id_compra,
-                        v.data_compra as data_compra      
+                        c.data_compra as data_compra      
                 FROM produto_compra pv
                 JOIN produto p ON p.id = pv.id_produto
-                JOIN Compra v ON v.id = pv.id_compra
-                WHERE pv.id_compra = ? AND pv.ativo = 'S' AND p.ativo = 'S';";
+                JOIN compra c ON c.id = pv.id_compra
+                WHERE pv.id_compra = ? AND pv.ativo = 'S' AND p.ativo = 'S' AND c.ativo = 'S';";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

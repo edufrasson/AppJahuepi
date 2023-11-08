@@ -22,6 +22,15 @@ class CompraController extends Controller
         include 'View/modules/Compra/NovaCompra.php';
     }
 
+    public static function relatorio(){
+        parent::isAuthenticated();
+
+        $model = new CompraModel();
+        $model->getAllRows();
+
+        include 'View/modules/Compra/ListarCompra.php';
+    }
+
     public static function getById()
     {
         parent::isAuthenticated();
@@ -34,17 +43,26 @@ class CompraController extends Controller
     public static function save()
     {
         parent::isAuthenticated();
-
+        $cobranca = new CobrancaModel();
         $compra = new CompraModel();
         $compra->id = $_POST['id'];
         $compra->qnt_parcela = $_POST['qnt_parcela'];
         $compra->valor_compra = $_POST['valor_compra'];
-        $compra->data_compra = $_POST['data_compra'];        
-        $compra->id_fornecedor = $_POST['id_fornecedor'];       
+        $compra->data_compra = $_POST['data_compra'];
+        $compra->id_fornecedor = $_POST['id_fornecedor'];
 
-        $compra->save();
-        
-        header("Location: /compra");
+        $compra_inserida = $compra->save();
+
+        if ($compra_inserida->id != 0 || $compra_inserida->id != null && isset($_POST['arr_parcelas'])) {
+            $cobranca->id_compra = $compra_inserida->id;
+            $cobranca->lista_cobrancas = json_decode($_POST['arr_parcelas']);
+            $res = $cobranca->save();
+            if($res == false)
+                parent::setResponseAsJSON(false);
+            parent::setResponseAsJSON($compra_inserida);
+        } else {
+            parent::setResponseAsJSON($compra_inserida);
+        }
     }
 
     public static function update()

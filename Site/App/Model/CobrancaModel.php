@@ -22,7 +22,7 @@ class CobrancaModel extends Model
         
     }
 
-    public function getByIdVenda(int $id)
+    public function getByIdCompra(int $id)
     {
         $dao = new CobrancaDAO();
 

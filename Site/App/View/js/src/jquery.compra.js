@@ -1,33 +1,40 @@
 lista_produtos = Array();
 var valor_total = 0;
 var valor_parcelas = 0;
+var last_id_compra = false;
 var qnt_parcelas = false;
-var venda_inserida = false;
+var verifica_parcelas = true;
+var compra_inserida = false;
 var produtos_relacionados = false;
 
 /*
-  Requisição para inserir a venda
+  Requisição para inserir a compra
 */
-function inserirVenda(data_venda, id) {
-  if (data_venda !== "") {
+function inserirCompra(data_compra, id, qnt_parcela, id_fornecedor, valor_compra, arr_parcelas) {
+  if (data_compra !== "") {
     $.ajax({
       type: "POST",
-      url: "/venda/save",
+      url: "/compra/save",
       async: false,
       data: {
         id: id,
-        data_venda: data_venda,
+        data_compra: data_compra,
+        qnt_parcela: qnt_parcela,
+        id_fornecedor: id_fornecedor,
+        valor_compra: valor_compra,
+        arr_parcelas: JSON.stringify(arr_parcelas)
       },
       dataType: "json",
       success: function (result) {
-        last_id_venda = result.response_data.id;
-        venda_inserida = true;
-        console.log("venda deu bom:");
+        console.log("compra deu bom:");
         console.log(result.response_data);
+        last_id_compra = result.response_data.id;
+        compra_inserida = true;
+        relacionarProdutoCompra(last_id_compra, lista_produtos);        
       },
       error: function (result) {
-        console.log("erro na venda:");
-        last_id_venda = false;
+        console.log(`erro na compra: ${result}`);
+        last_id_compra = false;
       },
     });
   } else {
@@ -41,27 +48,27 @@ function inserirVenda(data_venda, id) {
 }
 
 /*
-  Requisição para insert na tabela assoc de produto_venda
+  Requisição para insert na tabela assoc de produto_compra
 */
 
-function relacionarProdutoVenda(id_venda, lista_produtos) {
-  if (id_venda != false && lista_produtos != null) {
+function relacionarProdutoCompra(id_compra, lista_produtos) {
+  if (id_compra != false && lista_produtos != null) {
     $.ajax({
       type: "POST",
-      url: "/produto_venda/save",
+      url: "/produto_compra/save",
       data: {
-        id_venda: id_venda,
+        id_compra: id_compra,
         lista_produtos: JSON.stringify(lista_produtos),
       },
       dataType: "json",
       success: function (result) {
-        produtos_relacionados = true;
+        baixaEstoque(last_id_compra)
       },
       error: function (result) {
         console.log(result);
         swal({
           title: "Erro!",
-          text: "Erro interno ao adicionar o produto na venda. Tente Novamente",
+          text: "Erro interno ao adicionar o produto na compra. Tente Novamente",
           icon: "error",
           button: "OK",
         });
@@ -76,90 +83,32 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
     });
 }
 
-function baixaEstoque(id_venda) {
+function baixaEstoque(id_compra) {
   $.ajax({
     type: "POST",
-    url: "/produto_venda/baixa_estoque",
+    url: "/produto_compra/baixa_estoque",
     data: {
-      id_venda: id_venda,
+      id_compra: id_compra,
     },
     dataType: "json",
     success: function (result) {
       swal({
         title: "Sucesso!",
-        text: "Venda cadastrada com sucesso!",
+        text: "Compra cadastrada com sucesso!",
         icon: "success",
         button: "OK",
       });
     },
     error: function (result) {
+      console.log(result)
       swal({
         title: "Erro!",
-        text: "Erro interno ao adicionar a venda. Tente Novamente",
+        text: "Erro interno ao adicionar ao baixar estoque. Tente Novamente",
         icon: "error",
         button: "OK",
       });
     },
   });
-}
-
-/**
- *  Requisição para insert na tabela de Pagamento
- */
-
-function adicionarPagamento(
-  id_venda,
-  valor_total,
-  qnt_parcelas,
-  forma_pagamento,
-  taxa,
-  data_venda,
-  valor_liquido
-) {
-  if (
-    id_venda != false &&
-    valor_total != false &&
-    qnt_parcelas != false &&
-    forma_pagamento != false &&
-    id_venda != false
-  ) {
-    $.ajax({
-      type: "POST",
-      url: "/pagamento/save",
-      data: {
-        id_venda: id_venda,
-        valor_total: valor_total,
-        qnt_parcelas: qnt_parcelas,
-        forma_pagamento: forma_pagamento,
-        taxa: taxa,
-        data_venda: data_venda,
-        valor_liquido: valor_liquido,
-      },
-      dataType: "json",
-      success: function (result) {
-        console.log(result.response_data);
-        if (result.response_data == true) {
-          baixaEstoque(last_id_venda);
-        }
-      },
-      error: function (result) {
-        swal({
-          title: "Erro!",
-          text: "Ocorreu um erro ao adicionar pagamento da venda! Tente Novamente",
-          icon: "error",
-          button: "OK",
-        });
-        console.log(result);
-      },
-    });
-  } else {
-    swal({
-      title: "Erro!",
-      text: "Preencha todos os campos! Tente Novamente",
-      icon: "error",
-      button: "OK",
-    });
-  }
 }
 
 /**
@@ -188,7 +137,7 @@ async function reloadTableProduct() {
          currency: "BRL",
        }).format($("#valor_unitario").val().toString())} </td>
        <td> ${$("#quantidade").val()} </td>                    
-       <td class="actions-list-venda d-flex justify-content-center">                
+       <td class="actions-list-compra d-flex justify-content-center">                
            <box-icon name="trash" color="#e8ac07" id="${
              result.response_data.id
            }" class="btn-icon btn-delete-list"></box-icon>
@@ -229,9 +178,10 @@ function updateParcelasValue(qnt_parcelas) {
     )
   );
 
-  valor_parcelas = Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(
-    valor_parcelas
-  )
+  valor_parcelas = Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(valor_parcelas);
 }
 
 /* 
@@ -260,14 +210,17 @@ $(document).ready(function () {
 
   $("#ajustarParcelas").click(() => {
     if ($("#qnt_parcelas").val() != 0 || $("#qnt_parcelas").val() != "") {
-      $('#botaoVoltar').removeClass("d-none");
-      $('.title-parcelas').removeClass("d-none");
-      $('#modalPagamentoCompraTitle').addClass("d-none");
+      // Fazendo aparecer a tela de ajuste de parcelas
+      $("#botaoVoltar").removeClass("d-none");
+      $("#ajustarParcelas").addClass("d-none");
+      $("#adicionarCompra").removeClass("d-none");
+      $(".title-parcelas").removeClass("d-none");
+      $("#modalPagamentoCompraTitle").addClass("d-none");
       $(".initial-values").addClass("d-none");
-      qnt_parcelas = $("#qnt_parcelas").val()
+      qnt_parcelas = $("#qnt_parcelas").val();
       for (let i = 1; i <= qnt_parcelas; i++) {
         $(".ajustes-parcela").append(
-        ` <div class="input-container">    
+          ` <div class="input-container">    
             <div class="label-container"> 
               <p> Parcela nº ${i}</p>
             </div>                     
@@ -284,18 +237,20 @@ $(document).ready(function () {
             </div>
             <hr class="hr"> 
           </div>`
-        )
+        );
       }
       $(".ajustes-parcela").removeClass("d-none");
 
-      $('#botaoVoltar').click(function () { 
-        $('#botaoVoltar').addClass("d-none");
-        $('.title-parcelas').addClass("d-none");
-        $('#modalPagamentoCompraTitle').removeClass("d-none");
+      // Botão de Voltar do Ajuste -> Retorna aos valores iniciais
+      $("#botaoVoltar").click(function () {
+        $("#botaoVoltar").addClass("d-none");
+        $(".title-parcelas").addClass("d-none");
+        $("#ajustarParcelas").removeClass("d-none");
+        $("#adicionarCompra").addClass("d-none");
+        $("#modalPagamentoCompraTitle").removeClass("d-none");
         $(".initial-values").removeClass("d-none");
         $(".ajustes-parcela").empty();
         $(".ajustes-parcela").addClass("d-none");
-
       });
     } else {
       swal({
@@ -310,19 +265,41 @@ $(document).ready(function () {
   /* 
     Função que chama todas as requisições necessárias para inserir uma compra completa
   */
-  $("#finalizarCompra").click(async () => {
-    await inserirCompra($("#data_venda").val(), $("#id").val());
+  $("#adicionarCompra").click(async () => {
+    for (let i = 1; i <= qnt_parcelas; i++) {
+      if ($(`#data_vencimento${i}`).val() == "") verifica_parcelas = false;
+    }
 
-    if (venda_inserida != false) {
-      valor = await relacionarProdutoVenda(last_id_venda, lista_produtos);
+    if (verifica_parcelas != false) {
+      let arr_parcelas = Array();
+      for (let i = 1; i <= qnt_parcelas; i++) {
+        arr_parcelas.push(
+          {           
+            indice: i,
+            valor_cobranca: (valor_total / qnt_parcelas).toFixed(2),
+            data_cobranca: $(`#data_vencimento${i}`).val()            
+          }
+        )
+      }
+
+      await inserirCompra(
+        $("#data_compra").val(), 
+        $("#id").val(),
+        qnt_parcelas,
+        $("#id_fornecedor").val(),
+        valor_total,
+        arr_parcelas    
+        );
+
+     
+      setInterval(5000);
     } else {
       swal({
         title: "Erro!",
-        text: "Erro interno ao adicionar a venda. Tente Novamente",
+        text: "Verifique se todas as parcelas foram ajustadas!",
         icon: "error",
         button: "OK",
       });
     }
-    setInterval(5000);
   });
 });

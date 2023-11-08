@@ -18,7 +18,7 @@
                     <i class="bx bx-home-alt icon"></i>
                     <span class="text nav-text">Dashboard</span>
                 </a>
-            </li>            
+            </li>
             <li>
                 <a href="/movimentacao">
                     <i class='bx bx-money-withdraw icon'></i>
@@ -44,11 +44,17 @@
                 </a>
             </li>
             <li>
+                <a href="/compras">
+                    <i class='bx bx-line-chart-down icon'></i>
+                    <span class="text nav-text">Relatório de Compra</span>
+                </a>
+            </li>
+            <li>
                 <a href="/estoque">
                     <i class='bx bx-package icon'></i>
                     <span class="text nav-text">Estoque</span>
                 </a>
-            </li>            
+            </li>
             <li>
                 <a href="/produto">
                     <i class='bx bx-barcode icon'></i>

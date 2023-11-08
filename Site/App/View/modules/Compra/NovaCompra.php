@@ -100,10 +100,11 @@
                     <h5 class="modal-title title-parcelas d-none" id="modalPagamentoCompraTitle2">Ajuste de Parcelas</h5>
                    
                 </div>
-                <form method="post">
+                <div class="form">
                     <div class="modal-body modal-boleto " id="modal-boleto">
                         <div class="initial-values">
                             <div class="input-row input-container-value ">
+                                <input class="form-control" type="hidden" name="id" id="id">
                                 <div class="input-container">
                                     <label for="txtDataVenda">Data da compra: </label><br>
                                     <input class="form-control" type="date" name="data_compra" id="data_compra">
@@ -128,15 +129,7 @@
                                     <label for="valor_parcela">Valor por Parcela (R$): </label><br>
                                     <input disabled class="form-control p-1 valor_parcela" type="text" name="valor_parcela" id="valor_parcela">
                                 </div>
-                            </div>
-                            <hr class="hr">
-                            <div class="d-flex justify-content-center">
-                                Parcelas
-                            </div>
-                            <hr class="hr">
-                            <div class="input-container d-flex justify-content-center">
-                                <button type="button" class="btn" style="background-color: #f4c71e;" id="ajustarParcelas">Ajustar Parcelas</button>
-                            </div>
+                            </div>                          
                         </div>
                         <div class="ajustes-parcela d-none">
                             <div class="container-parcelas">
@@ -149,9 +142,10 @@
 
                     <div class="modal-footer d-flex justify-content-between">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn" style="background-color: #f4c71e;" id="adicionarCompra">Salvar Registro</button>
+                        <button type="button" class="btn" style="background-color: #f4c71e;" id="ajustarParcelas">Ajustar Parcelas</button>
+                        <button type="button " class="btn d-none" style="background-color: #f4c71e;" id="adicionarCompra">Salvar Registro</button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

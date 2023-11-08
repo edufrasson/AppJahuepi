@@ -66,6 +66,9 @@ switch ($url) {
     case '/compra':
         CompraController::index();
         break;
+    case '/compras':
+        CompraController::relatorio();
+        break;
     case '/compra/save':
         CompraController::save();
         break;
@@ -74,6 +77,26 @@ switch ($url) {
         break;
     case '/compra/delete':
         CompraController::delete();
+        break;
+    case '/compra/get-produtos':
+        ProdutoCompraController::getProdutos();
+        break;
+    case '/compra/get-parcelas':
+        CobrancaController::getByIdCompra();
+        break;
+
+        /* Produto_compra*/
+    case '/produto_compra':
+        ProdutoCompraController::index();
+        break;
+    case '/produto_compra/save':
+        ProdutoCompraController::save();
+        break;
+    case '/produto_compra/delete':
+        ProdutoCompraController::delete();
+        break;
+    case '/produto_compra/baixa_estoque':
+        ProdutoCompraController::baixaEstoque();
         break;
 
         /* Login*/
