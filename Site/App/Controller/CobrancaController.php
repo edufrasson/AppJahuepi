@@ -57,25 +57,27 @@ class CobrancaController extends Controller
         parent::setResponseAsJSON($model->getByIdCompra($_GET['id']));
     }
 
-    public static function confirmcobranca()
+    public static function confirmCobranca()
     {
         parent::isAuthenticated();
 
         $model = new CobrancaModel();
         
 
-        $model->confirmcobranca($_GET['id']);
+        $model->confirmCobranca($_GET['id']);
         $dados = $model->getById($_GET['id']);
-
-        $model_mov = new MovimentacaoModel();
-        $model_mov->descricao = "Recebimento de cobranca";
-        $model_mov->data_movimentacao = $dados->data_recebimento;
-        $model_mov->valor = $dados->valor;
-        $model_mov->id_cobranca = $dados->id_cobranca;
-        $model_mov->save();
+        if($dados != false){
+            $model_mov = new MovimentacaoModel();
+            $model_mov->descricao = "Pagamento de Cobranca";
+            $model_mov->data_movimentacao = $dados->data_cobranca;
+            $model_mov->valor = -$dados->valor_cobranca;
+            $model_mov->id_cobranca = $dados->id;
+            $model_mov->save();
+        }
+        
         
 
-        header('Location: /relatorio');
+        header('Location: /compras');
     }
 
     public static function save()

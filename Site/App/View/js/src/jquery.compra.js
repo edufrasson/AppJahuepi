@@ -30,6 +30,7 @@ function inserirCompra(data_compra, id, qnt_parcela, id_fornecedor, valor_compra
         console.log(result.response_data);
         last_id_compra = result.response_data.id;
         compra_inserida = true;
+        console.log(lista_produtos)
         relacionarProdutoCompra(last_id_compra, lista_produtos);        
       },
       error: function (result) {
@@ -122,6 +123,8 @@ async function reloadTableProduct() {
     dataType: "json",
     success: async function (result) {
       // Recalculando valores
+      console.log(result)
+
       valor_total += $("#quantidade").val() * $("#valor_unitario").val();
       lista_produtos.push({
         id_produto: result.response_data.id,

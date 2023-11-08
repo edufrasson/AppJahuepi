@@ -47,8 +47,8 @@
                                             <td><?= $compra->data ?></td>                                           
                                             <td><?= $compra->fornecedor ?></td>
                                             <td>R$ <?= $compra->total_compra ?></td>
-                                            <td><button id="<?= $compra->id_compra ?>" class="btn open-produtos" data-bs-toggle="modal" data-bs-target="#modalProdutos">Produtos</button></td>
-                                            <td><button id="<?= $compra->id_compra ?>" class="btn open-parcelas" data-bs-toggle="modal" data-bs-target="#modalParcelas">Parcelas</button></td>
+                                            <td><button id="<?= $compra->id ?>" class="btn open-produtos" data-bs-toggle="modal" data-bs-target="#modalProdutos">Produtos</button></td>
+                                            <td><button id="<?= $compra->id ?>" class="btn open-parcelas" data-bs-toggle="modal" data-bs-target="#modalParcelas">Parcelas</button></td>
                                             <!--<td class="actions-list">
                                                 <box-icon name="edit" color="blue" id="<?= $compra->id ?>" data-bs-toggle="modal" data-bs-target="#modalCompra" class="btn-icon btn-edit"></box-icon>
                                                 <box-icon name="trash" color="red" id="<?= $compra->id ?>" class="btn-icon btn-delete"></box-icon>
@@ -121,8 +121,7 @@
                                     <tr>
                                         <th>Índice</th>
                                         <th>Valor (R$)</th>
-                                        <th>Data da Parcela</th>
-                                        <th>Recebimento</th>
+                                        <th>Data da Cobrança</th>                                        
                                         <th>Status</th>
                                         <th>Ações</th>
                                     </tr>

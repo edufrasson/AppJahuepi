@@ -84,6 +84,9 @@ switch ($url) {
     case '/compra/get-parcelas':
         CobrancaController::getByIdCompra();
         break;
+    case '/cobranca/confirm-cobranca':
+        CobrancaController::confirmCobranca();
+        break;
 
         /* Produto_compra*/
     case '/produto_compra':

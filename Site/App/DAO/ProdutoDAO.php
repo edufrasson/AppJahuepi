@@ -68,7 +68,7 @@ class ProdutoDAO extends DAO
                     c.descricao AS categoria
                 FROM produto p
                 JOIN categoria_produto c ON (c.id = p.id_categoria)
-                JOIN estoque e ON (p.id = e.id_produto)
+                LEFT JOIN estoque e ON (p.id = e.id_produto)
                 WHERE p.id = ? AND p.ativo = 'S' AND c.ativo = 'S'
                 GROUP BY e.id_produto";
 

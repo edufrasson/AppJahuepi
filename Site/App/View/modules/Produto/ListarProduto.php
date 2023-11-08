@@ -38,8 +38,8 @@
                                 <tr>
 
                                     <th>Descricao</th>
-                                    <th>Preço</th>         
-                                    <th>Estoque</th>                           
+                                    <th>Preço</th>
+                                    <th>Estoque</th>
                                     <th>Código de Barras</th>
                                     <th>Ações</th>
                                 </tr>
@@ -50,12 +50,12 @@
                                         <tr>
 
                                             <td><?= $produto->descricao ?></td>
-                                            <td>R$ <?= $produto->valor_produto ?></td>                                           
-                                            <td><?= $produto->saldo_estoque ?></td>                                           
+                                            <td>R$ <?= $produto->valor_produto ?></td>
+                                            <td><?= $produto->saldo_estoque ?></td>
                                             <td><?= $produto->codigo_barra ?></td>
                                             <td class="actions-list">
                                                 <a class="text-decoration-none" href="/editar_produto?id=<?= $produto->id ?>"><i class="bx bx-edit btn-icon" id="<?= $produto->id ?>" data-bs-toggle="modal" style="color: blue;"></i>
-                                                <i class='bx bx-trash btn-icon' id="<?= $produto->id ?>" style="color: red;"></i>
+                                                    <i class='bx bx-trash btn-icon' id="<?= $produto->id ?>" style="color: red;"></i>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>
@@ -89,19 +89,6 @@
                 <form method="post" action="/produto/save">
                     <div class="modal-body">
                         <div class="mb-3">
-                            <input type="hidden" name="id" id="id">
-                            <label for="txtNome">Descrição:</label>
-                            <input type="text" name="descricao" class="form-control" id="txtNome" required maxlength="90">
-                        </div>
-                        <div class="mb-3">
-                            <label for="txtPreco">Preço:</label>
-                            <input type="text" name="preco" class="form-control" id="txtPreco" required maxlength="90">
-                        </div>                       
-                        <div class="mb-3">
-                            <label for="codigo_barra">Código de barra:</label>
-                            <input type="number" name="codigo_barra" class="form-control" id="txtCodigo_Barra" required maxlength="90">
-                        </div>
-                        <div class="mb-3">
                             <label for="id_categoria">Categoria:</label><br>
                             <select class="selectpicker" data-live-search="true" name="id_categoria" id="id_categoria">
 
@@ -116,6 +103,20 @@
                                 <?php endif ?>
                             </select>
                         </div>
+                        <div class="mb-3">
+                            <input type="hidden" name="id" id="id">
+                            <label for="txtNome">Descrição:</label>
+                            <input type="text" name="descricao" class="form-control" id="txtNome" required maxlength="90">
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtPreco">Preço:</label>
+                            <input type="text" name="preco" class="form-control" id="txtPreco" required maxlength="90">
+                        </div>
+                        <div class="mb-3">
+                            <label for="codigo_barra">Código de barra:</label>
+                            <input type="number" name="codigo_barra" class="form-control" id="txtCodigo_Barra" required maxlength="90">
+                        </div>
+
 
                     </div>
                     <div class="modal-footer">

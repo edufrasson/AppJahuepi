@@ -54,7 +54,7 @@ function getCompraById(id) {
   function getAllParcelas(id_compra) {
     $.ajax({
       type: "GET",
-      url: "/Compra/get-parcelas?id=" + id_compra,
+      url: "/compra/get-parcelas?id=" + id_compra,
       dataType: "json",
       success: async (result) => {
         await result.response_data.forEach((element) => {
@@ -63,14 +63,11 @@ function getCompraById(id) {
                   <td> ${Intl.NumberFormat("pt-BR", {
                     style: "currency",
                     currency: "BRL",
-                  }).format(element.valor_parcela.toString())} </td> 
-                  <td> ${element.data_parcela} </td>        
-                  <td> ${element.data_recebimento} </td>        
-                  <td id="status-parcela${element.id}"> ${
-            element.status
-          } </td>        
-                  <td class="confirm-container${element.id} d-none">
-                      <a href="/Compra/confirm-parcela?id=${
+                  }).format(element.valor_cobranca.toString())} </td> 
+                  <td> ${element.data_cobranca} </td>       
+                  <td id="status-parcela${element.id}"> ${element.status} </td>        
+                  <td class="confirm-container${element.id}">
+                      <a href="/cobranca/confirm-cobranca?id=${
                         element.id
                       }" class="btn btn-danger btnPagarCobranca">Pagar</a>
                   </td>
@@ -81,6 +78,7 @@ function getCompraById(id) {
               break;
             case "CONFIRMADO":
               $(`#status-parcela${element.id}`).css("color", "#228c0c");
+              $(`.confirm-container${element.id}`).addClass('d-none');
               break;
             case "ATRASO":
               $(`#status-parcela${element.id}`).css("color", "#8c1a0c");
@@ -89,8 +87,8 @@ function getCompraById(id) {
           
         });
       },
-      error: () => {
-        console.log(" :( ");
+      error: (result) => {
+        console.log(result);
       },
     });
   }

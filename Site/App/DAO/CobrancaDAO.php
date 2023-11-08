@@ -142,14 +142,14 @@ class CobrancaDAO extends DAO
     {
         $sql = "SELECT 
                 c.id as id,
-                com.valor_total as valor_total,
+                com.valor_compra as valor_compra,
                 f.descricao as fornecedor,
 		        c.indice as indice,
-		        c.valor as valor_cobranca,
+		        c.valor_cobranca as valor_cobranca,
 	            date_format(c.data_cobranca, '%d/%m/%Y') as data_cobranca,	            
                 c.status as status      
         FROM Cobranca c 
-        JOIN Compra com ON com.id = c.id_pagamento       
+        JOIN Compra com ON com.id = c.id_compra       
         JOIN Fornecedor f ON f.id = com.id_fornecedor
         WHERE com.id = ? AND c.ativo = 'S' AND com.ativo = 'S' AND f.ativo = 'S'
         ORDER BY c.indice ASC";
