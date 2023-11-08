@@ -191,7 +191,7 @@
     }
 }
 
-@media screen and (max-width: 1152) {
+@media screen and (max-width: 1152px) {
     .graphic-bar-container {
         row-gap: 30px;
         width: 70%;
@@ -199,5 +199,37 @@
 
     .graphic-pie-container {
         row-gap: 20px;
+    }
+}
+
+@media screen and (max-width: 1128px) {
+    .dashboard-label {
+        height: 100px;
+        width: 230px;
+    }
+
+    .graphic-bar-container {
+        width: 70%;
+        row-gap: -10px;
+    }
+
+    #faturamento-mes {
+        width: 98.4%;
+        padding-top: 20px;
+        padding-bottom: 60px;
+    }
+
+    .graphic-pie-container {
+        row-gap: 20px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .dashboard-label {
+        width: 24%;
+    }
+
+    #faturamento-mes {
+        width: 98.2%;
     }
 }

@@ -71,7 +71,7 @@ if(!isset($_SESSION['user_logged'])){
             <div class="main-card">
                 <div class="graphic-bar-container">
                     <div class="text-container-label">
-                        <label for="faturamneto-mes">Faturamento por Mês</label>
+                        <label for="faturamento-mes">Faturamento por Mês</label>
                     </div>
 
                     <div id="faturamento-mes" class="chart-style"></div>
