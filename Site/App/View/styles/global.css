@@ -117,7 +117,7 @@ body {
 }
 
 .text-container-header-card {
-  font-size: 25px;
+  font-size: 1.5em;
 }
 
 .final-actions .btn a {
@@ -360,4 +360,17 @@ body {
     margin-left: 17.5%;
     margin-top: 30px;
   }
+
+  .text-container-header-card {
+    font-size: 1.3em;
+  }
+
+  .buttons-container .btn {
+    padding-right: 36%;
+  }
+
+  .main-container {
+    margin-left: 60px;
+  }
+
 }
