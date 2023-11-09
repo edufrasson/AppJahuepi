@@ -4,8 +4,12 @@
     padding: 20px;
 }
 
+.sidebar{
+    z-index: 2;
+}
+
 .main-container{
-    z-index: 999;
+    z-index: 1;
 }
 
 .orcamento{

@@ -161,6 +161,7 @@
     <p>E-mail: jahuepis@gmail.com</p>
     <p>(14) 3416-7046 - (14) 9.8179-8009</p>
   </div>
+  <script src="View/js/src/jquery.template.js"></script>
 </body>
 
 </html>

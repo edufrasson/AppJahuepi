@@ -251,6 +251,7 @@ async function reloadTableProduct() {
     url: "/produto/get-by-id?id=" + $("#id_produto").val(),
     dataType: "json",
     success: async function (result) {
+
       // Verificando se há produto no estoque
       if (
         parseInt($("#quantidade").val()) > result.response_data.saldo_estoque
@@ -262,6 +263,8 @@ async function reloadTableProduct() {
           button: "OK",
         });
       } else {
+
+
         // Recalculando valores
         valor_total += $("#quantidade").val() * result.response_data.preco;
         lista_produtos.push({
@@ -275,17 +278,19 @@ async function reloadTableProduct() {
         $("#tableProduto").append(`<tr> 
        <td> ${result.response_data.descricao} </td> 
        <td> ${Intl.NumberFormat("pt-BR", {
-         style: "currency",
-         currency: "BRL",
-       }).format(result.response_data.preco.toString())} </td>
+          style: "currency",
+          currency: "BRL",
+        }).format(result.response_data.preco.toString())} </td>
        <td> ${$("#quantidade").val()} </td> 
        <td> ${result.response_data.codigo_barra} </td>             
        <td class="actions-list-venda d-flex justify-content-center">                
-           <box-icon name="trash" color="#e8ac07" id="${
-             result.response_data.id
-           }" class="btn-icon btn-delete-list"></box-icon>
+           <box-icon name="trash" color="#e8ac07" id="${result.response_data.id
+          }" class="btn-icon btn-delete-list"></box-icon>
        </td>
       </tr>`);
+
+        // Resetando quantidade
+        $("#quantidade").val('')
 
         // Função que retira os produtos da lista de compras
         $(".btn-delete-list").click(function () {
@@ -362,7 +367,19 @@ $(document).ready(function () {
   */
 
   $("#adicionarProduto").click(function () {
-    reloadTableProduct();
+
+    // Verificando se o input não está vazio
+    if($('#quantidade').val() != null && $('#quantidade').val() != 0 && $('#quantidade').val() != '')
+      reloadTableProduct();
+    else{
+      swal({
+        title: "Erro!",
+        text: "Preencha corretamente a quantidade de produto desejada!",
+        icon: "error",
+        button: "OK",
+      });
+    }
+
   });
 
   $("#forma_pagamento").change(function () {
