@@ -4,3 +4,11 @@
    justify-content: space-around;
    align-items: center;
 }
+
+.btn-venda{
+    margin-top: 10px;
+  background: linear-gradient(to bottom, #fad449, #f4c71e);
+  border: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+}

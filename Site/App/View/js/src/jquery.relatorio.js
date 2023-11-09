@@ -57,6 +57,10 @@ function getAllParcelas(id_venda) {
     url: "/venda/get-parcelas?id=" + id_venda,
     dataType: "json",
     success: async (result) => {
+      /*if(result.response_data[0].tipo_parcela == "BOLETO")
+        $('#modalParcelas').addClass("modal-xl")
+      else
+        $('#modalParcelas').removeClass("modal-xl")*/
       await result.response_data.forEach((element) => {
         $("#tableParcelas").append(`<tr> 
                 <td> ${element.indice} </td> 

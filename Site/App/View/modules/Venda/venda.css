@@ -50,7 +50,11 @@ td{
   }
 
 #modalParcelas .modal-content{
-    width: 50rem;
+    width: 40rem;
+}
+
+.modal-xl{
+    width: 80rem;
 }
 
 #tableParcelas{

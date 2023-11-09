@@ -48,12 +48,12 @@
                                             <td><?= $orcamento->numero ?></td>
                                             <td><?= $orcamento->data ?></td>
                                             <td><?= $orcamento->nome_cliente ?></td>
-                                            <td>R$ <?= $orcamento->total_orcamento ?></td>
+                                            <td>R$ <?= $orcamento->total_orcamento ?></td>                                            
                                             <td>
-                                                <?php if ($orcamento->venda_registrada = "S") : ?>
-                                                    <a class="btn" style="color: green;" href="#">Venda Registrada</a>
+                                                <?php if ($orcamento->venda_registrada == "S") : ?>
+                                                    <p  style="color: green;" >Venda Registrada</p>
                                                 <?php else : ?>
-                                                    <a class="btn" style="background-color: #f4c71;" href="/venda?id_orcamento=<?= $orcamento->id ?>">Registrar Venda</a>
+                                                    <a class="btn btn-venda" style="background-color: #f4c71;" href="/venda?id_orcamento=<?= $orcamento->id ?>">Registrar Venda</a>
                                                 <?php endif ?>
                                             </td>
                                             <td class="actions-list">
