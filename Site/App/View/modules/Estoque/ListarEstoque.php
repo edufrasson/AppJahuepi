@@ -93,9 +93,7 @@
                             <div class="input-container mb-3">
                                 <label for="situacao">Situação:</label><br>
                                 <select class="selectpicker" name="situacao" id="situacao">
-                                    <option value="">Selecione uma situação</option>
-                                    <option value="COMPRA">Compra</option>
-                                    <option value="VENDA">Venda</option>
+                                    <option value="">Selecione uma situação</option>                                    
                                     <option value="DEVOLUCAO">Devolução</option>
                                     <option value="REGISTRO">Registro</option>
                                 </select>
