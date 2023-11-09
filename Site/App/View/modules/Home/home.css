@@ -202,7 +202,7 @@
     }
 }
 
-@media screen and (max-width: 1128px) {
+/*@media screen and (max-width: 1128px) {
     .dashboard-label {
         height: 100px;
         width: 230px;
@@ -232,4 +232,4 @@
     #faturamento-mes {
         width: 98.2%;
     }
-}
+}*/

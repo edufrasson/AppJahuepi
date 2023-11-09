@@ -314,3 +314,22 @@ body.dark .home .text{
     justify-content: space-around;
 }
 
+/*@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 0;
+        padding-right: 0;
+    }
+
+    .sidebar header .image {
+        opacity: 0;
+    }
+
+    .sidebar header .toggle {
+        transform: translateY(-50%) rotate(0deg);
+    }
+
+    .sidebar .text {
+        opacity: 0;
+    }
+
+}*/

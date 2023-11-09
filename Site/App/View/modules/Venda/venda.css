@@ -57,5 +57,41 @@ td{
     border: 0.4px solid #DEE2E6;
 }
 
+@media screen and (max-width: 768px) {
+    .form-add-product {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .input-container {
+        width: 60%;
+    }
 
+    .input-container .btn {
+        margin-left: 10px;
+        padding-right: 10px;
+        font-size: 14px;
+    }
 
+    .table-container {
+        margin-top: 20px;
+    }
+
+    .final-actions {
+        margin-top: -200px;
+        margin-right: 95px;
+        margin-left: -60px;
+    }
+
+    .final-actions .btn {
+        padding-left: 50px;
+        font-size: 12px;
+    }
+
+    .main-container {
+        z-index: 0;
+    }
+}

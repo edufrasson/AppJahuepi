@@ -20,3 +20,17 @@
     display: flex;
     flex-direction: column;
 }
+
+@media screen and (max-width: 768px) {
+    .text-container-header-card {
+        font-size: 1.3em;
+    }
+
+    .buttons-container .btn {
+        margin-top: 15px;
+    }
+
+    .containers-card .container-table {
+        margin-top: 40px;
+    }
+}
