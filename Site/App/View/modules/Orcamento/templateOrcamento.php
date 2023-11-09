@@ -73,7 +73,7 @@
 
   <div class="head-container">
     <p class="title">ORÇAMENTO</p>
-    <p class="budget-number title">N: <span id="num_orcamento"><?= $dados->num_orcamento ?></span></p>
+    <p class="budget-number title">N: <span id="num_orcamento"><?= $dados->numero ?></span></p>
   </div>
 
   <p>
@@ -142,7 +142,7 @@
   </p>
   <div class="total-container">
     <p align="right">
-      <strong>TOTAL: <span id="valor_total"><?= $dados->valor_total ?></span></strong>
+      <strong>TOTAL: <span id="valor_total"><?= $dados->valor_total_formatado ?></span></strong>
     </p>
   </div>
 

@@ -10,7 +10,6 @@ var verifica_parcelas = true;
 var venda_inserida = false;
 var produtos_relacionados = false;
 
-
 /*
   Requisição para inserir a venda
 */
@@ -52,6 +51,23 @@ function inserirVenda(data_venda, id) {
   Requisição para insert na tabela assoc de produto_venda
 */
 
+function registrarVendaOrcamento(id_orcamento) {
+  $.ajax({
+    type: "POST",
+    url: "/orcamento/confirm-venda",
+    data: {
+      id: id_orcamento,
+    },
+    dataType: "json",
+    success: function (result) {
+      console.log(result);
+    },
+    error: function (result) {
+      console.log(result);
+    },
+  });
+}
+
 function relacionarProdutoVenda(id_venda, lista_produtos) {
   if (id_venda != false && lista_produtos != null) {
     $.ajax({
@@ -89,7 +105,7 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
             );
             break;
           case "BOLETO":
-            console.log(lista_parcelas)
+            console.log(lista_parcelas);
             adicionarPagamento(
               last_id_venda,
               valor_total,
@@ -192,11 +208,15 @@ function adicionarPagamento(
         taxa: taxa,
         data_venda: data_venda,
         valor_liquido: valor_liquido,
-        arr_parcelas: JSON.stringify(lista_parcelas_prop)
+        arr_parcelas: JSON.stringify(lista_parcelas_prop),
       },
       dataType: "json",
       success: function (result) {
-        console.log(result.response_data);
+        // Verificando se a venda era de um orçamento
+        if ($("#id_orcamento").val() != "") {
+          registrarVendaOrcamento($("#id_orcamento").val());
+        }
+
         if (result.response_data == true) {
           baixaEstoque(last_id_venda);
         }
@@ -321,13 +341,15 @@ function updateParcelasValue(qnt_parcelas) {
 }
 
 function updateParcelasBoleto(qnt_parcelas_prop) {
-  $("#valor_bruto_parcela_boleto").val((valor_total / qnt_parcelas_prop).toFixed(2));
-  valor_parcelas = (valor_total / qnt_parcelas_prop).toFixed(2)
+  $("#valor_bruto_parcela_boleto").val(
+    (valor_total / qnt_parcelas_prop).toFixed(2)
+  );
+  valor_parcelas = (valor_total / qnt_parcelas_prop).toFixed(2);
   $("#valor_liquido_parcela_boleto").val(
     ($("#valor_liquido_boleto").val() / qnt_parcelas_prop).toFixed(2)
   );
 
-  qnt_parcelas = qnt_parcelas_prop
+  qnt_parcelas = qnt_parcelas_prop;
 }
 
 /* 
@@ -373,7 +395,10 @@ $(document).ready(function () {
 
         // Função executada ao iniciar ajuste de parcelas
         $("#ajustarParcela").click(() => {
-          if ($("#qnt_parcelas_boleto").val() != 0 || $("#qnt_parcelas_boleto").val() != "") {
+          if (
+            $("#qnt_parcelas_boleto").val() != 0 ||
+            $("#qnt_parcelas_boleto").val() != ""
+          ) {
             // Fazendo aparecer a tela de ajuste de parcelas
             $("#botaoVoltar").removeClass("d-none");
             $(".container-forma-pagamento").addClass("d-none");
@@ -383,7 +408,7 @@ $(document).ready(function () {
             $("#modalPagamentoCompraTitle").addClass("d-none");
             $(".initial-values").addClass("d-none");
             qnt_parcelas = $("#qnt_parcelas_boleto").val();
-            
+
             // Adicionando na div as parcelas correspondentes ao num de parcelas
             for (let i = 1; i <= qnt_parcelas; i++) {
               $(".ajustes-parcela").append(
@@ -410,7 +435,7 @@ $(document).ready(function () {
 
             // Botão de Voltar do Ajuste -> Retorna aos valores iniciais
             $("#botaoVoltar").click(function () {
-              $("#botaoVoltar").addClass("d-none");              
+              $("#botaoVoltar").addClass("d-none");
               $("#ajustarParcela").removeClass("d-none");
               $(".container-forma-pagamento").removeClass("d-none");
               $("#finalizarVenda").addClass("d-none");
@@ -474,30 +499,25 @@ $(document).ready(function () {
         await inserirVenda($("#data_venda_debito").val(), $("#id").val());
         break;
       case "BOLETO":
-        console.log('caiu no boleto')
+        console.log("caiu no boleto");
         for (let i = 1; i <= qnt_parcelas; i++) {
-          if ($(`#data_recebimento${i}`).val() == "") 
-            verifica_parcelas = false;
+          if ($(`#data_recebimento${i}`).val() == "") verifica_parcelas = false;
         }
-        console.log('passou a primeira')
-
+        console.log("passou a primeira");
 
         if (verifica_parcelas != false) {
-          console.log('passou o segundo if')
+          console.log("passou o segundo if");
           for (let i = 1; i <= qnt_parcelas; i++) {
-            lista_parcelas.push(
-              {           
-                indice: i,
-                valor_parcela: (valor_total / qnt_parcelas).toFixed(2),
-                data_parcela: $(`#data_recebimento${i}`).val()            
-              }
-            )
+            lista_parcelas.push({
+              indice: i,
+              valor_parcela: (valor_total / qnt_parcelas).toFixed(2),
+              data_parcela: $(`#data_recebimento${i}`).val(),
+            });
           }
-          console.log(lista_parcelas)
+          console.log(lista_parcelas);
 
           await inserirVenda($("#data_venda_boleto").val(), $("#id").val());
         }
-        
 
         break;
       case "DINHEIRO":
@@ -520,7 +540,9 @@ $(document).ready(function () {
 
   $(".btn-orcamento").click(() => {
     console.log("caiu orcamento");
-    $("#valor_total").val(
+    $("#valor_total").val(valor_total.toFixed(2));
+
+    $("#valor_total_formatado").val(
       Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(
         valor_total
       )
@@ -536,4 +558,32 @@ $(document).ready(function () {
     console.log(data);
     $("#data_dia").val(data);
   });
+
+  if ($("#id_orcamento").val() != "") {
+    console.log($("#id_orcamento").val());
+    $.ajax({
+      type: "GET",
+      url: "/orcamento/get-produtos",
+      data: {
+        id: $("#id_orcamento").val(),
+      },
+      dataType: "json",
+      success: function (result) {
+        console.log(result);
+        result.response_data.forEach((element) => {
+          lista_produtos.push({
+            id_produto: element.id_produto,
+            quantidade: element.quantidade,
+            valor_unit: element.preco,
+            descricao: element.descricao,
+          });
+
+          valor_total += element.quantidade * element.preco;
+        });
+      },
+      error: function (result) {
+        console.log(result);
+      },
+    });
+  }
 });

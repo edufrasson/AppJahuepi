@@ -15,7 +15,9 @@ use App\Controller\{
     FornecedorController,
     CompraController,
     ProdutoCompraController,
-    CobrancaController
+    CobrancaController,
+    OrcamentoController,
+    ProdutoOrcamentoController
 };
 use App\DAO\CategoriaProdutoDAO;
 
@@ -238,8 +240,19 @@ switch ($url) {
     case '/relatorio':
         VendaController::relatorio();
         break;
+
+        // Orcamento
     case '/template':
-        VendaController::template();
+        OrcamentoController::template();
+        break;
+    case '/orcamentos':
+        OrcamentoController::index();
+        break;
+    case '/orcamento/get-produtos':
+        ProdutoOrcamentoController::getProdutos();
+        break;
+    case '/orcamento/confirm-venda':
+        OrcamentoController::confirmVenda();
         break;
 
         /* Taxa*/

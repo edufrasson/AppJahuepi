@@ -12,7 +12,7 @@
                         <option value="CREDITO">Cartão de Crédito</option>
                         <option value="DEBITO">Cartão de Débito</option>
                         <option value="BOLETO">Boleto Bancário</option>
-                        <option value="DINHEIRO">Dinheiro</option>
+                        <option value="DINHEIRO">Dinheiro / Pix</option>
                     </select>
 
                 </div>

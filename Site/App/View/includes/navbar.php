@@ -80,6 +80,12 @@
                 </a>
             </li>
             <li>
+                <a href="/orcamentos">
+                    <i class='bx bx-note icon'></i>
+                    <span class="text nav-text">Orçamentos</span>
+                </a>
+            </li>
+            <li>
                 <a href="/usuario">
                     <i class='bx bx-user icon'></i>
                     <span class="text nav-text">Usuários</span>

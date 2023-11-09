@@ -24,7 +24,7 @@
                 <div class="main-card">
                     <div class="containers-card buttons-container">
                         <form class="form-add-product" method="post">
-                           
+
                             <div class="input-container select-container">
                                 <label for="id_produto">Produto:</label><br>
                                 <select class="selectpicker bg-light" data-live-search="true" name="id_produto" id="id_produto">
@@ -58,13 +58,27 @@
                                         <th>Preço</th>
                                         <th>Quantidade</th>
                                         <th>Código de Barras</th>
-                                        <th>Ações</th>
+                                        <?php if (!isset($dados)) : ?>
+                                            <th>Ações</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </thead>
                                 <tbody class="tbody-produto">
+                                    <?php if (isset($dados)) : ?>
+                                        <?php foreach ($dados as $item) : ?>
+                                            <tr>
+                                                <td><?= $item->descricao ?></td>
+                                                <td><?= $item->preco ?></td>
+                                                <td><?= $item->quantidade ?></td>
+                                                <td><?= $item->codigo_barra ?></td>                                                
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
+                        <input type="hidden" name="id_orcamento" id="id_orcamento" value='<?= (isset($dados)) ? $dados[0]->id_orcamento  : "" ?>'>
+
                     </div>
                     <div class="containers-card action-container d-flex justify-content-between">
                         <div class="final-actions">
@@ -77,7 +91,7 @@
                 </div>
 
             </div>
-        </div>       
+        </div>
     </div>
 
 
@@ -98,16 +112,17 @@
                                 <input class="form-control" type="text" name="nome_cliente" id="nome_cliente">
                             </div>
                             <div class="input-container">
-                                <label for="num_orcamento">Número do Orçamento: </label><br>
-                                <input class="form-control p-1" type="number" name="num_orcamento" id="num_orcamento" >
+                                <label for="numero">Número do Orçamento: </label><br>
+                                <input class="form-control p-1" type="number" name="numero" id="numero">
                             </div>
                         </div>
 
                         <div class="input-row-hidden">
-                        <input class="form-control p-1" type="hidden" name="arr_produtos" id="arr_produtos">
-                        <input class="form-control p-1" type="hidden" name="valor_total" id="valor_total">
-                        <input class="form-control p-1" type="hidden" name="data_dia" id="data_dia">
-                        
+                            <input class="form-control p-1" type="hidden" name="arr_produtos" id="arr_produtos">
+                            <input class="form-control p-1" type="hidden" name="valor_total" id="valor_total">
+                            <input class="form-control p-1" type="hidden" name="valor_total_formatado" id="valor_total_formatado">
+                            <input class="form-control p-1" type="hidden" name="data_dia" id="data_dia">
+
                         </div>
                     </div>
                     <div class="modal-footer">

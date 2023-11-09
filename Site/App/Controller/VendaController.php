@@ -6,7 +6,7 @@ use App\Model\VendaModel;
 use App\Controller\Controller;
 use App\Model\OrcamentoModel;
 use App\Model\ProdutoModel;
-
+use App\Model\ProdutoOrcamentoModel;
 
 class VendaController extends Controller
 {
@@ -18,9 +18,14 @@ class VendaController extends Controller
         parent::checkParcelas();
 
         $model = new VendaModel();
-        unset($carrinho_produtos);
+        
         $model->getAllProdutos();
         $model->getAllTaxas();
+
+        if(isset($_GET['id_orcamento'])){
+            $model_orcamento = new ProdutoOrcamentoModel();
+            $dados = $model_orcamento->getProdutos($_GET['id_orcamento']);
+        }
 
         include 'View/modules/Venda/NovaVenda.php';
     }
@@ -34,23 +39,7 @@ class VendaController extends Controller
         $model->getAllRows();
 
         include 'View/modules/Venda/VerRelatorio.php';
-    }
-
-    public static function template()
-    {
-        parent::isAuthenticated();
-
-        $dados = new OrcamentoModel();
-
-        $dados->nome_cliente = $_POST['nome_cliente'];
-        $dados->data_dia = $_POST['data_dia'];
-        $dados->num_orcamento = $_POST['num_orcamento'];
-        $dados->arr_produtos = json_decode($_POST['arr_produtos']);
-        $dados->valor_total = $_POST['valor_total'];
-        $dados->data_dia = $_POST['data_dia'];        
-
-        include 'View/assets/templateOrcamento.php';
-    }
+    }    
 
     public static function getById()
     {
