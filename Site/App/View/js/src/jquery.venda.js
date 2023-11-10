@@ -87,9 +87,10 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
               valor_total,
               $(".qnt_parcelas").val(),
               $("#forma_pagamento").val(),
-              $("#valor_taxa_credito").val(),
               $("#data_venda").val(),
-              $("#valor_liquido_credito").val()
+              $("#valor_liquido_credito").val(),
+              null,
+              parseFloat($("#valor_taxa_credito").val()),
             );
             break;
           case "DEBITO":
@@ -98,10 +99,11 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
               last_id_venda,
               valor_total,
               1,
-              $("#forma_pagamento").val(),
-              $("#valor_taxa_debito").val(),
+              $("#forma_pagamento").val(),             
               $("#data_venda").val(),
-              $("#valor_liquido_debito").val()
+              $("#valor_liquido_debito").val(),
+              null,
+              parseFloat($("#valor_taxa_debito").val()),
             );
             break;
           case "BOLETO":
@@ -110,11 +112,11 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
               last_id_venda,
               valor_total,
               $("#qnt_parcelas_boleto").val(),
-              $("#forma_pagamento").val(),
-              $("#taxa-boleto").val(),
+              $("#forma_pagamento").val(),              
               $("#data_venda").val(),
               $("#valor_liquido_boleto").val(),
-              lista_parcelas
+              lista_parcelas,
+              null
             );
             break;
           case "DINHEIRO":
@@ -122,10 +124,11 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
               last_id_venda,
               valor_total,
               1,
-              $("#forma_pagamento").val(),
-              null,
+              $("#forma_pagamento").val(),              
               $("#data_venda").val(),
-              valor_total
+              valor_total,
+              null,
+              null
             );
             break;
         }
@@ -184,11 +187,11 @@ function adicionarPagamento(
   id_venda,
   valor_total,
   qnt_parcelas,
-  forma_pagamento,
-  taxa,
+  forma_pagamento, 
   data_venda,
   valor_liquido,
-  lista_parcelas_prop = null
+  lista_parcelas_prop = null,
+  taxa = null
 ) {
   if (
     id_venda != false &&
@@ -204,11 +207,11 @@ function adicionarPagamento(
         id_venda: id_venda,
         valor_total: valor_total,
         qnt_parcelas: qnt_parcelas,
-        forma_pagamento: forma_pagamento,
-        taxa: taxa,
+        forma_pagamento: forma_pagamento,        
         data_venda: data_venda,
         valor_liquido: valor_liquido,
         arr_parcelas: JSON.stringify(lista_parcelas_prop),
+        taxa: taxa
       },
       dataType: "json",
       success: function (result) {
@@ -217,18 +220,21 @@ function adicionarPagamento(
           registrarVendaOrcamento($("#id_orcamento").val());
         }
 
+        console.log(result)
+
         if (result.response_data == true) {
           baixaEstoque(last_id_venda);
         }
       },
       error: function (result) {
+        console.log(result);
         swal({
           title: "Erro!",
           text: "Ocorreu um erro ao adicionar pagamento da venda! Tente Novamente",
           icon: "error",
           button: "OK",
         });
-        console.log(result);
+        
       },
     });
   } else {

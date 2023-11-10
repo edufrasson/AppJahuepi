@@ -39,12 +39,14 @@ class PagamentoController extends Controller
         $model_parcela = new ParcelaModel();
 
         $pagamento->qnt_parcelas = $_POST['qnt_parcelas'];
-        $pagamento->valor_total = $_POST['valor_total'];        
+        $pagamento->valor_total = $_POST['valor_total'];
+        (($_POST['taxa']) > 0) ? (double)$pagamento->taxa = $_POST['taxa'] / 100: "";
+      
         $pagamento->forma_pagamento = $_POST['forma_pagamento'];
         $pagamento->id_venda = $_POST['id_venda'];
         (isset($_POST['taxa'])) ? $pagamento->taxa = $_POST['taxa'] : $pagamento->taxa = "";
         (isset($_POST['valor_liquido'])) ? $pagamento->valor_liquido = $_POST['valor_liquido']  : $pagamento->valor_liquido = $_POST['valor_total'];
-
+      
         $pgt = $pagamento->save();
 
         // Verificando se o pagamento foi inserido e aplicando loop de inserção de parcelas
@@ -106,7 +108,7 @@ class PagamentoController extends Controller
 
 
         // false -> erro no pagamento
-        // null -> erro na parcela / baixa estoque
+        // null -> erro na parcela / baixa estoque 
     }
 
     public static function update()

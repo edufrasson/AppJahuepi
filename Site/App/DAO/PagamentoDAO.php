@@ -14,21 +14,38 @@ class PagamentoDAO extends DAO
 
     public function insert(PagamentoModel $model)
     {
-        $sql = "INSERT INTO Pagamento (valor_total, qnt_parcela, forma_pagamento, id_venda, valor_liquido, taxa) VALUE (?, ?, ?, ?, ?, ?)";
+        if ($model->taxa == "") {
+            $sql = "INSERT INTO Pagamento (valor_total, qnt_parcela, forma_pagamento, id_venda, valor_liquido) VALUE (?, ?, ?, ?, ?)";
 
-        $stmt = parent::getConnection()->prepare($sql);
+            $stmt = parent::getConnection()->prepare($sql);
 
-        $stmt->bindValue(1, $model->valor_total);        
-        $stmt->bindValue(2, $model->qnt_parcelas);        
-        $stmt->bindValue(3, $model->forma_pagamento);        
-        $stmt->bindValue(4, $model->id_venda);        
-        $stmt->bindValue(5, $model->valor_liquido);        
-           
+            $stmt->bindValue(1, $model->valor_total);
+            $stmt->bindValue(2, $model->qnt_parcelas);
+            $stmt->bindValue(3, $model->forma_pagamento);
+            $stmt->bindValue(4, $model->id_venda);
+            $stmt->bindValue(5, $model->valor_liquido);
 
-        $stmt->execute();
+            $stmt->execute();
 
-        $model->id = parent::getConnection()->lastInsertId();
-        return $model;
+            $model->id = parent::getConnection()->lastInsertId();
+            return $model;
+        }else{
+            $sql = "INSERT INTO Pagamento (valor_total, qnt_parcela, forma_pagamento, id_venda, valor_liquido, taxa) VALUE (?, ?, ?, ?, ?, ?)";
+
+            $stmt = parent::getConnection()->prepare($sql);
+
+            $stmt->bindValue(1, $model->valor_total);
+            $stmt->bindValue(2, $model->qnt_parcelas);
+            $stmt->bindValue(3, $model->forma_pagamento);
+            $stmt->bindValue(4, $model->id_venda);
+            $stmt->bindValue(5, $model->valor_liquido);
+            $stmt->bindValue(6, $model->taxa);
+            
+            $stmt->execute();
+
+            $model->id = parent::getConnection()->lastInsertId();
+            return $model;
+        }
     }
 
     public function update(PagamentoModel $model)
@@ -36,12 +53,12 @@ class PagamentoDAO extends DAO
         $sql = "UPDATE Pagamento SET valor_total = ?, qnt_parcela = ?, forma_pagamento = ?, id_venda = ? WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
-   
+
         $stmt->bindValue(1, $model->valor_total);
         $stmt->bindValue(2, $model->qnt_parcelas);
         $stmt->bindValue(3, $model->forma_pagamento);
         $stmt->bindValue(4, $model->id_venda);
-        $stmt->bindValue(5, $model->id);       
+        $stmt->bindValue(5, $model->id);
 
         $stmt->execute();
     }
