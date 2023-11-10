@@ -45,10 +45,13 @@ class VendaDAO extends DAO
                 DATE_FORMAT(v.data_venda, '%d/%m/%Y') as data_venda,
                 v.id as id_venda,
                 FORMAT(p.valor_total, 2, 'de_DE') as total_bruto,
+                p.valor_total as valor_total,
                 FORMAT(p.valor_liquido, 2, 'de_DE') as total_liquido,
+                p.valor_liquido as valor_liquido,
                 p.qnt_parcela as parcelas,
                 p.forma_pagamento as forma_pagamento,
-                p.id as id_pagamento       
+                p.id as id_pagamento,
+                p.taxa as taxa        
         FROM Venda v
         JOIN Pagamento p ON v.id = p.id_venda
         WHERE v.ativo = 'S'
@@ -63,7 +66,20 @@ class VendaDAO extends DAO
 
     public function selectById(int $id)
     {
-        $sql = "SELECT * FROM Venda WHERE id = ? AND ativo = 'S'";
+        $sql = "SELECT
+                DATE_FORMAT(v.data_venda, '%d/%m/%Y') as data_venda,
+                v.data_venda as data_da_venda,
+                v.id as id_venda,
+                FORMAT(p.valor_total, 2, 'de_DE') as total_bruto,
+                p.valor_total as valor_total,
+                FORMAT(p.valor_liquido, 2, 'de_DE') as total_liquido,
+                p.valor_liquido as valor_liquido,
+                p.qnt_parcela as parcelas,
+                p.forma_pagamento as forma_pagamento,
+                p.id as id_pagamento       
+        FROM Venda v
+        JOIN Pagamento p ON v.id = p.id_venda
+        WHERE v.id = ? AND v.ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

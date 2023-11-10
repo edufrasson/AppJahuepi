@@ -5,8 +5,11 @@ namespace App\Controller;
 use App\Model\VendaModel;
 use App\Controller\Controller;
 use App\Model\OrcamentoModel;
+use App\Model\PagamentoModel;
+use App\Model\ParcelaModel;
 use App\Model\ProdutoModel;
 use App\Model\ProdutoOrcamentoModel;
+use App\Model\ProdutoVendaModel;
 
 class VendaController extends Controller
 {
@@ -28,6 +31,24 @@ class VendaController extends Controller
         }
 
         include 'View/modules/Venda/NovaVenda.php';
+    }
+
+    public static function edit(){
+        parent::isAuthenticated();
+
+        if(isset($_GET['id'])){
+            $model = new VendaModel();
+            $model_assoc = new ProdutoVendaModel();
+            
+            $model_parcelas = new ParcelaModel();
+
+            $dados = $model->getById($_GET['id']);
+            $dados->lista_produtos = $model_assoc->getById($_GET['id']);
+            $dados->lista_parcelas = $model_parcelas->getByIdVenda($_GET['id']);
+            $dados->arr_produtos = $model->getAllProdutos();
+
+            include 'View/modules/Venda/EditarVenda.php';
+        }
     }
 
     public static function relatorio()

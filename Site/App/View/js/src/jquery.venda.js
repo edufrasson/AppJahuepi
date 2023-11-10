@@ -87,7 +87,7 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
               valor_total,
               $(".qnt_parcelas").val(),
               $("#forma_pagamento").val(),
-              $("#select-taxa-credito").val(),
+              $("#valor_taxa_credito").val(),
               $("#data_venda").val(),
               $("#valor_liquido_credito").val()
             );
@@ -99,7 +99,7 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
               valor_total,
               1,
               $("#forma_pagamento").val(),
-              $("#select-taxa-debito").val(),
+              $("#valor_taxa_debito").val(),
               $("#data_venda").val(),
               $("#valor_liquido_debito").val()
             );
@@ -298,7 +298,7 @@ async function reloadTableProduct() {
             ),
             1
           );
-          $(this).closest("tr").remove(); // Removendo linha do elemento da tabela
+          
         });
       }
     },
@@ -582,6 +582,7 @@ $(document).ready(function () {
     if (venda_inserida != false) {
       valor = await relacionarProdutoVenda(last_id_venda, lista_produtos);
     } else {
+      
       swal({
         title: "Erro!",
         text: "Erro interno ao adicionar a venda. Tente Novamente",

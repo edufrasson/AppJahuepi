@@ -39,7 +39,7 @@ class PagamentoController extends Controller
         $model_parcela = new ParcelaModel();
 
         $pagamento->qnt_parcelas = $_POST['qnt_parcelas'];
-        $pagamento->valor_total = $_POST['valor_total'];
+        $pagamento->valor_total = $_POST['valor_total'];        
         $pagamento->forma_pagamento = $_POST['forma_pagamento'];
         $pagamento->id_venda = $_POST['id_venda'];
         (isset($_POST['taxa'])) ? $pagamento->taxa = $_POST['taxa'] : $pagamento->taxa = "";

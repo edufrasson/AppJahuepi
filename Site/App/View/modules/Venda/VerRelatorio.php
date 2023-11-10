@@ -37,9 +37,9 @@
                                     <th>Total Líquido</th>
                                     <th>Ver Produtos</th>
                                     <th>Ver Parcelas</th>
-                                    <!--<th>Ações</th>-->
+                                    <th>Ações</th>
                                 </tr>
-             
+
                             </thead>
                             <tbody>
                                 <?php if ($model->rows !== null) : ?>
@@ -51,10 +51,13 @@
                                             <td>R$ <?= $venda->total_liquido ?></td>
                                             <td><button id="<?= $venda->id_venda ?>" class="btn open-produtos" data-bs-toggle="modal" data-bs-target="#modalProdutos">Produtos</button></td>
                                             <td><button id="<?= $venda->id_venda ?>" class="btn open-parcelas" data-bs-toggle="modal" data-bs-target="#modalParcelas">Parcelas</button></td>
-                                            <!--<td class="actions-list">
-                                                <box-icon name="edit" color="blue" id="<?= $venda->id ?>" data-bs-toggle="modal" data-bs-target="#modalVenda" class="btn-icon btn-edit"></box-icon>
-                                                <box-icon name="trash" color="red" id="<?= $venda->id ?>" class="btn-icon btn-delete"></box-icon>
-                                            </td>-->
+                                            <td class="actions-list">
+                                                <a href="/editar_venda?id=<?= $venda->id_venda ?>">
+                                                    <box-icon name="edit" color="blue" id="<?= $venda->id_venda ?>" data-bs-toggle="modal" data-bs-target="#modalVenda" class="btn-icon btn-edit"></box-icon>
+                                                </a>
+
+                                                <box-icon name="trash" color="red" id="<?= $venda->id_venda ?>" class="btn-icon btn-delete"></box-icon>
+                                            </td>
                                         </tr>
                                     <?php endforeach ?>
                                 <?php else : ?>

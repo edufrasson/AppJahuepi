@@ -152,8 +152,10 @@ class ParcelaDAO extends DAO
                 p.id as id,
                 pgt.forma_pagamento as tipo_parcela,
 		        p.indice as indice,
-		        p.valor as valor_parcela,
+		        TRUNCATE(p.valor, 2) as valor_parcela,
 	            date_format(p.data_parcela, '%d/%m/%Y') as data_parcela,
+                p.data_parcela as date_parcela,
+                p.data_recebimento as date_recebimento,
 	            date_format(p.data_recebimento, '%d/%m/%Y') as data_recebimento,
                 p.status as status      
         FROM Parcela p 

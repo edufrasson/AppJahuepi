@@ -83,6 +83,8 @@ class ProdutoVendaDAO extends DAO
         $sql = "SELECT  pv.id_produto AS id_produto,                        
                         pv.quantidade as quantidade,
                         p.descricao as descricao,
+                        p.preco as preco, 
+                        p.codigo_barra as codigo_barra,
                         pv.valor_unit as valor_unit,
                         pv.id_venda as id_venda,
                         v.data_venda as data_venda      

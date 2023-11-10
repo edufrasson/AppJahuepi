@@ -240,6 +240,10 @@ switch ($url) {
     case '/relatorio':
         VendaController::relatorio();
         break;
+    case '/editar_venda':
+        VendaController::edit();
+        break;
+
 
         // Orcamento
     case '/template':
@@ -286,6 +290,9 @@ switch ($url) {
         /* Produto_Venda*/
     case '/produto_venda':
         ProdutoVendaController::index();
+        break;
+    case '/produto_venda/get-by-id':
+        ProdutoVendaController::getById();
         break;
     case '/produto_venda/save':
         ProdutoVendaController::save();

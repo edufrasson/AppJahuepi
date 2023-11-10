@@ -1,0 +1,28 @@
+.container-card{    
+    margin-bottom: 10px !important;
+
+}
+
+.main-container{
+    height: max-content;
+}
+
+.form-edit-container{
+    height: fit-content;
+    background-color: white;
+    padding: 10px !important;
+}
+
+.produto-details-container{
+    padding: 10px;
+}
+
+.input-row .row-parcelas{
+    display: block !important;    
+}
+
+
+
+.info-container{
+    display: flex;
+}
