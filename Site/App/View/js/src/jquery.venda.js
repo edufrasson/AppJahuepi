@@ -400,11 +400,12 @@ $(document).ready(function () {
         $(".modal-dinheiro").addClass("d-none");
         $(".modal-debito").addClass("d-none");
         $(".modal-boleto").removeClass("d-none");
-        $("#taxa-boleto").change(function () {
-          updateTaxasValue($("#taxa-boleto").val());
-        });
-        $("#qnt_parcelas_boleto").change(() => {
-          updateParcelasBoleto($("#qnt_parcelas_boleto").val());
+        
+        $("#qnt_parcelas_boleto").change(() => {          
+            if ($("#qnt_parcelas_boleto").val() > 12) {
+              $("#qnt_parcelas_boleto").val(12);
+              updateParcelasBoleto(12);
+            } else updateParcelasBoleto($("#qnt_parcelas_boleto").val());       
         });
 
         $("#finalizarVenda").addClass("d-none");
@@ -501,7 +502,11 @@ $(document).ready(function () {
   });
 
   $(".qnt_parcelas").change(() => {
-    updateParcelasValue($(".qnt_parcelas").val());
+    
+    if ($(".qnt_parcelas").val() > 12) {
+      $(".qnt_parcelas").val(12);
+      updateParcelasValue(12);
+    } else updateParcelasValue($(".qnt_parcelas").val());   
   });
 
   /* 
