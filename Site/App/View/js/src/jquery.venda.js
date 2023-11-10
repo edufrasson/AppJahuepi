@@ -251,7 +251,6 @@ async function reloadTableProduct() {
     url: "/produto/get-by-id?id=" + $("#id_produto").val(),
     dataType: "json",
     success: async function (result) {
-
       // Verificando se há produto no estoque
       if (
         parseInt($("#quantidade").val()) > result.response_data.saldo_estoque
@@ -263,8 +262,6 @@ async function reloadTableProduct() {
           button: "OK",
         });
       } else {
-
-
         // Recalculando valores
         valor_total += $("#quantidade").val() * result.response_data.preco;
         lista_produtos.push({
@@ -278,19 +275,20 @@ async function reloadTableProduct() {
         $("#tableProduto").append(`<tr> 
        <td> ${result.response_data.descricao} </td> 
        <td> ${Intl.NumberFormat("pt-BR", {
-          style: "currency",
-          currency: "BRL",
-        }).format(result.response_data.preco.toString())} </td>
+         style: "currency",
+         currency: "BRL",
+       }).format(result.response_data.preco.toString())} </td>
        <td> ${$("#quantidade").val()} </td> 
        <td> ${result.response_data.codigo_barra} </td>             
        <td class="actions-list-venda d-flex justify-content-center">                
-           <box-icon name="trash" color="#e8ac07" id="${result.response_data.id
-          }" class="btn-icon btn-delete-list"></box-icon>
+           <box-icon name="trash" color="#e8ac07" id="${
+             result.response_data.id
+           }" class="btn-icon btn-delete-list"></box-icon>
        </td>
       </tr>`);
 
         // Resetando quantidade
-        $("#quantidade").val('')
+        $("#quantidade").val("");
 
         // Função que retira os produtos da lista de compras
         $(".btn-delete-list").click(function () {
@@ -367,11 +365,14 @@ $(document).ready(function () {
   */
 
   $("#adicionarProduto").click(function () {
-
     // Verificando se o input não está vazio
-    if($('#quantidade').val() != null && $('#quantidade').val() != 0 && $('#quantidade').val() != '')
+    if (
+      $("#quantidade").val() != null &&
+      $("#quantidade").val() != 0 &&
+      $("#quantidade").val() != ""
+    )
       reloadTableProduct();
-    else{
+    else {
       swal({
         title: "Erro!",
         text: "Preencha corretamente a quantidade de produto desejada!",
@@ -379,7 +380,6 @@ $(document).ready(function () {
         button: "OK",
       });
     }
-
   });
 
   $("#forma_pagamento").change(function () {
@@ -390,6 +390,10 @@ $(document).ready(function () {
         $("#modal-debito").addClass("d-none");
         $(".modal-dinheiro").addClass("d-none");
         $("#modal-boleto").addClass("d-none");
+
+        $("#ajustarParcela").addClass("d-none");
+        $("#finalizarVenda").removeClass("d-none");
+
         $("#select-taxa-credito").change(function () {
           updateTaxasValue($("#select-taxa-credito").val());
         });
@@ -400,12 +404,12 @@ $(document).ready(function () {
         $(".modal-dinheiro").addClass("d-none");
         $(".modal-debito").addClass("d-none");
         $(".modal-boleto").removeClass("d-none");
-        
-        $("#qnt_parcelas_boleto").change(() => {          
-            if ($("#qnt_parcelas_boleto").val() > 12) {
-              $("#qnt_parcelas_boleto").val(12);
-              updateParcelasBoleto(12);
-            } else updateParcelasBoleto($("#qnt_parcelas_boleto").val());       
+
+        $("#qnt_parcelas_boleto").change(() => {
+          if ($("#qnt_parcelas_boleto").val() > 12) {
+            $("#qnt_parcelas_boleto").val(12);
+            updateParcelasBoleto(12);
+          } else updateParcelasBoleto($("#qnt_parcelas_boleto").val());
         });
 
         $("#finalizarVenda").addClass("d-none");
@@ -478,6 +482,10 @@ $(document).ready(function () {
         $(".modal-debito").removeClass("d-none");
         $(".modal-boleto").addClass("d-none");
         $(".modal-dinheiro").addClass("d-none");
+
+        $("#ajustarParcela").addClass("d-none");
+        $("#finalizarVenda").removeClass("d-none");
+
         $("#select-taxa-debito").change(function () {
           updateTaxasValue($("#select-taxa-debito").val());
         });
@@ -488,6 +496,10 @@ $(document).ready(function () {
         $(".modal-debito").addClass("d-none");
         $(".modal-boleto").addClass("d-none");
         $(".modal-dinheiro").removeClass("d-none");
+
+        $("#ajustarParcela").addClass("d-none");
+        $("#finalizarVenda").removeClass("d-none");
+
         $("#select-taxa-debito").change(function () {
           updateTaxasValue($("#select-taxa-debito").val());
         });
@@ -497,16 +509,36 @@ $(document).ready(function () {
         $(".modal-debito").addClass("d-none");
         $(".modal-boleto").addClass("d-none");
         $(".modal-dinheiro").addClass("d-none");
+        $("#ajustarParcela").addClass("d-none");
+        $("#finalizarVenda").removeClass("d-none");
         break;
     }
   });
 
   $(".qnt_parcelas").change(() => {
-    
-    if ($(".qnt_parcelas").val() > 12) {
-      $(".qnt_parcelas").val(12);
-      updateParcelasValue(12);
-    } else updateParcelasValue($(".qnt_parcelas").val());   
+    if (
+      ($("#forma_pagamento").val() == "DEBITO" &&
+        $("#select-taxa-debito").val() == "") ||
+      ($("#forma_pagamento").val() == "CREDITO" &&
+        $("#select-taxa-credito").val() == "")
+    ) {
+      swal({
+        title: "Erro!",
+        text: "Selecione uma taxa primeiro!",
+        icon: "error",
+        button: "OK",
+      });
+
+      $(".valor_bruto_parcela").val("");
+      $(".valor_liquido_parcela").val("");
+      $("#valor_liquido_debito").val("");
+      $(".qnt_parcelas").val("")
+    } else {
+      if ($(".qnt_parcelas").val() > 12) {
+        $(".qnt_parcelas").val(12);
+        updateParcelasValue(12);
+      } else updateParcelasValue($(".qnt_parcelas").val());
+    }
   });
 
   /* 
