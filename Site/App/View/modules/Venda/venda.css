@@ -4,6 +4,18 @@
     padding: 20px;
 }
 
+
+
+.text-container-header-card{
+    
+    position: relative;
+}
+.checkbox-container{
+   
+    position: absolute;
+    z-index: 1;
+}
+
 .sidebar{
     z-index: 2;
 }

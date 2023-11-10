@@ -1,5 +1,6 @@
 lista_produtos = Array();
 lista_parcelas = Array();
+var usarLeitor;
 
 var valor_parcelas = 0;
 var qnt_parcelas = 0;
@@ -90,7 +91,7 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
               $("#data_venda").val(),
               $("#valor_liquido_credito").val(),
               null,
-              parseFloat($("#valor_taxa_credito").val()),
+              parseFloat($("#valor_taxa_credito").val())
             );
             break;
           case "DEBITO":
@@ -99,11 +100,11 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
               last_id_venda,
               valor_total,
               1,
-              $("#forma_pagamento").val(),             
+              $("#forma_pagamento").val(),
               $("#data_venda").val(),
               $("#valor_liquido_debito").val(),
               null,
-              parseFloat($("#valor_taxa_debito").val()),
+              parseFloat($("#valor_taxa_debito").val())
             );
             break;
           case "BOLETO":
@@ -112,7 +113,7 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
               last_id_venda,
               valor_total,
               $("#qnt_parcelas_boleto").val(),
-              $("#forma_pagamento").val(),              
+              $("#forma_pagamento").val(),
               $("#data_venda").val(),
               $("#valor_liquido_boleto").val(),
               lista_parcelas,
@@ -124,7 +125,7 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
               last_id_venda,
               valor_total,
               1,
-              $("#forma_pagamento").val(),              
+              $("#forma_pagamento").val(),
               $("#data_venda").val(),
               valor_total,
               null,
@@ -187,7 +188,7 @@ function adicionarPagamento(
   id_venda,
   valor_total,
   qnt_parcelas,
-  forma_pagamento, 
+  forma_pagamento,
   data_venda,
   valor_liquido,
   lista_parcelas_prop = null,
@@ -207,11 +208,11 @@ function adicionarPagamento(
         id_venda: id_venda,
         valor_total: valor_total,
         qnt_parcelas: qnt_parcelas,
-        forma_pagamento: forma_pagamento,        
+        forma_pagamento: forma_pagamento,
         data_venda: data_venda,
         valor_liquido: valor_liquido,
         arr_parcelas: JSON.stringify(lista_parcelas_prop),
-        taxa: taxa
+        taxa: taxa,
       },
       dataType: "json",
       success: function (result) {
@@ -220,7 +221,7 @@ function adicionarPagamento(
           registrarVendaOrcamento($("#id_orcamento").val());
         }
 
-        console.log(result)
+        console.log(result);
 
         if (result.response_data == true) {
           baixaEstoque(last_id_venda);
@@ -234,7 +235,6 @@ function adicionarPagamento(
           icon: "error",
           button: "OK",
         });
-        
       },
     });
   } else {
@@ -304,7 +304,6 @@ async function reloadTableProduct() {
             ),
             1
           );
-          
         });
       }
     },
@@ -538,7 +537,7 @@ $(document).ready(function () {
       $(".valor_bruto_parcela").val("");
       $(".valor_liquido_parcela").val("");
       $("#valor_liquido_debito").val("");
-      $(".qnt_parcelas").val("")
+      $(".qnt_parcelas").val("");
     } else {
       if ($(".qnt_parcelas").val() > 12) {
         $(".qnt_parcelas").val(12);
@@ -588,7 +587,6 @@ $(document).ready(function () {
     if (venda_inserida != false) {
       valor = await relacionarProdutoVenda(last_id_venda, lista_produtos);
     } else {
-      
       swal({
         title: "Erro!",
         text: "Erro interno ao adicionar a venda. Tente Novamente",
@@ -597,6 +595,24 @@ $(document).ready(function () {
       });
     }
     setInterval(5000);
+  });
+
+  // Funções executadas ao abrir a página
+
+  $("#usarLeitor").mousedown(function () {
+    
+
+    if (this.checked) {
+      usarLeitor = false
+      $(".select-container").removeClass("d-none");
+      $(".container-codigo-barra").addClass("d-none");
+      
+    } else {
+      usarLeitor = true
+      $(".select-container").addClass("d-none");
+      $(".container-codigo-barra").removeClass("d-none");
+     
+    }
   });
 
   $(".btn-orcamento").click(() => {

@@ -10,7 +10,7 @@ class VendaModel extends Model
 {
     public $id, $data_venda, $data_da_venda;
     public $id_venda, $id_pagamento, $total_bruto, $total_liquido, $parcelas, $valor_total, $valor_liquido;
-    public $arr_produtos, $arr_taxas;
+    public $arr_produtos, $arr_taxas, $valor_taxa;
     public $lista_produtos, $lista_parcelas, $forma_pagamento;
 
     public function save()

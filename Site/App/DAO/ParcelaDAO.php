@@ -150,6 +150,7 @@ class ParcelaDAO extends DAO
     {
         $sql = "SELECT 
                 p.id as id,
+                p.id as id_parcela,
                 pgt.forma_pagamento as tipo_parcela,
 		        p.indice as indice,
 		        TRUNCATE(p.valor, 2) as valor_parcela,

@@ -32,7 +32,7 @@
                                     <div class="input-row">
                                         <input type="hidden" name="id_pagamento" id="id_pagamento" value="<?= $dados->id_pagamento ?>">
                                         <input type="hidden" name="id_venda" id="id_venda" value="<?= $dados->id_venda ?>">
-                                        <input type="hidden" name="taxa" id="taxa" value="<?= $dados->taxa ?>">
+                                        <input type="hidden" name="taxa" id="taxa" value="<?= $dados->valor_taxa ?>">
                                         <div class="input-container">
                                             <label for="data_venda">Data da venda</label>
                                             <input class="form-control" type="date" name="data_venda" id="data_venda" value="<?= $dados->data_da_venda ?>">
@@ -41,10 +41,13 @@
                                             <label for="valor_total">Valor Total</label>
                                             <input class="form-control" type="number" name="valor_total" id="valor_total" value="<?= $dados->valor_total ?>">
                                         </div>
-                                        <div class="input-container">
-                                            <label for="taxa_formatada">Valor Total</label>
-                                            <input class="form-control" type="number" name="taxa_formatada" step="0.01" id="taxa_formatada" value="<?= $dados->taxa * 100?> ">
-                                        </div>
+
+                                        <?php if ($dados->valor_taxa != null) : ?>
+                                            <div class="input-container">
+                                                <label for="taxa_formatada">Taxa (%)</label>
+                                                <input class="form-control" type="number" name="taxa_formatada" step="0.01" id="taxa_formatada" value="<?= $dados->valor_taxa ?>">
+                                            </div>
+                                        <?php endif; ?>
                                         <div class="input-container">
                                             <label for="valor_liquido">Valor Líquido</label>
                                             <input class="form-control" type="number" name="valor_liquido" id="valor_liquido" value="<?= $dados->valor_liquido ?>">

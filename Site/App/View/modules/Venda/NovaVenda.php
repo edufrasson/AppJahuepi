@@ -16,7 +16,14 @@
     <div class="body-container">
         <div class="main-container">
             <div class="container-card">
-                <div class="header-card">
+                <div class="header-card ">
+                    <div class="checkbox-container d-flex justify-content-start gap-2 ">
+                        <input class="form-check-input mr-2" type="checkbox" id="usarLeitor">
+                        <label class="form-check-label ml-2" for="usarLeitor">
+                            Usar Leitor
+                        </label>
+
+                    </div>
                     <div class="text-container-header-card d-flex justify-content-center">
                         <h4>Cadastro de Vendas</h4>
                     </div>
@@ -24,7 +31,10 @@
                 <div class="main-card">
                     <div class="containers-card buttons-container">
                         <form class="form-add-product" method="post">
-
+                            <div class="input-container container-codigo-barra d-none">
+                                <label for="txt_codigo">Código de Barra: </label><br>
+                                <input class="form-control p-1" type="number" name="txt_codigo" id="txt_codigo">
+                            </div>
                             <div class="input-container select-container">
                                 <label for="id_produto">Produto:</label><br>
                                 <select class="selectpicker bg-light" data-live-search="true" name="id_produto" id="id_produto">
@@ -70,7 +80,7 @@
                                                 <td><?= $item->descricao ?></td>
                                                 <td><?= $item->preco ?></td>
                                                 <td><?= $item->quantidade ?></td>
-                                                <td><?= $item->codigo_barra ?></td>                                                
+                                                <td><?= $item->codigo_barra ?></td>
                                             </tr>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
