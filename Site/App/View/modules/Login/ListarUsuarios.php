@@ -87,8 +87,8 @@
                         </span>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Fechar</button>
-                        <button type="button" class="btn" style="background-color: #f4c71e;" id="adicionarUsuario">Salvar Registro</button>
+                        <button type="button" class="btn btn-fechar " data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-salvar" id="adicionarUsuario">Salvar Registro</button>
                     </div>
                 </form>
             </div>
