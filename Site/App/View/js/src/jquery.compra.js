@@ -1,5 +1,5 @@
 lista_produtos = Array();
-var usarLeitor;
+var usarLeitor = false;
 var valor_total = 0;
 var valor_parcelas = 0;
 var last_id_compra = false;
@@ -158,6 +158,9 @@ async function reloadTableProduct() {
         $(this).closest("tr").remove(); // Removendo linha do elemento da tabela
       });
     },
+    error: async function (result){
+      console.log(result)
+    }
   });
 }
 
@@ -241,10 +244,13 @@ $(document).ready(function () {
   */
 
   $("#adicionarProduto").click(function () {
-    if ($('#codigo_barra').hasClass('d-none') == false && usarLeitor == true)
+    if ($('.container-codigo-barra').hasClass('d-none') == false && localStorage.getItem('usarLeitor') == 'true')      
       reloadTableProductByCodigo();
-    else
+    else{    
+      console.log(localStorage.getItem('usarLeitor'))
       reloadTableProduct();
+    }
+    
   });
 
   $("#qnt_parcelas").change(() => {
@@ -317,6 +323,7 @@ $(document).ready(function () {
   if (localStorage.getItem('usarLeitor') == 'true') {
     console.log('caiu no true')
     console.log(localStorage.getItem('usarLeitor'))
+    
     $('#usar_leitor').prop('checked', true)
     $(".select-container-produto").addClass("d-none");
     $(".container-codigo-barra").removeClass("d-none");

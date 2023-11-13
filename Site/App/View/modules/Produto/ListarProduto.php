@@ -36,7 +36,6 @@
                         <table id="tableCategoria" class="table table-bordered table-style off">
                             <thead>
                                 <tr>
-
                                     <th>Descricao</th>
                                     <th>Preço</th>
                                     <th>Estoque</th>
@@ -48,14 +47,15 @@
                                 <?php if ($model->rows !== null) : ?>
                                     <?php foreach ($model->rows as $produto) : ?>
                                         <tr>
-
                                             <td><?= $produto->descricao ?></td>
                                             <td>R$ <?= $produto->valor_produto ?></td>
                                             <td><?= $produto->saldo_estoque ?></td>
                                             <td><?= $produto->codigo_barra ?></td>
                                             <td class="actions-list">
-                                                <a class="text-decoration-none" href="/editar_produto?id=<?= $produto->id ?>"><i class="bx bx-edit btn-icon" id="<?= $produto->id ?>" data-bs-toggle="modal" style="color: blue;"></i>
-                                                    <i class='bx bx-trash btn-icon' id="<?= $produto->id ?>" style="color: red;"></i>
+                                                <a class="text-decoration-none" href="/editar_produto?id=<?= $produto->id ?>">
+                                                    <i class="bx bx-edit btn-icon" id="<?= $produto->id ?>" data-bs-toggle="modal" style="color: blue;"></i>
+                                                </a>
+                                                <i class='bx bx-trash btn-icon' id="<?= $produto->id ?>" style="color: red;"></i>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>

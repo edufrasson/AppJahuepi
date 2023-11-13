@@ -318,69 +318,80 @@ async function reloadTableProductById() {
 }
 
 async function reloadTableProductByCodigo() {
-  $.ajax({
-    type: "GET",
-    url: "/produto/get-by-codigo?codigo=" + $("#codigo_barra").val(),
-    dataType: "json",
-    success: async function (result) {
-      // Verificando se há produto no estoque
-      if (
-        parseInt($("#quantidade").val()) > result.response_data.saldo_estoque
-      ) {
+  if ($("#codigo_barra").val() == 0 || $("#codigo_barra").val() == "") {
+    swal({
+      title: "Erro!",
+      text: "Insira um código de barras válido!",
+      icon: "error",
+      button: "OK",
+    });
+  } else {
+    $.ajax({
+      type: "GET",
+      url: "/produto/get-by-codigo?codigo=" + $("#codigo_barra").val(),
+      dataType: "json",
+      success: async function (result) {
+        // Verificando se há produto no estoque
+        if (
+          parseInt($("#quantidade").val()) > result.response_data.saldo_estoque
+        ) {
+          swal({
+            title: "Erro!",
+            text: "Não há estoque suficiente para cadastrar essa quantidade! Reposição necessária.",
+            icon: "error",
+            button: "OK",
+          });
+        } else {
+          // Recalculando valores
+          valor_total += $("#quantidade").val() * result.response_data.preco;
+          lista_produtos.push({
+            id_produto: result.response_data.id,
+            quantidade: $("#quantidade").val(),
+            valor_unit: result.response_data.preco,
+            descricao: result.response_data.descricao,
+          });
+
+          // Adicionando produto no carrinho de compra
+          $("#tableProduto").append(`<tr> 
+         <td> ${result.response_data.descricao} </td> 
+         <td> ${Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          }).format(result.response_data.preco.toString())} </td>
+         <td> ${$("#quantidade").val()} </td> 
+         <td> ${result.response_data.codigo_barra} </td>             
+         <td class="actions-list-venda d-flex justify-content-center">                
+             <box-icon name="trash" color="#e8ac07" id="${result.response_data.id
+            }" class="btn-icon btn-delete-list"></box-icon>
+         </td>
+        </tr>`);
+
+          // Resetando quantidade
+          $("#quantidade").val("");
+
+          // Função que retira os produtos da lista de compras
+          $(".btn-delete-list").click(function () {
+            lista_produtos.splice(
+              lista_produtos.findIndex(
+                (produto) => produto.id_produto == result.response_data.id
+              ),
+              1
+            );
+          });
+        }
+      },
+      error: function (result) {
         swal({
           title: "Erro!",
-          text: "Não há estoque suficiente para cadastrar essa quantidade! Reposição necessária.",
+          text: "Ocorreu um erro ao adicionar produto na venda! Tente Novamente",
           icon: "error",
           button: "OK",
         });
-      } else {
-        // Recalculando valores
-        valor_total += $("#quantidade").val() * result.response_data.preco;
-        lista_produtos.push({
-          id_produto: result.response_data.id,
-          quantidade: $("#quantidade").val(),
-          valor_unit: result.response_data.preco,
-          descricao: result.response_data.descricao,
-        });
+      },
+    });
+  }
 
-        // Adicionando produto no carrinho de compra
-        $("#tableProduto").append(`<tr> 
-       <td> ${result.response_data.descricao} </td> 
-       <td> ${Intl.NumberFormat("pt-BR", {
-          style: "currency",
-          currency: "BRL",
-        }).format(result.response_data.preco.toString())} </td>
-       <td> ${$("#quantidade").val()} </td> 
-       <td> ${result.response_data.codigo_barra} </td>             
-       <td class="actions-list-venda d-flex justify-content-center">                
-           <box-icon name="trash" color="#e8ac07" id="${result.response_data.id
-          }" class="btn-icon btn-delete-list"></box-icon>
-       </td>
-      </tr>`);
 
-        // Resetando quantidade
-        $("#quantidade").val("");
-
-        // Função que retira os produtos da lista de compras
-        $(".btn-delete-list").click(function () {
-          lista_produtos.splice(
-            lista_produtos.findIndex(
-              (produto) => produto.id_produto == result.response_data.id
-            ),
-            1
-          );
-        });
-      }
-    },
-    error: function (result) {
-      swal({
-        title: "Erro!",
-        text: "Ocorreu um erro ao adicionar produto na venda! Tente Novamente",
-        icon: "error",
-        button: "OK",
-      });
-    },
-  });
 }
 
 /**
@@ -425,6 +436,29 @@ function updateParcelasBoleto(qnt_parcelas_prop) {
   qnt_parcelas = qnt_parcelas_prop;
 }
 
+function adicionarProduto() {
+  // Verificando se o input não está vazio
+  if (
+    $("#quantidade").val() != null &&
+    $("#quantidade").val() != 0 &&
+    $("#quantidade").val() != ""
+  ) {
+    if ($('#codigo_barra').hasClass('d-none') == false && localStorage.getItem('usarLeitor') == 'true')
+      reloadTableProductByCodigo();
+    else
+      reloadTableProductById();
+  }
+
+  else {
+    swal({
+      title: "Erro!",
+      text: "Preencha corretamente a quantidade de produto desejada!",
+      icon: "error",
+      button: "OK",
+    });
+  }
+}
+
 /* 
   Função Inicial da Página
 */
@@ -435,26 +469,7 @@ $(document).ready(function () {
   */
 
   $("#adicionarProduto").click(function () {
-    // Verificando se o input não está vazio
-    if (
-      $("#quantidade").val() != null &&
-      $("#quantidade").val() != 0 &&
-      $("#quantidade").val() != ""
-    ) {
-      if ($('#codigo_barra').hasClass('d-none') == false && usarLeitor == true)
-        reloadTableProductByCodigo();
-      else
-        reloadTableProductById();
-    }
-
-    else {
-      swal({
-        title: "Erro!",
-        text: "Preencha corretamente a quantidade de produto desejada!",
-        icon: "error",
-        button: "OK",
-      });
-    }
+    adicionarProduto();
   });
 
   $("#forma_pagamento").change(function () {
@@ -671,12 +686,14 @@ $(document).ready(function () {
 
 
 
+
+
   if (localStorage.getItem('usarLeitor') == 'true') {
-    console.log('caiu no true')
-    console.log(localStorage.getItem('usarLeitor'))
+    ;
     $('#usar_leitor').prop('checked', true)
     $(".select-container").addClass("d-none");
     $(".container-codigo-barra").removeClass("d-none");
+    $('#codigo_barra').focus()
   } else {
     console.log('caiu no false')
     console.log(localStorage.getItem('usarLeitor'))
@@ -684,6 +701,21 @@ $(document).ready(function () {
     $(".select-container").removeClass("d-none");
     $(".container-codigo-barra").addClass("d-none");
   }
+
+  $('#codigo_barra').change(() => {
+    $('#quantidade').focus();
+  })
+
+  $('#quantidade').keypress((event) => {
+    console.log('caiu no evento')
+
+    if (event.key == 'Enter') {
+      adicionarProduto()
+    }
+  })
+
+
+
 
   $("#usar_leitor").mousedown(function () {
 
