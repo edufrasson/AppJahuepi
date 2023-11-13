@@ -10,3 +10,13 @@
 .movimentacao-saida{
     color: red;
 }
+
+@media screen and (max-width: 768px) {
+    .buttons-container {
+        margin-bottom: 5px;
+    }
+
+    .buttons-container .relatorio {
+        display: none;
+    }
+}

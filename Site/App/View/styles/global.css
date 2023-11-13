@@ -147,6 +147,21 @@ body {
   font-weight: bold;
 }
 
+.modal-footer .btn-fechar {
+  background: linear-gradient(to bottom, #8d8d8d, #707070 );
+  border: 0;
+  color: #fff;
+}
+
+.modal-footer .btn-fechar:hover {
+  color: #fff;
+}
+
+.modal-footer .btn-salvar {
+  background: linear-gradient(to bottom, #fad449, #f4c71e);
+  border: 0;
+}
+
 /* TABELA COM SCROLL */
 .content-body {
   height: 100vh;

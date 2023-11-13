@@ -24,7 +24,7 @@
             <div class="main-card">
                 <div class="containers-card buttons-container ">
                     <button id="adicionar" class="btn" data-bs-toggle="modal" data-bs-target="#modalEstoque">Adicionar</button>
-                    <button id="adicionar" class="btn" data-bs-toggle="modal" data-bs-target="#relatorioEstoque">Relatório</button>
+                    <button id="adicionar" class="btn relatorio" data-bs-toggle="modal" data-bs-target="#relatorioEstoque">Relatório</button>
                 </div>
 
                 <div class="containers-card">
@@ -135,8 +135,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn" style="background-color: #f4c71e;" id="adicionarMovimentacao">Salvar </button>
+                        <button type="button" class="btn btn-fechar" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-salvar" style="background-color: #f4c71e;" id="adicionarMovimentacao">Salvar </button>
                     </div>
                 </form>
             </div>

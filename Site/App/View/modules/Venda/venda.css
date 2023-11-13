@@ -85,6 +85,12 @@ td{
         gap: 10px;
         text-align: center;
     }
+
+    .checkbox-container {
+        margin-left: 98px;
+        margin-top: 35px;
+        font-size: 14px;
+    }
     
     .input-container {
         width: 60%;

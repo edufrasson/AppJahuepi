@@ -70,7 +70,7 @@
 
                         </div>
                         <div class="m-5 button-container d-flex justify-content-center">
-                            <button class="btn btn-warning" type="submit">Salvar</button>
+                            <button class="btn btn-salvar" type="submit">Salvar</button>
                         </div>
                     </form>
                 </div>

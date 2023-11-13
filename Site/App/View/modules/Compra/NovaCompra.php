@@ -152,8 +152,8 @@
 
 
                     <div class="modal-footer d-flex justify-content-between">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                        <button type="button" class="btn" style="background-color: #f4c71e;" id="ajustarParcelas">Ajustar Parcelas</button>
+                        <button type="button" class="btn btn-fechar" data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-salvar" id="ajustarParcelas">Ajustar Parcelas</button>
                         <button type="button " class="btn d-none" style="background-color: #f4c71e;" id="adicionarCompra">Salvar Registro</button>
                     </div>
                 </div>
