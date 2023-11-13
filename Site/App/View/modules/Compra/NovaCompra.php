@@ -17,6 +17,13 @@
     <div class="main-container">
         <div class="container-card">
             <div class="header-card">
+                <div class="checkbox-container d-flex justify-content-start gap-2 ">
+                    <input class="form-check-input mr-2" type="checkbox" id="usar_leitor">
+                    <label class="form-check-label ml-2" for="usarLeitor">
+                        Usar Leitor
+                    </label>
+
+                </div>
                 <div class="text-container-header-card d-flex justify-content-center">
                     <h4>Cadastro de Compras</h4>
                 </div>
@@ -37,7 +44,7 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div class="input-container select-container">
+                        <div class="input-container select-container-produto">
                             <label for="id_produto">Produto:</label><br>
                             <select class="selectpicker bg-light" data-live-search="true" name="id_produto" id="id_produto">
                                 <option value="">Selecione um produto!</option>
@@ -49,6 +56,10 @@
                                     <option value="<?= $produto->id ?>"><?= $produto->descricao ?></option>
                                 <?php endforeach; ?>
                             </select>
+                        </div>
+                        <div class="input-container container-codigo-barra d-none">
+                            <label for="codigo_barra">Código de Barra: </label><br>
+                            <input class="form-control p-1" type="number" name="codigo_barra" id="codigo_barra">
                         </div>
                         <div class="input-container">
                             <label for="valor_unitario">Valor de Compra (R$): </label><br>
@@ -98,7 +109,7 @@
                     <box-icon size="md" class="d-none" name='left-arrow-circle' id="botaoVoltar"></box-icon>
                     <h5 class="modal-title" id="modalPagamentoCompraTitle">Cadastrar Pagamento da Compra</h5>
                     <h5 class="modal-title title-parcelas d-none" id="modalPagamentoCompraTitle2">Ajuste de Parcelas</h5>
-                   
+
                 </div>
                 <div class="form">
                     <div class="modal-body modal-boleto " id="modal-boleto">
@@ -129,7 +140,7 @@
                                     <label for="valor_parcela">Valor por Parcela (R$): </label><br>
                                     <input disabled class="form-control p-1 valor_parcela" type="text" name="valor_parcela" id="valor_parcela">
                                 </div>
-                            </div>                          
+                            </div>
                         </div>
                         <div class="ajustes-parcela d-none">
                             <div class="container-parcelas">

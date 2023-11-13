@@ -18,8 +18,8 @@
             <div class="container-card">
                 <div class="header-card ">
                     <div class="checkbox-container d-flex justify-content-start gap-2 ">
-                        <input class="form-check-input mr-2" type="checkbox" id="usarLeitor">
-                        <label class="form-check-label ml-2" for="usarLeitor">
+                        <input class="form-check-input mr-2" type="checkbox" id="usar_leitor">
+                        <label class="form-check-label ml-2" for="usar_leitor">
                             Usar Leitor
                         </label>
 
@@ -32,8 +32,8 @@
                     <div class="containers-card buttons-container">
                         <form class="form-add-product" method="post">
                             <div class="input-container container-codigo-barra d-none">
-                                <label for="txt_codigo">Código de Barra: </label><br>
-                                <input class="form-control p-1" type="number" name="txt_codigo" id="txt_codigo">
+                                <label for="codigo_barra">Código de Barra: </label><br>
+                                <input class="form-control p-1" type="number" name="codigo_barra" id="codigo_barra">
                             </div>
                             <div class="input-container select-container">
                                 <label for="id_produto">Produto:</label><br>

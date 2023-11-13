@@ -1,4 +1,5 @@
 lista_produtos = Array();
+var usarLeitor;
 var valor_total = 0;
 var valor_parcelas = 0;
 var last_id_compra = false;
@@ -31,7 +32,7 @@ function inserirCompra(data_compra, id, qnt_parcela, id_fornecedor, valor_compra
         last_id_compra = result.response_data.id;
         compra_inserida = true;
         console.log(lista_produtos)
-        relacionarProdutoCompra(last_id_compra, lista_produtos);        
+        relacionarProdutoCompra(last_id_compra, lista_produtos);
       },
       error: function (result) {
         console.log(`erro na compra: ${result}`);
@@ -136,14 +137,57 @@ async function reloadTableProduct() {
       $("#tableProduto").append(`<tr> 
        <td> ${result.response_data.descricao} </td> 
        <td> ${Intl.NumberFormat("pt-BR", {
-         style: "currency",
-         currency: "BRL",
-       }).format($("#valor_unitario").val().toString())} </td>
+        style: "currency",
+        currency: "BRL",
+      }).format($("#valor_unitario").val().toString())} </td>
        <td> ${$("#quantidade").val()} </td>                    
        <td class="actions-list-compra d-flex justify-content-center">                
-           <box-icon name="trash" color="#e8ac07" id="${
-             result.response_data.id
-           }" class="btn-icon btn-delete-list"></box-icon>
+           <box-icon name="trash" color="#e8ac07" id="${result.response_data.id
+        }" class="btn-icon btn-delete-list"></box-icon>
+       </td>
+      </tr>`);
+
+      // Função que retira os produtos da lista de compras
+      $(".btn-delete-list").click(function () {
+        lista_produtos.splice(
+          lista_produtos.findIndex(
+            (produto) => produto.id_produto == result.response_data.id
+          ),
+          1
+        );
+        $(this).closest("tr").remove(); // Removendo linha do elemento da tabela
+      });
+    },
+  });
+}
+
+async function reloadTableProductByCodigo() {
+  $.ajax({
+    type: "GET",
+    url: "/produto/get-by-codigo?codigo=" + $("#codigo_barra").val(),
+    dataType: "json",
+    success: async function (result) {
+      // Recalculando valores
+      console.log(result)
+
+      valor_total += $("#quantidade").val() * $("#valor_unitario").val();
+      lista_produtos.push({
+        id_produto: result.response_data.id,
+        quantidade: $("#quantidade").val(),
+        valor_unit: $("#valor_unitario").val(),
+      });
+
+      // Adicionando produto no carrinho de compra
+      $("#tableProduto").append(`<tr> 
+       <td> ${result.response_data.descricao} </td> 
+       <td> ${Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format($("#valor_unitario").val().toString())} </td>
+       <td> ${$("#quantidade").val()} </td>                    
+       <td class="actions-list-compra d-flex justify-content-center">                
+           <box-icon name="trash" color="#e8ac07" id="${result.response_data.id
+        }" class="btn-icon btn-delete-list"></box-icon>
        </td>
       </tr>`);
 
@@ -197,7 +241,10 @@ $(document).ready(function () {
   */
 
   $("#adicionarProduto").click(function () {
-    reloadTableProduct();
+    if ($('#codigo_barra').hasClass('d-none') == false && usarLeitor == true)
+      reloadTableProductByCodigo();
+    else
+      reloadTableProduct();
   });
 
   $("#qnt_parcelas").change(() => {
@@ -265,9 +312,43 @@ $(document).ready(function () {
     }
   });
 
+
+  // Verificando o local storage do leitor
+  if (localStorage.getItem('usarLeitor') == 'true') {
+    console.log('caiu no true')
+    console.log(localStorage.getItem('usarLeitor'))
+    $('#usar_leitor').prop('checked', true)
+    $(".select-container-produto").addClass("d-none");
+    $(".container-codigo-barra").removeClass("d-none");
+  } else {
+    console.log('caiu no false')
+    console.log(localStorage.getItem('usarLeitor'))
+    $('#usar_leitor').prop('checked', false)
+    $(".select-container-produto").removeClass("d-none");
+    $(".container-codigo-barra").addClass("d-none");
+  }
+
+  $("#usar_leitor").mousedown(function () {
+    if (this.checked) {
+      usarLeitor = false
+      localStorage.setItem('usarLeitor', false)
+      $(".select-container-produto").removeClass("d-none");
+      $(".container-codigo-barra").addClass("d-none");
+
+    } else {
+      usarLeitor = true
+      localStorage.setItem('usarLeitor', true)
+      $(".select-container-produto").addClass("d-none");
+      $(".container-codigo-barra").removeClass("d-none");
+
+    }
+  });
+
+
   /* 
     Função que chama todas as requisições necessárias para inserir uma compra completa
   */
+
   $("#adicionarCompra").click(async () => {
     for (let i = 1; i <= qnt_parcelas; i++) {
       if ($(`#data_vencimento${i}`).val() == "") verifica_parcelas = false;
@@ -277,24 +358,24 @@ $(document).ready(function () {
       let arr_parcelas = Array();
       for (let i = 1; i <= qnt_parcelas; i++) {
         arr_parcelas.push(
-          {           
+          {
             indice: i,
             valor_cobranca: (valor_total / qnt_parcelas).toFixed(2),
-            data_cobranca: $(`#data_vencimento${i}`).val()            
+            data_cobranca: $(`#data_vencimento${i}`).val()
           }
         )
       }
 
       await inserirCompra(
-        $("#data_compra").val(), 
+        $("#data_compra").val(),
         $("#id").val(),
         qnt_parcelas,
         $("#id_fornecedor").val(),
         valor_total,
-        arr_parcelas    
-        );
+        arr_parcelas
+      );
 
-     
+
       setInterval(5000);
     } else {
       swal({

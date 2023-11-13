@@ -4,6 +4,15 @@
     padding: 20px;
 }
 
+.text-container-header-card{    
+    position: relative;
+}
+.checkbox-container{
+   
+    position: absolute;
+    z-index: 1;
+}
+
 .input-row{
    /* border: 1px solid red;*/
     display: flex;

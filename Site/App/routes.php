@@ -39,6 +39,9 @@ switch ($url) {
     case '/produto/get-by-id':
         ProdutoController::getById();
         break;
+    case '/produto/get-by-codigo':
+        ProdutoController::getByCodigo();
+        break;
     case '/editar_produto':
         ProdutoController::edit();
         break;

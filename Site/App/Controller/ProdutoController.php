@@ -42,6 +42,15 @@ class ProdutoController extends Controller
 
         parent::setResponseAsJSON($model->getById($_GET['id']));
     }
+    
+    public static function getByCodigo()
+    {
+        parent::isAuthenticated();
+
+        $model = new ProdutoModel();
+
+        parent::setResponseAsJSON($model->getByCodigo($_GET['codigo']));
+    }
 
     public static function save()
     {

@@ -51,6 +51,14 @@ class ProdutoModel extends Model
 
         return ($obj) ? $obj : new ProdutoModel();
     }
+    public function getByCodigo(int $codigo)
+    {
+        $dao = new ProdutoDAO();
+
+        $obj = $dao->selectByCodigo($codigo);
+
+        return ($obj) ? $obj : new ProdutoModel();
+    }
 
     public function getAllCategoria(){
         $dao = new CategoriaProdutoDAO();

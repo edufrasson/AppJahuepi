@@ -1,7 +1,7 @@
 lista_produtos = Array();
 lista_parcelas = Array();
-var usarLeitor;
 
+var usarLeitor
 var valor_parcelas = 0;
 var qnt_parcelas = 0;
 var valor_total = 0;
@@ -251,7 +251,7 @@ function adicionarPagamento(
  * Requisição para adicionar os produtos na tabela
  */
 
-async function reloadTableProduct() {
+async function reloadTableProductById() {
   $.ajax({
     type: "GET",
     url: "/produto/get-by-id?id=" + $("#id_produto").val(),
@@ -281,15 +281,80 @@ async function reloadTableProduct() {
         $("#tableProduto").append(`<tr> 
        <td> ${result.response_data.descricao} </td> 
        <td> ${Intl.NumberFormat("pt-BR", {
-         style: "currency",
-         currency: "BRL",
-       }).format(result.response_data.preco.toString())} </td>
+          style: "currency",
+          currency: "BRL",
+        }).format(result.response_data.preco.toString())} </td>
        <td> ${$("#quantidade").val()} </td> 
        <td> ${result.response_data.codigo_barra} </td>             
        <td class="actions-list-venda d-flex justify-content-center">                
-           <box-icon name="trash" color="#e8ac07" id="${
-             result.response_data.id
-           }" class="btn-icon btn-delete-list"></box-icon>
+           <box-icon name="trash" color="#e8ac07" id="${result.response_data.id
+          }" class="btn-icon btn-delete-list"></box-icon>
+       </td>
+      </tr>`);
+
+        // Resetando quantidade
+        $("#quantidade").val("");
+
+        // Função que retira os produtos da lista de compras
+        $(".btn-delete-list").click(function () {
+          lista_produtos.splice(
+            lista_produtos.findIndex(
+              (produto) => produto.id_produto == result.response_data.id
+            ),
+            1
+          );
+        });
+      }
+    },
+    error: function (result) {
+      swal({
+        title: "Erro!",
+        text: "Ocorreu um erro ao adicionar produto na venda! Tente Novamente",
+        icon: "error",
+        button: "OK",
+      });
+    },
+  });
+}
+
+async function reloadTableProductByCodigo() {
+  $.ajax({
+    type: "GET",
+    url: "/produto/get-by-codigo?codigo=" + $("#codigo_barra").val(),
+    dataType: "json",
+    success: async function (result) {
+      // Verificando se há produto no estoque
+      if (
+        parseInt($("#quantidade").val()) > result.response_data.saldo_estoque
+      ) {
+        swal({
+          title: "Erro!",
+          text: "Não há estoque suficiente para cadastrar essa quantidade! Reposição necessária.",
+          icon: "error",
+          button: "OK",
+        });
+      } else {
+        // Recalculando valores
+        valor_total += $("#quantidade").val() * result.response_data.preco;
+        lista_produtos.push({
+          id_produto: result.response_data.id,
+          quantidade: $("#quantidade").val(),
+          valor_unit: result.response_data.preco,
+          descricao: result.response_data.descricao,
+        });
+
+        // Adicionando produto no carrinho de compra
+        $("#tableProduto").append(`<tr> 
+       <td> ${result.response_data.descricao} </td> 
+       <td> ${Intl.NumberFormat("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        }).format(result.response_data.preco.toString())} </td>
+       <td> ${$("#quantidade").val()} </td> 
+       <td> ${result.response_data.codigo_barra} </td>             
+       <td class="actions-list-venda d-flex justify-content-center">                
+           <box-icon name="trash" color="#e8ac07" id="${result.response_data.id
+          }" class="btn-icon btn-delete-list"></box-icon>
        </td>
       </tr>`);
 
@@ -375,8 +440,13 @@ $(document).ready(function () {
       $("#quantidade").val() != null &&
       $("#quantidade").val() != 0 &&
       $("#quantidade").val() != ""
-    )
-      reloadTableProduct();
+    ) {
+      if ($('#codigo_barra').hasClass('d-none') == false && usarLeitor == true)
+        reloadTableProductByCodigo();
+      else
+        reloadTableProductById();
+    }
+
     else {
       swal({
         title: "Erro!",
@@ -599,21 +669,41 @@ $(document).ready(function () {
 
   // Funções executadas ao abrir a página
 
-  $("#usarLeitor").mousedown(function () {
-    
+
+
+  if (localStorage.getItem('usarLeitor') == 'true') {
+    console.log('caiu no true')
+    console.log(localStorage.getItem('usarLeitor'))
+    $('#usar_leitor').prop('checked', true)
+    $(".select-container").addClass("d-none");
+    $(".container-codigo-barra").removeClass("d-none");
+  } else {
+    console.log('caiu no false')
+    console.log(localStorage.getItem('usarLeitor'))
+    $('#usar_leitor').prop('checked', false)
+    $(".select-container").removeClass("d-none");
+    $(".container-codigo-barra").addClass("d-none");
+  }
+
+  $("#usar_leitor").mousedown(function () {
+
 
     if (this.checked) {
       usarLeitor = false
+      localStorage.setItem('usarLeitor', false)
       $(".select-container").removeClass("d-none");
       $(".container-codigo-barra").addClass("d-none");
-      
+
     } else {
       usarLeitor = true
+      localStorage.setItem('usarLeitor', true)
       $(".select-container").addClass("d-none");
       $(".container-codigo-barra").removeClass("d-none");
-     
+
     }
   });
+
+
 
   $(".btn-orcamento").click(() => {
     console.log("caiu orcamento");
