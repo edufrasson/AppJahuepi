@@ -61,7 +61,7 @@
                                                 <a class="text-decoration-none" href="/editar_movimentacao?id=<?= $movimentacao->id ?>">
                                                     <i class="bx bx-edit btn-icon" id="<?= $movimentacao->id ?>" data-bs-toggle="modal" style="color: blue;"></i>
                                                 </a>
-                                                <i class='bx bx-trash btn-icon' id="<?= $movimentacao->id ?>" style="color: red;"></i>
+                                                <i class='bx bx-trash btn-icon btn-delete' id="<?= $movimentacao->id ?>" style="color: red;"></i>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>

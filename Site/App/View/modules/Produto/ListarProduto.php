@@ -55,7 +55,7 @@
                                                 <a class="text-decoration-none" href="/editar_produto?id=<?= $produto->id ?>">
                                                     <i class="bx bx-edit btn-icon" id="<?= $produto->id ?>" data-bs-toggle="modal" style="color: blue;"></i>
                                                 </a>
-                                                <i class='bx bx-trash btn-icon' id="<?= $produto->id ?>" style="color: red;"></i>
+                                                <i class='bx bx-trash btn-icon btn-delete' id="<?= $produto->id ?>" style="color: red;"></i>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>

@@ -19,6 +19,42 @@
                 <div class="text-container-header-card">
                     <p>Relatório de Vendas</p>
                 </div>
+                <div class="filter-container d-flex justify-content-between mb-5">
+                    <div class="select-filter-container">
+                        <select class="selectpicker" name="filtro_ano" id="filtro_ano">
+                            <option value="">Ano</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                            <option value="2015">2015</option>
+                            <option value="2014">2014</option>
+                        </select>
+
+                        <select class="selectpicker" name="filtro_mes" id="filtro_mes">
+                            <option value="">Mês</option>
+                            <option value="1">JANEIRO</option>
+                            <option value="2">FEVEREIRO</option>
+                            <option value="3">MARÇO</option>
+                            <option value="4">ABRIL</option>
+                            <option value="5">MAIO</option>
+                            <option value="6">JUNHO</option>
+                            <option value="7">JULHO</option>
+                            <option value="8">AGOSTO</option>
+                            <option value="9">SETEMBRO</option>
+                            <option value="10">OUTUBRO</option>
+                            <option value="10">NOVEMBRO</option>
+                            <option value="10">DEZEMBRO</option>
+                        </select>
+                    </div>
+                    <div class="button-filter-container">
+                        <button class="btn btn-filter">Filtrar </button>
+                    </div>
+                </div>
             </div>
             <div class="main-card">
                 <div class="containers-card">

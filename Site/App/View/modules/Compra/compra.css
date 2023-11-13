@@ -4,6 +4,19 @@
     padding: 20px;
 }
 
+.sidebar{
+    z-index: 2;
+}
+
+.main-container{
+    z-index: 1;
+}
+
+.orcamento{
+    z-index: 0;
+}
+
+
 .text-container-header-card{    
     position: relative;
 }
