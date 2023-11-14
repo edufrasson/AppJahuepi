@@ -72,7 +72,7 @@ class ProdutoOrcamentoDAO extends DAO
                         po.id_orcamento as id_orcamento      
                 FROM produto_orcamento po
                 JOIN produto p ON p.id = po.id_produto
-                JOIN Orcamento o ON o.id = po.id_orcamento
+                JOIN orcamento o ON o.id = po.id_orcamento
                 WHERE po.id_orcamento = ? AND po.ativo = 'S' AND p.ativo = 'S' AND o.ativo = 'S';";
 
         $stmt = parent::getConnection()->prepare($sql);
@@ -85,7 +85,7 @@ class ProdutoOrcamentoDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "UPDATE Produto_orcamento SET ativo = 'N' WHERE id_orcamento = ?";
+        $sql = "UPDATE produto_orcamento SET ativo = 'N' WHERE id_orcamento = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

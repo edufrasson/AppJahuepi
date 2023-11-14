@@ -30,7 +30,7 @@ class VendaController extends Controller
             $dados = $model_orcamento->getProdutos($_GET['id_orcamento']);
         }
 
-        include 'View/modules/Venda/NovaVenda.php';
+        include VIEWS . 'Venda/NovaVenda.php';
     }
 
     public static function edit(){
@@ -47,7 +47,7 @@ class VendaController extends Controller
             $dados->lista_parcelas = $model_parcelas->getByIdVenda($_GET['id']);
             $dados->arr_produtos = $model->getAllProdutos();
 
-            include 'View/modules/Venda/EditarVenda.php';
+            include VIEWS . 'Venda/EditarVenda.php';
         }
     }
 
@@ -74,7 +74,7 @@ class VendaController extends Controller
         }
         
 
-        include 'View/modules/Venda/VerRelatorio.php';
+        include VIEWS . 'Venda/VerRelatorio.php';
     }    
 
     public static function getById()

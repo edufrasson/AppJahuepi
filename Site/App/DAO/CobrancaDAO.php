@@ -18,7 +18,7 @@ class CobrancaDAO extends DAO
         parent::getConnection()->beginTransaction();
 
         foreach ($model->lista_cobrancas as $cobranca) {
-            $sql = "INSERT INTO Cobranca (valor_cobranca, data_cobranca, id_compra, indice) VALUE (?, ?, ?, ?)";
+            $sql = "INSERT INTO cobranca (valor_cobranca, data_cobranca, id_compra, indice) VALUE (?, ?, ?, ?)";
 
             $stmt = parent::getConnection()->prepare($sql);
 
@@ -35,7 +35,7 @@ class CobrancaDAO extends DAO
 
     public function update(CobrancaModel $model)
     {
-        $sql = "UPDATE Cobranca SET valor = ?, data_cobranca = ?, id_compra = ?, indice = ?, status = ? WHERE id = ?";
+        $sql = "UPDATE cobranca SET valor = ?, data_cobranca = ?, id_compra = ?, indice = ?, status = ? WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $model->valor_cobranca);
@@ -50,7 +50,7 @@ class CobrancaDAO extends DAO
 
     public function select()
     {
-        $sql = "SELECT * FROM Cobranca WHERE ativo = 'S'";
+        $sql = "SELECT * FROM cobranca WHERE ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -62,8 +62,8 @@ class CobrancaDAO extends DAO
     public function checkCondicoesCobranca()
     {
         $sql = "SELECT p.id as id_Cobranca
-        FROM Cobranca p
-        JOIN Compra com ON com.id = p.id_pagamento        
+        FROM cobranca p
+        JOIN compra com ON com.id = p.id_pagamento        
         ;";
 
         $stmt = parent::getConnection()->prepare($sql);
@@ -75,7 +75,7 @@ class CobrancaDAO extends DAO
 
     public function confirmCobranca($id)
     {
-        $sql = "UPDATE Cobranca SET status = 'CONFIRMADO' WHERE id = ?";
+        $sql = "UPDATE cobranca SET status = 'CONFIRMADO' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
@@ -88,7 +88,7 @@ class CobrancaDAO extends DAO
 
     public function getById(int $id)
     {
-        $sql = "SELECT * FROM Cobranca WHERE id = ? AND ativo = 'S'";
+        $sql = "SELECT * FROM cobranca WHERE id = ? AND ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
@@ -102,7 +102,7 @@ class CobrancaDAO extends DAO
     {
         $sql = "SELECT 
                     FORMAT(sum(c.valor_cobranca), 2, 'de_DE') as total_pendente
-                FROM Cobranca c
+                FROM cobranca c
                 WHERE 
                     month(c.data_recebimento) = month(CURRENT_TIMESTAMP())
                 AND
@@ -122,7 +122,7 @@ class CobrancaDAO extends DAO
     {
         $sql = "SELECT 
                     sum(c.valor_cobranca)
-                FROM Cobranca c
+                FROM cobranca c
                 WHERE 
                 month(c.data_recebimento) = ?
                 AND
@@ -148,9 +148,9 @@ class CobrancaDAO extends DAO
 		        c.valor_cobranca as valor_cobranca,
 	            date_format(c.data_cobranca, '%d/%m/%Y') as data_cobranca,	            
                 c.status as status      
-        FROM Cobranca c 
-        JOIN Compra com ON com.id = c.id_compra       
-        JOIN Fornecedor f ON f.id = com.id_fornecedor
+        FROM cobranca c 
+        JOIN compra com ON com.id = c.id_compra       
+        JOIN fornecedor f ON f.id = com.id_fornecedor
         WHERE com.id = ? AND c.ativo = 'S' AND com.ativo = 'S' AND f.ativo = 'S'
         ORDER BY c.indice ASC";
 
@@ -164,7 +164,7 @@ class CobrancaDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "UPDATE Cobranca SET ativo = 'N' WHERE id = ?";
+        $sql = "UPDATE cobranca SET ativo = 'N' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

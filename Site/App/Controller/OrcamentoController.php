@@ -33,7 +33,7 @@ class OrcamentoController extends Controller
         }
 
         
-        include 'View/modules/Orcamento/templateOrcamento.php';
+        include VIEWS . 'Orcamento/templateOrcamento.php';
     }
 
     public static function index(){
@@ -42,7 +42,7 @@ class OrcamentoController extends Controller
         $model = new OrcamentoModel();
         $model->getAllRows();
 
-        include 'View/modules/Orcamento/ListarOrcamento.php';
+        include VIEWS . 'Orcamento/ListarOrcamento.php';
     }
 
     public static function confirmVenda(){

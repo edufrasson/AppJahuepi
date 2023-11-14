@@ -15,7 +15,7 @@ class PagamentoDAO extends DAO
     public function insert(PagamentoModel $model)
     {
         if ($model->taxa == "") {
-            $sql = "INSERT INTO Pagamento (valor_total, qnt_parcela, forma_pagamento, id_venda, valor_liquido) VALUE (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO pagamento (valor_total, qnt_parcela, forma_pagamento, id_venda, valor_liquido) VALUE (?, ?, ?, ?, ?)";
 
             $stmt = parent::getConnection()->prepare($sql);
 
@@ -30,7 +30,7 @@ class PagamentoDAO extends DAO
             $model->id = parent::getConnection()->lastInsertId();
             return $model;
         }else{
-            $sql = "INSERT INTO Pagamento (valor_total, qnt_parcela, forma_pagamento, id_venda, valor_liquido, taxa) VALUE (?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO pagamento (valor_total, qnt_parcela, forma_pagamento, id_venda, valor_liquido, taxa) VALUE (?, ?, ?, ?, ?, ?)";
 
             $stmt = parent::getConnection()->prepare($sql);
 
@@ -50,7 +50,7 @@ class PagamentoDAO extends DAO
 
     public function update(PagamentoModel $model)
     {
-        $sql = "UPDATE Pagamento SET valor_total = ?, qnt_parcela = ?, forma_pagamento = ?, id_venda = ? WHERE id = ?";
+        $sql = "UPDATE pagamento SET valor_total = ?, qnt_parcela = ?, forma_pagamento = ?, id_venda = ? WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -65,7 +65,7 @@ class PagamentoDAO extends DAO
 
     public function select()
     {
-        $sql = "SELECT * FROM Pagamento WHERE ativo = 'S'";
+        $sql = "SELECT * FROM pagamento WHERE ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -76,7 +76,7 @@ class PagamentoDAO extends DAO
 
     public function selectById(int $id)
     {
-        $sql = "SELECT * FROM Pagamento WHERE id = ? AND ativo = 'S'";
+        $sql = "SELECT * FROM pagamento WHERE id = ? AND ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
@@ -88,7 +88,7 @@ class PagamentoDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "UPDATE Pagamento SET ativo = 'N' WHERE id = ?";
+        $sql = "UPDATE pagamento SET ativo = 'N' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

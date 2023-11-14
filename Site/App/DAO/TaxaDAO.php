@@ -64,7 +64,7 @@ class TaxaDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "UPDATE Taxa SET ativo = 'N' WHERE id = ?";
+        $sql = "UPDATE taxa SET ativo = 'N' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

@@ -14,7 +14,7 @@ class OrcamentoDAO extends DAO
 
     public function insert(OrcamentoModel $model)
     {
-        $sql = "INSERT INTO Orcamento (valor_total, nome_cliente, numero, data_orcamento) VALUE (?, ?, ?, ?)";
+        $sql = "INSERT INTO orcamento (valor_total, nome_cliente, numero, data_orcamento) VALUE (?, ?, ?, ?)";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -32,7 +32,7 @@ class OrcamentoDAO extends DAO
 
     public function update(OrcamentoModel $model)
     {
-        $sql = "UPDATE Orcamento SET valor_total = ?, nome_cliente = ?, numero = ?, data_orcamento = ? WHERE id=?";
+        $sql = "UPDATE orcamento SET valor_total = ?, nome_cliente = ?, numero = ?, data_orcamento = ? WHERE id=?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $model->valor_total);
@@ -49,7 +49,7 @@ class OrcamentoDAO extends DAO
         $sql = "SELECT o.*,
                  date_format(o.data_orcamento, '%d/%m/%Y') as data,
                  FORMAT(o.valor_total, 2, 'de_DE') as total_orcamento    
-        FROM Orcamento o
+        FROM orcamento o
         WHERE ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
@@ -63,7 +63,7 @@ class OrcamentoDAO extends DAO
     {
         $sql = "SELECT * 
         
-        FROM Orcamento WHERE id = ? AND ativo = 'S'";
+        FROM orcamento WHERE id = ? AND ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
@@ -76,7 +76,7 @@ class OrcamentoDAO extends DAO
 
     public function confirmVenda($id){
 
-        $sql = "UPDATE Orcamento SET venda_registrada = 'S' WHERE id = ?";
+        $sql = "UPDATE orcamento SET venda_registrada = 'S' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
@@ -86,7 +86,7 @@ class OrcamentoDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "UPDATE Orcamento SET ativo = 'N' WHERE id = ?";
+        $sql = "UPDATE orcamento SET ativo = 'N' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

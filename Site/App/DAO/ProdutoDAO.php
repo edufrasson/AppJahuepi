@@ -119,7 +119,7 @@ class ProdutoDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "UPDATE Produto SET ativo = 'N' WHERE id = ?";
+        $sql = "UPDATE produto SET ativo = 'N' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

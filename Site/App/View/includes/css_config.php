@@ -1,7 +1,7 @@
-<link rel="stylesheet" href="View/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="View/styles/global.css">
-<link rel="stylesheet" href="View/styles/navbar.css">
-<link rel="shortcut icon" href="View/assets/icone.png" type="image/x-icon">
+<link rel="stylesheet" href="/App/View/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/App/View/styles/global.css">
+<link rel="stylesheet" href="/App/View/styles/navbar.css">
+<link rel="shortcut icon" href="/App/View/assets/icone.png" type="image/x-icon">
 
 <!-- DataTable -->
 <script src="View/js/DataTable/datatables.min.css"></script>

@@ -1,0 +1,8 @@
+php_flag log_errors on
+php_value error_reporting 32767
+php_value error_log "error_log.txt"
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?path=$1 [NC,L,QSA]

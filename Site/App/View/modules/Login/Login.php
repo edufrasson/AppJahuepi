@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="View/modules/Login/login.css">
+    <link rel="stylesheet" href="App/View/modules/Login/login.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include 'View/includes/css_config.php' ?>
+    <?php include 'App/View/includes/css_config.php' ?>
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <title>Login - Gestão Jahuepi</title>
 </head>
@@ -99,7 +99,7 @@
                         Este é o nosso sistema de gestão da empresa de epi's JAHUEPI!
                     </p>
                 </div>
-                <img src="View/assets/log.svg" class="image" alt="" />
+                <img src="App/View/assets/log.svg" class="image" alt="" />
             </div>
         </div>
     </div>
@@ -162,8 +162,8 @@
         });
     </script>-->
 
-    <?php include 'View/includes/js_config.php' ?>
-    <script src="View/js/src/jquery.login.js"></script>
+    <?php include 'App/View/includes/js_config.php' ?>
+    <script src="App/View/js/src/jquery.login.js"></script>
 </body>
 
 </html>

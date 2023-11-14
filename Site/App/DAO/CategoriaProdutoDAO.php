@@ -60,7 +60,7 @@ class CategoriaProdutoDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "UPDATE Categoria_produto SET ativo = 'N' WHERE id = ?";
+        $sql = "UPDATE categoria_produto SET ativo = 'N' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

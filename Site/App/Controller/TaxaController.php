@@ -14,7 +14,7 @@ class TaxaController extends Controller
         $model = new TaxaModel();
         $model->getAllRows();
 
-        include 'View/modules/Taxa/ListarTaxa.php';
+        include VIEWS . 'Taxa/ListarTaxa.php';
     }
 
     public static function getAll()

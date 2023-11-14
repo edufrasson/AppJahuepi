@@ -31,7 +31,7 @@ class ProdutoController extends Controller
         $model->getAllRows();
         $model->getAllCategoria();
 
-        include 'View/modules/Produto/ListarProduto.php';
+        include VIEWS . 'Produto/ListarProduto.php';
     }
 
     public static function getById()
@@ -76,7 +76,7 @@ class ProdutoController extends Controller
         $dados = $model->getById($_GET['id']);
         $model->getAllCategoria();
 
-        include 'View/modules/Produto/EditarProduto.php';
+        include VIEWS . 'Produto/EditarProduto.php';
     }
 
     public static function delete()

@@ -14,7 +14,7 @@ class EstoqueDAO extends DAO
 
     public function insert(EstoqueModel $model)
     {
-        $sql = "INSERT INTO Estoque (situacao, quantidade, id_venda, id_produto, data_registro) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO estoque (situacao, quantidade, id_venda, id_produto, data_registro) VALUES (?, ?, ?, ?, ?)";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -33,7 +33,7 @@ class EstoqueDAO extends DAO
     public function update(EstoqueModel $model)
     {
 
-        $sql = "UPDATE Estoque SET situacao = ?, quantidade = ?, id_venda=?, id_produto = ?, data_registro = ? WHERE id=?";
+        $sql = "UPDATE estoque SET situacao = ?, quantidade = ?, id_venda=?, id_produto = ?, data_registro = ? WHERE id=?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $model->situacao);
@@ -52,8 +52,8 @@ class EstoqueDAO extends DAO
         $sql = "SELECT e.*,
                        DATE_FORMAT(e.data_registro, '%d/%m/%Y') as data,
                        p.descricao as produto  
-                FROM Estoque e
-                JOIN Produto p ON (p.id = e.id_produto)
+                FROM estoque e
+                JOIN produto p ON (p.id = e.id_produto)
                 WHERE e.ativo = 'S' AND p.ativo = 'S'
                 ";
 
@@ -67,8 +67,8 @@ class EstoqueDAO extends DAO
     public function selectById(int $id)
     {
         $sql = "SELECT e.*, p.descricao AS produto
-        FROM Estoque e
-        JOIN Produto P ON p.id = e.id_produto
+        FROM estoque e
+        JOIN produto P ON p.id = e.id_produto
         WHERE e.id=? AND e.ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
@@ -81,7 +81,7 @@ class EstoqueDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "UPDATE Estoque SET ativo = 'N' WHERE id = ?";
+        $sql = "UPDATE estoque SET ativo = 'N' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

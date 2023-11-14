@@ -14,7 +14,7 @@ class FornecedorController extends Controller
         $model = new FornecedorModel();
         $model->getAllRows();
 
-        include 'View/modules/Fornecedor/ListarFornecedor.php';
+        include VIEWS . 'Fornecedor/ListarFornecedor.php';
     }
 
     public static function getAll()

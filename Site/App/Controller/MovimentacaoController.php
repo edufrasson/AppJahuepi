@@ -15,7 +15,7 @@ class MovimentacaoController extends Controller
         $model = new MovimentacaoModel();
         $model->getAllRows();
 
-        include 'View/modules/Movimentacao/ListarMovimentacao.php';
+        include VIEWS . 'Movimentacao/ListarMovimentacao.php';
     }
 
     public static function getAll()
@@ -64,7 +64,7 @@ class MovimentacaoController extends Controller
         $model = new MovimentacaoModel();
         $dados = $model->getById($_GET['id']);
 
-        include 'View/modules/Movimentacao/EditarMovimentacao.php';
+        include VIEWS . 'Movimentacao/EditarMovimentacao.php';
     }
 
     public static function delete()

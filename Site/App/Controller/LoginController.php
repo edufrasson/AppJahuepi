@@ -6,14 +6,7 @@ use App\DAO\LoginDAO;
 use App\Model\LoginModel;
 use FFI\Exception;
 
-require_once('src/PHPMailer.php');
-require_once('src/SMTP.php');
-require_once('src/Exception.php');
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception as PHPMailerException;
-
-require 'vendor/autoload.php';
 
 class LoginController extends Controller
 {
@@ -26,7 +19,7 @@ class LoginController extends Controller
             }
         }
 
-        include 'View/modules/Login/Login.php';
+        include VIEWS . 'Login/Login.php';
     }
     public static function auth()
     {
@@ -55,7 +48,7 @@ class LoginController extends Controller
         $model = new LoginModel();
         $model->getAllRows();
 
-        include 'View/modules/Login/ListarUsuarios.php';
+        include VIEWS . 'Login/ListarUsuarios.php';
     }
 
     public static function getAll()
@@ -97,7 +90,7 @@ class LoginController extends Controller
 
     public static function esqueciSenha()
     {
-        include 'View/modules/Login/EsqueciSenha.php';
+        include VIEWS . 'Login/EsqueciSenha.php';
     }
 
     public static function enviarNovaSenha()
@@ -112,7 +105,7 @@ class LoginController extends Controller
             $assunto = "Nova Senha do Sistema";
             $mensagem = "Sua nova senha é: " . $nova_senha;
 
-            // Inicialize o objeto PHPMailer
+            /*// Inicialize o objeto PHPMailer
             $mail = new PHPMailer();
 
             // Configuração do servidor SMTP
@@ -135,12 +128,12 @@ class LoginController extends Controller
                 $retorno = "Um email foi enviado contendo sua nova senha.";
             } else {
                 throw new Exception("Desculpe, ocorreu um erro ao enviar o email, tente novamente mais tarde.");
-            }
+            }*/
         } catch (Exception $e) {
-            var_dump($mail);
+            //var_dump($mail);
             $retorno = $e->getMessage();
         }
 
-        include 'View/modules/Login/EsqueciSenha.php';
+        include VIEWS . 'Login/EsqueciSenha.php';
     }
 }

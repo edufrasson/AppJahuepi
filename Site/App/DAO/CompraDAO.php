@@ -14,7 +14,7 @@ class CompraDAO extends DAO
 
     public function insert(CompraModel $model)
     {
-        $sql = "INSERT INTO Compra (valor_compra, qnt_parcela, data_compra, id_fornecedor) VALUE (?, ?, ?, ?)";
+        $sql = "INSERT INTO compra (valor_compra, qnt_parcela, data_compra, id_fornecedor) VALUE (?, ?, ?, ?)";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -31,7 +31,7 @@ class CompraDAO extends DAO
 
     public function update(CompraModel $model)
     {
-        $sql = "UPDATE Compra SET valor_compra = ?, qnt_parcela = ?, data_compra = ?, id_fornecedor = ? WHERE id = ?";
+        $sql = "UPDATE compra SET valor_compra = ?, qnt_parcela = ?, data_compra = ?, id_fornecedor = ? WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
    
@@ -64,7 +64,7 @@ class CompraDAO extends DAO
 
     public function selectById(int $id)
     {
-        $sql = "SELECT * FROM Compra WHERE id = ? AND ativo = 'S'";
+        $sql = "SELECT * FROM compra WHERE id = ? AND ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
@@ -76,7 +76,7 @@ class CompraDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "UPDATE Compra SET ativo = 'N' WHERE id = ?";
+        $sql = "UPDATE compra SET ativo = 'N' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

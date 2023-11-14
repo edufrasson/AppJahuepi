@@ -14,7 +14,7 @@ class VendaDAO extends DAO
 
     public function insert(VendaModel $model)
     {
-        $sql = "INSERT INTO Venda (data_venda) VALUE (?)";
+        $sql = "INSERT INTO venda (data_venda) VALUE (?)";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -29,7 +29,7 @@ class VendaDAO extends DAO
 
     public function update(VendaModel $model)
     {
-        $sql = "UPDATE Venda SET data_venda = ? WHERE id = ?";
+        $sql = "UPDATE venda SET data_venda = ? WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -52,8 +52,8 @@ class VendaDAO extends DAO
                 p.forma_pagamento as forma_pagamento,
                 p.id as id_pagamento,
                 p.taxa as taxa        
-        FROM Venda v
-        JOIN Pagamento p ON v.id = p.id_venda
+        FROM venda v
+        JOIN pagamento p ON v.id = p.id_venda
         WHERE v.ativo = 'S'
         ";
 
@@ -78,8 +78,8 @@ class VendaDAO extends DAO
                 p.forma_pagamento as forma_pagamento,
                 p.id as id_pagamento,
                 p.taxa as valor_taxa       
-        FROM Venda v
-        JOIN Pagamento p ON v.id = p.id_venda
+        FROM venda v
+        JOIN pagamento p ON v.id = p.id_venda
         WHERE v.id = ? AND v.ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
@@ -105,8 +105,8 @@ class VendaDAO extends DAO
                         p.forma_pagamento as forma_pagamento,
                         p.id as id_pagamento,
                         p.taxa as valor_taxa       
-                FROM Venda v
-                JOIN Pagamento p ON v.id = p.id_venda
+                FROM venda v
+                JOIN pagamento p ON v.id = p.id_venda
                 WHERE year(v.data_venda) = ? AND v.ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
@@ -130,8 +130,8 @@ class VendaDAO extends DAO
                 p.forma_pagamento as forma_pagamento,
                 p.id as id_pagamento,
                 p.taxa as valor_taxa       
-        FROM Venda v
-        JOIN Pagamento p ON v.id = p.id_venda
+        FROM venda v
+        JOIN pagamento p ON v.id = p.id_venda
         WHERE year(v.data_venda) = ? AND month(v.data_venda) = ? AND v.ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
@@ -145,7 +145,7 @@ class VendaDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "UPDATE Venda SET ativo = 'N' WHERE id = ?";
+        $sql = "UPDATE venda SET ativo = 'N' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

@@ -50,7 +50,7 @@ class ProdutoVendaDAO extends DAO
     public function baixaEstoque($arr_produtos)
     {
         parent::getConnection()->beginTransaction();
-        $sql = "INSERT INTO Estoque (situacao, quantidade, id_venda, id_produto, data_registro) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO estoque (situacao, quantidade, id_venda, id_produto, data_registro) VALUES (?, ?, ?, ?, ?)";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -103,7 +103,7 @@ class ProdutoVendaDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "UPDATE Produto_Venda SET ativo = 'N' WHERE id_venda = ?";
+        $sql = "UPDATE produto_Venda SET ativo = 'N' WHERE id_venda = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

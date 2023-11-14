@@ -28,7 +28,7 @@ class EstoqueController extends Controller
         $model->getAllRows();
         $model->getAllProduto();
 
-        include 'View/modules/Estoque/ListarEstoque.php';
+        include VIEWS . 'Estoque/ListarEstoque.php';
     }
 
     public static function getById()
@@ -73,7 +73,7 @@ class EstoqueController extends Controller
         $dados = $model->getById($_GET['id']);
         $model->getAllProduto();
 
-        include 'View/modules/Estoque/EditarEstoque.php';
+        include VIEWS . 'Estoque/EditarEstoque.php';
     }
 
     public static function delete()

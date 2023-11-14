@@ -18,7 +18,7 @@ class ParcelaDAO extends DAO
         parent::getConnection()->beginTransaction();
 
         foreach ($model->lista_parcelas as $parcela) {
-            $sql = "INSERT INTO Parcela (valor, data_parcela, data_recebimento, id_pagamento, indice) VALUE (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO parcela (valor, data_parcela, data_recebimento, id_pagamento, indice) VALUE (?, ?, ?, ?, ?)";
 
             $stmt = parent::getConnection()->prepare($sql);
 
@@ -36,7 +36,7 @@ class ParcelaDAO extends DAO
 
     public function update(ParcelaModel $model)
     {
-        $sql = "UPDATE Parcela SET valor=?, data_parcela=?, status = ?, id_pagamento = ? WHERE id=?";
+        $sql = "UPDATE parcela SET valor=?, data_parcela=?, status = ?, id_pagamento = ? WHERE id=?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $model->valor);
@@ -50,7 +50,7 @@ class ParcelaDAO extends DAO
 
     public function select()
     {
-        $sql = "SELECT * FROM Parcela WHERE ativo = 'S'";
+        $sql = "SELECT * FROM parcela WHERE ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -83,7 +83,7 @@ class ParcelaDAO extends DAO
 
     public function confirmParcela($id)
     {
-        $sql = "UPDATE Parcela SET status = 'CONFIRMADO' WHERE id = ?";
+        $sql = "UPDATE parcela SET status = 'CONFIRMADO' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
@@ -96,7 +96,7 @@ class ParcelaDAO extends DAO
 
     public function getById(int $id)
     {
-        $sql = "SELECT * FROM Parcela WHERE id = ? AND ativo = 'S'";
+        $sql = "SELECT * FROM parcela WHERE id = ? AND ativo = 'S'";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);
@@ -110,7 +110,7 @@ class ParcelaDAO extends DAO
     {
         $sql = "SELECT 
                     FORMAT(sum(P.valor), 2, 'de_DE') as total_pendente
-                FROM Parcela p
+                FROM parcela p
                 WHERE 
                 month(p.data_recebimento) = month(CURRENT_TIMESTAMP())
                 AND
@@ -130,7 +130,7 @@ class ParcelaDAO extends DAO
     {
         $sql = "SELECT 
                     sum(p.valor)
-                FROM Parcela p
+                FROM parcela p
                 WHERE 
                 month(p.data_recebimento) = ?
                 AND
@@ -159,9 +159,9 @@ class ParcelaDAO extends DAO
                 p.data_recebimento as date_recebimento,
 	            date_format(p.data_recebimento, '%d/%m/%Y') as data_recebimento,
                 p.status as status      
-        FROM Parcela p 
-        JOIN Pagamento pgt ON pgt.id = p.id_pagamento
-        JOIN Venda v ON v.id = pgt.id_venda
+        FROM parcela p 
+        JOIN pagamento pgt ON pgt.id = p.id_pagamento
+        JOIN venda v ON v.id = pgt.id_venda
         WHERE v.id = ? AND p.ativo = 'S'AND pgt.ativo = 'S' AND v.ativo = 'S'
         ORDER BY p.indice ASC";
 
@@ -175,7 +175,7 @@ class ParcelaDAO extends DAO
 
     public function delete(int $id)
     {
-        $sql = "UPDATE Parcela SET ativo = 'N' WHERE id = ?";
+        $sql = "UPDATE parcela SET ativo = 'N' WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bindValue(1, $id);

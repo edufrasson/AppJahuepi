@@ -19,6 +19,6 @@ class DashboardController extends Controller
 		$entrada = $movimentacao->getTotalEntrada();
 		$pendente = $parcela->getTotalPendenteOfCurrentMonth();
 
-		include 'View/modules/Home/Dashboard.php';
+		include VIEWS . 'Home/Dashboard.php';
 	}
 }

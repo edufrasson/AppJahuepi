@@ -1,0 +1,9 @@
+[14-Nov-2023 18:37:11 UTC] PHP Warning:  require_once(src/PHPMailer.php): Failed to open stream: No such file or directory in /home/metodaco/jahuepi.metoda.com.br/App/Controller/LoginController.php on line 9
+[14-Nov-2023 18:37:11 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'src/PHPMailer.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/metodaco/jahuepi.metoda.com.br/App/Controller/LoginController.php:9
+Stack trace:
+#0 /home/metodaco/jahuepi.metoda.com.br/App/Autoload.php(9): include()
+#1 /home/metodaco/jahuepi.metoda.com.br/App/routes.php(112): {closure}()
+#2 /home/metodaco/jahuepi.metoda.com.br/App/index.php(6): include('/home/metodaco/...')
+#3 /home/metodaco/jahuepi.metoda.com.br/index.php(3): include('/home/metodaco/...')
+#4 {main}
+  thrown in /home/metodaco/jahuepi.metoda.com.br/App/Controller/LoginController.php on line 9

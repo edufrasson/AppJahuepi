@@ -14,7 +14,7 @@ class CategoriaProdutoController extends Controller
         $model = new CategoriaProdutoModel();
         $model->getAllRows();
 
-        include 'View/modules/CategoriaProduto/ListarCategoria.php';
+        include VIEWS . 'CategoriaProduto/ListarCategoria.php';
     }
 
     public static function getAll()

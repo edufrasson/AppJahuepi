@@ -19,7 +19,7 @@ class CompraController extends Controller
         $model->getAllProdutos();
         $model->getAllFornecedores();
 
-        include 'View/modules/Compra/NovaCompra.php';
+        include VIEWS . 'Compra/NovaCompra.php';
     }
 
     public static function relatorio(){
@@ -28,7 +28,7 @@ class CompraController extends Controller
         $model = new CompraModel();
         $model->getAllRows();
 
-        include 'View/modules/Compra/ListarCompra.php';
+        include VIEWS . 'Compra/ListarCompra.php';
     }
 
     public static function getById()
