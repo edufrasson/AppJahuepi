@@ -53,6 +53,20 @@ class VendaModel extends Model
         $this->arr_produtos = $dao->select();
     }
 
+    public function getByAno($ano){
+
+        $dao = new VendaDAO();
+
+        $this->rows = $dao->selectByAno($ano);
+    }
+
+    
+    public function getByAnoAndMes($ano, $mes){
+        
+        $dao = new VendaDAO();
+
+        $this->rows = $dao->selectByAnoAndMes($ano, $mes);
+    }
     
     public function getAllTaxas(){
         $dao = new TaxaDAO();

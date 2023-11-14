@@ -57,7 +57,22 @@ class VendaController extends Controller
         parent::checkParcelas();
 
         $model = new VendaModel();
-        $model->getAllRows();
+
+        if(isset($_GET['ano']) && !isset($_GET['mes'])){
+            $model->getByAno(($_GET['ano']));
+            $ano = $_GET['ano'];
+        }
+
+        if(isset($_GET['ano']) && isset($_GET['mes'])){
+            $model->getByAnoAndMes($_GET['ano'], $_GET['mes']);
+            $ano = $_GET['ano'];
+            $mes = $_GET['mes'];
+        }
+
+        if(!isset($_GET['ano']) && !isset($_GET['mes'])){
+            $model->getAllRows();
+        }
+        
 
         include 'View/modules/Venda/VerRelatorio.php';
     }    

@@ -98,6 +98,7 @@ class ProdutoDAO extends DAO
         return $stmt->fetchObject("App\Model\ProdutoModel");
     }
 
+
     public function getMostSaledProduct()
     {
         $sql = "SELECT  p.descricao as produto,

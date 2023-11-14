@@ -37,9 +37,9 @@ function getAllProducts(id_venda) {
         $("#tableProdutos").append(`<tr> 
                 <td> ${element.descricao} </td> 
                 <td> ${Intl.NumberFormat("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                }).format(element.valor_unit.toString())} </td> 
+          style: "currency",
+          currency: "BRL",
+        }).format(element.valor_unit.toString())} </td> 
                 <td> ${element.quantidade} </td>        
                
                </tr>`);
@@ -65,18 +65,16 @@ function getAllParcelas(id_venda) {
         $("#tableParcelas").append(`<tr> 
                 <td> ${element.indice} </td> 
                 <td> ${Intl.NumberFormat("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                }).format(element.valor_parcela.toString())} </td> 
+          style: "currency",
+          currency: "BRL",
+        }).format(element.valor_parcela.toString())} </td> 
                 <td> ${element.data_parcela} </td>        
                 <td> ${element.data_recebimento} </td>        
-                <td id="status-parcela${element.id}"> ${
-          element.status
-        } </td>        
+                <td id="status-parcela${element.id}"> ${element.status
+          } </td>        
                 <td class="confirm-container${element.id} d-none">
-                    <a href="/venda/confirm-parcela?id=${
-                      element.id
-                    }" class="btn btn-danger btnConfirmarParcela">Confirmar</a>
+                    <a href="/venda/confirm-parcela?id=${element.id
+          }" class="btn btn-danger btnConfirmarParcela">Confirmar</a>
                 </td>
                </tr>`);
         switch (element.status) {
@@ -108,6 +106,40 @@ function loadTableVenda() {
 
 $(document).ready(function () {
   loadTableVenda();
+
+  $('#filtro_ano').change(() => {
+    if ($('#filtro_ano').val() != "") {
+      let link = "/relatorio?ano=" + $('#filtro_ano').val()
+      $('#btnFiltrar').attr("href", link)
+    } else
+      $('#btnFiltrar').attr("href", '/relatorio')
+
+
+  })
+  $('#filtro_mes').change(() => {
+    if ($('#filtro_ano').val() != "" && $('#filtro_mes').val() != "") {
+      let link = "/relatorio?ano=" + $('#filtro_ano').val() + "&mes=" + $('#filtro_mes').val()
+      $('#btnFiltrar').attr("href", link)
+    } 
+
+    if($('#filtro_ano').val() != "" && $('#filtro_mes').val() == ""){
+      let link = "/relatorio?ano=" + $('#filtro_ano').val()
+      $('#btnFiltrar').attr("href", link)
+    }
+
+  })
+
+  $('#btnFiltrar').click(() => {
+    if ($(this).attr("href") == "#") {
+      swal({
+        title: "Erro!",
+        text: "Selecione corretamente os valores dos filtros. Tente Novamente",
+        icon: "error",
+        button: "OK",
+      });
+    }
+  })
+
 
   $(".open-produtos").click((event) => {
     event.preventDefault();

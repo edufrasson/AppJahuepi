@@ -90,6 +90,59 @@ class VendaDAO extends DAO
         return $stmt->fetchObject("App\Model\VendaModel");
     }
 
+
+    public function selectByAno($ano)
+    {
+        $sql = "SELECT
+                        DATE_FORMAT(v.data_venda, '%d/%m/%Y') as data_venda,
+                        v.data_venda as data_da_venda,
+                        v.id as id_venda,
+                        FORMAT(p.valor_total, 2, 'de_DE') as total_bruto,
+                        p.valor_total as valor_total,
+                        FORMAT(p.valor_liquido, 2, 'de_DE') as total_liquido,
+                        p.valor_liquido as valor_liquido,
+                        p.qnt_parcela as parcelas,
+                        p.forma_pagamento as forma_pagamento,
+                        p.id as id_pagamento,
+                        p.taxa as valor_taxa       
+                FROM Venda v
+                JOIN Pagamento p ON v.id = p.id_venda
+                WHERE year(v.data_venda) = ? AND v.ativo = 'S'";
+
+        $stmt = parent::getConnection()->prepare($sql);
+        $stmt->bindValue(1, $ano);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
+    public function selectByAnoAndMes($ano, $mes)
+    {
+        $sql = "SELECT
+                DATE_FORMAT(v.data_venda, '%d/%m/%Y') as data_venda,
+                v.data_venda as data_da_venda,
+                v.id as id_venda,
+                FORMAT(p.valor_total, 2, 'de_DE') as total_bruto,
+                p.valor_total as valor_total,
+                FORMAT(p.valor_liquido, 2, 'de_DE') as total_liquido,
+                p.valor_liquido as valor_liquido,
+                p.qnt_parcela as parcelas,
+                p.forma_pagamento as forma_pagamento,
+                p.id as id_pagamento,
+                p.taxa as valor_taxa       
+        FROM Venda v
+        JOIN Pagamento p ON v.id = p.id_venda
+        WHERE year(v.data_venda) = ? AND month(v.data_venda) = ? AND v.ativo = 'S'";
+
+        $stmt = parent::getConnection()->prepare($sql);
+        $stmt->bindValue(1, $ano);
+        $stmt->bindValue(2, $mes);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);   
+    }
+
     public function delete(int $id)
     {
         $sql = "UPDATE Venda SET ativo = 'N' WHERE id = ?";
