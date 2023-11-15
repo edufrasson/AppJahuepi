@@ -27,7 +27,7 @@ abstract class DAO
                 $_ENV['db']['pass'],
                 $options) :  self::$conexao;
 
-                $stmt = $this->getConnection()->prepare("SET lc_time_names = 'pt_BR' "); 
+                $stmt = $this->getConnection()->prepare("SET lc_time_names = 'pt_BR'; SET GLOBAL sql_mode='STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_ENGINE_SUBSTITUTION'; "); 
                 $stmt->execute();  
         }   
         catch (PDOException $e)

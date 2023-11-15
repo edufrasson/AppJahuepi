@@ -28,6 +28,8 @@ function deleteVenda(id) {
 }
 
 function getAllProducts(id_venda) {
+  $(".loading-produto").show();
+  $(".table-container-produto").addClass("d-none");
   $.ajax({
     type: "GET",
     url: "/venda/get-produtos?id=" + id_venda,
@@ -37,13 +39,16 @@ function getAllProducts(id_venda) {
         $("#tableProdutos").append(`<tr> 
                 <td> ${element.descricao} </td> 
                 <td> ${Intl.NumberFormat("pt-BR", {
-          style: "currency",
-          currency: "BRL",
-        }).format(element.valor_unit.toString())} </td> 
+                  style: "currency",
+                  currency: "BRL",
+                }).format(element.valor_unit.toString())} </td> 
                 <td> ${element.quantidade} </td>        
                
                </tr>`);
       });
+
+      $(".loading-produto").hide();
+      $(".table-container-produto").removeClass("d-none");
     },
     error: () => {
       console.log(" :( ");
@@ -52,6 +57,8 @@ function getAllProducts(id_venda) {
 }
 
 function getAllParcelas(id_venda) {
+  $(".loading-parcela").show();
+  $(".table-container-parcela").addClass("d-none");
   $.ajax({
     type: "GET",
     url: "/venda/get-parcelas?id=" + id_venda,
@@ -65,16 +72,18 @@ function getAllParcelas(id_venda) {
         $("#tableParcelas").append(`<tr> 
                 <td> ${element.indice} </td> 
                 <td> ${Intl.NumberFormat("pt-BR", {
-          style: "currency",
-          currency: "BRL",
-        }).format(element.valor_parcela.toString())} </td> 
+                  style: "currency",
+                  currency: "BRL",
+                }).format(element.valor_parcela.toString())} </td> 
                 <td> ${element.data_parcela} </td>        
                 <td> ${element.data_recebimento} </td>        
-                <td id="status-parcela${element.id}"> ${element.status
-          } </td>        
+                <td id="status-parcela${element.id}"> ${
+          element.status
+        } </td>        
                 <td class="confirm-container${element.id} d-none">
-                    <a href="/venda/confirm-parcela?id=${element.id
-          }" class="btn btn-danger btnConfirmarParcela">Confirmar</a>
+                    <a href="/venda/confirm-parcela?id=${
+                      element.id
+                    }" class="btn btn-danger btnConfirmarParcela">Confirmar</a>
                 </td>
                </tr>`);
         switch (element.status) {
@@ -92,6 +101,8 @@ function getAllParcelas(id_venda) {
           ? $(`.confirm-container${element.id}`).removeClass("d-none")
           : $(`.confirm-container${element.id}`).addClass("d-none");
       });
+      $(".loading-parcela").hide();
+      $(".table-container-parcela").removeClass("d-none");
     },
     error: () => {
       console.log(" :( ");
@@ -107,29 +118,29 @@ function loadTableVenda() {
 $(document).ready(function () {
   loadTableVenda();
 
-  $('#filtro_ano').change(() => {
-    if ($('#filtro_ano').val() != "") {
-      let link = "/relatorio?ano=" + $('#filtro_ano').val()
-      $('#btnFiltrar').attr("href", link)
-    } else
-      $('#btnFiltrar').attr("href", '/relatorio')
-
-
-  })
-  $('#filtro_mes').change(() => {
-    if ($('#filtro_ano').val() != "" && $('#filtro_mes').val() != "") {
-      let link = "/relatorio?ano=" + $('#filtro_ano').val() + "&mes=" + $('#filtro_mes').val()
-      $('#btnFiltrar').attr("href", link)
-    } 
-
-    if($('#filtro_ano').val() != "" && $('#filtro_mes').val() == ""){
-      let link = "/relatorio?ano=" + $('#filtro_ano').val()
-      $('#btnFiltrar').attr("href", link)
+  $("#filtro_ano").change(() => {
+    if ($("#filtro_ano").val() != "") {
+      let link = "/relatorio?ano=" + $("#filtro_ano").val();
+      $("#btnFiltrar").attr("href", link);
+    } else $("#btnFiltrar").attr("href", "/relatorio");
+  });
+  $("#filtro_mes").change(() => {
+    if ($("#filtro_ano").val() != "" && $("#filtro_mes").val() != "") {
+      let link =
+        "/relatorio?ano=" +
+        $("#filtro_ano").val() +
+        "&mes=" +
+        $("#filtro_mes").val();
+      $("#btnFiltrar").attr("href", link);
     }
 
-  })
+    if ($("#filtro_ano").val() != "" && $("#filtro_mes").val() == "") {
+      let link = "/relatorio?ano=" + $("#filtro_ano").val();
+      $("#btnFiltrar").attr("href", link);
+    }
+  });
 
-  $('#btnFiltrar').click(() => {
+  $("#btnFiltrar").click(() => {
     if ($(this).attr("href") == "#") {
       swal({
         title: "Erro!",
@@ -138,8 +149,7 @@ $(document).ready(function () {
         button: "OK",
       });
     }
-  })
-
+  });
 
   $(".open-produtos").click((event) => {
     event.preventDefault();

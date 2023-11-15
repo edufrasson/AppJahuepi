@@ -28,6 +28,8 @@ function getCompraById(id) {
   }
   
   function getAllProducts(id_compra) {
+    $(".loading-produto").show();
+    $(".table-container-produto").addClass("d-none");
     $.ajax({
       type: "GET",
       url: "/compra/get-produtos?id=" + id_compra,
@@ -44,6 +46,9 @@ function getCompraById(id) {
                  
                  </tr>`);
         });
+
+        $(".loading-produto").hide();
+        $(".table-container-produto").removeClass("d-none");
       },
       error: () => {
         console.log(" :( ");
@@ -52,6 +57,8 @@ function getCompraById(id) {
   }
   
   function getAllParcelas(id_compra) {
+    $(".loading-parcela").show();
+    $(".table-container-parcela").addClass("d-none");
     $.ajax({
       type: "GET",
       url: "/compra/get-parcelas?id=" + id_compra,
@@ -84,7 +91,8 @@ function getCompraById(id) {
               $(`#status-parcela${element.id}`).css("color", "#8c1a0c");
               break;
           }
-          
+          $(".loading-parcela").hide();
+          $(".table-container-parcela").removeClass("d-none");
         });
       },
       error: (result) => {

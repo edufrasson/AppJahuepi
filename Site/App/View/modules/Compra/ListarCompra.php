@@ -118,8 +118,13 @@
                     </button>
                 </div>
                 <form method="post">
+                    <div class="loading-container d-flex justify-content-center mt-3">
+                        <div class="spinner-border loading-produto" role="status">
+                            <span class="sr-only"></span>
+                        </div>
+                    </div>
                     <div class="modal-body">
-                        <div class="table-container">
+                        <div class="table-container table-container-produto">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -151,7 +156,12 @@
                 </div>
                 <form method="post">
                     <div class="modal-body">
-                        <div class="table-container">
+                        <div class="loading-container d-flex justify-content-center">
+                            <div class="spinner-border loading-parcela" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                        </div>
+                        <div class="table-container table-container-parcela">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
