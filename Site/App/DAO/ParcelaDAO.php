@@ -109,7 +109,7 @@ class ParcelaDAO extends DAO
     public function getTotalPendenteOfCurrentMonth()
     {
         $sql = "SELECT 
-                    FORMAT(sum(P.valor), 2, 'de_DE') as total_pendente
+                    FORMAT(sum(p.valor), 2, 'de_DE') as total_pendente
                 FROM parcela p
                 WHERE 
                 month(p.data_recebimento) = month(CURRENT_TIMESTAMP())

@@ -10,4 +10,4 @@
     $_ENV['db']['host'] = "metoda.com.br";
     $_ENV['db']['user'] = "metodaco_edu";
     $_ENV['db']['pass'] = "Jau@2023";
-    $_ENV['db']['dbname'] = "metodaco_jahuepi";
+    $_ENV['db']['database'] = "metodaco_jahuepi";

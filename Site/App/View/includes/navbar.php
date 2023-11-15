@@ -2,7 +2,7 @@
     <header>
         <div class="image-text">
             <span class="image d-flex justify-content-center align-items-center">
-                <img src="View/assets/icone.png">
+                <img src="App/View/assets/icone.png">
             </span>
             <div class="text logo-text">
                 <span class="name">JahuEPI</span>

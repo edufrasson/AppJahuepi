@@ -6,7 +6,7 @@ use App\Model\CompraModel;
 use \PDO;
 
 class CompraDAO extends DAO
-{
+{       
     public function __construct()
     {
         parent::__construct();
@@ -18,10 +18,10 @@ class CompraDAO extends DAO
 
         $stmt = parent::getConnection()->prepare($sql);
 
-        $stmt->bindValue(1, $model->valor_compra);        
-        $stmt->bindValue(2, $model->qnt_parcela);        
-        $stmt->bindValue(3, $model->data_compra);        
-        $stmt->bindValue(4, $model->id_fornecedor);     
+        $stmt->bindValue(1, $model->valor_compra);
+        $stmt->bindValue(2, $model->qnt_parcela);
+        $stmt->bindValue(3, $model->data_compra);
+        $stmt->bindValue(4, $model->id_fornecedor);
 
         $stmt->execute();
 
@@ -34,11 +34,11 @@ class CompraDAO extends DAO
         $sql = "UPDATE compra SET valor_compra = ?, qnt_parcela = ?, data_compra = ?, id_fornecedor = ? WHERE id = ?";
 
         $stmt = parent::getConnection()->prepare($sql);
-   
-        $stmt->bindValue(1, $model->valor_compra);        
-        $stmt->bindValue(2, $model->qnt_parcela);        
-        $stmt->bindValue(3, $model->data_compra);        
-        $stmt->bindValue(4, $model->id_fornecedor);   
+
+        $stmt->bindValue(1, $model->valor_compra);
+        $stmt->bindValue(2, $model->qnt_parcela);
+        $stmt->bindValue(3, $model->data_compra);
+        $stmt->bindValue(4, $model->id_fornecedor);
         $stmt->bindValue(5, $model->id);
 
         $stmt->execute();
@@ -56,6 +56,43 @@ class CompraDAO extends DAO
         ;";
 
         $stmt = parent::getConnection()->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
+
+    public function selectByAno($ano)
+    {
+        $sql = "SELECT c.*,
+        f.descricao as fornecedor,
+        DATE_FORMAT(c.data_compra, '%d/%m/%Y') as data,
+        FORMAT(c.valor_compra, 2, 'de_DE') as total_compra
+        FROM compra c
+        JOIN fornecedor f ON f.id = c.id_fornecedor
+        WHERE year(c.data_compra) = ? AND c.ativo = 'S' AND f.ativo = 'S'
+        ;";
+
+        $stmt = parent::getConnection()->prepare($sql);
+        $stmt->bindValue(1, $ano);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
+    public function selectByAnoAndMes($ano, $mes)
+    {
+        $sql = "SELECT c.*,
+        f.descricao as fornecedor,
+        DATE_FORMAT(c.data_compra, '%d/%m/%Y') as data,
+        FORMAT(c.valor_compra, 2, 'de_DE') as total_compra
+        FROM compra c
+        JOIN fornecedor f ON f.id = c.id_fornecedor
+        WHERE year(c.data_compra) = ? AND c.ativo = 'S' AND f.ativo = 'S'
+        ;";
+
+        $stmt = parent::getConnection()->prepare($sql);
+        $stmt->bindValue(1, $ano);
 
         $stmt->execute();
 

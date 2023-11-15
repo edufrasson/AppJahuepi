@@ -5,14 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include 'View/includes/css_config.php' ?>
-    <link rel="stylesheet" href="View/modules/CategoriaProduto/categoria.css">
+    <?php include 'App/View/includes/css_config.php' ?>   
     <title>Cadastro de Taxa</title>
 </head>
 
 <body>
 
-    <?php include 'View/includes/navbar.php' ?>
+    <?php include 'App/View/includes/navbar.php' ?>
 
     <div class="main-container">
         <div class="container-card">
@@ -33,7 +32,7 @@
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
-                        <table id="tableTaxa" class="table table-bordered table-style off">
+                        <table id="tableTaxa" class="table table-style off">
                             <thead>
                                 <tr>
                                     <th>Bandeira</th>
@@ -96,8 +95,8 @@
             </div>
         </div>
     </div>
-    <?php include 'View/includes/js_config.php' ?>
-    <script src="View/js/src/jquery.taxa.js"></script>
+    <?php include 'App/View/includes/js_config.php' ?>
+    <script src="App/View/js/src/jquery.taxa.js"></script>
 
 
 </body>

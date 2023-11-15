@@ -1,13 +1,3 @@
-<?php
-/*session_start();
-
-if(!isset($_SESSION['user_logged'])){
-    header("Location: /login"); // Redireciona para a página de login se o usuário não estiver autenticado
-    exit;
-}*/
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,14 +5,14 @@ if(!isset($_SESSION['user_logged'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include 'View/includes/css_config.php' ?>
-    <link rel="stylesheet" href="View/modules/Home/home.css">
+    <?php include 'App/View/includes/css_config.php' ?>
+    <link rel="stylesheet" href="App/View/modules/Home/home.css">
     <title>Dashboard - JahuEPI</title>
-    <?php include 'View/js/graphics.php' ?>
+    <?php include 'App/View/js/graphics.php' ?>
 </head>
 
 <body>
-    <?php include 'View/includes/navbar.php' ?>
+    <?php include 'App/View/includes/navbar.php' ?>
 
     <div class="main-container">
         <div class="container-card">
@@ -88,8 +78,8 @@ if(!isset($_SESSION['user_logged'])){
 
 
 
-    <?php include 'View/includes/js_config.php' ?>
-    <script src="View/js/src/jquery.categoria.js"></script>
+    <?php include 'App/View/includes/js_config.php' ?>
+    <script src="App/View/js/src/jquery.categoria.js"></script>
 
 
 </body>

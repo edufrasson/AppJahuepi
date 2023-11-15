@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="View/modules/Movimentacao/edit.css">
+    <link rel="stylesheet" href="App/View/modules/Movimentacao/edit.css">
 
-    <?php include 'View/includes/css_config.php' ?>
+    <?php include 'App/View/includes/css_config.php' ?>
     <title>Movimentações - Gestão</title>
 </head>
 
 <body>
-    <?php include 'View/includes/navbar.php' ?>
+    <?php include 'App/View/includes/navbar.php' ?>
 
     <div class="main-container">
         <div class="container-card">
@@ -67,8 +67,8 @@
     </div>
 
 
-    <?php include 'View/includes/js_config.php' ?>
-    <script src="View/js/src/jquery.movimentacao.js"></script>
+    <?php include 'App/View/includes/js_config.php' ?>
+    <script src="App/View/js/src/jquery.movimentacao.js"></script>
 </body>
 
 </html>

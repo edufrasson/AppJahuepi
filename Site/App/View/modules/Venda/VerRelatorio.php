@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include 'View/includes/css_config.php' ?>
-    <link rel="stylesheet" href="View/modules/Venda/venda.css">
+    <?php include 'App/View/includes/css_config.php' ?>
+    <link rel="stylesheet" href="App/View/modules/Venda/venda.css">
     <title>Relatório de Vendas</title>
 </head>
 
 <body>
-    <?php include 'View/includes/navbar.php' ?>
+    <?php include 'App/View/includes/navbar.php' ?>
 
     <div class="main-container">
         <div class="container-card">
@@ -179,8 +179,8 @@
         </div>
     </div>
 
-    <?php include 'View/includes/js_config.php' ?>
-    <script src="View/js/src/jquery.relatorio.js"></script>
+    <?php include 'App/View/includes/js_config.php' ?>
+    <script src="App/View/js/src/jquery.relatorio.js"></script>
 
 
 </body>

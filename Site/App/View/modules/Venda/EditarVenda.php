@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="View/modules/Venda/edit.css">
+    <link rel="stylesheet" href="App/View/modules/Venda/edit.css">
 
-    <?php include 'View/includes/css_config.php' ?>
+    <?php include 'App/View/includes/css_config.php' ?>
     <title>Venda - Gestão</title>
 </head>
 
 <body>
-    <?php include 'View/includes/navbar.php' ?>
+    <?php include 'App/View/includes/navbar.php' ?>
 
     <div class="main-container">
         <div class="container-card">
@@ -180,8 +180,8 @@
     </div>
 
 
-    <?php include 'View/includes/js_config.php' ?>
-    <script src="View/js/src/jquery.edit_venda.js"></script>
+    <?php include 'App/View/includes/js_config.php' ?>
+    <script src="App/View/js/src/jquery.edit_venda.js"></script>
 </body>
 
 </html>

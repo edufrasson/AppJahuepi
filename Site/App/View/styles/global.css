@@ -208,6 +208,10 @@ body {
   font-size: 25px;
 }
 
+.table-style{
+  width: 100%;
+}
+
 /* COMANDOS PARA RESPONSIVIDADE */
 @media screen and (max-width: 1980px) {
   .final-actions .btn-pagamento {

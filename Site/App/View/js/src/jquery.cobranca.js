@@ -100,6 +100,41 @@ function getCompraById(id) {
   
   $(document).ready(function () {
     loadTableCompra();
+
+    
+    $('#filtro_ano').change(() => {
+      if ($('#filtro_ano').val() != "") {
+        let link = "/compras?ano=" + $('#filtro_ano').val()
+        $('#btnFiltrar').attr("href", link)
+      } else
+        $('#btnFiltrar').attr("href", '/compras')
+  
+  
+    })
+    $('#filtro_mes').change(() => {
+      if ($('#filtro_ano').val() != "" && $('#filtro_mes').val() != "") {
+        let link = "/compras?ano=" + $('#filtro_ano').val() + "&mes=" + $('#filtro_mes').val()
+        $('#btnFiltrar').attr("href", link)
+      } 
+  
+      if($('#filtro_ano').val() != "" && $('#filtro_mes').val() == ""){
+        let link = "/compras?ano=" + $('#filtro_ano').val()
+        $('#btnFiltrar').attr("href", link)
+      }
+  
+    })
+  
+    $('#btnFiltrar').click(() => {
+      if ($(this).attr("href") == "#") {
+        swal({
+          title: "Erro!",
+          text: "Selecione corretamente os valores dos filtros. Tente Novamente",
+          icon: "error",
+          button: "OK",
+        });
+      }
+    })
+
   
     $(".open-produtos").click((event) => {
       event.preventDefault();

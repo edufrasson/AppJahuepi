@@ -26,7 +26,21 @@ class CompraController extends Controller
         parent::isAuthenticated();
 
         $model = new CompraModel();
-        $model->getAllRows();
+        if(isset($_GET['ano']) && !isset($_GET['mes'])){
+            $model->getByAno(($_GET['ano']));
+            $ano = $_GET['ano'];
+        }
+
+        if(isset($_GET['ano']) && isset($_GET['mes'])){
+            $model->getByAnoAndMes($_GET['ano'], $_GET['mes']);
+            $ano = $_GET['ano'];
+            $mes = $_GET['mes'];
+        }
+
+        if(!isset($_GET['ano']) && !isset($_GET['mes'])){
+            $model->getAllRows();
+        }
+        
 
         include VIEWS . 'Compra/ListarCompra.php';
     }

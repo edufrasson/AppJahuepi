@@ -10,7 +10,7 @@
 
 <!-- BoxIcons -->
 <!--<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>-->
-<link rel="stylesheet" href="View/boxicons/css/boxicons.min.css">
+<link rel="stylesheet" href="App/View/boxicons/css/boxicons.min.css">
 
 <!-- JQuery DataTable -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/b-2.3.4/cr-1.6.1/r-2.4.0/rr-1.3.2/sc-2.1.0/sb-1.4.0/datatables.min.css"/>

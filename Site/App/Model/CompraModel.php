@@ -41,6 +41,21 @@ class CompraModel extends Model
 
         $this->lista_produtos = $dao->select();
     }
+    public function getByAno($ano){
+
+        $dao = new CompraDAO();
+
+        $this->rows = $dao->selectByAno($ano);
+    }
+
+    
+    public function getByAnoAndMes($ano, $mes){
+        
+        $dao = new CompraDAO();
+
+        $this->rows = $dao->selectByAnoAndMes($ano, $mes);
+    }
+    
 
     public function getById(int $id)
     {

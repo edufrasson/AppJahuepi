@@ -14,7 +14,8 @@ $(document).ready(function () {
             "lengthMenu": "Mostrar _MENU_ registros",
             "zeroRecords": "Nenhum registro encontrado!",
         },
-        'scrollY': ($(window).height() - ($(window).height() / 2)),
+        'scrollY': ($(window).height() - ($(window).height() / 2)),    
+        'scrollX': false,  
         'info': false,
         'ordering': true,
         'fixedHeader': true,
@@ -26,7 +27,7 @@ $(document).ready(function () {
         'paging': false
 
     });
-
+    $('.table-style').columns.adjust();
 
     function capitalizeFirstLetter(s) {
         return s[0].toUpperCase() + s.slice(1);
