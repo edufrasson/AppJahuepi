@@ -72,7 +72,9 @@ class MovimentacaoDAO extends DAO
     {
         $sql = "SELECT  
                     FORMAT(sum(m.valor), 2, 'de_DE') as total_saldo
-                FROM movimentacao m WHERE m.ativo = 'S'";
+                FROM movimentacao m 
+                WHERE m.ativo = 'S' 
+        ";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -85,7 +87,7 @@ class MovimentacaoDAO extends DAO
         $sql = "SELECT  
                     FORMAT(sum(m.valor), 2, 'de_DE') as total_entrada
                 FROM movimentacao m
-                WHERE m.valor > 0 AND m.ativo = 'S'
+                WHERE m.valor > 0 AND m.ativo = 'S' 
         ";
 
         $stmt = parent::getConnection()->prepare($sql);
@@ -99,8 +101,52 @@ class MovimentacaoDAO extends DAO
         $sql = "SELECT  
                     FORMAT(sum(m.valor), 2, 'de_DE') as total_saida
                 FROM movimentacao m
-                WHERE m.valor < 0 AND m.ativo = 'S'
+                WHERE m.valor < 0 AND m.ativo = 'S' 
         ";
+
+        $stmt = parent::getConnection()->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchObject();
+    }
+
+    public function getSaldoByCurrentMonth()
+    {
+        $sql = "SELECT  
+                FORMAT(sum(m.valor), 2, 'de_DE') as total_saldo
+            FROM movimentacao m 
+            WHERE m.ativo = 'S' AND month(m.data_movimentacao) = month(CURRENT_TIMESTAMP()) AND year(m.data_movimentacao) = year(CURRENT_TIMESTAMP())
+        ";
+
+        $stmt = parent::getConnection()->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchObject();
+    }
+    public function getEntradaByCurrentMonth()
+    {
+        $sql = "SELECT  
+                FORMAT(sum(m.valor), 2, 'de_DE') as total_entrada
+            FROM movimentacao m
+            WHERE m.valor > 0 AND m.ativo = 'S' AND month(m.data_movimentacao) = month(CURRENT_TIMESTAMP()) AND year(m.data_movimentacao) = year(CURRENT_TIMESTAMP())
+        ";
+
+        $stmt = parent::getConnection()->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchObject();
+    }
+    public function getSaidaByCurrentMonth()
+    {
+        $sql = "SELECT  
+                    FORMAT(sum(m.valor), 2, 'de_DE') as total_saida
+                FROM movimentacao m
+                WHERE m.valor < 0 AND m.ativo = 'S' AND month(m.data_movimentacao) = month(CURRENT_TIMESTAMP()) AND year(m.data_movimentacao) = year(CURRENT_TIMESTAMP())
+        ";
+
 
         $stmt = parent::getConnection()->prepare($sql);
 

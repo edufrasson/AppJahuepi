@@ -14,9 +14,9 @@ class DashboardController extends Controller
 
 		$movimentacao = new MovimentacaoModel();
 		$parcela = new ParcelaModel();
-		$saldo = $movimentacao->getSaldo();
-		$saida = $movimentacao->getTotalSaida();
-		$entrada = $movimentacao->getTotalEntrada();
+		$saldo = $movimentacao->getSaldoByCurrentMonth();
+		$saida = $movimentacao->getSaidaByCurrentMonth();
+		$entrada = $movimentacao->getTotalEntradaByCurrentMonth();
 		$pendente = $parcela->getTotalPendenteOfCurrentMonth();
 
 		include VIEWS . 'Home/Dashboard.php';

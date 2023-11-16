@@ -56,6 +56,25 @@ class MovimentacaoModel extends Model
         return $dao->getTotalSaida();  
     }
 
+    public function getSaldoByCurrentMonth()
+    {
+        $dao = new MovimentacaoDAO();
+
+        return $dao->getSaldoByCurrentMonth();        
+    }
+    public function getTotalEntradaByCurrentMonth()
+    {
+        $dao = new MovimentacaoDAO();
+
+        return $dao->getEntradaByCurrentMonth();  
+    }
+    public function getSaidaByCurrentMonth()
+    {
+        $dao = new MovimentacaoDAO();
+
+        return $dao->getSaidaByCurrentMonth();  
+    }
+
     public function getFaturamentoMes(){
         $dao = new MovimentacaoDAO();
 
