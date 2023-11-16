@@ -162,6 +162,17 @@ body {
   border: 0;
 }
 
+.button-filter-container .btn{
+  font-weight: bold;
+  border: 0;
+}
+
+tbody .open-produtos,
+tbody .open-parcelas {
+  font-weight: bold;
+  border: 0;
+}
+
 /* TABELA COM SCROLL */
 .content-body {
   height: 100vh;
