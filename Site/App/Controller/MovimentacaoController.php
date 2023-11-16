@@ -28,6 +28,16 @@ class MovimentacaoController extends Controller
         parent::setResponseAsJSON($model->rows);
     }
 
+    public static function relatorio(){
+        parent::isAuthenticated();
+
+        $model = new MovimentacaoModel();
+        $model->getTotalEntradaByProdutoAndDate(date('m'), date('y'));
+        $model->getTotalSaidaByProdutoAndDate(date('m'), date('y'));
+
+        include VIEWS . 'Movimentacao/RelatorioMovimentacao.php';
+    }
+
     public static function faturamentoMes(){
         $model = new MovimentacaoModel();      
        

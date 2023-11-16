@@ -14,7 +14,7 @@ class MovimentacaoDAO extends DAO
 
     public function insert(MovimentacaoModel $model)
     {
-        $sql = "INSERT INTO movimentacao (descricao, valor, data_movimentacao, id_parcela) VALUE (?, ?, ?, ?)";
+        $sql = "INSERT INTO movimentacao (descricao, valor, data_movimentacao, id_parcela, id_cobranca) VALUE (?, ?, ?, ?, ?)";
 
         $stmt = parent::getConnection()->prepare($sql);
 
@@ -22,6 +22,7 @@ class MovimentacaoDAO extends DAO
         $stmt->bindValue(2, $model->valor);
         $stmt->bindValue(3, $model->data_movimentacao);
         $stmt->bindValue(4, $model->id_parcela);
+        $stmt->bindValue(5, $model->id_cobranca);
 
         $stmt->execute();
     }
@@ -40,6 +41,54 @@ class MovimentacaoDAO extends DAO
         $stmt->execute();
     }
 
+    public function getTotalEntradaByProdutoAndDate($mes, $ano)
+    {
+        $sql = "SELECT 
+                p.id AS id_produto,
+                p.descricao AS descricao,
+                sum(m.valor) AS entrada_produto
+            FROM parcela  par
+            LEFT JOIN movimentacao m ON par.id = m.id_parcela
+            JOIN pagamento pgt ON pgt.id = par.id_pagamento
+            JOIN venda v ON v.id = pgt.id_venda
+            JOIN produto_venda pv ON pv.id_venda = v.id
+            JOIN produto p ON p.id = pv.id_produto
+            WHERE month(m.data_movimentacao) = ? and year(m.data_movimentacao) = ?
+            group by p.id
+        ";
+
+        $stmt = parent::getConnection()->prepare($sql);
+        $stmt->bindValue(1, $mes);
+        $stmt->bindValue(2, $ano);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
+    public function getTotalSaidaByProdutoAndDate($mes, $ano)
+    {
+        $sql = "SELECT 
+                p.id AS id_produto,
+                p.descricao AS descricao,
+                sum(m.valor) AS entrada_produto
+            FROM parcela  par
+            LEFT JOIN movimentacao m ON par.id = m.id_parcela
+            JOIN pagamento pgt ON pgt.id = par.id_pagamento
+            JOIN venda v ON v.id = pgt.id_venda
+            JOIN produto_venda pv ON pv.id_venda = v.id
+            JOIN produto p ON p.id = pv.id_produto
+            WHERE month(m.data_movimentacao) = ? and year(m.data_movimentacao) = ?
+            group by p.id
+        ";
+
+        $stmt = parent::getConnection()->prepare($sql);
+        $stmt->bindValue(1, $mes);
+        $stmt->bindValue(2, $ano);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
     public function select()
     {
         $sql = "SELECT  m.id as id,

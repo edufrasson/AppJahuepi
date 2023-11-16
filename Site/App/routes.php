@@ -148,6 +148,9 @@ switch ($url) {
     case '/movimentacao':
         MovimentacaoController::index();
         break;
+    case '/relatorio_movimentacao':
+        MovimentacaoController::relatorio();
+        break;
     case '/movimentacao/save':
         MovimentacaoController::save();
         break;

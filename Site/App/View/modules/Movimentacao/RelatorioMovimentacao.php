@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include 'App/View/includes/css_config.php' ?>
     <link rel="stylesheet" href="App/View/modules/Movimentacao/movimentacao.css">
-    <title>Cadastro de Movimentação</title>
+    <title>Relatório de Movimentação</title>
 </head>
 
 <body>
@@ -18,16 +18,14 @@
         <div class="container-card">
             <div class="header-card">
                 <div class="text-container-header-card">
-                    <p>Cadastro de Movimentação</p>
+                    <p>Relatório de Movimentação</p>
                 </div>
+                
             </div>
             <div class="main-card">
                 <div class="containers-card buttons-container">
                     <button id="adicionar" class="btn" data-bs-toggle="modal" data-bs-target="#modalMovimentacao">Adicionar</button>
-                    <a id="adicionar" class="btn relatorio" href="/relatorio_movimentacao">Relatório</a>
-
                 </div>
-
 
                 <div class="containers-card">
                     <div class="container-table">
@@ -47,7 +45,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if ($model->rows !== null) : ?>
+                                <?php if ($model_entrada !== null && $model_saida !== null) : ?>
                                     <?php foreach ($model->rows as $movimentacao) : ?>
                                         <tr>
                                             <td><?= $movimentacao->data_movimentacao ?></td>
@@ -75,48 +73,7 @@
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="modalMovimentacao" tabindex="-1" role="dialog" aria-labelledby="modalMovimentacaoTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalMovimentacaoTitle">Cadastrar Movimentação</h5>
-                    <!--<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>-->
-                    </button>
-                </div>
-                <form method="post" action="/movimentacao/save">
-                    <div class="modal-body">
-                        <input type="hidden" name="id" id="id">
-                        <div class="input-container">
-                            <label for="descricao">Descrição:</label>
-                            <input type="text" name="descricao" class="form-control" id="descricao" required maxlength="45"><br>
-                        </div>
-                        <div class="input-container">
-                            <label for="valor">Valor:</label>
-                            <input type="number" name="valor" class="form-control" id="valor" required><br>
-                        </div>
-                        <div class="input-container">
-                            <label for="data_movimentacao">Data da Movimentacao:</label><br>
-                            <input type="date" name="data_movimentacao" class="form-control" id="data_movimentacao" required><br>
-                        </div>
-
-
-
-                        <label for="tipo">Tipo</label><br>
-                        <select class="selectpicker" name="tipo" id="tipo">
-                            <option value="ENTRADA">Entrada</option>
-                            <option value="SAIDA">Saída</option>
-                        </select>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-fechar" data-bs-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn btn-salvar" id="adicionarMovimentacao">Salvar </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+  
     <?php include 'App/View/includes/js_config.php' ?>
     <script src="App/View/js/src/jquery.movimentacao.js"></script>
 
