@@ -91,12 +91,12 @@ class MovimentacaoModel extends Model
     public function getTotalEntradaByProdutoAndDate($mes, $ano){
         $dao = new MovimentacaoDAO();
 
-        $this->rows->lista_entrada = $dao->getTotalEntradaByProdutoAndDate($mes, $ano);  
+        return $dao->getTotalEntradaByProdutoAndDate($mes, $ano);  
     }
 
     public function getTotalSaidaByProdutoAndDate($mes, $ano){
         $dao = new MovimentacaoDAO();
 
-        $this->rows->lista_saida = $dao->getTotalSaidaByProdutoAndDate($mes, $ano);  
+        return $dao->getTotalSaidaByProdutoAndDate($mes, $ano);  
     }
 }

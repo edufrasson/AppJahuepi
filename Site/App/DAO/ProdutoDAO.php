@@ -98,6 +98,52 @@ class ProdutoDAO extends DAO
         return $stmt->fetchObject("App\Model\ProdutoModel");
     }
 
+    public function getRelatorioOfCurrentMonth(){
+        $sql = "SELECT 
+        year(m.data_movimentacao) as ano,
+        monthname(m.data_movimentacao) as mes,   
+        pp.descricao as produto,
+            (SELECT sum(m.valor) as total_entrada
+            FROM movimentacao m
+            JOIN parcela par ON par.id = m.id_parcela
+            JOIN pagamento pgt ON pgt.id = par.id
+            JOIN venda v ON v.id = pgt.id_venda
+            JOIN produto_venda pv ON pv.id_venda = v.id
+            WHERE pv.id_produto = pp.id
+            ) as total_entrada,            
+            (SELECT sum(m.valor) as total_saida
+            FROM movimentacao m
+            JOIN cobranca co ON co.id = m.id_cobranca
+            JOIN compra c ON c.id = co.id_compra
+            JOIN produto_compra pc ON pc.id_compra = c.id
+            WHERE pc.id_produto = pp.id) as total_saida,
+            
+        (SELECT sum(m.valor) as total_entrada
+        FROM movimentacao m
+        JOIN cobranca co ON co.id = m.id_cobranca
+        JOIN compra c ON c.id = co.id_compra
+        JOIN produto_compra pc ON pc.id_compra = c.id
+        WHERE pc.id_produto = pp.id) 
+                    +
+        (SELECT sum(m.valor) as total_entrada
+        FROM movimentacao m
+        JOIN parcela par ON par.id = m.id_parcela
+        JOIN pagamento pgt ON pgt.id = par.id
+        JOIN venda v ON v.id = pgt.id_venda
+        JOIN produto_venda pv ON pv.id_venda = v.id
+        WHERE pv.id_produto = pp.id
+        ) as saldo
+    FROM produto pp
+    JOIN produto_venda pv ON pv.id_produto = pp.id
+    JOIN venda v ON v.id = pv.id_venda
+    JOIN pagamento pgt ON pgt.id_venda = v.id
+    JOIN parcela par ON par.id_pagamento = pgt.id
+    JOIN movimentacao m ON m.id_parcela = par.id
+    GROUP BY pp.id, month(m.data_movimentacao), year(m.data_movimentacao)";
+
+
+    }
+
 
     public function getMostSaledProduct()
     {
