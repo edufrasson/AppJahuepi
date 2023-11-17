@@ -68,7 +68,7 @@
 
 <body>
   <div class="logo-container">
-    <img src="View/assets/logo_orcamento.png" alt="logo_orcamento" />
+    <img src="App/View/assets/logo_orcamento.png" alt="logo_orcamento" />
   </div>
 
   <div class="head-container">
@@ -161,7 +161,7 @@
     <p>E-mail: jahuepis@gmail.com</p>
     <p>(14) 3416-7046 - (14) 9.8179-8009</p>
   </div>
-  <script src="View/js/src/jquery.template.js"></script>
+  <script src="App/View/js/src/jquery.template.js"></script>
 </body>
 
 </html>
