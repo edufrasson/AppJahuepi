@@ -76,14 +76,4 @@ class LoginDAO extends DAO{
 
         $stmt->execute();
     }
-
-    public function setNewPassword($email, $newPassword)
-    {
-        $sql = "UPDATE usuario SET senha = sha1(?) WHERE email = ?";
-
-        $stmt = parent::getConnection()->prepare($sql);
-        $stmt->bindValue(1, $newPassword);
-        $stmt->bindValue(2, $email);
-        $stmt->execute();
-    }
 }

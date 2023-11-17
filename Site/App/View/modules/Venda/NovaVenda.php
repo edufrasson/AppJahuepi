@@ -14,7 +14,7 @@
     <?php include 'App/View/includes/navbar.php' ?>
 
     <div class="body-container">
-        <div class="main-container">
+        <div class="main-container venda">
             <div class="container-card">
                 <div class="header-card ">
                     <div class="checkbox-container d-flex justify-content-start gap-2 ">
