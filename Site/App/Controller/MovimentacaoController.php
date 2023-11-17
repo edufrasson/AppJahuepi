@@ -32,8 +32,8 @@ class MovimentacaoController extends Controller
     public static function relatorio(){
         parent::isAuthenticated();
 
-        $model = new ProdutoModel();
-        $model->getRelatorioOfCurrentMonth();
+        $model = new MovimentacaoModel();
+        
 
         if(isset($_GET['ano']) && !isset($_GET['mes'])){
             $model->getRelatorioByYear(($_GET['ano']));
@@ -41,13 +41,13 @@ class MovimentacaoController extends Controller
         }
 
         if(isset($_GET['ano']) && isset($_GET['mes'])){
-            $model->getRelatorioByMonthAndYear($_GET['mes'], $_GET['ano']);
+            $model->getRelatorioByYearAndMonth($_GET['mes'], $_GET['ano']);
             $ano = $_GET['ano'];
             $mes = $_GET['mes'];
         }
 
         if(!isset($_GET['ano']) && !isset($_GET['mes'])){
-            $model->getRelatorioOfCurrentMonth();
+            $model->getRelatorio();
         }
         
         

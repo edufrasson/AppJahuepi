@@ -37,6 +37,24 @@ class MovimentacaoModel extends Model
         return ($obj) ? $obj : new MovimentacaoModel();
     }
 
+    public function getRelatorio(){
+        $dao = new MovimentacaoDAO();
+
+        $this->rows = $dao->getRelatorio();        
+    }
+
+    public function getRelatorioByYear($ano){
+        $dao = new MovimentacaoDAO();
+
+        $this->rows = $dao->getRelatorioByYear($ano);        
+    }
+
+    public function getRelatorioByYearAndMonth($mes, $ano){
+        $dao = new MovimentacaoDAO();
+
+        $this->rows = $dao->getRelatorioByYearAndMonth($mes, $ano);        
+    }
+
     public function getSaldo()
     {
         $dao = new MovimentacaoDAO();

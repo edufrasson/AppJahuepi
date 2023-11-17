@@ -74,6 +74,8 @@ class ProdutoModel extends Model
         $this->lista_categoria = $dao->select();
     }
 
+  
+
     public function getRelatorioOfCurrentMonth(){
         $dao = new ProdutoDAO();
 

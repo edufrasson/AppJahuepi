@@ -69,8 +69,8 @@
                         <table id="tableMovimentacao" class="table table-bordered table-style off">
                             <thead>
                                 <tr>
-                                    <th>Cód.</th>
-                                    <th>Descrição</th>
+                                    <th>Ano</th>                                    
+                                    <th>Mês</th>                                    
                                     <th>Total Entrada</th>
                                     <th>Total saída</th>
                                     <th>Lucro</th>
@@ -81,24 +81,25 @@
                                 <?php if ($model !== null) : ?>
                                     <?php foreach ($model->rows as $movimentacao) : ?>
                                         <tr>
-                                            <td><?= $movimentacao->id_produto ?></td>
-                                            <td><?= $movimentacao->produto ?></td>
+                                            <td ><?= $movimentacao->ano ?></td>                                            
+                                            <td class="text-mes"><?= $movimentacao->mes ?></td>                                            
                                             <td class="tipo-movimentacao movimentacao-entrada">
-                                                R$ <?= ($movimentacao->total_entrada == null) ? '00,00' : $movimentacao->total_entrada ?>
+                                                R$ <?= ($movimentacao->entrada == null) ? '00,00' : $movimentacao->entrada ?>
                                             </td>
                                             <td class="tipo-movimentacao movimentacao-saida">
-                                                R$ <?= $movimentacao->total_saida ?>
+                                                R$ <?= $movimentacao->saida ?>
                                             </td>
                                             <?php if ($movimentacao->saldo == null) : ?>
-                                                <?php if ($movimentacao->total_entrada == null) : ?>
-                                                    <td>R$ <?= $movimentacao->total_saida ?></td>
+                                                <?php if ($movimentacao->entrada == null) : ?>
+                                                    <td>R$ <?= $movimentacao->saida ?></td>
                                                 <?php else : ?>
-                                                    <td>R$ <?= $movimentacao->total_entrada ?></td>
+                                                    <td>R$ <?= $movimentacao->entrada ?></td>
                                                 <?php endif; ?>
 
                                             <?php else : ?>
                                                 <td>R$ <?= $movimentacao->saldo ?></td>
                                             <?php endif; ?>
+                                            
                                         </tr>
                                     <?php endforeach ?>
                                 <?php else : ?>

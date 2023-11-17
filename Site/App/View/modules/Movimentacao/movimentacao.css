@@ -5,6 +5,9 @@
     justify-content: center;
 }
 
+.text-mes::first-letter{
+    text-transform: capitalize;
+}
 
 .buttons-container {
     display: flex;

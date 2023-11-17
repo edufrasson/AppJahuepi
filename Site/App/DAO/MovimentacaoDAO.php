@@ -117,6 +117,81 @@ class MovimentacaoDAO extends DAO
         return $stmt->fetchObject("App\Model\MovimentacaoModel");
     }
 
+    public function getRelatorio()
+    {
+        $sql = "SELECT 
+                    year(mm.data_movimentacao) as ano,
+		            monthname(mm.data_movimentacao) as mes,
+		            sum(mm.valor) as saldo,
+		            (SELECT 
+                        sum(m.valor) 
+		            FROM movimentacao m
+		            WHERE m.valor > 0 AND month(m.data_movimentacao) = month(mm.data_movimentacao) AND year(m.data_movimentacao) = year(mm.data_movimentacao)) as entrada,
+                    (SELECT 
+                        sum(m.valor) 
+		             FROM movimentacao m
+		            WHERE m.valor < 0 AND month(m.data_movimentacao) = month(mm.data_movimentacao) AND year(m.data_movimentacao) = year(mm.data_movimentacao)) as saida
+                FROM movimentacao mm
+                GROUP by month(mm.data_movimentacao), year(mm.data_movimentacao)";
+
+        $stmt = parent::getConnection()->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
+
+    public function getRelatorioByYear($ano)
+    {
+        $sql = "SELECT 
+                :ano as ano,
+                monthname(mm.data_movimentacao) as mes,
+                sum(mm.valor) as saldo,
+                (SELECT 
+                    sum(m.valor) 
+                FROM movimentacao m
+                WHERE m.valor > 0 AND month(m.data_movimentacao) = month(mm.data_movimentacao) AND year(m.data_movimentacao) = :ano) as entrada,
+                (SELECT 
+                    sum(m.valor) 
+                 FROM movimentacao m
+                WHERE m.valor < 0 AND month(m.data_movimentacao) = month(mm.data_movimentacao) AND year(m.data_movimentacao) = :ano) as saida
+            FROM movimentacao mm
+            GROUP by month(mm.data_movimentacao), :ano";
+
+        $stmt = parent::getConnection()->prepare($sql);
+        $stmt->bindValue(':ano', $ano);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
+    public function getRelatorioByYearAndMonth($mes, $ano)
+    {
+        $sql = "SELECT 
+                :ano as ano,
+                monthname(mm.data_movimentacao) as mes,
+                sum(mm.valor) as saldo,
+                (SELECT 
+                    sum(m.valor) 
+                FROM movimentacao m
+                WHERE m.valor > 0 AND month(m.data_movimentacao) = :mes AND year(m.data_movimentacao) = :ano) as entrada,
+                (SELECT 
+                    sum(m.valor) 
+                 FROM movimentacao m
+                WHERE m.valor < 0 AND month(m.data_movimentacao) = :mes AND year(m.data_movimentacao) = :ano) as saida
+            FROM movimentacao mm
+            GROUP by :mes, :ano";
+
+        $stmt = parent::getConnection()->prepare($sql);
+        $stmt->bindValue(':mes', $mes);
+        $stmt->bindValue(':ano', $ano);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
+
+
     public function getSaldo()
     {
         $sql = "SELECT  
