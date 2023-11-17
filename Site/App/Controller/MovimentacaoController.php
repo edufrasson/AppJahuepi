@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\MovimentacaoModel;
 use App\Controller\Controller;
+use App\Model\ProdutoModel;
 
 class MovimentacaoController extends Controller
 {
@@ -31,9 +32,25 @@ class MovimentacaoController extends Controller
     public static function relatorio(){
         parent::isAuthenticated();
 
-        $model = new MovimentacaoModel();
-        $model->getTotalEntradaByProdutoAndDate(date('m'), date('y'));
-        $model->getTotalSaidaByProdutoAndDate(date('m'), date('y'));
+        $model = new ProdutoModel();
+        $model->getRelatorioOfCurrentMonth();
+
+        if(isset($_GET['ano']) && !isset($_GET['mes'])){
+            $model->getRelatorioByYear(($_GET['ano']));
+            $ano = $_GET['ano'];
+        }
+
+        if(isset($_GET['ano']) && isset($_GET['mes'])){
+            $model->getRelatorioByMonthAndYear($_GET['mes'], $_GET['ano']);
+            $ano = $_GET['ano'];
+            $mes = $_GET['mes'];
+        }
+
+        if(!isset($_GET['ano']) && !isset($_GET['mes'])){
+            $model->getRelatorioOfCurrentMonth();
+        }
+        
+        
 
         include VIEWS . 'Movimentacao/RelatorioMovimentacao.php';
     }

@@ -88,7 +88,7 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
               valor_total,
               $(".qnt_parcelas").val(),
               $("#forma_pagamento").val(),
-              $("#data_venda").val(),
+              $("#data_venda_credito").val(),
               $("#valor_liquido_credito").val(),
               null,
               parseFloat($("#valor_taxa_credito").val())
@@ -101,7 +101,7 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
               valor_total,
               1,
               $("#forma_pagamento").val(),
-              $("#data_venda").val(),
+              $("#data_venda_debito").val(),
               $("#valor_liquido_debito").val(),
               null,
               parseFloat($("#valor_taxa_debito").val())
@@ -114,7 +114,7 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
               valor_total,
               $("#qnt_parcelas_boleto").val(),
               $("#forma_pagamento").val(),
-              $("#data_venda").val(),
+              $("#data_venda_boleto").val(),
               $("#valor_liquido_boleto").val(),
               lista_parcelas,
               null
@@ -126,7 +126,7 @@ function relacionarProdutoVenda(id_venda, lista_produtos) {
               valor_total,
               1,
               $("#forma_pagamento").val(),
-              $("#data_venda").val(),
+              $("#data_venda_dinheiro").val(),
               valor_total,
               null,
               null

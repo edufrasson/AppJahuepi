@@ -8,7 +8,7 @@ use App\DAO\ProdutoDAO;
 class ProdutoModel extends Model
 {
     public $id, $descricao, $preco, $codigo_barra, $id_categoria, $ativo;
-
+    public $ano, $mes, $total_entrada, $total_saida, $saldo, $data_movimentacao;
     public $quantidade_venda, $saldo_estoque;
 
     public $lista_categoria, $categoria;
@@ -64,6 +64,22 @@ class ProdutoModel extends Model
         $dao = new CategoriaProdutoDAO();
 
         $this->lista_categoria = $dao->select();
+    }
+
+    public function getRelatorioOfCurrentMonth(){
+        $dao = new ProdutoDAO();
+
+        $this->rows = $dao->getRelatorioOfCurrentMonth();
+    }
+
+    public function getRelatorioByMonthAndYear($mes, $ano){
+        $dao = new ProdutoDAO();
+
+        $this->rows = $dao->getRelatorioByMonthAndYear($mes, $ano);
+    }
+
+    public function getRelatorioByYear($ano){
+        
     }
 
     public function delete(int $id)

@@ -20,12 +20,44 @@
                 <div class="text-container-header-card">
                     <p>Relatório de Movimentação</p>
                 </div>
-                
-            </div>
-            <div class="main-card">
-                <div class="containers-card buttons-container">
-                    <button id="adicionar" class="btn" data-bs-toggle="modal" data-bs-target="#modalMovimentacao">Adicionar</button>
+                <div class="filter-container d-flex justify-content-between mb-5">
+                    <div class="select-filter-container">
+                        <select class="selectpicker filtro_ano" name="filtro_ano" id="filtro_ano">
+                            <option value="">Ano</option>
+                            <option value="2023" <?= (isset($ano) && $ano == 2023) ? 'selected' : '' ?>>2023</option>
+                            <option value="2022" <?= (isset($ano) && $ano == 2022) ? 'selected' : '' ?>>2022</option>
+                            <option value="2021" <?= (isset($ano) && $ano == 2021) ? 'selected' : '' ?>>2021</option>
+                            <option value="2020" <?= (isset($ano) && $ano == 2020) ? 'selected' : '' ?>>2020</option>
+                            <option value="2019" <?= (isset($ano) && $ano == 2019) ? 'selected' : '' ?>>2019</option>
+                            <option value="2018" <?= (isset($ano) && $ano == 2018) ? 'selected' : '' ?>>2018</option>
+                            <option value="2017" <?= (isset($ano) && $ano == 2017) ? 'selected' : '' ?>>2017</option>
+                            <option value="2016" <?= (isset($ano) && $ano == 2016) ? 'selected' : '' ?>>2016</option>
+                            <option value="2015" <?= (isset($ano) && $ano == 2015) ? 'selected' : '' ?>>2015</option>
+                            <option value="2014" <?= (isset($ano) && $ano == 2014) ? 'selected' : '' ?>>2014</option>
+                        </select>
+
+                        <select class="selectpicker" name="filtro_mes" id="filtro_mes">
+                            <option value="">Mês</option>
+                            <option value="1" <?= (isset($mes) && $mes == 1) ? 'selected' : '' ?>>JANEIRO</option>
+                            <option value="2" <?= (isset($mes) && $mes == 2) ? 'selected' : '' ?>>FEVEREIRO</option>
+                            <option value="3" <?= (isset($mes) && $mes == 3) ? 'selected' : '' ?>>MARÇO</option>
+                            <option value="4" <?= (isset($mes) && $mes == 4) ? 'selected' : '' ?>>ABRIL</option>
+                            <option value="5" <?= (isset($mes) && $mes == 5) ? 'selected' : '' ?>>MAIO</option>
+                            <option value="6" <?= (isset($mes) && $mes == 6) ? 'selected' : '' ?>>JUNHO</option>
+                            <option value="7" <?= (isset($mes) && $mes == 7) ? 'selected' : '' ?>>JULHO</option>
+                            <option value="8" <?= (isset($mes) && $mes == 8) ? 'selected' : '' ?>>AGOSTO</option>
+                            <option value="9" <?= (isset($mes) && $mes == 9) ? 'selected' : '' ?>>SETEMBRO</option>
+                            <option value="10" <?= (isset($mes) && $mes == 10) ? 'selected' : '' ?>>OUTUBRO</option>
+                            <option value="11" <?= (isset($mes) && $mes == 11) ? 'selected' : '' ?>>NOVEMBRO</option>
+                            <option value="12" <?= (isset($mes) && $mes == 12) ? 'selected' : '' ?>>DEZEMBRO</option>
+                        </select>
+                    </div>
+                    <div class="button-filter-container">
+                        <a href="#" class="btn btn-filter" id="btnFiltrar">Filtrar </a>
+                    </div>
                 </div>
+            </div>
+            <div class="main-card mt-5">
 
                 <div class="containers-card">
                     <div class="container-table">
@@ -37,29 +69,36 @@
                         <table id="tableMovimentacao" class="table table-bordered table-style off">
                             <thead>
                                 <tr>
-                                    <th>Data</th>
+                                    <th>Cód.</th>
                                     <th>Descrição</th>
-                                    <th>Valor</th>
-                                    <th>Tipo</th>
-                                    <th>Ações</th>
+                                    <th>Total Entrada</th>
+                                    <th>Total saída</th>
+                                    <th>Lucro</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if ($model_entrada !== null && $model_saida !== null) : ?>
+                                <?php if ($model !== null) : ?>
                                     <?php foreach ($model->rows as $movimentacao) : ?>
                                         <tr>
-                                            <td><?= $movimentacao->data_movimentacao ?></td>
-                                            <td><?= $movimentacao->descricao ?></td>
-                                            <td>R$ <?= $movimentacao->valor ?></td>
-                                            <td class="tipo-movimentacao <?= ($movimentacao->valor > 0) ? "movimentacao-entrada" : "movimentacao-saida" ?>">
-                                                <?= ($movimentacao->valor > 0) ? "ENTRADA" : "SAÍDA" ?>
+                                            <td><?= $movimentacao->id_produto ?></td>
+                                            <td><?= $movimentacao->produto ?></td>
+                                            <td class="tipo-movimentacao movimentacao-entrada">
+                                                R$ <?= ($movimentacao->total_entrada == null) ? '00,00' : $movimentacao->total_entrada ?>
                                             </td>
-                                            <td class="actions-list">
-                                                <a class="text-decoration-none" href="/editar_movimentacao?id=<?= $movimentacao->id ?>">
-                                                    <i class="bx bx-edit btn-icon" id="<?= $movimentacao->id ?>" data-bs-toggle="modal" style="color: blue;"></i>
-                                                </a>
-                                                <i class='bx bx-trash btn-icon' id="<?= $movimentacao->id ?>" style="color: red;"></i>
+                                            <td class="tipo-movimentacao movimentacao-saida">
+                                                R$ <?= $movimentacao->total_saida ?>
                                             </td>
+                                            <?php if ($movimentacao->saldo == null) : ?>
+                                                <?php if ($movimentacao->total_entrada == null) : ?>
+                                                    <td>R$ <?= $movimentacao->total_saida ?></td>
+                                                <?php else : ?>
+                                                    <td>R$ <?= $movimentacao->total_entrada ?></td>
+                                                <?php endif; ?>
+
+                                            <?php else : ?>
+                                                <td>R$ <?= $movimentacao->saldo ?></td>
+                                            <?php endif; ?>
                                         </tr>
                                     <?php endforeach ?>
                                 <?php else : ?>
@@ -73,9 +112,9 @@
             </div>
         </div>
     </div>
-  
+
     <?php include 'App/View/includes/js_config.php' ?>
-    <script src="App/View/js/src/jquery.movimentacao.js"></script>
+    <script src="App/View/js/src/jquery.relatorio_mov.js"></script>
 
 
 </body>

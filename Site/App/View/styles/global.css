@@ -71,6 +71,11 @@ body {
 }
 
 
+.filtro_ano{
+  width: 100px !important;
+}
+
+
 /* CONTAINER */
 .container-card {
   width: 100%;

@@ -21,7 +21,7 @@
                 </div>
                 <div class="filter-container d-flex justify-content-between mb-5">
                     <div class="select-filter-container">
-                        <select class="selectpicker" name="filtro_ano" id="filtro_ano">
+                        <select class="selectpicker filtro_ano" name="filtro_ano" id="filtro_ano">
                             <option value="">Ano</option>
                             <option value="2023" <?= (isset($ano) && $ano == 2023) ? 'selected' : '' ?>>2023</option>
                             <option value="2022" <?= (isset($ano) && $ano == 2022) ? 'selected' : '' ?>>2022</option>
@@ -73,7 +73,7 @@
                                     <th>Total Líquido</th>
                                     <th>Ver Produtos</th>
                                     <th>Ver Parcelas</th>
-                                    <th>Ações</th>
+                                    
                                 </tr>
 
                             </thead>
@@ -87,13 +87,7 @@
                                             <td>R$ <?= $venda->total_liquido ?></td>
                                             <td><button id="<?= $venda->id_venda ?>" class="btn open-produtos" data-bs-toggle="modal" data-bs-target="#modalProdutos">Produtos</button></td>
                                             <td><button id="<?= $venda->id_venda ?>" class="btn open-parcelas" data-bs-toggle="modal" data-bs-target="#modalParcelas">Parcelas</button></td>
-                                            <td class="actions-list">
-                                                <a href="/editar_venda?id=<?= $venda->id_venda ?>">
-                                                    <box-icon name="edit" color="blue" id="<?= $venda->id_venda ?>" data-bs-toggle="modal" data-bs-target="#modalVenda" class="btn-icon btn-edit"></box-icon>
-                                                </a>
-
-                                                <box-icon name="trash" color="red" id="<?= $venda->id_venda ?>" class="btn-icon btn-delete"></box-icon>
-                                            </td>
+                                           
                                         </tr>
                                     <?php endforeach ?>
                                 <?php else : ?>

@@ -5,6 +5,7 @@
     justify-content: center;
 }
 
+
 .buttons-container {
     display: flex;
     justify-content: space-between;
@@ -17,6 +18,10 @@
 
 .movimentacao-saida {
     color: red;
+}
+
+.filtro_ano{
+    width: 100px !important;
 }
 
 .table-container {

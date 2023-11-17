@@ -19,15 +19,13 @@
             <div class="header-card">
                 <div class="text-container-header-card">
                     <p>Cadastro de Movimentação</p>
-                </div>
+                </div>               
             </div>
-            <div class="main-card">
+            <div class="main-card ">
                 <div class="containers-card buttons-container">
                     <button id="adicionar" class="btn" data-bs-toggle="modal" data-bs-target="#modalMovimentacao">Adicionar</button>
                     <a id="adicionar" class="btn relatorio" href="/relatorio_movimentacao">Relatório</a>
-
-                </div>
-
+                </div>               
 
                 <div class="containers-card">
                     <div class="container-table">
