@@ -42,6 +42,10 @@ switch ($url) {
     case '/produto/get-by-codigo':
         ProdutoController::getByCodigo();
         break;
+
+    case '/produto/get-count-by-codigo':
+        ProdutoController::getCountByCodigo();
+        break;
     case '/editar_produto':
         ProdutoController::edit();
         break;

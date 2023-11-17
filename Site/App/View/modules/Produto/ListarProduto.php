@@ -86,7 +86,7 @@
 
                     </button>
                 </div>
-                <form method="post" action="/produto/save">
+                <div class="form">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="id_categoria">Categoria:</label><br>
@@ -121,9 +121,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-fechar" data-bs-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn btn-salvar" id="adicionarTipo">Salvar Registro</button>
+                        <button type="submit" class="btn btn-salvar" id="adicionarProduto">Salvar Registro</button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

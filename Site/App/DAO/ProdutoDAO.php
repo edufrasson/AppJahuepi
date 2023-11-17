@@ -99,6 +99,23 @@ class ProdutoDAO extends DAO
         return $stmt->fetchObject("App\Model\ProdutoModel");
     }
 
+    public function selectCountByCodigo($codigo)
+    {
+        $sql = "SELECT		
+                count(p.descricao) AS produtos
+            FROM produto p
+            JOIN categoria_produto c ON (c.id = p.id_categoria)
+            WHERE p.codigo_barra = ? AND p.ativo = 'S' AND c.ativo = 'S'
+        ";
+
+        $stmt = parent::getConnection()->prepare($sql);
+        $stmt->bindValue(1, $codigo);
+
+        $stmt->execute();
+
+        return $stmt->fetchObject("App\Model\ProdutoModel");
+    }
+
     public function getRelatorioOfCurrentMonth()
     {
         $sql = "SELECT 

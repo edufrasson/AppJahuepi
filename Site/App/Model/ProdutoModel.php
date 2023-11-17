@@ -11,7 +11,7 @@ class ProdutoModel extends Model
     public $ano, $mes, $total_entrada, $total_saida, $saldo, $data_movimentacao;
     public $quantidade_venda, $saldo_estoque;
 
-    public $lista_categoria, $categoria;
+    public $lista_categoria, $categoria, $produtos;
 
     public function save()
     {
@@ -56,6 +56,14 @@ class ProdutoModel extends Model
         $dao = new ProdutoDAO();
 
         $obj = $dao->selectByCodigo($codigo);
+
+        return ($obj) ? $obj : new ProdutoModel();
+    }
+
+    public function getCountByCodigo($codigo){
+        $dao = new ProdutoDAO();
+
+        $obj = $dao->selectCountByCodigo($codigo);
 
         return ($obj) ? $obj : new ProdutoModel();
     }

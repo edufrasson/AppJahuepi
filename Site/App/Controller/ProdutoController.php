@@ -52,6 +52,15 @@ class ProdutoController extends Controller
         parent::setResponseAsJSON($model->getByCodigo($_GET['codigo']));
     }
 
+    public static function getCountByCodigo()
+    {
+        parent::isAuthenticated();
+
+        $model = new ProdutoModel();
+
+        parent::setResponseAsJSON($model->getCountByCodigo($_GET['codigo']));
+    }
+
     public static function save()
     {
         parent::isAuthenticated();
@@ -64,9 +73,9 @@ class ProdutoController extends Controller
         $produto->codigo_barra = $_POST['codigo_barra']; 
         $produto->id_categoria = $_POST['id_categoria'];         
 
-        $produto->save();
+        parent::setResponseAsJSON($produto->save());
 
-       header("Location: /produto");
+       
     }
 
     public static function edit(){
