@@ -336,9 +336,25 @@ tbody .open-parcelas {
   }
 }
 
-@media screen and (max-width: 1152px) {
+@media screen and (max-width: 1168px) {
+  .final-actions {
+    margin-top: -60px;
+  }
+}
+
+@media screen and (max-width: 1157px) {
   .final-actions .btn-pagamento {
-    margin-top: 50px;
+    margin-top: -10px;
+  }
+
+  .final-actions .btn-addCategoria {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 1138px) {
+  .final-actions .btn-pagamento {
+    margin-top: -40px;
   }
 
   .final-actions .btn-addCategoria {
