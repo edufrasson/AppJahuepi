@@ -27,7 +27,6 @@ $(document).ready(function () {
         'paging': false
 
     });
-    $('.table-style').columns.adjust();
 
     function capitalizeFirstLetter(s) {
         return s[0].toUpperCase() + s.slice(1);

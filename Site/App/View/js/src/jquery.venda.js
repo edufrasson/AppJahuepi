@@ -1,7 +1,7 @@
 lista_produtos = Array();
 lista_parcelas = Array();
 
-var usarLeitor
+var usarLeitor;
 var valor_parcelas = 0;
 var qnt_parcelas = 0;
 var valor_total = 0;
@@ -11,13 +11,18 @@ var verifica_parcelas = true;
 var venda_inserida = false;
 var produtos_relacionados = false;
 
+function resetLoading() {
+  $("#defaultLabelButton").show();
+  $(".loading-button").hide();
+}
+
 /*
   Requisição para inserir a venda
 */
 function inserirVenda(data_venda, id) {
-  console.log("caiu na funcao");
-
   if (data_venda !== "") {
+    $("#defaultLabelButton").hide();
+    $(".loading-button").removeClass("d-none");
     $.ajax({
       type: "POST",
       url: "/venda/save",
@@ -36,9 +41,12 @@ function inserirVenda(data_venda, id) {
       error: function (result) {
         console.log("erro na venda:");
         last_id_venda = false;
+        resetLoading();
       },
     });
   } else {
+    console.log("caiu no erro que nao era pra ter acontecido");
+    resetLoading();
     swal({
       title: "Erro!",
       text: "Preencha todos os campos! Tente Novamente",
@@ -70,87 +78,79 @@ function registrarVendaOrcamento(id_orcamento) {
 }
 
 function relacionarProdutoVenda(id_venda, lista_produtos) {
-  if (id_venda != false && lista_produtos != null) {
-    $.ajax({
-      type: "POST",
-      url: "/produto_venda/save",
-      data: {
-        id_venda: id_venda,
-        lista_produtos: JSON.stringify(lista_produtos),
-      },
-      dataType: "json",
-      success: function (result) {
-        produtos_relacionados = true;
-        switch ($("#forma_pagamento").val()) {
-          case "CREDITO":
-            adicionarPagamento(
-              last_id_venda,
-              valor_total,
-              $(".qnt_parcelas").val(),
-              $("#forma_pagamento").val(),
-              $("#data_venda_credito").val(),
-              $("#valor_liquido_credito").val(),
-              null,
-              parseFloat($("#valor_taxa_credito").val())
-            );
-            break;
-          case "DEBITO":
-            console.log($("#select-taxa-debito").val());
-            adicionarPagamento(
-              last_id_venda,
-              valor_total,
-              1,
-              $("#forma_pagamento").val(),
-              $("#data_venda_debito").val(),
-              $("#valor_liquido_debito").val(),
-              null,
-              parseFloat($("#valor_taxa_debito").val())
-            );
-            break;
-          case "BOLETO":
-            console.log(lista_parcelas);
-            adicionarPagamento(
-              last_id_venda,
-              valor_total,
-              $("#qnt_parcelas_boleto").val(),
-              $("#forma_pagamento").val(),
-              $("#data_venda_boleto").val(),
-              $("#valor_liquido_boleto").val(),
-              lista_parcelas,
-              null
-            );
-            break;
-          case "DINHEIRO":
-            adicionarPagamento(
-              last_id_venda,
-              valor_total,
-              1,
-              $("#forma_pagamento").val(),
-              $("#data_venda_dinheiro").val(),
-              valor_total,
-              null,
-              null
-            );
-            break;
-        }
-      },
-      error: function (result) {
-        console.log(result);
-        swal({
-          title: "Erro!",
-          text: "Erro interno ao adicionar o produto na venda. Tente Novamente",
-          icon: "error",
-          button: "OK",
-        });
-      },
-    });
-  } else
-    swal({
-      title: "Erro!",
-      text: "Preencha todos os campos! Tente Novamente",
-      icon: "error",
-      button: "OK",
-    });
+  $.ajax({
+    type: "POST",
+    url: "/produto_venda/save",
+    data: {
+      id_venda: id_venda,
+      lista_produtos: JSON.stringify(lista_produtos),
+    },
+    dataType: "json",
+    success: function (result) {
+      produtos_relacionados = true;
+      switch ($("#forma_pagamento").val()) {
+        case "CREDITO":
+          adicionarPagamento(
+            last_id_venda,
+            valor_total,
+            $(".qnt_parcelas").val(),
+            $("#forma_pagamento").val(),
+            $("#data_venda_credito").val(),
+            $("#valor_liquido_credito").val(),
+            null,
+            parseFloat($("#valor_taxa_credito").val())
+          );
+          break;
+        case "DEBITO":
+          console.log($("#select-taxa-debito").val());
+          adicionarPagamento(
+            last_id_venda,
+            valor_total,
+            1,
+            $("#forma_pagamento").val(),
+            $("#data_venda_debito").val(),
+            $("#valor_liquido_debito").val(),
+            null,
+            parseFloat($("#valor_taxa_debito").val())
+          );
+          break;
+        case "BOLETO":
+          console.log(lista_parcelas);
+          adicionarPagamento(
+            last_id_venda,
+            valor_total,
+            $("#qnt_parcelas_boleto").val(),
+            $("#forma_pagamento").val(),
+            $("#data_venda_boleto").val(),
+            $("#valor_liquido_boleto").val(),
+            lista_parcelas,
+            null
+          );
+          break;
+        case "DINHEIRO":
+          adicionarPagamento(
+            last_id_venda,
+            valor_total,
+            1,
+            $("#forma_pagamento").val(),
+            $("#data_venda_dinheiro").val(),
+            valor_total,
+            null,
+            null
+          );
+          break;
+      }
+    },
+    error: function (result) {
+      resetLoading();
+      swal({
+        title: "Erro!",
+        text: "Erro interno ao adicionar o produto na venda. Tente Novamente",
+        icon: "error",
+        button: "OK",
+      });
+    },
+  });
 }
 
 function baixaEstoque(id_venda) {
@@ -162,6 +162,8 @@ function baixaEstoque(id_venda) {
     },
     dataType: "json",
     success: function (result) {
+      $("#defaultLabelButton").show();
+      $(".loading-button").hide();
       swal({
         title: "Sucesso!",
         text: "Venda cadastrada com sucesso!",
@@ -170,6 +172,7 @@ function baixaEstoque(id_venda) {
       });
     },
     error: function (result) {
+      resetLoading();
       swal({
         title: "Erro!",
         text: "Erro interno ao realizar baixa no estoque. Tente Novamente",
@@ -228,7 +231,7 @@ function adicionarPagamento(
         }
       },
       error: function (result) {
-        console.log(result);
+        resetLoading();
         swal({
           title: "Erro!",
           text: "Ocorreu um erro ao adicionar pagamento da venda! Tente Novamente",
@@ -238,6 +241,8 @@ function adicionarPagamento(
       },
     });
   } else {
+    resetLoading();
+    console.log("caiu no erro que nao era pra ter acontecido 3");
     swal({
       title: "Erro!",
       text: "Preencha todos os campos! Tente Novamente",
@@ -281,14 +286,15 @@ async function reloadTableProductById() {
         $("#tableProduto").append(`<tr> 
        <td> ${result.response_data.descricao} </td> 
        <td> ${Intl.NumberFormat("pt-BR", {
-          style: "currency",
-          currency: "BRL",
-        }).format(result.response_data.preco.toString())} </td>
+         style: "currency",
+         currency: "BRL",
+       }).format(result.response_data.preco.toString())} </td>
        <td> ${$("#quantidade").val()} </td> 
        <td> ${result.response_data.codigo_barra} </td>             
        <td class="actions-list-venda d-flex justify-content-center">                
-           <box-icon name="trash" color="#e8ac07" id="${result.response_data.id
-          }" class="btn-icon btn-delete-list"></box-icon>
+           <box-icon name="trash" color="#e8ac07" id="${
+             result.response_data.id
+           }" class="btn-icon btn-delete-list"></box-icon>
        </td>
       </tr>`);
 
@@ -342,42 +348,52 @@ async function reloadTableProductByCodigo() {
             button: "OK",
           });
         } else {
-          // Recalculando valores
-          valor_total += $("#quantidade").val() * result.response_data.preco;
-          lista_produtos.push({
-            id_produto: result.response_data.id,
-            quantidade: $("#quantidade").val(),
-            valor_unit: result.response_data.preco,
-            descricao: result.response_data.descricao,
-          });
+          if (result.response_data != null) {
+            // Recalculando valores
+            valor_total += $("#quantidade").val() * result.response_data.preco;
+            lista_produtos.push({
+              id_produto: result.response_data.id,
+              quantidade: $("#quantidade").val(),
+              valor_unit: result.response_data.preco,
+              descricao: result.response_data.descricao,
+            });
 
-          // Adicionando produto no carrinho de compra
-          $("#tableProduto").append(`<tr> 
-         <td> ${result.response_data.descricao} </td> 
-         <td> ${Intl.NumberFormat("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-          }).format(result.response_data.preco.toString())} </td>
-         <td> ${$("#quantidade").val()} </td> 
-         <td> ${result.response_data.codigo_barra} </td>             
-         <td class="actions-list-venda d-flex justify-content-center">                
-             <box-icon name="trash" color="#e8ac07" id="${result.response_data.id
-            }" class="btn-icon btn-delete-list"></box-icon>
-         </td>
-        </tr>`);
+            // Adicionando produto no carrinho de compra
+            $("#tableProduto").append(`<tr> 
+              <td> ${result.response_data.descricao} </td> 
+              <td> ${Intl.NumberFormat("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              }).format(result.response_data.preco.toString())} </td>
+              <td> ${$("#quantidade").val()} </td> 
+              <td> ${result.response_data.codigo_barra} </td>             
+              <td class="actions-list-venda d-flex justify-content-center">                
+                  <box-icon name="trash" color="#e8ac07" id="${
+                    result.response_data.id
+                  }" class="btn-icon btn-delete-list"></box-icon>
+              </td>
+              </tr>`);
 
-          // Resetando quantidade
-          $("#quantidade").val("");
+            // Resetando quantidade
+            $("#quantidade").val("");
 
-          // Função que retira os produtos da lista de compras
-          $(".btn-delete-list").click(function () {
-            lista_produtos.splice(
-              lista_produtos.findIndex(
-                (produto) => produto.id_produto == result.response_data.id
-              ),
-              1
-            );
-          });
+            // Função que retira os produtos da lista de compras
+            $(".btn-delete-list").click(function () {
+              lista_produtos.splice(
+                lista_produtos.findIndex(
+                  (produto) => produto.id_produto == result.response_data.id
+                ),
+                1
+              );
+            });
+          } else {
+            swal({
+              title: "Erro!",
+              text: "Produto não encontrado! Tente novamente.",
+              icon: "error",
+              button: "OK",
+            });
+          }
         }
       },
       error: function (result) {
@@ -390,8 +406,6 @@ async function reloadTableProductByCodigo() {
       },
     });
   }
-
-
 }
 
 /**
@@ -443,13 +457,13 @@ function adicionarProduto() {
     $("#quantidade").val() != 0 &&
     $("#quantidade").val() != ""
   ) {
-    if ($('#codigo_barra').hasClass('d-none') == false && localStorage.getItem('usarLeitor') == 'true')
+    if (
+      $("#codigo_barra").hasClass("d-none") == false &&
+      localStorage.getItem("usarLeitor") == "true"
+    )
       reloadTableProductByCodigo();
-    else
-      reloadTableProductById();
-  }
-
-  else {
+    else reloadTableProductById();
+  } else {
     swal({
       title: "Erro!",
       text: "Preencha corretamente a quantidade de produto desejada!",
@@ -635,9 +649,11 @@ $(document).ready(function () {
     Função que chama todas as requisições necessárias para inserir uma venda completa
   */
   $("#finalizarVenda").click(async () => {
+    $("#defaultLabelButton").hide();
+    $(".loading-button").removeClass("d-none");
     switch ($("#forma_pagamento").val()) {
       case "CREDITO":
-        await inserirVenda($("#data_venda").val(), $("#id").val());
+        await inserirVenda($("#data_venda_credito").val(), $("#id").val());
         break;
       case "DEBITO":
         await inserirVenda($("#data_venda_debito").val(), $("#id").val());
@@ -672,6 +688,7 @@ $(document).ready(function () {
     if (venda_inserida != false) {
       valor = await relacionarProdutoVenda(last_id_venda, lista_produtos);
     } else {
+      resetLoading()
       swal({
         title: "Erro!",
         text: "Erro interno ao adicionar a venda. Tente Novamente",
@@ -679,63 +696,49 @@ $(document).ready(function () {
         button: "OK",
       });
     }
-    setInterval(5000);
+    
   });
 
   // Funções executadas ao abrir a página
 
-
-
-
-
-  if (localStorage.getItem('usarLeitor') == 'true') {
-    ;
-    $('#usar_leitor').prop('checked', true)
+  if (localStorage.getItem("usarLeitor") == "true") {
+    $("#usar_leitor").prop("checked", true);
     $(".select-container").addClass("d-none");
     $(".container-codigo-barra").removeClass("d-none");
-    $('#codigo_barra').focus()
+    $("#codigo_barra").focus();
   } else {
-    console.log('caiu no false')
-    console.log(localStorage.getItem('usarLeitor'))
-    $('#usar_leitor').prop('checked', false)
+    console.log("caiu no false");
+    console.log(localStorage.getItem("usarLeitor"));
+    $("#usar_leitor").prop("checked", false);
     $(".select-container").removeClass("d-none");
     $(".container-codigo-barra").addClass("d-none");
   }
 
-  $('#codigo_barra').change(() => {
-    $('#quantidade').focus();
-  })
+  $("#codigo_barra").change(() => {
+    $("#quantidade").focus();
+  });
 
-  $('#quantidade').keypress((event) => {
-    console.log('caiu no evento')
+  $("#quantidade").keypress((event) => {
+    console.log("caiu no evento");
 
-    if (event.key == 'Enter') {
-      adicionarProduto()
-    }
-  })
-
-
-
-
-  $("#usar_leitor").mousedown(function () {
-
-
-    if (this.checked) {
-      usarLeitor = false
-      localStorage.setItem('usarLeitor', false)
-      $(".select-container").removeClass("d-none");
-      $(".container-codigo-barra").addClass("d-none");
-
-    } else {
-      usarLeitor = true
-      localStorage.setItem('usarLeitor', true)
-      $(".select-container").addClass("d-none");
-      $(".container-codigo-barra").removeClass("d-none");
-
+    if (event.key == "Enter") {
+      adicionarProduto();
     }
   });
 
-
+  $("#usar_leitor").mousedown(function () {
+    if (this.checked) {
+      usarLeitor = false;
+      localStorage.setItem("usarLeitor", false);
+      $(".select-container").removeClass("d-none");
+      $(".container-codigo-barra").addClass("d-none");
+    } else {
+      usarLeitor = true;
+      localStorage.setItem("usarLeitor", true);
+      $(".select-container").addClass("d-none");
+      $(".container-codigo-barra").removeClass("d-none");
+    }
+  });
 
   $(".btn-orcamento").click(() => {
     console.log("caiu orcamento");

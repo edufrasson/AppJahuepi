@@ -154,7 +154,13 @@
                     <div class="modal-footer d-flex justify-content-between">
                         <button type="button" class="btn btn-fechar" data-bs-dismiss="modal">Fechar</button>
                         <button type="button" class="btn btn-salvar" id="ajustarParcelas">Ajustar Parcelas</button>
-                        <button type="button " class="btn d-none" style="background-color: #f4c71e;" id="adicionarCompra">Salvar Registro</button>
+                        <button type="button " class="btn d-none" style="background-color: #f4c71e;" id="adicionarCompra">
+                            <span id="defaultLabelButton">Salvar Registro</span>
+                            <div class="loading-button d-none">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                <span class="sr-only">Carregando...</span>
+                            </div>
+                        </button>
                     </div>
                 </div>
             </div>

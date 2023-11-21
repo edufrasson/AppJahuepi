@@ -44,7 +44,7 @@
                     <div class="input-row mb-3">
                         <div class="input-container">
                             <label for="txtDataVenda">Data da Venda: </label><br>
-                            <input class="form-control p-1 data_venda" type="date" name="data_venda" id="data_venda">
+                            <input class="form-control p-1 data_venda" type="date" name="data_venda" id="data_venda_credito">
                         </div>
                         <div class="input-container">
                             <label for="valor_total">Valor total (R$): </label><br>
@@ -169,7 +169,13 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-fechar " data-bs-dismiss="modal">Fechar</button>
                     <button type="button" class="btn d-none" style="background-color: #f4c71e;" id="ajustarParcela">Ajustar Parcelas</button>
-                    <button type="button" class="btn btn-salvar" style="background-color: #f4c71e;" id="finalizarVenda">Salvar Registro</button>
+                    <button type="button" class="btn btn-salvar" style="background-color: #f4c71e;" id="finalizarVenda">
+                        <span id="defaultLabelButton">Salvar Registro</span>
+                        <div class="loading-button d-none">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <span class="sr-only">Carregando...</span>
+                        </div>
+                    </button>
 
                 </div>
             </form>

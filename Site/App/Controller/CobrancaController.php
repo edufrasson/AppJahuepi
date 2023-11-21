@@ -69,7 +69,7 @@ class CobrancaController extends Controller
         if($dados != false){
             $model_mov = new MovimentacaoModel();
             $model_mov->descricao = "Pagamento de Cobranca";
-            $model_mov->data_movimentacao = date("Y-m-d");
+            ($dados->data_cobranca <= date("Y-m-d")) ? $model_mov->data_movimentacao = $dados->data_cobranca : $model_mov->data_movimentacao = date("Y-m-d"); 
             $model_mov->valor = -$dados->valor_cobranca;
             $model_mov->id_cobranca = $dados->id;
             $model_mov->save();

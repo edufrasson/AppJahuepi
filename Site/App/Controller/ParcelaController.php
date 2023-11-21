@@ -69,7 +69,7 @@ class ParcelaController extends Controller
 
         $model_mov = new MovimentacaoModel();
         $model_mov->descricao = "Recebimento de Parcela";
-        $model_mov->data_movimentacao = $dados->data_recebimento;
+        ($dados->data_recebimento <= date("Y-m-d")) ? $model_mov->data_movimentacao = $dados->data_recebimento : $model_mov->data_movimentacao = date("Y-m-d");        
         $model_mov->valor = $dados->valor;
         $model_mov->id_parcela = $dados->id_parcela;
         $model_mov->save();

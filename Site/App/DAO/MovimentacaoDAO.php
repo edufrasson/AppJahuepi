@@ -122,13 +122,13 @@ class MovimentacaoDAO extends DAO
         $sql = "SELECT 
                     year(mm.data_movimentacao) as ano,
 		            monthname(mm.data_movimentacao) as mes,
-		            sum(mm.valor) as saldo,
+		            FORMAT(sum(mm.valor), 2, 'de_DE')  as saldo,
 		            (SELECT 
-                        sum(m.valor) 
+                        FORMAT(sum(m.valor), 2, 'de_DE') 
 		            FROM movimentacao m
 		            WHERE m.valor > 0 AND month(m.data_movimentacao) = month(mm.data_movimentacao) AND year(m.data_movimentacao) = year(mm.data_movimentacao)) as entrada,
                     (SELECT 
-                        sum(m.valor) 
+                        FORMAT(sum(m.valor), 2, 'de_DE') 
 		             FROM movimentacao m
 		            WHERE m.valor < 0 AND month(m.data_movimentacao) = month(mm.data_movimentacao) AND year(m.data_movimentacao) = year(mm.data_movimentacao)) as saida
                 FROM movimentacao mm
@@ -146,13 +146,13 @@ class MovimentacaoDAO extends DAO
         $sql = "SELECT 
                 :ano as ano,
                 monthname(mm.data_movimentacao) as mes,
-                sum(mm.valor) as saldo,
+                FORMAT(sum(mm.valor), 2, 'de_DE') , 2) as saldo,
                 (SELECT 
-                    sum(m.valor) 
+                    FORMAT(sum(m.valor), 2, 'de_DE')  
                 FROM movimentacao m
-                WHERE m.valor > 0 AND month(m.data_movimentacao) = month(mm.data_movimentacao) AND year(m.data_movimentacao) = :ano) as entrada,
+                WHERE m.valor > 0 AND month(m.data_movimentacao) = month(.data_movimentacao) AND year(m.data_movimentacao) = :ano) as entrada,
                 (SELECT 
-                    sum(m.valor) 
+                    FORMAT(sum(m.valor), 2, 'de_DE')  
                  FROM movimentacao m
                 WHERE m.valor < 0 AND month(m.data_movimentacao) = month(mm.data_movimentacao) AND year(m.data_movimentacao) = :ano) as saida
             FROM movimentacao mm
@@ -170,13 +170,13 @@ class MovimentacaoDAO extends DAO
         $sql = "SELECT 
                 :ano as ano,
                 monthname(mm.data_movimentacao) as mes,
-                sum(mm.valor) as saldo,
+                FORMAT(sum(mm.valor), 2, 'de_DE') , 2, 'de_DE') as saldo,
                 (SELECT 
-                    sum(m.valor) 
+                    FORMAT(sum(m.valor), 2, 'de_DE')  
                 FROM movimentacao m
                 WHERE m.valor > 0 AND month(m.data_movimentacao) = :mes AND year(m.data_movimentacao) = :ano) as entrada,
                 (SELECT 
-                    sum(m.valor) 
+                    FORMAT(sum(m.valor), 2, 'de_DE')  
                  FROM movimentacao m
                 WHERE m.valor < 0 AND month(m.data_movimentacao) = :mes AND year(m.data_movimentacao) = :ano) as saida
             FROM movimentacao mm

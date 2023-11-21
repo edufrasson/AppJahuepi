@@ -8,10 +8,22 @@ var verifica_parcelas = true;
 var compra_inserida = false;
 var produtos_relacionados = false;
 
+function resetLoading() {
+  $("#defaultLabelButton").show();
+  $(".loading-button").hide();
+}
+
 /*
   Requisição para inserir a compra
 */
-function inserirCompra(data_compra, id, qnt_parcela, id_fornecedor, valor_compra, arr_parcelas) {
+function inserirCompra(
+  data_compra,
+  id,
+  qnt_parcela,
+  id_fornecedor,
+  valor_compra,
+  arr_parcelas
+) {
   if (data_compra !== "") {
     $.ajax({
       type: "POST",
@@ -23,7 +35,7 @@ function inserirCompra(data_compra, id, qnt_parcela, id_fornecedor, valor_compra
         qnt_parcela: qnt_parcela,
         id_fornecedor: id_fornecedor,
         valor_compra: valor_compra,
-        arr_parcelas: JSON.stringify(arr_parcelas)
+        arr_parcelas: JSON.stringify(arr_parcelas),
       },
       dataType: "json",
       success: function (result) {
@@ -31,15 +43,17 @@ function inserirCompra(data_compra, id, qnt_parcela, id_fornecedor, valor_compra
         console.log(result.response_data);
         last_id_compra = result.response_data.id;
         compra_inserida = true;
-        console.log(lista_produtos)
+        console.log(lista_produtos);
         relacionarProdutoCompra(last_id_compra, lista_produtos);
       },
       error: function (result) {
         console.log(`erro na compra: ${result}`);
         last_id_compra = false;
+        resetLoading()
       },
     });
   } else {
+    resetLoading()
     swal({
       title: "Erro!",
       text: "Preencha todos os campos! Tente Novamente",
@@ -54,7 +68,6 @@ function inserirCompra(data_compra, id, qnt_parcela, id_fornecedor, valor_compra
 */
 
 function relacionarProdutoCompra(id_compra, lista_produtos) {
-  if (id_compra != false && lista_produtos != null) {
     $.ajax({
       type: "POST",
       url: "/produto_compra/save",
@@ -64,10 +77,11 @@ function relacionarProdutoCompra(id_compra, lista_produtos) {
       },
       dataType: "json",
       success: function (result) {
-        baixaEstoque(last_id_compra)
+        baixaEstoque(last_id_compra);
       },
       error: function (result) {
         console.log(result);
+        resetLoading()
         swal({
           title: "Erro!",
           text: "Erro interno ao adicionar o produto na compra. Tente Novamente",
@@ -75,14 +89,7 @@ function relacionarProdutoCompra(id_compra, lista_produtos) {
           button: "OK",
         });
       },
-    });
-  } else
-    swal({
-      title: "Erro!",
-      text: "Preencha todos os campos! Tente Novamente",
-      icon: "error",
-      button: "OK",
-    });
+    });  
 }
 
 function baixaEstoque(id_compra) {
@@ -94,6 +101,7 @@ function baixaEstoque(id_compra) {
     },
     dataType: "json",
     success: function (result) {
+      resetLoading()
       swal({
         title: "Sucesso!",
         text: "Compra cadastrada com sucesso!",
@@ -102,7 +110,8 @@ function baixaEstoque(id_compra) {
       });
     },
     error: function (result) {
-      console.log(result)
+      console.log(result);
+      resetLoading()
       swal({
         title: "Erro!",
         text: "Erro interno ao adicionar ao baixar estoque. Tente Novamente",
@@ -124,7 +133,7 @@ async function reloadTableProduct() {
     dataType: "json",
     success: async function (result) {
       // Recalculando valores
-      console.log(result)
+      console.log(result);
 
       valor_total += $("#quantidade").val() * $("#valor_unitario").val();
       lista_produtos.push({
@@ -137,13 +146,14 @@ async function reloadTableProduct() {
       $("#tableProduto").append(`<tr> 
        <td> ${result.response_data.descricao} </td> 
        <td> ${Intl.NumberFormat("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      }).format($("#valor_unitario").val().toString())} </td>
+         style: "currency",
+         currency: "BRL",
+       }).format($("#valor_unitario").val().toString())} </td>
        <td> ${$("#quantidade").val()} </td>                    
        <td class="actions-list-compra d-flex justify-content-center">                
-           <box-icon name="trash" color="#e8ac07" id="${result.response_data.id
-        }" class="btn-icon btn-delete-list"></box-icon>
+           <box-icon name="trash" color="#e8ac07" id="${
+             result.response_data.id
+           }" class="btn-icon btn-delete-list"></box-icon>
        </td>
       </tr>`);
 
@@ -158,9 +168,9 @@ async function reloadTableProduct() {
         $(this).closest("tr").remove(); // Removendo linha do elemento da tabela
       });
     },
-    error: async function (result){
-      console.log(result)
-    }
+    error: async function (result) {
+      console.log(result);
+    },
   });
 }
 
@@ -170,40 +180,50 @@ async function reloadTableProductByCodigo() {
     url: "/produto/get-by-codigo?codigo=" + $("#codigo_barra").val(),
     dataType: "json",
     success: async function (result) {
-      // Recalculando valores
-      console.log(result)
+      console.log(result.response_data)
+      if (result.response_data.id != null) {
+        // Recalculando valores        
 
-      valor_total += $("#quantidade").val() * $("#valor_unitario").val();
-      lista_produtos.push({
-        id_produto: result.response_data.id,
-        quantidade: $("#quantidade").val(),
-        valor_unit: $("#valor_unitario").val(),
-      });
+        valor_total += $("#quantidade").val() * $("#valor_unitario").val();
+        lista_produtos.push({
+          id_produto: result.response_data.id,
+          quantidade: $("#quantidade").val(),
+          valor_unit: $("#valor_unitario").val(),
+        });
 
-      // Adicionando produto no carrinho de compra
-      $("#tableProduto").append(`<tr> 
-       <td> ${result.response_data.descricao} </td> 
-       <td> ${Intl.NumberFormat("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      }).format($("#valor_unitario").val().toString())} </td>
-       <td> ${$("#quantidade").val()} </td>                    
-       <td class="actions-list-compra d-flex justify-content-center">                
-           <box-icon name="trash" color="#e8ac07" id="${result.response_data.id
-        }" class="btn-icon btn-delete-list"></box-icon>
-       </td>
-      </tr>`);
+        // Adicionando produto no carrinho de compra
+        $("#tableProduto").append(`<tr> 
+            <td> ${result.response_data.descricao} </td> 
+            <td> ${Intl.NumberFormat("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            }).format($("#valor_unitario").val().toString())} </td>
+            <td> ${$("#quantidade").val()} </td>                    
+            <td class="actions-list-compra d-flex justify-content-center">                
+                <box-icon name="trash" color="#e8ac07" id="${
+                  result.response_data.id
+                }" class="btn-icon btn-delete-list"></box-icon>
+            </td>
+            </tr>`);
 
-      // Função que retira os produtos da lista de compras
-      $(".btn-delete-list").click(function () {
-        lista_produtos.splice(
-          lista_produtos.findIndex(
-            (produto) => produto.id_produto == result.response_data.id
-          ),
-          1
-        );
-        $(this).closest("tr").remove(); // Removendo linha do elemento da tabela
-      });
+        // Função que retira os produtos da lista de compras
+        $(".btn-delete-list").click(function () {
+          lista_produtos.splice(
+            lista_produtos.findIndex(
+              (produto) => produto.id_produto == result.response_data.id
+            ),
+            1
+          );
+          $(this).closest("tr").remove(); // Removendo linha do elemento da tabela
+        });
+      }else{
+        swal({
+          title: "Erro!",
+          text: "Produto não encontrado! Tente novamente.",
+          icon: "error",
+          button: "OK",
+        });
+      }
     },
   });
 }
@@ -244,13 +264,15 @@ $(document).ready(function () {
   */
 
   $("#adicionarProduto").click(function () {
-    if ($('.container-codigo-barra').hasClass('d-none') == false && localStorage.getItem('usarLeitor') == 'true')      
+    if (
+      $(".container-codigo-barra").hasClass("d-none") == false &&
+      localStorage.getItem("usarLeitor") == "true"
+    )
       reloadTableProductByCodigo();
-    else{    
-      console.log(localStorage.getItem('usarLeitor'))
+    else {
+      console.log(localStorage.getItem("usarLeitor"));
       reloadTableProduct();
     }
-    
   });
 
   $("#qnt_parcelas").change(() => {
@@ -318,59 +340,70 @@ $(document).ready(function () {
     }
   });
 
+  $("#id_fornecedor").change(() => {
+    $("#codigo_barra").focus();
+  });
+
+  $("#codigo_barra").change(() => {
+    $("#valor_unitario").focus();
+  });
+
+  $("#valor_unitario").change(() => {
+    $("#quantidade").focus();
+  });
 
   // Verificando o local storage do leitor
-  if (localStorage.getItem('usarLeitor') == 'true') {
-    console.log('caiu no true')
-    console.log(localStorage.getItem('usarLeitor'))
-    
-    $('#usar_leitor').prop('checked', true)
+  if (localStorage.getItem("usarLeitor") == "true") {
+    console.log("caiu no true");
+    console.log(localStorage.getItem("usarLeitor"));
+    $("#usar_leitor").prop("checked", true);
     $(".select-container-produto").addClass("d-none");
     $(".container-codigo-barra").removeClass("d-none");
   } else {
-    console.log('caiu no false')
-    console.log(localStorage.getItem('usarLeitor'))
-    $('#usar_leitor').prop('checked', false)
+    console.log("caiu no false");
+    console.log(localStorage.getItem("usarLeitor"));
+    $("#usar_leitor").prop("checked", false);
     $(".select-container-produto").removeClass("d-none");
     $(".container-codigo-barra").addClass("d-none");
   }
 
+  // Função quando o check de leitor é pressionado
   $("#usar_leitor").mousedown(function () {
     if (this.checked) {
-      usarLeitor = false
-      localStorage.setItem('usarLeitor', false)
+      usarLeitor = false;
+      localStorage.setItem("usarLeitor", false);
       $(".select-container-produto").removeClass("d-none");
       $(".container-codigo-barra").addClass("d-none");
-
     } else {
-      usarLeitor = true
-      localStorage.setItem('usarLeitor', true)
+      usarLeitor = true;
+      localStorage.setItem("usarLeitor", true);
       $(".select-container-produto").addClass("d-none");
       $(".container-codigo-barra").removeClass("d-none");
-
     }
   });
-
 
   /* 
     Função que chama todas as requisições necessárias para inserir uma compra completa
   */
 
   $("#adicionarCompra").click(async () => {
+    $("#defaultLabelButton").hide();
+    $(".loading-button").removeClass("d-none");
     for (let i = 1; i <= qnt_parcelas; i++) {
-      if ($(`#data_vencimento${i}`).val() == "") verifica_parcelas = false;
+      if ($(`#data_vencimento${i}`).val() == "") {
+        verifica_parcelas = false
+      }
+        
     }
 
     if (verifica_parcelas != false) {
       let arr_parcelas = Array();
       for (let i = 1; i <= qnt_parcelas; i++) {
-        arr_parcelas.push(
-          {
-            indice: i,
-            valor_cobranca: (valor_total / qnt_parcelas).toFixed(2),
-            data_cobranca: $(`#data_vencimento${i}`).val()
-          }
-        )
+        arr_parcelas.push({
+          indice: i,
+          valor_cobranca: (valor_total / qnt_parcelas).toFixed(2),
+          data_cobranca: $(`#data_vencimento${i}`).val(),
+        });
       }
 
       await inserirCompra(
@@ -381,10 +414,9 @@ $(document).ready(function () {
         valor_total,
         arr_parcelas
       );
-
-
-      setInterval(5000);
+      
     } else {
+      resetLoading()
       swal({
         title: "Erro!",
         text: "Verifique se todas as parcelas foram ajustadas!",
